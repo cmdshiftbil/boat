@@ -101,7 +101,7 @@ export async function generateStaticParams() {
     limit: 0,
   });
 
-  const paths = projects.docs.map((project) => {
+  const paths = projects.docs.map((project: any) => {
     return {
       slug: project.slug,
     };

@@ -9,7 +9,7 @@ const BlueprintLabel = ({
   className?: string;
   as: keyof JSX.IntrinsicElements;
 }) => {
-  const As = as;
+  const As: any = as;
 
   return (
     <As

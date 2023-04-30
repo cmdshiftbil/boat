@@ -32,7 +32,6 @@
     "gsap": "npm:@gsap/business@^3.11.5",
     "lucide-react": "^0.188.0",
     "mapbox-gl": "^2.14.1",
-    "mongodb": "^5.3.0",
     "next": "13.3.2",
     "next-seo": "^6.0.0",
     "payload": "^1.7.2",
@@ -44,6 +43,7 @@
     "tailwind-merge": "^1.12.0",
     "tailwindcss": "3.3.2",
     "tailwindcss-fluid-type": "^2.0.3",
+    "three": "^0.152.2",
     "typescript": "5.0.4",
     "zustand": "^4.3.7"
   }
