@@ -4328,7 +4328,7 @@ grid-index@^1.1.0:
   resolved "https://registry.yarnpkg.com/grid-index/-/grid-index-1.1.0.tgz#97f8221edec1026c8377b86446a7c71e79522ea7"
   integrity sha512-HZRwumpOGUrHyxO5bqKZL0B0GlUpwtCAzZ42sgxUPniu33R1LSFH5yrIcBCHjkctCAh3mtWKcKd9J4vDDdeVHA==
 
-"gsap@npm:@gsap/business@^3.11.5":
+"gsap@npm:@gsap/business":
   version "3.11.5"
   resolved "https://npm.greensock.com/@gsap%2fbusiness/-/business-3.11.5.tgz#52b4536f72e9d262da2b7ade6fbde6875e12c17a"
   integrity sha512-4eYfbB7c+s9N+ImkqU5ZoaNEkDm9SEZb6NfHYsvGr5hM4bIN/8wKObbpl+/pNRRPl0XopxRNz4E6hc4a0j76ZA==

@@ -1,7 +1,7 @@
 import { NextSeo } from "next-seo";
 import NextHead from "next/head";
 
-function CustomHead({ title = "", description, image, keywords }) {
+function CustomHead({ title = "", description, image, keywords }: any) {
   return (
     <>
       <NextHead>

@@ -29,7 +29,7 @@
     "classnames": "^2.3.2",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.2",
-    "gsap": "npm:@gsap/business@^3.11.5",
+    "gsap": "npm:@gsap/business",
     "lucide-react": "^0.188.0",
     "mapbox-gl": "^2.14.1",
     "next": "13.3.2",
