@@ -32,6 +32,7 @@
     "gsap": "npm:@gsap/business@^3.11.5",
     "lucide-react": "^0.188.0",
     "mapbox-gl": "^2.14.1",
+    "mongodb": "^5.3.0",
     "next": "13.3.2",
     "next-seo": "^6.0.0",
     "payload": "^1.7.2",
