@@ -7,7 +7,7 @@ const BlueprintLabel = ({
 }: {
   label: string;
   className?: string;
-  as: keyof JSX.IntrinsicElements;
+  as?: keyof JSX.IntrinsicElements;
 }) => {
   const As: any = as;
 

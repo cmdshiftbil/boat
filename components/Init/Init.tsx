@@ -43,8 +43,8 @@ if (typeof window !== "undefined") {
 export const Init = () => {
   const debug = useDebug();
 
-  const lenis: any = useStore(({ lenis }) => lenis);
-  const overflow = useStore(({ overflow }) => overflow);
+  const lenis: any = useStore(({ lenis }: any) => lenis);
+  const overflow = useStore(({ overflow }: any) => overflow);
 
   useFrame((time: any) => {
     lenis?.raf(time);

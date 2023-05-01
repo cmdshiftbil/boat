@@ -1,20 +1,20 @@
 import { create } from "zustand";
 
-export const useStore = create((set, get) => ({
+export const useStore = create((set, get: any) => ({
   headerData: undefined,
-  setHeaderData: (headerData) => set({ headerData }),
+  setHeaderData: (headerData: any) => set({ headerData }),
   footerData: undefined,
-  setFooterData: (footerData) => set({ footerData }),
+  setFooterData: (footerData: any) => set({ footerData }),
   navIsOpen: false,
-  setNavIsOpen: (toggle) => set({ navIsOpen: toggle, overflow: !toggle }),
+  setNavIsOpen: (toggle: any) => set({ navIsOpen: toggle, overflow: !toggle }),
   lenis: undefined,
-  setLenis: (lenis) => set({ lenis }),
+  setLenis: (lenis: any) => set({ lenis }),
   overflow: true,
-  setOverflow: (overflow) => set({ overflow }),
+  setOverflow: (overflow: any) => set({ overflow }),
   triggerTransition: "",
-  setTriggerTransition: (triggerTransition) => set({ triggerTransition }),
+  setTriggerTransition: (triggerTransition: any) => set({ triggerTransition }),
   thresholds: {},
-  addThreshold: ({ id, value }) => {
+  addThreshold: ({ id, value }: any) => {
     let thresholds = { ...get().thresholds };
     thresholds[id] = value;
 
@@ -24,5 +24,5 @@ export const useStore = create((set, get) => ({
   //   set({ threshold })
   // },
   introOut: false,
-  setIntroOut: (introOut) => set({ introOut }),
+  setIntroOut: (introOut: any) => set({ introOut }),
 }));

@@ -8,7 +8,7 @@ import Lenis from "@studio-freight/lenis";
 // import { Scrollbar } from "components/scrollbar";
 import { useStore } from "@/lib/store";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ProgressScrollbar from "@/components/ScrollProgressBar/ScrollProgressBar";
 import { TransitionProvider } from "@/components/Transition/Transition.provider";
@@ -29,11 +29,13 @@ import { fetchContent } from "@/utils/api.utils";
 export function Layout({
   seo = { title: "", description: "", image: "", keywords: "" },
   children,
-  theme = "light",
-  className,
 }: any) {
-  const [lenis, setLenis] = useStore((state) => [state.lenis, state.setLenis]);
+  const [lenis, setLenis] = useStore((state: any) => [
+    state.lenis,
+    state.setLenis,
+  ]);
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,7 +51,7 @@ export function Layout({
     };
   }, []);
 
-  const [hash, setHash] = useState();
+  const [hash, setHash] = useState<any>();
 
   useEffect(() => {
     if (lenis && hash) {
@@ -69,7 +71,7 @@ export function Layout({
 
   useEffect(() => {
     // catch anchor links clicks
-    function onClick(e) {
+    function onClick(e: any) {
       e.preventDefault();
       const node = e.currentTarget;
       const hash = node.href.split("#").pop();
@@ -80,7 +82,7 @@ export function Layout({
     }
 
     const internalLinks = [...document.querySelectorAll("[href]")].filter(
-      (node) => node.href.includes(router.pathname + "#")
+      (node: any) => node.href.includes(pathname + "#")
     );
 
     internalLinks.forEach((node) => {
@@ -94,9 +96,9 @@ export function Layout({
     };
   }, []);
 
-  useFrame((time) => {
+  useFrame((time: any) => {
     lenis?.raf(time);
-  }, []);
+  });
 
   return (
     <>
@@ -118,7 +120,7 @@ export function Layout({
 }
 
 // TODO:: Fix meta data
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: any) {
   const project = await fetchContent(
     "projects",
     `where[slug][equals]=${params.slug}`

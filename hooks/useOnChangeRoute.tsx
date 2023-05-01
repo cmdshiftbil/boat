@@ -19,7 +19,7 @@ export default function useOnChangeRoute() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const url = pathname + searchParams.toString();
+    const url = pathname + searchParams!.toString();
     // You can now use the current URL
   }, [pathname, searchParams]);
 }

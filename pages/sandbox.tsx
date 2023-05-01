@@ -1,7 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import ImageParticules from "~/components/ImageParticules";
-import PerspectiveDivider from "~/components/UserInterfaceElements/PerspectiveDivider";
-import InteractiveParticles from "~/lib/InteractiveParticles/InteractiveParticles";
 
 export default function Sandbox() {
   return (

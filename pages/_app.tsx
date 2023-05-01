@@ -37,7 +37,7 @@ const Stats = dynamic(
 
 const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
   const debug = useDebug();
-  const lenis: any = useStore(({ lenis }) => lenis);
+  const lenis: any = useStore(({ lenis }: any) => lenis);
 
   useScroll(ScrollTrigger.update);
 
