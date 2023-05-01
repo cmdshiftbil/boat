@@ -52,7 +52,7 @@ const ServicesSections = () => {
   const ref = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  useGsapEffect((self) => {
+  useGsapEffect((self: any) => {
     //   const tl = gsap.timeline({
     //     defaults: { duration: 3, ease: "none" },
     //     scrollTrigger: {

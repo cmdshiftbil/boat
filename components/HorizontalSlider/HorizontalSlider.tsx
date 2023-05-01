@@ -16,7 +16,7 @@ const HorizontalSlider = ({ children }: any) => {
   const pinWrapperRef = useRef<any>(null);
   const animationWrapperRef = useRef<any>(null);
 
-  useGsapEffect((self) => {
+  useGsapEffect((self: any) => {
     console.log("SELF", self);
 
     const wrap = wrapperRef.current;
