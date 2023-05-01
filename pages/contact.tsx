@@ -150,10 +150,11 @@ export default function Contact() {
               </div>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2 lg:gap-8">
                 {content.getInTouch.map((box) => (
-                  <ContactBox title={box.title}>
+                  <ContactBox title={box.title} key={box.title}>
                     {box.items.map((item) => {
                       return (
                         <ContactBox.Item
+                          key={item.title}
                           hideTitle
                           title={item.title}
                           description={item.value}
