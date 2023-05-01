@@ -57,7 +57,7 @@ const Heading = ({
   };
 
   useGsapEffect(() => {
-    let title = SplitText.create(titleRef?.current, {
+    let title = new SplitText(titleRef?.current, {
       type: "chars",
     });
 
