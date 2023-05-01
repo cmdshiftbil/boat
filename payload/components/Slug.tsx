@@ -20,14 +20,14 @@ interface SlugProps {
   admin?: TextInputProps["admin"];
 }
 
-export const Slug = ({ path, ...props }: SlugProps) => {
+export const Slug = ({ path = "", ...props }: SlugProps) => {
   const { id } = useDocumentInfo();
   const { getDataByPath } = useWatchForm();
   const { value = "", setValue } = useField({ path });
 
   const title: string = getDataByPath("title");
 
-  const { name, label, hooks, access, admin } = props;
+  const { name = "", label, hooks, access, admin } = props;
 
   useEffect(() => {
     // do not update the slug once it has been created by checking that `id` exists

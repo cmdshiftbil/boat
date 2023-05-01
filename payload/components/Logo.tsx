@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function Icon(props) {
+function Icon(props: any) {
   return (
     <svg
       width={124}

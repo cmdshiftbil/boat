@@ -13,7 +13,7 @@ export const CallToAction: React.FC<any> = (props) => {
         <RichText content={content} className="cta-content" />
         {buttons && (
           <ul className="cta-buttons">
-            {buttons.map((button, i) => (
+            {buttons.map((button: any, i: number) => (
               <li key={i}>
                 {typeof button?.page === "object" && (
                   <Link

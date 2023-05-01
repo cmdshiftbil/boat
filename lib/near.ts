@@ -1,18 +1,25 @@
 export default class Nearby {
-  constructor(el, options) {
+  el: any;
+  options: any;
+  elRect: any;
+  docScrolls!: { left: number; top: number };
+  closestPoint!: { x: number; y: number };
+  mousemoveFn!: (ev: any) => void;
+
+  constructor(el: any, options: any) {
     this.el = el;
     this.options = options;
     this.init();
   }
 
   init() {
-    const distancePoints = (x1, y1, x2, y2) =>
+    const distancePoints = (x1: number, y1: number, x2: number, y2: number) =>
       Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 
-    const getMousePos = (e) => {
+    const getMousePos = (e: any) => {
       var posx = 0,
         posy = 0;
-      if (!e) var e = window.event;
+      if (!e) var e: any = window.event;
       if (e.pageX || e.pageY) {
         posx = e.pageX;
         posy = e.pageY;

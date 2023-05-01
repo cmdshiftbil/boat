@@ -1,6 +1,6 @@
 import NumberCounter from "@/components/NumberCounter";
 import Section from "@/components/Section";
-import content from "@/config/content";
+import content from "@/content/content";
 
 const TeamCountersSection = () => {
   return (
@@ -9,7 +9,7 @@ const TeamCountersSection = () => {
       articleClassName="flex flex-row flex-wrap justify-around"
     >
       {content.teamCounters.map(
-        ({ id, label, number, numberPrefix, numberSuffix }) => (
+        ({ id, label, number, numberPrefix, numberSuffix }: any) => (
           <NumberCounter
             key={id}
             label={label}

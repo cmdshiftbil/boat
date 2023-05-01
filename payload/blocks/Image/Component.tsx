@@ -3,12 +3,11 @@ import NextImage from "next/image";
 import RichText from "../../../components/RichText";
 import classes from "./index.module.css";
 import sizes from "./sizes.json";
-import { MediaType } from "../../collections/Media";
 
 export type Type = {
   blockType: "image";
   blockName?: string;
-  image: MediaType;
+  image: any;
   caption?: any;
   type: "normal" | "wide" | "fullscreen";
 };

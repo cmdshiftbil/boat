@@ -7,8 +7,7 @@ import { useFrame } from "@studio-freight/hamo";
 import Lenis from "@studio-freight/lenis";
 // import { Scrollbar } from "components/scrollbar";
 import { useStore } from "@/lib/store";
-import dynamic from "next/dynamic";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ProgressScrollbar from "@/components/ScrollProgressBar/ScrollProgressBar";
 import { TransitionProvider } from "@/components/Transition/Transition.provider";
@@ -34,12 +33,12 @@ export function Layout({
     state.lenis,
     state.setLenis,
   ]);
-  const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     const lenis = new Lenis();
+    //@ts-ignore
     window.lenis = lenis;
     setLenis(lenis);
 

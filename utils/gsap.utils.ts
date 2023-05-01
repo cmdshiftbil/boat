@@ -1,3 +1,4 @@
+//@ts-nocheck
 import gsap from "gsap";
 
 /*
@@ -43,7 +44,9 @@ export function horizontalLoop(items: any, config: any) {
   gsap.set(items, {
     // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
     xPercent: (i, el) => {
-      let w = (widths[i] = parseFloat(gsap.getProperty(el, "width", "px")));
+      let w: any = (widths[i] = parseFloat(
+        gsap.getProperty(el, "width", "px") as string
+      ));
       xPercents[i] = snap(
         (parseFloat(gsap.getProperty(el, "x", "px")) / w) * 100 +
           gsap.getProperty(el, "xPercent")

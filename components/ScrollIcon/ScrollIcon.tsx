@@ -6,8 +6,8 @@ import Nearby from "@/lib/near";
 import { lineEq } from "@/utils/math.utils";
 
 const ScrollIcon = () => {
-  const mouse = useRef(null);
-  const wheel = useRef(null);
+  const mouse = useRef<any>(null);
+  const wheel = useRef<any>(null);
 
   const scrollInterval = { from: 1, to: 15 };
   const distanceThreshold = { min: 0, max: 100 };

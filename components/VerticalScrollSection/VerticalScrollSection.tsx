@@ -1,6 +1,5 @@
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { Children, useRef } from "react";
-import content from "@/config/content";
 import useGsapEffect from "@/hooks/useGsapEffect";
 
 const VerticalScrollSection = ({ children, ...props }: any) => {

@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
 
 export default function Document() {
-  const lenis: any = useStore(({ lenis }) => lenis);
-  const overflow = useStore(({ overflow }) => overflow);
+  const lenis: any = useStore(({ lenis }: any) => lenis);
+  const overflow = useStore(({ overflow }: any) => overflow);
 
   useFrame((time: any) => {
     lenis?.raf(time);

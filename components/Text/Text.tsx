@@ -21,7 +21,7 @@ const Text = ({
     () => {
       if (!animate) return;
 
-      const text = SplitText.create(ref?.current, { type: "words" });
+      const text = new SplitText(ref?.current, { type: "words" });
 
       gsap.fromTo(
         text.words,

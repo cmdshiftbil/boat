@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import Link from "next/link";
-import { Type as Page } from "../../collections/Page";
+// import { Type as Page } from "../../collections/Page";
 import RichText from "../../../components/RichText";
 import classes from "./index.module.css";
 
@@ -9,7 +9,8 @@ export type Button =
   | {
       type: "page";
       label: string;
-      page: Page;
+      // page: Page;
+      page: any;
     }
   | {
       type: "custom";

@@ -16,7 +16,7 @@ export function formatDate(date: Date = new Date()) {
   return newDate.toLocaleDateString("en-US", options);
 }
 
-export function formatYear(dateString) {
+export function formatYear(dateString: string) {
   const date = new Date(dateString);
   const year = date.getFullYear();
   return year;

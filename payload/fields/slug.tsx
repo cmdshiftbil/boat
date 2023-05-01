@@ -6,7 +6,7 @@ import { Slug } from "../components/Slug";
 type SlugParams = (fieldToUse?: string, overrides?: Partial<Field>) => Field;
 
 // By dynamically building fields in code configurations are reusable and concise
-const slug: SlugParams = (fieldToUse = "title", overrides) =>
+const slug: SlugParams = (fieldToUse = "title", overrides: any) =>
   deepMerge<Field, Partial<Field>>(
     {
       name: "slug",

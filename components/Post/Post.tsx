@@ -32,7 +32,7 @@ const Post = ({
       </div>
       <div className="max-w-xl">
         <div className="mt-8 flex items-center gap-x-4 text-xs">
-          <time datetime={publishedDate} className="text-gray-500">
+          <time dateTime={publishedDate} className="text-gray-500">
             {publishedDate}
           </time>
           <a

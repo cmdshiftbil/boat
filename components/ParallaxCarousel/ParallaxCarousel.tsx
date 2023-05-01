@@ -95,7 +95,9 @@ const ParallaxCarousel = ({
       carousel.current.play();
 
       return () => {
-        carousel.current.kill();
+        if (carousel.current) {
+          carousel.current.kill();
+        }
       };
     },
     parentRef,

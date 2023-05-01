@@ -15,7 +15,7 @@ const Bricks = ({ layout = [], className }: any) => {
 
   return (
     <div className="block">
-      {layout.map((block: any, i) => {
+      {layout.map((block: any, i: number) => {
         const Block: React.FC<any> = components[block.blockType];
 
         if (Block) {

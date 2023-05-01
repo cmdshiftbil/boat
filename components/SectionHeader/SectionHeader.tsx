@@ -7,7 +7,7 @@ interface SectionHeaderProps {
   title: string;
   subtitle?: string;
   titleColor?: string;
-  titlePlacement?: "top" | "left";
+  titlePlacement?: "top" | "left" | "default" | undefined;
   underline?: boolean;
   suffix?: React.ReactNode;
   className?: string;

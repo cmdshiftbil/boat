@@ -3,7 +3,7 @@
  * @param item
  * @returns {boolean}
  */
-export function isObject(item: unknown): boolean {
+export function isObject(item: any): boolean {
   return item && typeof item === "object" && !Array.isArray(item);
 }
 
@@ -13,10 +13,10 @@ export function isObject(item: unknown): boolean {
  * @param ...sources
  */
 export default function deepMerge<T extends object, R extends object>(
-  target: T,
-  source: R
+  target: any,
+  source: any
 ): T {
-  const output = { ...target };
+  const output: any = { ...target };
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach((key) => {
       if (isObject(source[key])) {

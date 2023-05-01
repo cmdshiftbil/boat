@@ -1,9 +1,8 @@
-import type { Page } from "@alpha-nero/cms";
 import React from "react";
 import { RichText } from "../RichText";
 import { sizes } from "./sizes";
 
-type ImageProps = Page["layout"][0];
+type ImageProps = any;
 
 export const Image = (props: ImageProps) => {
   if (props.blockType !== "image") return null;

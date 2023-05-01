@@ -5,8 +5,8 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoidGhlYmlsdGhlb3J5IiwiYSI6ImNsZG96ZXM5djB5YTczdG9sMDA2YzFyODMifQ.CN_NAt9FZNwQOMto51TAMA";
 
 const Map = () => {
-  const mapContainer = useRef(null);
-  const map = useRef(null);
+  const mapContainer = useRef<any>("");
+  const map = useRef<any>(null);
 
   const [lat, setLat] = useState(25.033775035463425);
   const [lng, setLng] = useState(55.182549242626955);
@@ -30,7 +30,7 @@ const Map = () => {
       // Insert the layer beneath any symbol layer.
       const layers = map.current.getStyle().layers;
       const labelLayerId = layers.find(
-        (layer) => layer.type === "symbol" && layer.layout["text-field"]
+        (layer: any) => layer.type === "symbol" && layer.layout["text-field"]
       ).id;
 
       // The 'building' layer in the Mapbox Streets

@@ -27,6 +27,7 @@
     "@types/react-dom": "18.2.1",
     "autoprefixer": "10.4.14",
     "classnames": "^2.3.2",
+    "escape-html": "^1.0.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.2",
     "gsap": "npm:@gsap/business",
@@ -38,6 +39,7 @@
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-transition-group": "^4.4.5",
     "react-use": "^17.4.0",
     "stats.js": "^0.17.0",
     "tailwind-merge": "^1.12.0",
@@ -46,5 +48,11 @@
     "three": "^0.152.2",
     "typescript": "5.0.4",
     "zustand": "^4.3.7"
+  },
+  "devDependencies": {
+    "@types/escape-html": "^1.0.2",
+    "@types/mapbox-gl": "^2.7.11",
+    "@types/react-transition-group": "^4.4.5",
+    "@types/stats.js": "^0.17.0"
   }
 }

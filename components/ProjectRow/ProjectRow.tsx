@@ -21,7 +21,7 @@ const ProjectRow = ({ title, slug }: any) => {
 
     if (!isDom) return;
 
-    const splitTitle = SplitText.create(titleRef.current, { type: "chars" });
+    const splitTitle = new SplitText(titleRef.current, { type: "chars" });
 
     gsap.killTweensOf([imagesRef.current, titleRef.current]);
 

@@ -2,7 +2,7 @@ import { FadeIn } from "@/components/Animations";
 import Post from "@/components/Post";
 import { RichText } from "@/lib/bricks/src/RichText";
 
-export default function Blog(props) {
+export default function Blog(props: any) {
   const { posts } = props;
 
   // return;
