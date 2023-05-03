@@ -45,6 +45,51 @@ export const Projects: CollectionConfig = {
               },
               required: true,
             },
+
+            {
+              name: "images",
+              label: "Project Views",
+              type: "blocks",
+              blocks: [
+                {
+                  slug: "project-view",
+                  fields: [
+                    {
+                      type: "row",
+                      fields: [
+                        {
+                          name: "view",
+                          label: "Project view (image)",
+                          type: "select",
+                          required: true,
+                          options: [
+                            { label: "Front view", value: "Front view" },
+                            { label: "Back view", value: "Back view" },
+                            { label: "Left side", value: "Left side" },
+                            { label: "Right side", value: "Right side" },
+                            { label: "Top view", value: "Top view" },
+                            { label: "Interior view", value: "Interior view" },
+                            { label: "Other", value: "Other" },
+                          ],
+                        },
+                        {
+                          name: "label",
+                          label: "Label (optional)",
+                          type: "text",
+                        },
+                      ],
+                    },
+                    {
+                      name: "image",
+                      label: "Image",
+                      required: true,
+                      type: "upload",
+                      relationTo: "media",
+                    },
+                  ],
+                },
+              ],
+            },
             {
               name: "layout",
               label: "Projet Layout",

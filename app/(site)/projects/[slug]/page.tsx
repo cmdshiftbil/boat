@@ -5,6 +5,7 @@ import ProjectHeading from "@/components/ProjectLayout/ProjectHeading";
 import getPayloadClient from "@/payload/payloadClient";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ImageGallery } from "@/components/ImageGallery/ImageGallery";
 
 export default async function ProjectPage(props: any) {
   const { params } = props;
@@ -29,12 +30,14 @@ export default async function ProjectPage(props: any) {
   }
 
   return (
-    <div className="p-12 bg-shark-50">
+    <div className="p-12 bg-shark-50 text-shark-900">
       <ProjectHeading
         title={project?.title}
         date={project.buildDate}
         location={project.location}
       />
+
+      <ImageGallery images={project.images} />
 
       <p>
         loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
