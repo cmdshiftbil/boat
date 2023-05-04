@@ -1,3 +1,4 @@
+"use client";
 import Section from "@/components/Section";
 import StairsUpIcon from "@/components/UserInterfaceElements/StairsUpIcon";
 

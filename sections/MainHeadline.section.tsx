@@ -1,4 +1,6 @@
+"use client";
 import Parallax from "@/components/Parallax";
+
 import Text from "@/components/Text";
 
 const MainHeadlineSection = () => {

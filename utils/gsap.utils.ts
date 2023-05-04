@@ -27,7 +27,7 @@ export function horizontalLoop(items: any, config: any) {
         tl.totalTime(tl.rawTime() + tl.duration() * 100),
     }),
     length = items.length,
-    startX = items[0].offsetLeft,
+    startX = items[0]?.offsetLeft,
     times: any = [],
     widths: any = [],
     xPercents: any = [],
@@ -58,17 +58,17 @@ export function horizontalLoop(items: any, config: any) {
   gsap.set(items, { x: 0 });
 
   totalWidth =
-    items[length - 1].offsetLeft +
+    items[length - 1]?.offsetLeft +
     (xPercents[length - 1] / 100) * widths[length - 1] -
     startX +
-    items[length - 1].offsetWidth *
+    items[length - 1]?.offsetWidth *
       gsap.getProperty(items[length - 1], "scaleX") +
     (parseFloat(config.paddingRight) || 0);
 
   for (i = 0; i < length; i++) {
     item = items[i];
     curX = (xPercents[i] / 100) * widths[i];
-    distanceToStart = item.offsetLeft + curX - startX;
+    distanceToStart = item?.offsetLeft + curX - startX;
     distanceToLoop =
       distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
 

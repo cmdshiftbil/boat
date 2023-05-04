@@ -1,3 +1,4 @@
+"use client";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
 import content from "@/content/content";

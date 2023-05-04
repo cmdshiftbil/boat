@@ -10,51 +10,12 @@ import { twMerge } from "tailwind-merge";
 import useColor from "@/hooks/useColor";
 import classNames from "classnames";
 
-const logos = [
-  {
-    id: "armani-1",
-    src: "temp/armani-logo.svg",
-  },
-  {
-    id: "Bobbi-Brown-2",
-    src: "temp/bobbi-brown-logo.svg",
-  },
-  {
-    id: "Burberry-3",
-    src: "temp/burberry-logo.svg",
-  },
-  {
-    id: "Chopard-4",
-    src: "temp/chopard-logo.svg",
-  },
-  {
-    id: "Dolce-Gabbana-5",
-    src: "temp/dolce-gabbana-logo.svg",
-  },
-  {
-    id: "guerlain-7",
-    src: "temp/guerlain-paris-logo.svg",
-  },
-  {
-    id: "issey-miyake-10",
-    src: "temp/issey-miyake-logo.svg",
-  },
-  {
-    id: "la-mer-13",
-    src: "temp/la-mer-logo.svg",
-  },
-  {
-    id: "Lancome-14",
-    src: "temp/lancome-logo.svg",
-  },
-];
-
 const ParallaxCarousel = ({
   baseVelocity = 10,
   shadeColor = "shark-50",
   className,
+  images,
 }: any) => {
-  const { width: windowWidth } = useWindowSize();
   const parentRef = useRef(null);
   const wrapperRef = useRef<any>(null);
 
@@ -64,20 +25,11 @@ const ParallaxCarousel = ({
 
   const carousel = useRef<GSAPTimeline>();
 
-  // let carousel = useMemo(() => {
-  //   if (!wrapperRef.current) return;
-  //   return
-  // }, [wrapperRef.current]) as GSAPTimeline;
-
   const speedTween = gsap.to(carousel.current ? carousel.current : null, {
     timeScale: baseVelocity,
   });
 
-  const slowDown = gsap.delayedCall(0, () => {
-    // if (carousel) {
-    //   return gsap.to(carousel, { timeScale: baseVelocity });
-    // }
-  });
+  const slowDown = gsap.delayedCall(0, () => {});
 
   useGsapEffect(
     (self: any) => {
@@ -153,12 +105,12 @@ const ParallaxCarousel = ({
           )}
         />
         <div className="flex gap-x-12 sm:gap-x-24 " ref={wrapperRef}>
-          {logos.map((logo, index) => (
+          {images.map((image: any) => (
             <img
               className="logo-item max-h-8 w-full object-contain opacity-80 will-change-transform pl-12 sm:pl-24"
-              key={index}
-              src={logo.src}
-              alt={`Logo ${logo.id}`}
+              key={image.id}
+              src={image.src}
+              alt={`${image.alt}`}
             />
           ))}
         </div>
