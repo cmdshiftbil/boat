@@ -16,9 +16,6 @@ const ParallaxCarousel = ({
   className,
   images,
 }: any) => {
-  console.log(images);
-
-  const { width: windowWidth } = useWindowSize();
   const parentRef = useRef(null);
   const wrapperRef = useRef<any>(null);
 
@@ -28,20 +25,11 @@ const ParallaxCarousel = ({
 
   const carousel = useRef<GSAPTimeline>();
 
-  // let carousel = useMemo(() => {
-  //   if (!wrapperRef.current) return;
-  //   return
-  // }, [wrapperRef.current]) as GSAPTimeline;
-
   const speedTween = gsap.to(carousel.current ? carousel.current : null, {
     timeScale: baseVelocity,
   });
 
-  const slowDown = gsap.delayedCall(0, () => {
-    // if (carousel) {
-    //   return gsap.to(carousel, { timeScale: baseVelocity });
-    // }
-  });
+  const slowDown = gsap.delayedCall(0, () => {});
 
   useGsapEffect(
     (self: any) => {

@@ -1,6 +1,3 @@
-// import { GetServerSideProps } from "next";
-// import Page, { getStaticProps as sharedGetServerSideProps } from "./[...slug]";
-
 import Page from "@/components/Page";
 import getPayloadClient from "@/payload/payloadClient";
 import HeroSection from "@/sections/Hero.section";
@@ -43,16 +40,3 @@ export default async function HomePage() {
     </Page>
   );
 }
-
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       id: "home",
-//     }, // will be passed to the page component as props
-//   };
-// }
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//   const func = sharedGetServerSideProps.bind(this);
-//   return func(ctx);
-// };
