@@ -1,7 +1,4 @@
 "use client";
-
-"use client";
-
 import React, { useEffect } from "react";
 import type { AppProps } from "next/app";
 
@@ -14,12 +11,12 @@ import { useScroll } from "@/hooks/useScroll";
 import RealViewport from "@/components/RealViewport";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import dynamic from "next/dynamic";
-import SplitText from "gsap/dist/SplitText";
 import { Layout } from "@/layouts/default";
-import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import { useIsomorphicLayoutEffect } from "react-use";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import SplitText from "gsap/dist/SplitText";
+import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 
 const Stats = dynamic(
   () => import("@/components/Stats").then((Stats) => Stats),

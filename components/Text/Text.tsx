@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import gsap from "gsap";
-import SplitText from "gsap/dist/SplitText";
 import { createElement, useMemo, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import { useScroll } from "@/hooks/useScroll";
 import { isDom } from "@/utils/dom.utils";
+import { SplitText } from "gsap/dist/SplitText";
 
 const Text = ({
   children,
@@ -18,10 +18,13 @@ const Text = ({
   const ref = useRef(null);
 
   useGsapEffect(
-    () => {
+    (self: any) => {
       if (!animate) return;
 
-      const text = new SplitText(ref?.current, { type: "words" });
+      const textElement = self.selector(".text-element")[0];
+      console.log(textElement);
+
+      const text = new SplitText(textElement, { type: "words" });
 
       gsap.fromTo(
         text.words,
@@ -46,18 +49,24 @@ const Text = ({
     [children]
   );
 
-  return createElement(
-    as,
-    {
-      className: classNames({
-        [fontSize]: fontSize,
-        [twMerge(`text-shark-50 font-[200] subpixel-antialiased`, className)]:
-          true,
-      }),
-      ref,
-      ...props,
-    },
-    children
+  return (
+    <div ref={ref}>
+      {createElement(
+        as,
+        {
+          className: classNames({
+            "text-element": true,
+            [fontSize]: fontSize,
+            [twMerge(
+              `text-shark-50 font-[200] subpixel-antialiased`,
+              className
+            )]: true,
+          }),
+          ...props,
+        },
+        children
+      )}
+    </div>
   );
 };
 

@@ -9,30 +9,27 @@ interface FadeInProps {
 }
 
 const FadeIn = ({ children, animate }: FadeInProps) => {
-  const el = useRef<any>();
+  const el = useRef<HTMLSpanElement>(null);
 
   useGsapEffect(
     () => {
-      gsap.from(el.current.children, {
-        opacity: 0,
-        duration: 0.7,
-        y: 80,
-        ease: "circ.out",
-        ...animate,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: el.current,
-        },
-      });
+      if (el.current) {
+        gsap.from(el.current.children, {
+          opacity: 0,
+          duration: 0.7,
+          y: 80,
+          ease: "circ.out",
+          ...animate,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: el.current,
+          },
+        });
+      }
     },
     el,
     [children]
   );
-
-  useIsomorphicLayoutEffect(() => {
-    const ctx = gsap.context(() => {});
-    return () => ctx.revert();
-  }, []);
 
   return <span ref={el}>{children}</span>;
 };

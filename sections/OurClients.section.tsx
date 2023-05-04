@@ -1,50 +1,23 @@
+"use client";
 import Button from "@/components/Button";
 
 import ParallaxCarousel from "@/components/ParallaxCarousel";
 import Carousel from "@/components/ParallaxCarousel";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
+import getPayloadClient from "@/payload/payloadClient";
 
-const logos = [
-  {
-    id: "armani-1",
-    src: "temp/armani-logo.svg",
-  },
-  {
-    id: "Bobbi-Brown-2",
-    src: "temp/bobbi-brown-logo.svg",
-  },
-  {
-    id: "Burberry-3",
-    src: "temp/burberry-logo.svg",
-  },
-  {
-    id: "Chopard-4",
-    src: "temp/chopard-logo.svg",
-  },
-  {
-    id: "Dolce-Gabbana-5",
-    src: "temp/dolce-gabbana-logo.svg",
-  },
-  {
-    id: "guerlain-7",
-    src: "temp/guerlain-paris-logo.svg",
-  },
-  {
-    id: "issey-miyake-10",
-    src: "temp/issey-miyake-logo.svg",
-  },
-  {
-    id: "la-mer-13",
-    src: "temp/la-mer-logo.svg",
-  },
-  {
-    id: "Lancome-14",
-    src: "temp/lancome-logo.svg",
-  },
-];
+const OurClientsSection = ({ clients }: any) => {
+  console.log("clients", clients);
 
-const OurClientsSection = () => {
+  const logos = clients.map((client: any) => {
+    return {
+      id: client._id,
+      src: client.logo.url,
+      alt: client.logo.alt,
+    };
+  });
+
   return (
     <Section
       // className="px-0 py-24"
@@ -63,8 +36,15 @@ const OurClientsSection = () => {
         baseVelocity={0.5}
         shadeColor="pampas-100"
         className="pb-12"
+        images={logos}
       />
-      <ParallaxCarousel baseVelocity={-0.5} shadeColor="pampas-100" />
+
+      <ParallaxCarousel
+        baseVelocity={-0.5}
+        shadeColor="pampas-100"
+        images={logos}
+      />
+
       <div className="flex justify-center pt-24 px-12 invert">
         <Button to="/portfolio">Discover our work</Button>
       </div>

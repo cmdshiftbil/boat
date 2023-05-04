@@ -1,3 +1,4 @@
+"use client";
 import { FadeIn } from "@/components/Animations";
 import ScrollIcon from "@/components/ScrollIcon";
 

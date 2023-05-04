@@ -1,3 +1,4 @@
+"use client";
 import { forwardRef, useRef } from "react";
 import BlueprintLabel from "@/components/BlueprintLabel";
 import Text from "@/components/Text";

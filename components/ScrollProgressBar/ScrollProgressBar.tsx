@@ -1,3 +1,4 @@
+"use client";
 import { clamp, mapRange } from "../../utils/math.utils";
 
 import { useEffect, useRef, useState } from "react";
