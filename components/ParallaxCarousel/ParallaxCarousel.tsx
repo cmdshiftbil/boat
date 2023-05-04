@@ -35,6 +35,8 @@ const ParallaxCarousel = ({
     (self: any) => {
       const logos = self.selector(".logo-item");
 
+      if (!logos.length) return;
+
       carousel.current = horizontalLoop(logos, {
         paused: true,
         repeat: -1,
