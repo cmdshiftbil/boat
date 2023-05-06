@@ -113,7 +113,7 @@ const Heading = ({
           [twMerge(" font-bold w-max z-10", color)]: true,
         })}
       >
-        {eyebrow && <BlueprintLabel label={eyebrow} />}
+        {eyebrow && <BlueprintLabel label={eyebrow} as="div" />}
         {children}
       </h1>
     </div>

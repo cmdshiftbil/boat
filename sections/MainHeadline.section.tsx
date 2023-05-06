@@ -1,7 +1,5 @@
 "use client";
-import Parallax from "@/components/Parallax";
 
-import Text from "@/components/Text";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/dist/SplitText";
@@ -41,23 +39,23 @@ const MainHeadlineSection = () => {
           start: "center bottom",
           end: "bottom bottom",
           scrub: true,
-          markers: true,
         },
       }
     );
   }, ref);
 
+  // TODO: Replace hard-coded text with CMS content
   return (
     <section
       className="p-6 sm:p-12 md:p-24 h-screen flex justify-center items-center text-center"
       ref={ref}
     >
       <h1 className="main-headline clamp-text-9xl text-shark-50">
+        {/* We are forward-thinking retail concept development specialists. */}
         We specialize in{" "}
         <strong className="main-headline">crafting innovative </strong>retail
         concepts that{" "}
         <strong className="main-headline">stay ahead of the curve</strong>.
-        {/* We are forward-thinking retail concept development specialists. */}
       </h1>
     </section>
   );

@@ -2,26 +2,29 @@
 import Section from "@/components/Section";
 import Text from "@/components/Text";
 import content from "@/content/content";
+import { HomeData } from "@/types/pages";
 
-const OurPresenceSection = () => {
+interface OurPresenceSectionProps {
+  data: HomeData["presence"];
+}
+
+const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
   return (
     <Section title="Our Presence">
-      <Text className="max-w-4xl text mb-12">
-        Operating in Dubai, across the Middle East and North Africa Region
-      </Text>
+      <Text className="max-w-4xl text mb-12">{data.title}</Text>
 
       <div className="flex flex-col lg:flex-row justify-around items-center">
         <div className="mb-12">
-          <img
-            src="https://via.placeholder.com/550x550"
-            alt="Temporary country image"
-          />
+          <img src={data.imageUrl} alt={data.imageAlt} />
         </div>
         <div>
           <ul className="columns-3 md:columns-2">
-            {content.middleEastCountries.map((country) => {
+            {content.middleEastCountries.map((country, idx) => {
               return (
-                <li className="text-lg text-shark-50 font-bold mb-2 hover:bg-shark-50 hover:text-shark-900 px-2 py-1 transition-colors rounded-sm">
+                <li
+                  key={idx}
+                  className="text-lg text-shark-50 font-bold mb-2 hover:bg-shark-50 hover:text-shark-900 px-2 py-1 transition-colors rounded-sm"
+                >
                   {country}
                 </li>
               );
