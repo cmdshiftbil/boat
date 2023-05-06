@@ -17,6 +17,7 @@
     "@react-three/fiber": "^8.13.0",
     "@studio-freight/hamo": "^0.6.12",
     "@studio-freight/lenis": "^1.0.11",
+    "@studio-freight/react-lenis": "^0.0.17",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/line-clamp": "^0.4.4",

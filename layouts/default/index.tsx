@@ -4,12 +4,11 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import Transition from "@/components/Transition/Transition";
 import { useFrame } from "@studio-freight/hamo";
-import Lenis from "@studio-freight/lenis";
+import { Lenis, useLenis } from "@studio-freight/react-lenis";
 // import { Scrollbar } from "components/scrollbar";
 import { useStore } from "@/lib/store";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import ProgressScrollbar from "@/components/ScrollProgressBar/ScrollProgressBar";
 import { TransitionProvider } from "@/components/Transition/Transition.provider";
 import { fetchContent } from "@/utils/api.utils";
 
@@ -29,91 +28,43 @@ export function Layout({
   seo = { title: "", description: "", image: "", keywords: "" },
   children,
 }: any) {
-  const [lenis, setLenis] = useStore((state: any) => [
-    state.lenis,
-    state.setLenis,
-  ]);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    const lenis = new Lenis();
-    //@ts-ignore
-    window.lenis = lenis;
-    setLenis(lenis);
-
-    // new ScrollSnap(lenis, { type: 'proximity' })
-
-    return () => {
-      lenis.destroy();
-      setLenis(null);
-    };
-  }, []);
-
-  const [hash, setHash] = useState<any>();
-
-  useEffect(() => {
-    if (lenis && hash) {
-      // scroll to on hash change
-      const target = document.querySelector(hash);
-      lenis.scrollTo(target, { offset: 0 });
-    }
-  }, [lenis, hash]);
+  // TODO: Fix this with react-lenis and the new method of router events in nextjs appDir
+  // const lenis = useLenis();
 
   // useEffect(() => {
-  //   // update scroll position on page refresh based on hash
-  //   if (router.asPath.includes("#")) {
-  //     const hash = router.asPath.split("#").pop();
-  //     setHash("#" + hash);
+  //   function onHashChangeStart(url: any) {
+  //     url = "#" + url.split("#").pop();
+  //     lenis.scrollTo(url);
   //   }
-  // }, [router]);
 
-  useEffect(() => {
-    // catch anchor links clicks
-    function onClick(e: any) {
-      e.preventDefault();
-      const node = e.currentTarget;
-      const hash = node.href.split("#").pop();
-      setHash("#" + hash);
-      setTimeout(() => {
-        window.location.hash = hash;
-      }, 0);
-    }
+  //   // Router.events.on("hashChangeStart", onHashChangeStart);
 
-    const internalLinks = [...document.querySelectorAll("[href]")].filter(
-      (node: any) => node.href.includes(pathname + "#")
-    );
-
-    internalLinks.forEach((node) => {
-      node.addEventListener("click", onClick, false);
-    });
-
-    return () => {
-      internalLinks.forEach((node) => {
-        node.removeEventListener("click", onClick, false);
-      });
-    };
-  }, []);
-
-  useFrame((time: any) => {
-    lenis?.raf(time);
-  });
+  //   return () => {
+  //     // Router.events.off("hashChangeStart", onHashChangeStart);
+  //   };
+  // }, [lenis]);
 
   return (
     <>
       <CustomHead {...seo} />
-      <div>
+      <Lenis
+        root
+        options={{
+          lerp: 0.1,
+          smooth: true,
+        }}
+      >
         <TransitionProvider>
           {/* <PageTransition /> */}
           <Header />
           {/* <Cursor /> */}
-          <ProgressScrollbar />
+
           <main className="h-full min-h-full pt-32 overflow-x-hidden bg-shark-900">
             <Transition>{children}</Transition>
           </main>
           <Footer />
         </TransitionProvider>
-      </div>
+      </Lenis>
     </>
   );
 }

@@ -1,15 +1,6 @@
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import { Children, useRef } from "react";
-import { useWindowSize } from "react-use";
-import { useMeasure } from "react-use";
 import useGsapEffect from "@/hooks/useGsapEffect";
-import { useScroll } from "@/hooks/useScroll";
-import { clamp, mapRange } from "@/utils/math.utils";
-import Button from "../Button";
-
-import Heading from "../Heading";
-import SectionHeader from "../SectionHeader";
+import gsap from "gsap";
+import { Children, useRef } from "react";
 
 const HorizontalSlider = ({ children }: any) => {
   const wrapperRef = useRef<any>(null);
@@ -17,9 +8,6 @@ const HorizontalSlider = ({ children }: any) => {
   const animationWrapperRef = useRef<any>(null);
 
   useGsapEffect((self: any) => {
-    console.log("SELF", self);
-
-    const wrap = wrapperRef.current;
     // const animationWrap = animationWrapperRef.current;
     const animationWrap = self.selector(".animation-wrap")[0];
     // const pinWrap = pinWrapperRef.current;

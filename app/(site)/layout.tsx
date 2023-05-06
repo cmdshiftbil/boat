@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 
 import Init from "@/components/Init";
 import { Layout } from "@/layouts/default";
-import ScrollProgressBar from "@/components/ScrollProgressBar";
 
 export const metadata = {
   title: "Alpha Nero",
@@ -15,7 +14,6 @@ const RootLayout = ({ children }: any) => {
       <Init />
       <html lang="en">
         <body className="h-full min-h-full pt-32 overflow-x-hidden bg-shark-900">
-          <ScrollProgressBar />
           <Layout>{children}</Layout>
         </body>
       </html>

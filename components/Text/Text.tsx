@@ -1,11 +1,9 @@
+import useGsapEffect from "@/hooks/useGsapEffect";
 import classNames from "classnames";
 import gsap from "gsap";
-import { createElement, useMemo, useRef } from "react";
-import { twMerge } from "tailwind-merge";
-import useGsapEffect from "@/hooks/useGsapEffect";
-import { useScroll } from "@/hooks/useScroll";
-import { isDom } from "@/utils/dom.utils";
 import { SplitText } from "gsap/dist/SplitText";
+import { createElement, useRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 const Text = ({
   children,

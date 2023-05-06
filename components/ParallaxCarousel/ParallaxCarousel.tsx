@@ -1,14 +1,11 @@
+import useGsapEffect from "@/hooks/useGsapEffect";
+import { useLenis } from "@studio-freight/react-lenis";
 import gsap from "gsap";
 import { useRef } from "react";
-import { useWindowSize } from "react-use";
-import useGsapEffect from "@/hooks/useGsapEffect";
-import { useScroll } from "@/hooks/useScroll";
-
-import { useMemo } from "react";
-import { horizontalLoop } from "@/utils/gsap.utils";
-import { twMerge } from "tailwind-merge";
 import useColor from "@/hooks/useColor";
+import { horizontalLoop } from "@/utils/gsap.utils";
 import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 
 const ParallaxCarousel = ({
   baseVelocity = 10,
@@ -56,7 +53,7 @@ const ParallaxCarousel = ({
     [baseVelocity, carousel]
   );
 
-  useScroll((scroll: any) => {
+  useLenis(({ scroll }: any) => {
     if (!carousel) return;
     /**
      * direction: 0

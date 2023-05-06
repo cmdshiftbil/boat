@@ -1,22 +1,19 @@
 "use client";
-import React, { useEffect } from "react";
-import type { AppProps } from "next/app";
+import { useLenis } from "@studio-freight/react-lenis";
+import { useEffect } from "react";
 
 import "@/styles/globals.css";
 
-import { raf } from "@/lib/raf";
-import { useDebug, useFrame } from "@studio-freight/hamo";
-import { useStore } from "@/lib/store";
-import { useScroll } from "@/hooks/useScroll";
-import RealViewport from "@/components/RealViewport";
 import GoogleTagManager from "@/components/GoogleTagManager";
+import RealViewport from "@/components/RealViewport";
+import { raf } from "@/lib/raf";
+import { useStore } from "@/lib/store";
+import { useDebug } from "@studio-freight/hamo";
 import gsap from "gsap";
-import dynamic from "next/dynamic";
-import { Layout } from "@/layouts/default";
-import { useIsomorphicLayoutEffect } from "react-use";
+import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import SplitText from "gsap/dist/SplitText";
-import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
+import dynamic from "next/dynamic";
 
 const Stats = dynamic(
   () => import("@/components/Stats").then((Stats) => Stats),
@@ -35,52 +32,27 @@ if (typeof window !== "undefined") {
   raf.add((time) => {
     gsap.updateRoot(time / 1000);
   }, 0);
+
+  //reset scroll position
+  window.scrollTo(0, 0);
+  window.history.scrollRestoration = "manual";
 }
 
 export const Init = () => {
   const debug = useDebug();
 
-  const lenis: any = useStore(({ lenis }: any) => lenis);
-  const overflow = useStore(({ overflow }: any) => overflow);
+  const lenis = useLenis(ScrollTrigger.update);
+  useEffect(ScrollTrigger.refresh, [lenis]);
 
-  useFrame((time: any) => {
-    lenis?.raf(time);
-  }, 0);
-
-  useScroll(ScrollTrigger.update);
+  const navIsOpened = useStore(({ navIsOpened }: any) => navIsOpened);
 
   useEffect(() => {
-    if (overflow) {
-      lenis?.start();
-      document.documentElement.style.removeProperty("overflow");
-    } else {
+    if (navIsOpened) {
       lenis?.stop();
-      document.documentElement.style.setProperty("overflow", "hidden");
-    }
-  }, [lenis, overflow]);
-
-  useIsomorphicLayoutEffect(() => {
-    if (lenis) {
-      ScrollTrigger.refresh();
-    }
-  }, [lenis]);
-
-  useIsomorphicLayoutEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
-
-  useScroll(ScrollTrigger.update);
-
-  useEffect(() => {
-    if (lenis) {
-      ScrollTrigger.refresh();
+    } else {
       lenis?.start();
     }
-  }, [lenis]);
-
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
+  }, [lenis, navIsOpened]);
 
   return (
     <>

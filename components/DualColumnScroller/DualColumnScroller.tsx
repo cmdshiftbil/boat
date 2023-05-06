@@ -1,8 +1,6 @@
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import { useEffect, useRef } from "react";
 import useGsapEffect from "@/hooks/useGsapEffect";
-import { useScroll } from "@/hooks/useScroll";
+import gsap from "gsap";
+import { useRef } from "react";
 import LeftPanelContent from "./LeftPanelContent";
 import RightPanelContent from "./RightPanelContent";
 

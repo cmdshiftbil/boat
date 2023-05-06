@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import type { AppProps } from "next/app";
 
 import "@/styles/globals.css";
+import { useLenis } from "@studio-freight/react-lenis";
 
 import { raf } from "@/lib/raf";
 import { useDebug } from "@studio-freight/hamo";
 import { useStore } from "@/lib/store";
-import { useScroll } from "@/hooks/useScroll";
 import RealViewport from "@/components/RealViewport";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import gsap from "gsap";
@@ -28,6 +28,10 @@ if (typeof window !== "undefined") {
   raf.add((time) => {
     gsap.updateRoot(time / 1000);
   }, 0);
+
+  // reset scroll position
+  window.scrollTo(0, 0);
+  window.history.scrollRestoration = "manual";
 }
 
 const Stats = dynamic(
@@ -37,20 +41,19 @@ const Stats = dynamic(
 
 const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
   const debug = useDebug();
-  const lenis: any = useStore(({ lenis }: any) => lenis);
 
-  useScroll(ScrollTrigger.update);
+  const lenis = useLenis(ScrollTrigger.update);
+  useEffect(ScrollTrigger.refresh, [lenis]);
+
+  const navIsOpened = useStore(({ navIsOpened }: any) => navIsOpened);
 
   useEffect(() => {
-    if (lenis) {
-      ScrollTrigger.refresh();
+    if (navIsOpened) {
+      lenis?.stop();
+    } else {
       lenis?.start();
     }
-  }, [lenis]);
-
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
+  }, [lenis, navIsOpened]);
 
   return (
     <>
