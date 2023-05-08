@@ -1,11 +1,16 @@
 "use client";
+import { HomeData } from "@/types/pages";
 import Button from "@/components/Button";
 import ParallaxCarousel from "@/components/ParallaxCarousel";
 
 import Section from "@/components/Section";
 import Text from "@/components/Text";
 
-const OurClientsSection = ({ data }: any) => {
+interface OurClientsSectionProps {
+  data: HomeData["ourClients"];
+}
+
+const OurClientsSection = ({ data }: OurClientsSectionProps) => {
   const logos = data.clients.map((client: any) => {
     return {
       id: client._id,
@@ -13,7 +18,6 @@ const OurClientsSection = ({ data }: any) => {
       alt: client.logo.alt,
     };
   });
-
   return (
     <Section
       // className="px-0 py-24"

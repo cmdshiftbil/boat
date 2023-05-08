@@ -31,9 +31,12 @@ const HowItWorksSection = () => {
   return (
     <Section title="How it Works" className="p-6 sm:p-12">
       <div className="grid grid-rows-3 gap-6 sm:p-6">
-        {content.map((item) => {
+        {content.map((item, idx) => {
           return (
-            <div className="flex flex-col sm:flex-row gap-6 items-center">
+            <div
+              className="flex flex-col sm:flex-row gap-6 items-center"
+              key={idx}
+            >
               <div className="flex justify-center items-center w-full sm:w-[12rem] h-[12rem] border border-shark-50">
                 <div className="flex-1 clamp-text-4xl text-shark-50 flex justify-center items-center bg-grid-perspective bg-cover h-full w-full">
                   {item.id}

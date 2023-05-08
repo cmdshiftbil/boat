@@ -13,9 +13,11 @@ const HeroSection = ({ data }: HeroSectionProps) => {
       <div className="text-center mt-[30vh] ">
         <FadeIn>
           <h1 className="font-bold tracking-tight text-shark-300 text-6xl">
-            {data.title1}
+            {data.title}
           </h1>
-          <p className="mt-6 text-lg leading-8 text-shark-400">{data.title2}</p>
+          <p className="mt-6 text-lg leading-8 text-shark-400">
+            {data.subtitle}
+          </p>
         </FadeIn>
       </div>
       <div className="flex justify-center items-center w-full">

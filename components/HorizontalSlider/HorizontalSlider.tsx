@@ -1,20 +1,29 @@
-import useGsapEffect from "@/hooks/useGsapEffect";
 import gsap from "gsap";
 import { Children, useRef } from "react";
+import useGsapEffect from "@/hooks/useGsapEffect";
+import classNames from "classnames";
+import ScrollIcon from "../ScrollIcon";
 
-const HorizontalSlider = ({ children }: any) => {
-  const wrapperRef = useRef<any>(null);
-  const pinWrapperRef = useRef<any>(null);
-  const animationWrapperRef = useRef<any>(null);
+interface HorizontalSliderProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  showScrollIcon?: boolean;
+  className?: string;
+}
+const HorizontalSlider = ({
+  children,
+  className,
+  showScrollIcon,
+  ...props
+}: HorizontalSliderProps) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const pinWrapperRef = useRef<HTMLDivElement>(null);
+  const animationWrapperRef = useRef<HTMLDivElement>(null);
 
   useGsapEffect((self: any) => {
-    // const animationWrap = animationWrapperRef.current;
+    // const wrap = wrapperRef.current;
     const animationWrap = self.selector(".animation-wrap")[0];
-    // const pinWrap = pinWrapperRef.current;
     const pinWrap = self.selector(".pin-wrap");
     const getToValue = () => -(animationWrap.scrollWidth - window.innerWidth);
-
-    console.log("animationWrap", animationWrap);
 
     gsap.to(animationWrap, {
       x: getToValue(),
@@ -34,23 +43,27 @@ const HorizontalSlider = ({ children }: any) => {
         //markers: true,
       },
     });
-
-    console.log(animationWrap.scrollWidth);
   }, wrapperRef);
 
   return (
-    <section ref={wrapperRef} className="overflow-hidden">
+    <section
+      ref={wrapperRef}
+      className={classNames("overflow-hidden", className)}
+      {...props}
+    >
       <div ref={pinWrapperRef} className="pin-wrap relative flex z-10 h-screen">
+        {showScrollIcon && (
+          <div className="flex md:hidden justify-center items-center w-full absolute bottom-2">
+            <ScrollIcon />
+          </div>
+        )}
         <div
           ref={animationWrapperRef}
-          className="animation-wrap relative flex h-screen  items-center"
+          className="animation-wrap relative flex h-screen items-center"
         >
           {Children.map(children, (child, index) => {
             return (
-              <div
-                //  className="relative flex h-[calc(100vh-300px)] flex-[0_0_500px]"
-                className="relative flex h-[calc(100vh-300px)] flex-auto"
-              >
+              <div className="relative flex flex-auto h-[350px] md:h-auto">
                 {child}
               </div>
             );

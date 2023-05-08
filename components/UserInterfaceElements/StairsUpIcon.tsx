@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 
 function StairsUpIcon(props: React.SVGProps<SVGSVGElement>) {
