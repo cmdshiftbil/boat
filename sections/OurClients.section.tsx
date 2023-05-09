@@ -13,7 +13,7 @@ interface OurClientsSectionProps {
 const OurClientsSection = ({ data }: OurClientsSectionProps) => {
   const logos = data.clients.map((client: any) => {
     return {
-      id: client._id,
+      id: client._id ?? client.id,
       src: client.logo.url,
       alt: client.logo.alt,
     };

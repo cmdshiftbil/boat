@@ -11,10 +11,12 @@ interface SectionHeaderProps {
   underline?: boolean;
   suffix?: React.ReactNode;
   className?: string;
+  headingClassName?: string;
 }
 
 const SectionHeader = ({
   className,
+  headingClassName,
   title,
   subtitle,
   titleColor,
@@ -28,7 +30,8 @@ const SectionHeader = ({
     >
       <div className="flex flex-row items-center justify-between">
         <Heading
-          className="mb-9"
+          className={classNames("mb-9", headingClassName)}
+          headingClassName={headingClassName}
           animationDir={titlePlacement}
           color={titleColor}
         >

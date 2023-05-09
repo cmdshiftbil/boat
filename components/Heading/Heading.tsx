@@ -13,6 +13,7 @@ const Heading = ({
   children,
   color,
   className,
+  headingClassName,
   animationDir = "default",
   eyebrow,
   fontSize = "clamp-text-8xl",
@@ -108,10 +109,13 @@ const Heading = ({
         ref={titleRef}
         aria-label={children}
         role="heading"
-        className={classNames({
-          [fontSize]: fontSize,
-          [twMerge(" font-bold w-max z-10", color)]: true,
-        })}
+        className={classNames(
+          {
+            [fontSize]: fontSize,
+            [twMerge("font-bold w-max z-10", color)]: true,
+          },
+          headingClassName
+        )}
       >
         {eyebrow && <BlueprintLabel label={eyebrow} as="div" />}
         {children}

@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface SectionProps {
   title?: string;
   bg?: string;
+  headingClassName?: string,
   header?: ReactNode;
   children: ReactNode;
   articleClassName?: string;

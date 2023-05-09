@@ -15,6 +15,7 @@ const Section = forwardRef(
       className = "",
       articleClassName = "",
       children,
+      headingClassName,
       title,
       header,
       colorScheme = "transparent",
@@ -67,6 +68,7 @@ const Section = forwardRef(
         {title && (
           <SectionHeader
             title={title}
+            headingClassName={headingClassName}
             titlePlacement={titlePlacement}
             {...([titlePlacement === "left"].every(Boolean) && {
               underline: false,
