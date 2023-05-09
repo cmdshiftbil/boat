@@ -1,4 +1,4 @@
-import { getPayload } from "payload/dist/payload";
+import { Payload, getPayload } from "payload";
 import config from './payload.config';
 
 if (!process.env.MONGODB_URI) {
@@ -16,19 +16,18 @@ if (!process.env.PAYLOAD_SECRET) {
  * 
  * Source: https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.js
  */
-let cached = (global as any).payload
+let cachedClient: Payload | undefined = (global as any).payload
+let promise: Payload | null;
+// let cached: Payload | null = (global as any).payload
 
-if (!cached) {
-  cached = (global as any).payload = { client: null, promise: null }
-}
 
 export const getPayloadClient = async () => {
-  if (cached.client) {
-    return cached.client
+  if (cachedClient) {
+    return cachedClient
   }
 
-  if (!cached.promise) {
-    cached.promise = await getPayload({
+  if (!promise) {
+    promise = await getPayload({
       // Make sure that your environment variables are filled out accordingly
       mongoURL: process.env.MONGODB_URI as string,
       secret: process.env.PAYLOAD_SECRET as string,
@@ -37,13 +36,13 @@ export const getPayloadClient = async () => {
   }
 
   try {
-    cached.client = await cached.promise
+    cachedClient = await promise
   } catch (e) {
-    cached.promise = null
+    promise = null
     throw e
   }
 
-  return cached.client
+  return cachedClient
 };
 
 export default getPayloadClient;
