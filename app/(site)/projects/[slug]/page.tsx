@@ -22,10 +22,10 @@ export default async function ProjectPage(props: any) {
 
   console.log("Slug ==> ", params.slug);
 
-  const project = projects.docs[0];
+  const project = projects.docs?.[0];
   console.log("Project from page", project);
 
-  if (!project) {
+  if (!project || !projects.docs?.length) {
     return notFound();
   }
 
