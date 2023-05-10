@@ -33,7 +33,7 @@ export default async function ProjectPage(props: any) {
         location={project.location}
       />
 
-      <ImageGallery images={project.images} />
+      {project.images?.length && <ImageGallery images={project.images} />}
 
       <p>
         loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
