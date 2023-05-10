@@ -4,7 +4,7 @@
     "react/display-name": "off",
     "quotes": ["error", "double"],
     "comma-dangle": [
-      1,
+      0,
       {
         "arrays": "always-multiline",
         "objects": "always-multiline",
