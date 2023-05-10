@@ -55,6 +55,10 @@ module.exports = {
         "grid-surface": "url('/svg/bg-grid-surface-perspective-001.svg')",
         "horizontal-lines": "url('/svg/bg-horizontal-lines.svg')",
       },
+      boxShadow: {
+        "5xl": "-5px -5px 20px 0px rgba(0, 0, 0, 0.3)",
+      }
+
     },
   },
   plugins: [
@@ -104,7 +108,7 @@ module.exports = {
           "translate-z": (value) => ({
             "--tw-translate-z": value,
             // transform: `translate3d(var(--tw-translate-x), var(--tw-translate-y), var(--tw-translate-z)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))`,
-            transform: `translateZ(var(--tw-translate-z))`,
+            transform: "translateZ(var(--tw-translate-z))",
           }), // this is actual CSS
         },
         { values: theme("translate"), supportsNegativeValues: true }
@@ -117,15 +121,15 @@ module.exports = {
         {
           "rotate-x": (value) => ({
             "--tw-rotate-x": value,
-            transform: `rotateX(var(--tw-rotate-x))`,
+            transform: "rotateX(var(--tw-rotate-x))",
           }), // this is actual CSS
           "rotate-y": (value) => ({
             "--tw-rotate-y": value,
-            transform: `rotateY(var(--tw-rotate-y))`,
+            transform: "rotateY(var(--tw-rotate-y))",
           }),
           "rotate-z": (value) => ({
             "--tw-rotate-z": value,
-            transform: `rotateY(var(--tw-rotate-z))`,
+            transform: "rotateY(var(--tw-rotate-z))",
           }),
         },
         { values: theme("translate"), supportsNegativeValues: true }
