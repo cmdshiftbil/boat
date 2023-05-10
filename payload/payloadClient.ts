@@ -1,12 +1,12 @@
 import { Payload, getPayload } from "payload/dist/payload";
-import config from './payload.config';
+import config from "./payload.config";
 
 if (!process.env.MONGODB_URI) {
-  throw new Error('MONGODB_URI environment variable is missing')
+  throw new Error("MONGODB_URI environment variable is missing")
 }
 
 if (!process.env.PAYLOAD_SECRET) {
-  throw new Error('PAYLOAD_SECRET environment variable is missing')
+  throw new Error("PAYLOAD_SECRET environment variable is missing")
 }
 
 /**
