@@ -37,7 +37,6 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
 
   const toggleCursor = useCallback(
     (showCursor?: boolean) => {
-      console.log({ showCursor });
       if (cursorText) {
         return cursorTl.current.to(cursorText.chars, {
           duration: 0.1,
