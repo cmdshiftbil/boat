@@ -21,6 +21,8 @@ interface ImageGalleryProps extends HTMLAttributes<HTMLDivElement> {
   images: any[];
 }
 export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
+  console.log("ImageGallery", { images });
+
   const sortedImages = useMemo(() => images.sort(), [images]);
   const totalImages = images.length;
   const [isHoverOn, setIsHoverOn] = useState(false);

@@ -25,6 +25,12 @@ export default async function ProjectPage(props: any) {
     return notFound();
   }
 
+  console.log({
+    project,
+    projectImages: project?.images,
+    projectImagesLength: project?.images?.length,
+  });
+
   return (
     <div className="p-12 bg-shark-50 text-shark-900">
       <ProjectHeading
@@ -33,7 +39,7 @@ export default async function ProjectPage(props: any) {
         location={project.location}
       />
 
-      {project.images?.length && <ImageGallery images={project.images} />}
+      {!!project.images?.length && <ImageGallery images={project.images} />}
 
       <p>
         loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
