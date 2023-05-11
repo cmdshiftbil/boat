@@ -268,9 +268,7 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
       {/* add class "touch-none": disable mobile scrolling when sliding the images */}
       {/* Noticed that user cannot swipe to lower areas with this ON, so turning it off */}
       <div
-        className={classNames(
-          "w-full flex-1 aspect-[2/3] lg:aspect-[2/1] slides hover:shadow-5xl transition-all"
-        )}
+        className="w-full flex-1 aspect-[2/3] lg:aspect-[2/1] slides hover:shadow-5xl transition-all"
         ref={slidesRef}
         onMouseEnter={() => setIsHoverOn(true)}
         onMouseLeave={() => setIsHoverOn(false)}
@@ -286,7 +284,10 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
                   alt={image.alt}
                   fill
                   className={classNames(
-                    "object-cover aspect-w-4 w-full h-full slide__img-inner"
+                    "object-cover aspect-w-4 w-full h-full slide__img-inner",
+                    {
+                      "!cursor-wait": isAnimating,
+                    }
                   )}
                 />
               </div>
@@ -304,15 +305,16 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
           <ul role="list" className="-mx-2 space-y-1 flex flex-col">
             {sortedImages.map(({ id, view, label }: any, idx) => {
               return (
-                <li key={id} className="flex-1 w-full flex flex-col">
+                <li key={id} className="flex-1 w-full flex flex-col !m-0">
                   <button
                     onClick={() => handleActiveImageIndex(idx)}
                     className={classNames(
                       "group gap-x-3 rounded-sm p-2 pl-3 text-sm leading-6 font-semibold text-shark-300 text-center uppercase flex-1 w-full py-6",
                       {
                         "bg-shark-900 text-white": currentImage.id === id,
-                        "text-zinc-700 hover:bg-zinc-50":
+                        "text-zinc-700 hover:bg-zinc-200":
                           currentImage.id !== id,
+                        "!cursor-wait": isAnimating,
                       }
                     )}
                   >
