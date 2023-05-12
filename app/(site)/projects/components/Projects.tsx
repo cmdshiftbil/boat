@@ -1,7 +1,11 @@
+"use client";
 import ProjectRow from "@/components/ProjectRow";
 
 export const Projects = ({ projects }: any) => {
-  console.log("projects from comp", projects);
+  console.log("Projects:", {
+    projects,
+    projectsJson: JSON.stringify(projects),
+  });
 
   return (
     <div className="overflow-hidden">

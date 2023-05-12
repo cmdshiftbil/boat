@@ -22,6 +22,13 @@ export const Projects: CollectionConfig = {
     },
     slug(),
     {
+      name: "logo",
+      label: "Project Client Logo",
+      type: "upload",
+      relationTo: "media",
+      required: false,
+    },
+    {
       type: "tabs",
       tabs: [
         {

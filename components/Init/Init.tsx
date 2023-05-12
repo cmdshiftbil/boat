@@ -13,6 +13,7 @@ import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import SplitText from "gsap/dist/SplitText";
+import Observer from "gsap/dist/Observer";
 import dynamic from "next/dynamic";
 
 const Stats = dynamic(
@@ -23,6 +24,7 @@ const Stats = dynamic(
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(Observer);
   gsap.registerPlugin(DrawSVGPlugin);
   // ScrollTrigger.defaults({ markers: process.env.NODE_ENV === "development" });
 

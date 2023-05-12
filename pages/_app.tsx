@@ -13,12 +13,14 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import dynamic from "next/dynamic";
 import SplitText from "gsap/dist/SplitText";
+import Observer from "gsap/dist/Observer";
 import { Layout } from "@/layouts/default";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(Observer);
   gsap.registerPlugin(DrawSVGPlugin);
   // ScrollTrigger.defaults({ markers: process.env.NODE_ENV === "development" });
 

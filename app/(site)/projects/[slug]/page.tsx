@@ -1,9 +1,5 @@
-import Button from "@/components/Button";
-import Heading from "@/components/Heading";
-import { fetchContent } from "@/utils/api.utils";
 import ProjectHeading from "@/components/ProjectLayout/ProjectHeading";
 import getPayloadClient from "@/payload/payloadClient";
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ImageGallery } from "@/components/ImageGallery/ImageGallery";
 
@@ -20,65 +16,70 @@ export default async function ProjectPage(props: any) {
     },
   });
 
-  console.log("Slug ==> ", params.slug);
-
-  const project = projects.docs[0];
-  console.log("Project from page", project);
-
-  if (!project) {
+  const project = projects.docs?.[0];
+  if (!project || !projects.docs?.length) {
     return notFound();
   }
 
   return (
-    <div className="p-12 bg-shark-50 text-shark-900">
-      <ProjectHeading
-        title={project?.title}
-        date={project.buildDate}
-        location={project.location}
-      />
+    <div className="py-12 bg-shark-50 text-shark-900">
+      <div className="px-12">
+        <ProjectHeading
+          title={project?.title}
+          date={project.buildDate}
+          location={project.location}
+        />
+      </div>
 
-      <ImageGallery images={project.images} />
-
-      <p>
-        loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
-        tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-      </p>
-      <p>
-        loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
-        tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-      </p>
-      <p>
-        loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
-        tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-      </p>
-      <p>
-        loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
-        tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-      </p>
+      {!!project.images?.length && (
+        <ImageGallery
+          logo={project.logo}
+          images={project.images}
+          className="md:px-12"
+        />
+      )}
+      <div className="px-12">
+        <p>
+          loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
+          tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+        </p>
+        <p>
+          loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
+          tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+        </p>
+        <p>
+          loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
+          tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+        </p>
+        <p>
+          loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
+          tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+        </p>
+      </div>
     </div>
   );
 }
