@@ -87,7 +87,7 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
 
   const navigate = useCallback(
     (newPosition: number) => {
-      if (!slidesRef.current) {
+      if (!slidesRef.current || newPosition === currentImageIndex) {
         return;
       }
 
@@ -298,7 +298,7 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
       <div
         className="flex flex-col border rounded-md p-4 w-full lg:w-auto h-full"
         style={{
-          height: isMobile ? "auto" : slidesRef?.current?.clientHeight,
+          minHeight: isMobile ? "auto" : slidesRef?.current?.clientHeight,
         }}
       >
         <nav className="flex flex-1 flex-col" aria-label="Sidebar">
