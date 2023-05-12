@@ -31,7 +31,6 @@ export const ImageGallery = ({
   allowMobileSwipe,
   className,
 }: ImageGalleryProps) => {
-  console.log("ImageGallery", { images, logo });
   const sortedImages = useMemo(() => images.sort(), [images]);
   const totalImages = images.length;
   const [isHoverOn, setIsHoverOn] = useState(false);

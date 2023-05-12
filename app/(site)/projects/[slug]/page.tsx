@@ -1,9 +1,5 @@
-import Button from "@/components/Button";
-import Heading from "@/components/Heading";
-import { fetchContent } from "@/utils/api.utils";
 import ProjectHeading from "@/components/ProjectLayout/ProjectHeading";
 import getPayloadClient from "@/payload/payloadClient";
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ImageGallery } from "@/components/ImageGallery/ImageGallery";
 
@@ -24,12 +20,6 @@ export default async function ProjectPage(props: any) {
   if (!project || !projects.docs?.length) {
     return notFound();
   }
-
-  console.log({
-    project,
-    projectImages: project?.images,
-    projectImagesLength: project?.images?.length,
-  });
 
   return (
     <div className="py-12 bg-shark-50 text-shark-900">
