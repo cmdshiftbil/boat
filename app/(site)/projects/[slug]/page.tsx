@@ -32,55 +32,64 @@ export default async function ProjectPage(props: any) {
   });
 
   return (
-    <div className="p-12 bg-shark-50 text-shark-900">
-      <ProjectHeading
-        title={project?.title}
-        date={project.buildDate}
-        location={project.location}
-      />
+    <div className="py-12 bg-shark-50 text-shark-900">
+      <div className="px-12">
+        <ProjectHeading
+          title={project?.title}
+          date={project.buildDate}
+          location={project.location}
+        />
+      </div>
 
-      {!!project.images?.length && <ImageGallery images={project.images} />}
-
-      <p>
-        loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
-        tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-      </p>
-      <p>
-        loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
-        tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-      </p>
-      <p>
-        loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
-        tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-      </p>
-      <p>
-        loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
-        tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-      </p>
+      {!!project.images?.length && (
+        <ImageGallery
+          logo={project.logo}
+          images={project.images}
+          className="md:px-12"
+        />
+      )}
+      <div className="px-12">
+        <p>
+          loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
+          tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+        </p>
+        <p>
+          loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
+          tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+        </p>
+        <p>
+          loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
+          tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+        </p>
+        <p>
+          loem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          consectetur, nisl nec ultricies lacinia, nisl nisl aliquet nisl, nec
+          tincidunt nisl nisl vel nisl. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+        </p>
+      </div>
     </div>
   );
 }

@@ -16,13 +16,20 @@ import Image from "next/image";
 import "./index.css";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import { useWindowSize } from "react-use";
+import ScrollIcon from "@/components/ScrollIcon";
+import NavTopIcon from "public/images/images-nav-top.svg";
+import NavOtherIcon from "public/images/images-nav-other.svg";
 
 interface ImageGalleryProps extends HTMLAttributes<HTMLDivElement> {
   images: any[];
+  logo?: any;
 }
-export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
-  console.log("ImageGallery", { images });
-
+export const ImageGallery = ({
+  images,
+  logo,
+  className,
+}: ImageGalleryProps) => {
+  console.log("ImageGallery", { images, logo });
   const sortedImages = useMemo(() => images.sort(), [images]);
   const totalImages = images.length;
   const [isHoverOn, setIsHoverOn] = useState(false);
@@ -268,7 +275,7 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
       {/* add class "touch-none": disable mobile scrolling when sliding the images */}
       {/* Noticed that user cannot swipe to lower areas with this ON, so turning it off */}
       <div
-        className="w-full flex-1 aspect-[2/3] lg:aspect-[2/1] slides hover:shadow-5xl transition-all"
+        className="w-full flex-1 aspect-[2/3] lg:aspect-[31/25] max-h-[880px] slides hover:shadow-5xl transition-all relative"
         ref={slidesRef}
         onMouseEnter={() => setIsHoverOn(true)}
         onMouseLeave={() => setIsHoverOn(false)}
@@ -294,14 +301,84 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
             </div>
           </div>
         ))}
+
+        <div className="absolute flex md:hidden flex-col gap-2 right-0 py-[7px] -mr-[2px] bg-white border-2 border-black rounded-l-[4px]">
+          {sortedImages.map(({ id, view }: any, idx) => {
+            const viewLowerCase = view.toLowerCase();
+            const isOtherView = ![
+              "top side",
+              "right side",
+              "left side",
+              "back view",
+            ].includes(viewLowerCase);
+
+            return (
+              <button
+                key={id}
+                onClick={() => handleActiveImageIndex(idx)}
+                title={view}
+                className={classNames(
+                  "w-[40px] h-[40px] flex justify-center items-center rounded-[4px] ml-[6px] mr-[4px]",
+                  {
+                    "bg-galleryThumb text-white": currentImage.id === id,
+                    "text-black hover:bg-zinc-200": currentImage.id !== id,
+                    "!cursor-wait": isAnimating,
+                    ["rotate-90 text-black"]: viewLowerCase === "right side",
+                    ["rotate-[270deg]"]: viewLowerCase === "left side",
+                    ["rotate-180"]: viewLowerCase === "back view",
+                  }
+                )}
+              >
+                {isOtherView ? (
+                  <NavOtherIcon
+                    width="18"
+                    height="18"
+                    className={classNames("nav-icon", {
+                      active: currentImage.id === id,
+                    })}
+                  />
+                ) : (
+                  <NavTopIcon
+                    width="18"
+                    height="18"
+                    className={classNames("nav-icon", {
+                      active: currentImage.id === id,
+                    })}
+                  />
+                )}
+              </button>
+            );
+          })}
+          <div className="w-full flex justify-center items-center pt-[16px] border-t-2">
+            <ScrollIcon className="scale-75" color="black" thickness={2} />
+          </div>
+        </div>
       </div>
+
+      {/* List of images */}
       <div
-        className="flex flex-col border rounded-md p-4 w-full lg:w-auto h-full"
+        className="hidden md:flex flex-col justify-center border rounded-[7px] p-6 w-[300px] xl:w-[350px] 2xl:w-[400px] h-full relative"
         style={{
           minHeight: isMobile ? "auto" : slidesRef?.current?.clientHeight,
         }}
       >
-        <nav className="flex flex-1 flex-col" aria-label="Sidebar">
+        {/* Logo */}
+        {logo && (
+          <div className="logo absolute top-0 left-0 w-full h-[80px] xl:h-[100px] my-8 xl:my-12">
+            <Image
+              src={logo.url}
+              alt={logo.alt}
+              fill
+              className={classNames("object-contain aspect-w-4 w-full")}
+            />
+          </div>
+        )}
+        <nav
+          className={classNames("flex flex-col", {
+            "mt-[144px] :mt-[196px] 2xl:mt-0": !!logo,
+          })}
+          aria-label="Sidebar"
+        >
           <ul role="list" className="-mx-2 space-y-1 flex flex-col">
             {sortedImages.map(({ id, view, label }: any, idx) => {
               return (
@@ -309,7 +386,7 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
                   <button
                     onClick={() => handleActiveImageIndex(idx)}
                     className={classNames(
-                      "group gap-x-3 rounded-sm p-2 pl-3 text-sm leading-6 font-semibold text-shark-300 text-center uppercase flex-1 w-full py-6",
+                      "group gap-x-3 rounded-[5px] p-2 pl-3 text-lg leading-6 text-shark-300 text-center uppercase flex-1 w-full py-6",
                       {
                         "bg-shark-900 text-white": currentImage.id === id,
                         "text-zinc-700 hover:bg-zinc-200":
@@ -326,7 +403,7 @@ export const ImageGallery = ({ images, className }: ImageGalleryProps) => {
           </ul>
         </nav>
       </div>
-      <div className="cursor">
+      <div className="cursor hidden md:block">
         <span
           className={classNames(
             "cursor__text fixed bg-black text-white text-sm px-5 py-2.5 rounded-3xl shadow-2xl min-w-max",

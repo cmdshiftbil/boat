@@ -48,6 +48,7 @@ module.exports = {
         800: "#68544c",
         900: "#594943",
       },
+      galleryThumb: "#391010",
     },
     extend: {
       backgroundImage: {

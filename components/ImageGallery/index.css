@@ -50,3 +50,10 @@
 	background-repeat: no-repeat;
 	will-change: transform;
 }
+
+.nav-icon path {
+	stroke: black;
+}
+.nav-icon.active path {
+  stroke: white;
+}

@@ -1,11 +1,20 @@
 import gsap from "gsap";
-import { useMemo } from "react";
+import { HTMLAttributes, useMemo } from "react";
 import { useRef } from "react";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import Nearby from "@/lib/near";
 import { lineEq } from "@/utils/math.utils";
+import classNames from "classnames";
 
-const ScrollIcon = () => {
+interface ScrollIconProps extends HTMLAttributes<HTMLDivElement> {
+  color?: string;
+  thickness?: 1 | 2;
+}
+
+const ScrollIcon = ({ className, color, thickness = 1 }: ScrollIconProps) => {
+  const mouseColorClass = color ? `border-${color}` : "";
+  const WheelColorClass = color ? `bg-${color}` : "";
+
   const mouse = useRef<any>(null);
   const wheel = useRef<any>(null);
 
@@ -67,12 +76,28 @@ const ScrollIcon = () => {
   return (
     <div
       ref={mouse}
-      className="w-[1.5rem] h-[2.25rem] rounded-[1rem] border-2 border-shark-50"
+      className={classNames(
+        "w-[1.5rem] h-[2.25rem] rounded-[1rem]",
+        className,
+        {
+          "border-shark-50": !mouseColorClass,
+          "border-2": thickness == 1,
+          "border-[2.67px]": thickness == 2,
+        },
+        mouseColorClass
+      )}
     >
       <div
         ref={wheel}
-        //  className="scroll__wheel"
-        className="w-[2px] h-[0.5rem] bg-shark-50 rouned-[0.1rem] mt-1 mx-auto mb-0"
+        className={classNames(
+          "h-[0.5rem] mt-1 mx-auto mb-0",
+          {
+            "bg-shark-50": !WheelColorClass,
+            "w-[2px] rounded-[0.1rem]": thickness == 1,
+            "w-[4px] rounded-[0.3rem]": thickness == 2,
+          },
+          WheelColorClass
+        )}
       ></div>
     </div>
   );
