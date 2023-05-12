@@ -23,10 +23,12 @@ import NavOtherIcon from "public/images/images-nav-other.svg";
 interface ImageGalleryProps extends HTMLAttributes<HTMLDivElement> {
   images: any[];
   logo?: any;
+  allowMobileSwipe?: boolean;
 }
 export const ImageGallery = ({
   images,
   logo,
+  allowMobileSwipe,
   className,
 }: ImageGalleryProps) => {
   console.log("ImageGallery", { images, logo });
@@ -242,8 +244,8 @@ export const ImageGallery = ({
       Observer.create({
         target: slidesRef.current,
         type: "wheel,touch,pointer",
-        onDown: () => !isAnimating && prev(),
-        onUp: () => !isAnimating && next(),
+        onDown: () => !isAnimating && (allowMobileSwipe || !isMobile) && prev(),
+        onUp: () => !isAnimating && (allowMobileSwipe || !isMobile) && next(),
         // invert the mouse wheel delta
         wheelSpeed: -1,
         tolerance: 10,
@@ -349,9 +351,11 @@ export const ImageGallery = ({
               </button>
             );
           })}
-          <div className="w-full flex justify-center items-center pt-[16px] border-t-2">
-            <ScrollIcon className="scale-75" color="black" thickness={2} />
-          </div>
+          {allowMobileSwipe && (
+            <div className="w-full flex justify-center items-center pt-[16px] border-t-2">
+              <ScrollIcon className="scale-75" color="black" thickness={2} />
+            </div>
+          )}
         </div>
       </div>
 
