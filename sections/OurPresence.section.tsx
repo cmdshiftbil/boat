@@ -47,7 +47,7 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
 
   return (
     <Section
-      className="min-h-[calc(100vh-405px)] flex flex-col mb-[200px] md:mb-0"
+      className="min-h-[calc(100vh-405px)] flex flex-col mb-[200px]"
       title="Our Presence"
       headingClassName="!w-full text-center"
     >
