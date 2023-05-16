@@ -9,23 +9,12 @@ export const TransitionProvider = ({ children }: any) => {
     gsap.timeline({ paused: true })
   );
 
-  // const [completed, setCompleted] = useState(false);
-
-  // const toggleCompleted = (value: boolean) => {
-  //   setCompleted(value);
-  // };
-
   return (
     <TransitionContext.Provider
       value={{
         timeline,
         setTimeline,
       }}
-
-      // value={{
-      //   toggleCompleted,
-      //   completed,
-      // }}
     >
       {children}
     </TransitionContext.Provider>
