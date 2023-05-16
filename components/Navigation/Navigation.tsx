@@ -161,30 +161,9 @@ const Navigation = () => {
     <div ref={ref} className="relative z-50 ">
       <div className="fixed top-0 left-0 z-10 flex justify-between w-full p-6 nav-bar sm:p-12">
         <div className="flex items-center justify-between flex-1">
-          <div className="brand-logo flex gap-3">
+          <div className="brand-logo">
             <Link href="/" aria-label="Alpha Nero Homepage button">
               <Logo className="fill-shark-50 logo" />
-            </Link>
-            <Link
-              href="/about"
-              aria-label="Alpha Nero Homepage button"
-              className="text-white"
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              aria-label="Alpha Nero Homepage button"
-              className="text-white"
-            >
-              Services
-            </Link>
-            <Link
-              href="/projects"
-              aria-label="Alpha Nero Homepage button"
-              className="text-white"
-            >
-              Projects
             </Link>
           </div>
           <HamburgerButton onClick={onClickMenuToggle} />
