@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TransitionProvider } from "@/components/Transition/Transition.provider";
 import { fetchContent } from "@/utils/api.utils";
+import NextNProgress from "nextjs-progressbar";
 
 // import s from "./layout.module.scss";
 
@@ -28,25 +29,10 @@ export function Layout({
   seo = { title: "", description: "", image: "", keywords: "" },
   children,
 }: any) {
-  // TODO: Fix this with react-lenis and the new method of router events in nextjs appDir
-  // const lenis = useLenis();
-
-  // useEffect(() => {
-  //   function onHashChangeStart(url: any) {
-  //     url = "#" + url.split("#").pop();
-  //     lenis.scrollTo(url);
-  //   }
-
-  //   // Router.events.on("hashChangeStart", onHashChangeStart);
-
-  //   return () => {
-  //     // Router.events.off("hashChangeStart", onHashChangeStart);
-  //   };
-  // }, [lenis]);
-
   return (
     <>
       <CustomHead {...seo} />
+      <NextNProgress color="#96786c" />
       <Lenis
         root
         options={{
