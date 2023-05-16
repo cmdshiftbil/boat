@@ -1,3 +1,4 @@
+import { AnimateInOut } from "@/components/Animations";
 import Heading from "@/components/Heading";
 import MotionLine from "@/components/MotionLine/MotionLine";
 import Parallax from "@/components/Parallax";
@@ -10,7 +11,33 @@ import TeamScrollSection from "@/sections/TeamScroll.section";
 
 export default function About() {
   return (
-    <div>
+    <AnimateInOut
+      durationIn={0.6}
+      durationOut={0.2}
+      // Initial
+      set={{
+        transform: "translate(" + 0 + "px, " + 200 + "px)",
+        opacity: 0,
+        duration: 0.25,
+        ease: "power4.out",
+      }}
+      // Transition In (to)
+      to={{
+        opacity: 1,
+        x: 0,
+        y: 0,
+        ease: "power4.inOut",
+      }}
+      // TODO: Outro is buggy
+      // Transition Out (from)
+      // from={{
+      //   transform: "translate(" + 0 + "px, " + 200 + "px)",
+      //   opacity: 0,
+      //   duration: 0.25,
+      //   ease: "power4.out",
+      // }}
+      skipOutro={true}
+    >
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
         <Text animate>
           Founded in 2010 in Dubai, United Arab Emirates. Alpha Nero has
@@ -27,7 +54,6 @@ export default function About() {
           working with some of the most prestigious brands in the market.
         </Text>
       </Section>
-
       <section className="p-4 md:p-6 lg:p-12">
         <Parallax speed={0.5}>
           <h3 className="font-bold clamp-text-9xl text-shark-50">
@@ -47,14 +73,12 @@ export default function About() {
           bringing branded reta il installations to life
         </Text>
       </section>
-
       <TeamScrollSection />
-
       <section>
         <header className="bg-shark-900 bg-grid-surface pt-32 pb-24 px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
           <Heading className="text-shark-50">Leadership</Heading>
         </header>
       </section>
-    </div>
+    </AnimateInOut>
   );
 }

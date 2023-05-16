@@ -1,63 +1,30 @@
-import gsap from "gsap";
-import { usePathname } from "next/navigation";
-import { useContext, useRef } from "react";
-import {
-  SwitchTransition,
-  TransitionGroup,
-  Transition as TransitionBase,
-  CSSTransition,
-} from "react-transition-group";
+import { useContext, useRef, useState } from "react";
 import TransitionContext from "./Transition.provider";
+import { useIsomorphicLayoutEffect } from "react-use";
+import { usePathname } from "next/navigation";
 
 const Transition = ({ children, route }: any) => {
+  const [displayChildren, setDisplayChildren] = useState(null);
+  const { timeline } = useContext(TransitionContext);
+  const el = useRef(null);
   const pathname = usePathname();
-  const { toggleCompleted } = useContext(TransitionContext);
-
-  const onEnterHandler = (node: any) => {
-    toggleCompleted(false);
-
-    if (!node) {
-      return;
+  useIsomorphicLayoutEffect(() => {
+    if (children !== displayChildren) {
+      if (timeline.duration() === 0) {
+        // there are no outro animations, so immediately transition
+        setDisplayChildren(children);
+      } else {
+        timeline.play().then(() => {
+          console.log("5s - playing anim for", pathname);
+          // outro complete so reset to an empty paused timeline
+          timeline.seek(0).pause().clear();
+          setDisplayChildren(children);
+        });
+      }
     }
+  }, [children]);
 
-    gsap.set(node, { opacity: 0, y: 100 });
-
-    gsap
-      .timeline({
-        paused: true,
-        onComplete: () => toggleCompleted(true),
-      })
-      .to(node, { opacity: 1, duration: 1, ease: "power3.out" })
-      // .to(node, { y: 0, duration: 0.25 })
-      .play();
-  };
-
-  const onExitHandler = (node: any) => {
-    toggleCompleted(false);
-    if (!node) {
-      return;
-    }
-    gsap
-      .timeline({ paused: true, onComplete: () => toggleCompleted(true) })
-      .to(node, { opacity: 0, duration: 1, ease: "power3.out" })
-      .play();
-  };
-
-  return (
-    <TransitionGroup>
-      <TransitionBase
-        key={pathname}
-        timeout={500}
-        in={true}
-        mountOnEnter
-        unmountOnExit
-        onEnter={onEnterHandler}
-        onExit={onExitHandler}
-      >
-        {children}
-      </TransitionBase>
-    </TransitionGroup>
-  );
+  return <div ref={el}>{displayChildren}</div>;
 };
 
 export default Transition;

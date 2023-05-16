@@ -8,7 +8,7 @@ import OurPresenceSection from "@/sections/OurPresence.section";
 import OurProcessSection from "@/sections/OurProcess.section";
 import WhatWeDoSection from "@/sections/WhatWeDo.section";
 import content from "@/content/content";
-import StairsUpIcon from "@/components/UserInterfaceElements/StairsUpIcon";
+import { AnimateInOut } from "@/components/Animations";
 
 export const metadata = {
   title: "Alpha Nero | Home",
@@ -84,12 +84,42 @@ export default async function HomePage() {
 
   return (
     <Page>
-      <HeroSection data={homeData.hero} />
-      <MainHeadlineSection />
-      <OurPresenceSection data={homeData.presence} />
-      <WhatWeDoSection data={homeData.whatWeDo} />
-      <OurProcessSection data={homeData.ourProcess} />
-      <OurClientsSection data={homeData.ourClients} />
+      <AnimateInOut
+        durationIn={0.6}
+        durationOut={0.2}
+        // Initial
+        set={{
+          transform: "translate(" + 0 + "px, " + 200 + "px)",
+          opacity: 0,
+          duration: 0.25,
+          ease: "power4.out",
+        }}
+        // Transition In (to)
+        to={{
+          opacity: 1,
+          x: 0,
+          y: 0,
+          ease: "power4.inOut",
+        }}
+        // TODO: Outro is buggy
+        // Transition Out (from)
+        // from={{
+        //   transform: "translate(" + 0 + "px, " + 200 + "px)",
+        //   opacity: 0,
+        //   duration: 0.25,
+        //   ease: "power4.out",
+        // }}
+        skipOutro={true}
+      >
+        <>
+          <HeroSection data={homeData.hero} />
+          <MainHeadlineSection />
+          <OurPresenceSection data={homeData.presence} />
+          <WhatWeDoSection data={homeData.whatWeDo} />
+          <OurProcessSection data={homeData.ourProcess} />
+          <OurClientsSection data={homeData.ourClients} />
+        </>
+      </AnimateInOut>
     </Page>
   );
 }

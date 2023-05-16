@@ -12,6 +12,7 @@ import useColor from "@/hooks/useColor";
 import CarbonReportsSection from "@/sections/CarbonReports.section";
 import HowItWorksSection from "@/sections/HowItWorks.section";
 import ServicesSections from "@/sections/Services.sections";
+import { AnimateInOut } from "@/components/Animations";
 
 const { title, description, services } = servicePageContent;
 
@@ -20,21 +21,48 @@ export default function Services() {
 
   return (
     <Page>
-      <header className="px-6 sm:px-12 lg:pl-96">
-        <Heading className="mb-6 text-shark-50 sm:mb-12">{title}</Heading>
-        <div className="grid gap-12 pb-5">
-          <Text className="flex-1 max-w-7xl clamp-text-7xl">{description}</Text>
-          <div className="">
-            <Button to="/contact">Discuss your design with us</Button>
+      <AnimateInOut
+        durationIn={0.6}
+        durationOut={0.2}
+        // Initial
+        set={{
+          transform: "translate(" + 0 + "px, " + 200 + "px)",
+          opacity: 0,
+          duration: 0.25,
+          ease: "power4.out",
+        }}
+        // Transition In (to)
+        to={{
+          opacity: 1,
+          x: 0,
+          y: 0,
+          ease: "power4.inOut",
+        }}
+        // TODO: Outro is buggy
+        // Transition Out (from)
+        // from={{
+        //   transform: "translate(" + 0 + "px, " + 200 + "px)",
+        //   opacity: 0,
+        //   duration: 0.25,
+        //   ease: "power4.out",
+        // }}
+        skipOutro={true}
+      >
+        <header className="px-6 sm:px-12 lg:pl-96">
+          <Heading className="mb-6 text-shark-50 sm:mb-12">{title}</Heading>
+          <div className="grid gap-12 pb-5">
+            <Text className="flex-1 max-w-7xl clamp-text-7xl">
+              {description}
+            </Text>
+            <div className="">
+              <Button to="/contact">Discuss your design with us</Button>
+            </div>
           </div>
-        </div>
-      </header>
-
-      <ServicesSections />
-
-      <CarbonReportsSection />
-
-      <HowItWorksSection />
+        </header>
+        <ServicesSections />
+        <CarbonReportsSection />
+        <HowItWorksSection />
+      </AnimateInOut>
     </Page>
   );
 }
