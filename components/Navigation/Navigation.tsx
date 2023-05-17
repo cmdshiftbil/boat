@@ -23,27 +23,19 @@ const navigationItems = [
 
 const Navigation = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tl = useRef<GSAPTimeline>(
     gsap.timeline({
       paused: true,
     })
   );
 
-  const handleMenuOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleMenuClose = () => {
-    setIsOpen(false);
-  };
-
   useEffect(() => {
-    tl.current.reversed(!isOpen);
-  }, [isOpen]);
+    tl.current.reversed(!isMenuOpen);
+  }, [isMenuOpen]);
 
   useOnChangeRoute(() => {
-    handleMenuClose();
+    setIsMenuOpen(false);
   });
 
   useGsapEffect((self: any) => {
@@ -159,11 +151,7 @@ const Navigation = () => {
   }, ref);
 
   const onClickMenuToggle = () => {
-    if (isOpen) {
-      handleMenuClose();
-    } else {
-      handleMenuOpen();
-    }
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -197,7 +185,7 @@ const Navigation = () => {
               Projects
             </Link> */}
           </div>
-          <HamburgerButton isOpen={isOpen} onClick={onClickMenuToggle} />
+          <HamburgerButton isOpen={isMenuOpen} onClick={onClickMenuToggle} />
         </div>
       </div>
 
@@ -214,7 +202,7 @@ const Navigation = () => {
               <ul className="main-nav">
                 {navigationItems.map((item) => (
                   <NavigationItem
-                    onClick={handleMenuClose}
+                    onClick={() => setIsMenuOpen(false)}
                     className="overflow-hidden transition-transform duration-300 ease-in-out nav-item hover:translate-x-5 text-shark-900"
                     key={item.id}
                     i={item.id}
