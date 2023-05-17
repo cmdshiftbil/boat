@@ -23,7 +23,7 @@ const navigationItems = [
 
 const Navigation = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const tl = useRef<GSAPTimeline>(
     gsap.timeline({
       paused: true,
@@ -31,11 +31,11 @@ const Navigation = () => {
   );
 
   useEffect(() => {
-    tl.current.reversed(!isMenuOpen);
-  }, [isMenuOpen]);
+    tl.current.reversed(!isOpen);
+  }, [isOpen]);
 
   useOnChangeRoute(() => {
-    setIsMenuOpen(false);
+    setIsOpen(false);
   });
 
   useGsapEffect((self: any) => {
@@ -151,7 +151,7 @@ const Navigation = () => {
   }, ref);
 
   const onClickMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -185,7 +185,7 @@ const Navigation = () => {
               Projects
             </Link> */}
           </div>
-          <HamburgerButton isOpen={isMenuOpen} onClick={onClickMenuToggle} />
+          <HamburgerButton isOpen={isOpen} onClick={onClickMenuToggle} />
         </div>
       </div>
 
@@ -202,7 +202,7 @@ const Navigation = () => {
               <ul className="main-nav">
                 {navigationItems.map((item) => (
                   <NavigationItem
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => setIsOpen(false)}
                     className="overflow-hidden transition-transform duration-300 ease-in-out nav-item hover:translate-x-5 text-shark-900"
                     key={item.id}
                     i={item.id}
