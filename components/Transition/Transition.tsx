@@ -1,24 +1,24 @@
 import { useContext, useRef, useState } from "react";
 import TransitionContext from "./Transition.provider";
 import { useIsomorphicLayoutEffect } from "react-use";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const Transition = ({ children, route }: any) => {
-  const router = useRouter();
+  const pathname = usePathname();
   const [currentPage, setCurrentPage] = useState({
-    route: router.asPath,
+    route: pathname,
     children,
   });
   const { timeline } = useContext(TransitionContext);
   const el = useRef(null);
 
   useIsomorphicLayoutEffect(() => {
-    if (currentPage.route !== router.asPath) {
+    if (currentPage.route !== pathname) {
       if (timeline.duration() === 0) {
         console.log("no outro animations!!!?!?!?");
         /* There are no outro animations, so immediately transition */
         setCurrentPage({
-          route: router.asPath,
+          route: pathname,
           children,
         });
       } else {
@@ -27,13 +27,13 @@ const Transition = ({ children, route }: any) => {
           timeline.seek(0).pause().clear();
           // timeline.pause().clear();
           setCurrentPage({
-            route: router.asPath,
+            route: pathname,
             children,
           });
         });
       }
     }
-  }, [router.asPath]);
+  }, [pathname]);
 
   return <div ref={el}>{currentPage.children}</div>;
 };

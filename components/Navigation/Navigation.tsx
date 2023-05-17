@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import NavigationItem from "./NavigationItem";
 import gsap from "gsap";
-import { useState } from "react";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import useOnChangeRoute from "@/hooks/useOnChangeRoute";
 import BlueprintLabel from "../BlueprintLabel";
