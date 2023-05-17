@@ -70,7 +70,7 @@ export default async function AboutPage() {
         <Text className="py-4 md:py-6 lg:py-12 clamp-text-2xl" animate>
           From our <strong>management</strong> to our{" "}
           <strong>metal operators</strong>, everyone plays a special role in
-          bringing branded reta il installations to life
+          bringing branded retail installations to life
         </Text>
       </section>
       <TeamScrollSection />

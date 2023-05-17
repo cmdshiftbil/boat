@@ -15,7 +15,6 @@ const Transition = ({ children, route }: any) => {
   useIsomorphicLayoutEffect(() => {
     if (currentPage.route !== pathname) {
       if (timeline.duration() === 0) {
-        console.log("no outro animations!!!?!?!?");
         /* There are no outro animations, so immediately transition */
         setCurrentPage({
           route: pathname,
