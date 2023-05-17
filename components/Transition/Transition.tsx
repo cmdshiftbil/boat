@@ -1,29 +1,41 @@
-"use client";
 import { useContext, useRef, useState } from "react";
 import TransitionContext from "./Transition.provider";
 import { useIsomorphicLayoutEffect } from "react-use";
+import { useRouter } from "next/router";
 
 const Transition = ({ children, route }: any) => {
-  const [displayChildren, setDisplayChildren] = useState(null);
+  const router = useRouter();
+  const [currentPage, setCurrentPage] = useState({
+    route: router.asPath,
+    children,
+  });
   const { timeline } = useContext(TransitionContext);
   const el = useRef(null);
 
   useIsomorphicLayoutEffect(() => {
-    if (children !== displayChildren) {
+    if (currentPage.route !== router.asPath) {
       if (timeline.duration() === 0) {
-        // there are no outro animations, so immediately transition
-        setDisplayChildren(children);
+        console.log("no outro animations!!!?!?!?");
+        /* There are no outro animations, so immediately transition */
+        setCurrentPage({
+          route: router.asPath,
+          children,
+        });
       } else {
         timeline.play().then(() => {
-          // outro complete so reset to an empty paused timeline
+          /* outro complete so reset to an empty paused timeline */
           timeline.seek(0).pause().clear();
-          setDisplayChildren(children);
+          // timeline.pause().clear();
+          setCurrentPage({
+            route: router.asPath,
+            children,
+          });
         });
       }
     }
-  }, [children]);
+  }, [router.asPath]);
 
-  return <div ref={el}>{displayChildren}</div>;
+  return <div ref={el}>{currentPage.children}</div>;
 };
 
 export default Transition;
