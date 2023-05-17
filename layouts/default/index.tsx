@@ -46,7 +46,8 @@ export function Layout({
           {/* <Cursor /> */}
 
           <main className="h-full min-h-full pt-32 overflow-x-hidden bg-shark-900">
-            <Transition>{children}</Transition>
+            {/* <Transition>{children}</Transition> */}
+            {children}
           </main>
           <Footer />
         </TransitionProvider>
