@@ -9,11 +9,11 @@ import content from "@/content/content";
 import TeamCountersSection from "@/sections/TeamCounters.section";
 import TeamScrollSection from "@/sections/TeamScroll.section";
 
-export default function About() {
+export default async function AboutPage() {
   return (
     <AnimateInOut
       durationIn={0.6}
-      durationOut={0.2}
+      durationOut={1}
       // Initial
       set={{
         transform: "translate(" + 0 + "px, " + 200 + "px)",
@@ -30,13 +30,13 @@ export default function About() {
       }}
       // TODO: Outro is buggy
       // Transition Out (from)
-      // from={{
-      //   transform: "translate(" + 0 + "px, " + 200 + "px)",
-      //   opacity: 0,
-      //   duration: 0.25,
-      //   ease: "power4.out",
-      // }}
-      skipOutro={true}
+      from={{
+        transform: "translate(" + 0 + "px, " + 200 + "px)",
+        opacity: 0,
+        duration: 0.25,
+        ease: "power4.out",
+      }}
+      // skipOutro={true}
     >
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
         <Text animate>

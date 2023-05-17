@@ -1,3 +1,4 @@
+"use client";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import gsap from "gsap";
 import { useRef } from "react";

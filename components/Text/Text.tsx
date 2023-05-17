@@ -1,3 +1,4 @@
+"use client";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import classNames from "classnames";
 import gsap from "gsap";
@@ -56,7 +57,7 @@ const Text = ({
             "text-element": true,
             [fontSize]: fontSize,
             [twMerge(
-              `text-shark-50 font-[200] subpixel-antialiased`,
+              "text-shark-50 font-[200] subpixel-antialiased",
               className
             )]: true,
           }),

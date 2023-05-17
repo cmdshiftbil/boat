@@ -1,3 +1,4 @@
+"use client";
 import gsap from "gsap";
 import GSDevTools from "gsap/dist/GSDevTools";
 import { useRef } from "react";
