@@ -1,3 +1,4 @@
+"use client";
 import DualColumnScroller from "@/components/DualColumnScroller";
 import content from "@/content/content";
 

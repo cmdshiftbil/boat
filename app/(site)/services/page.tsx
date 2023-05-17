@@ -16,7 +16,7 @@ import { AnimateInOut } from "@/components/Animations";
 
 const { title, description, services } = servicePageContent;
 
-export default function Services() {
+export default async function Services() {
   const iconColor = useColor("fill-pampas-300");
 
   return (

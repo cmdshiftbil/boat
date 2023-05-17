@@ -28,15 +28,15 @@ export default async function AboutPage() {
         y: 0,
         ease: "power4.inOut",
       }}
-      // TODO: Outro is buggy
+      // TODO: Outro is not functional
       // Transition Out (from)
-      from={{
-        transform: "translate(" + 0 + "px, " + 200 + "px)",
-        opacity: 0,
-        duration: 0.25,
-        ease: "power4.out",
-      }}
-      // skipOutro={true}
+      // from={{
+      //   transform: "translate(" + 0 + "px, " + 200 + "px)",
+      //   opacity: 0,
+      //   duration: 0.25,
+      //   ease: "power4.out",
+      // }}
+      skipOutro={true}
     >
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
         <Text animate>

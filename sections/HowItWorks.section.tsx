@@ -1,3 +1,4 @@
+"use client";
 import Heading from "@/components/Heading";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
