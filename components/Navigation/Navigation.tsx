@@ -183,7 +183,6 @@ const Navigation = () => {
               <ul className="main-nav">
                 {navigationItems.map((item) => (
                   <NavigationItem
-                    onClick={onClickMenuToggle}
                     className="overflow-hidden transition-transform duration-300 ease-in-out nav-item hover:translate-x-5 text-shark-900"
                     key={item.id}
                     i={item.id}

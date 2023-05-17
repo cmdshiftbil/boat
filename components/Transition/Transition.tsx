@@ -1,3 +1,4 @@
+"use client";
 import { useContext, useRef, useState } from "react";
 import TransitionContext from "./Transition.provider";
 import { useIsomorphicLayoutEffect } from "react-use";
