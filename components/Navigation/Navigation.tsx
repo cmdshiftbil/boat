@@ -27,17 +27,23 @@ const Navigation = () => {
   const tl = useRef<GSAPTimeline>(
     gsap.timeline({
       paused: true,
-      onComplete: () => setIsOpen(true),
-      onReverseComplete: () => setIsOpen(false),
     })
   );
 
+  const handleMenuOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setIsOpen(false);
+  };
+
   useEffect(() => {
-    console.log("isOpen", isOpen);
+    tl.current.reversed(!isOpen);
   }, [isOpen]);
 
   useOnChangeRoute(() => {
-    tl.current.reversed(true);
+    handleMenuClose();
   });
 
   useGsapEffect((self: any) => {
@@ -153,7 +159,11 @@ const Navigation = () => {
   }, ref);
 
   const onClickMenuToggle = () => {
-    tl.current.reversed(!tl.current.reversed());
+    if (isOpen) {
+      handleMenuClose();
+    } else {
+      handleMenuOpen();
+    }
   };
 
   return (
@@ -187,7 +197,7 @@ const Navigation = () => {
               Projects
             </Link> */}
           </div>
-          <HamburgerButton onClick={onClickMenuToggle} />
+          <HamburgerButton isOpen={isOpen} onClick={onClickMenuToggle} />
         </div>
       </div>
 
@@ -204,7 +214,7 @@ const Navigation = () => {
               <ul className="main-nav">
                 {navigationItems.map((item) => (
                   <NavigationItem
-                    onClick={onClickMenuToggle}
+                    onClick={handleMenuClose}
                     className="overflow-hidden transition-transform duration-300 ease-in-out nav-item hover:translate-x-5 text-shark-900"
                     key={item.id}
                     i={item.id}
@@ -275,161 +285,6 @@ const Navigation = () => {
         </div>
       </section>
     </div>
-  );
-};
-
-const _Navigation = () => {
-  const ref = useRef<any>(null);
-  const [isOpen, setIsOpen] = useState(true);
-  const nav = useRef(gsap.timeline({ paused: true }));
-  let mm = gsap.matchMedia();
-
-  const onChangeRouteHandle = () => {
-    console.log("onChangeRouteHandle");
-
-    setIsOpen(false);
-  };
-
-  useOnChangeRoute(onChangeRouteHandle);
-
-  // const onClickOutsideHandle = () => {
-  //   setIsOpen(false);
-  // };
-  // useClickAway(backgroundRef, onClickOutsideHandle as any);
-
-  // useGsapEffect(
-  //   (self: any) => {
-  //     const links = self.selector(".nav-item");
-  //     const bg = self.selector(".nav-bg")[0];
-
-  //     gsap.set(nav, { height: "100vh", width: "0" });
-
-  //     nav.fromTo(
-  //       bg,
-  //       {
-  //         duration: 0.7,
-  //         opacity: 0.4,
-  //         height: "100vh",
-  //         width: 0,
-  //         ease: "expo.inOut",
-  //       },
-  //       {
-  //         duration: 0.7,
-  //         opacity: 1,
-  //         height: "100vh",
-  //         width: "auto",
-  //         ease: "expo.inOut",
-  //       }
-  //     );
-
-  //     nav.from(
-  //       links,
-  //       {
-  //         duration: 0.5,
-  //         opacity: 0,
-  //         y: 20,
-  //         stagger: 0.09,
-  //         ease: "expo.inOut",
-  //       },
-  //       "-=0.5"
-  //     );
-
-  //     return nav.reverse();
-  //   },
-  //   ref,
-  //   [isOpen]
-  // );
-  useGsapEffect(
-    (self: any) => {
-      const links = self.selector(".nav-item");
-      const bg = self.selector(".nav-bg")[0];
-
-      gsap.set(nav, { height: "100vh", width: "0vw" });
-
-      mm.add("(max-width: 420px)", () => {
-        nav.current.to(bg, {
-          duration: 0.7,
-          opacity: 1,
-          height: "100vh",
-          width: "100vw",
-          ease: "expo.inOut",
-        });
-      });
-
-      mm.add("(min-width: 421px)", () => {
-        nav.current.to(bg, {
-          duration: 0.7,
-          opacity: 1,
-          height: "100vh",
-          width: "488px",
-          ease: "expo.inOut",
-        });
-      });
-
-      nav.current.from(
-        links,
-        {
-          duration: 0.5,
-          opacity: 0,
-          y: 20,
-          stagger: 0.09,
-          ease: "expo.inOut",
-        },
-        "-=0.5"
-      );
-
-      return nav.current.reverse();
-    },
-    ref,
-    [isOpen]
-  );
-
-  const onToggle = () => {
-    nav.current.reversed(!nav.current.reversed());
-  };
-
-  return (
-    <nav ref={ref}>
-      <div className="fixed top-0 bottom-0 right-0 w-0 h-screen overflow-y-auto rounded-b-lg opacity-0 nav-bg bg-shark-500">
-        <ul className="grid p-6 text-shark-900">
-          {navigationItems.map((item) => (
-            <NavigationItem
-              className="nav-item"
-              key={item.id}
-              i={item.id}
-              path={item.url}
-              label={item.label}
-            />
-          ))}
-          <div className="relative grid grid-rows-2 gap-6 mt-6 nav-item lg:grid-cols-2">
-            <div className="flex items-center justify-center p-6 border-2 border-dashed rounded-lg border-shark-900">
-              <Logo className="fill-shark-900" />
-            </div>
-            <div className="flex flex-row p-6 rounded-lg bg-shark-900">
-              <div className="mr-6">
-                <BlueprintLabel label="Social Media" />
-                <ul>
-                  <li className="font-medium text-shark-50">Link</li>
-                  <li className="font-medium text-shark-50">Link</li>
-                  <li className="font-medium text-shark-50">Link</li>
-                  <li className="font-medium text-shark-50">Link</li>
-                  <li className="font-medium text-shark-50">Link</li>
-                </ul>
-              </div>
-              <div>
-                <BlueprintLabel label="OTHERS" />
-                <ul>
-                  <li className="font-medium text-shark-50">Link</li>
-                  <li className="font-medium text-shark-50">Link</li>
-                  <li className="font-medium text-shark-50">Link</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </ul>
-      </div>
-      <NavigationToggle onToggle={onToggle} />
-    </nav>
   );
 };
 

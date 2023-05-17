@@ -1,8 +1,11 @@
 import gsap from "gsap";
-import { useRef } from "react";
+import { HTMLAttributes, useEffect, useRef } from "react";
 import useGsapEffect from "@/hooks/useGsapEffect";
 
-const HamburgerButton = ({ onClick }: any) => {
+interface HamburgerButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  isOpen: boolean;
+}
+const HamburgerButton = ({ onClick, isOpen }: HamburgerButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null);
   const tl = useRef<GSAPTimeline>(gsap.timeline());
 
@@ -41,9 +44,12 @@ const HamburgerButton = ({ onClick }: any) => {
     tl.current.reverse();
   }, ref);
 
+  useEffect(() => {
+    tl.current.reversed(!isOpen);
+  }, [isOpen]);
+
   const onClickHanle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    tl.current.reversed(!tl.current.reversed());
-    onClick(e);
+    onClick?.(e);
   };
 
   return (
