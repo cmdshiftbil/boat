@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import NavigationItem from "./NavigationItem";
 import gsap from "gsap";
-import { useState } from "react";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import useOnChangeRoute from "@/hooks/useOnChangeRoute";
 import BlueprintLabel from "../BlueprintLabel";
@@ -165,6 +164,28 @@ const Navigation = () => {
             <Link href="/" aria-label="Alpha Nero Homepage button">
               <Logo className="fill-shark-50 logo" />
             </Link>
+            {/* TODO: remove debug code */}
+            {/* <Link
+              href="/about"
+              aria-label="Alpha Nero Homepage button"
+              className="text-white"
+            >
+              About
+            </Link>
+            <Link
+              href="/services"
+              aria-label="Alpha Nero Homepage button"
+              className="text-white"
+            >
+              Services
+            </Link>
+            <Link
+              href="/projects"
+              aria-label="Alpha Nero Homepage button"
+              className="text-white"
+            >
+              Projects
+            </Link> */}
           </div>
           <HamburgerButton onClick={onClickMenuToggle} />
         </div>
@@ -183,6 +204,7 @@ const Navigation = () => {
               <ul className="main-nav">
                 {navigationItems.map((item) => (
                   <NavigationItem
+                    onClick={onClickMenuToggle}
                     className="overflow-hidden transition-transform duration-300 ease-in-out nav-item hover:translate-x-5 text-shark-900"
                     key={item.id}
                     i={item.id}

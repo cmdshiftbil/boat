@@ -1,63 +1,40 @@
-import gsap from "gsap";
-import { usePathname } from "next/navigation";
-import { useContext, useRef } from "react";
-import {
-  SwitchTransition,
-  TransitionGroup,
-  Transition as TransitionBase,
-  CSSTransition,
-} from "react-transition-group";
+import { useContext, useRef, useState } from "react";
 import TransitionContext from "./Transition.provider";
+import { useIsomorphicLayoutEffect } from "react-use";
+import { usePathname } from "next/navigation";
 
 const Transition = ({ children, route }: any) => {
   const pathname = usePathname();
-  const { toggleCompleted } = useContext(TransitionContext);
+  const [currentPage, setCurrentPage] = useState({
+    route: pathname,
+    children,
+  });
+  const { timeline } = useContext(TransitionContext);
+  const el = useRef(null);
 
-  const onEnterHandler = (node: any) => {
-    toggleCompleted(false);
-
-    if (!node) {
-      return;
+  useIsomorphicLayoutEffect(() => {
+    if (currentPage.route !== pathname) {
+      if (timeline.duration() === 0) {
+        /* There are no outro animations, so immediately transition */
+        setCurrentPage({
+          route: pathname,
+          children,
+        });
+      } else {
+        timeline.play().then(() => {
+          /* outro complete so reset to an empty paused timeline */
+          timeline.seek(0).pause().clear();
+          // timeline.pause().clear();
+          setCurrentPage({
+            route: pathname,
+            children,
+          });
+        });
+      }
     }
+  }, [pathname]);
 
-    gsap.set(node, { opacity: 0, y: 100 });
-
-    gsap
-      .timeline({
-        paused: true,
-        onComplete: () => toggleCompleted(true),
-      })
-      .to(node, { opacity: 1, duration: 1, ease: "power3.out" })
-      // .to(node, { y: 0, duration: 0.25 })
-      .play();
-  };
-
-  const onExitHandler = (node: any) => {
-    toggleCompleted(false);
-    if (!node) {
-      return;
-    }
-    gsap
-      .timeline({ paused: true, onComplete: () => toggleCompleted(true) })
-      .to(node, { opacity: 0, duration: 1, ease: "power3.out" })
-      .play();
-  };
-
-  return (
-    <TransitionGroup>
-      <TransitionBase
-        key={pathname}
-        timeout={500}
-        in={true}
-        mountOnEnter
-        unmountOnExit
-        onEnter={onEnterHandler}
-        onExit={onExitHandler}
-      >
-        {children}
-      </TransitionBase>
-    </TransitionGroup>
-  );
+  return <div ref={el}>{currentPage.children}</div>;
 };
 
 export default Transition;

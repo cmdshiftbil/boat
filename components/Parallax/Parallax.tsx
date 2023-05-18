@@ -1,3 +1,4 @@
+"use client";
 import { gsap } from "gsap";
 import { useRef } from "react";
 import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";

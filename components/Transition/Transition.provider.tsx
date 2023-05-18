@@ -1,20 +1,19 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
+import { gsap } from "gsap";
 import { useState } from "react";
 
 const TransitionContext = createContext<any>({ completed: false });
 
 export const TransitionProvider = ({ children }: any) => {
-  const [completed, setCompleted] = useState(false);
-
-  const toggleCompleted = (value: boolean) => {
-    setCompleted(value);
-  };
+  const [timeline, setTimeline] = useState(() =>
+    gsap.timeline({ paused: true })
+  );
 
   return (
     <TransitionContext.Provider
       value={{
-        toggleCompleted,
-        completed,
+        timeline,
+        setTimeline,
       }}
     >
       {children}

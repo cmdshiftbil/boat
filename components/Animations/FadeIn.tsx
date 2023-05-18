@@ -1,7 +1,8 @@
+"use client";
 import gsap from "gsap";
-import { useRef } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
 import useGsapEffect from "@/hooks/useGsapEffect";
+import { useRef } from "react";
 
 interface FadeInProps {
   children: React.ReactNode;
