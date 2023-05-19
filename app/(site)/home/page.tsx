@@ -77,7 +77,7 @@ export default async function HomePage() {
       subtitle:
         "We serve predominantly prestigious cosmetics, jewelry, fashion & accessory brands.",
       ctaText: "Discover our work",
-      ctaUrl: "/portfolio",
+      ctaUrl: "/projects",
       clients,
     },
   };

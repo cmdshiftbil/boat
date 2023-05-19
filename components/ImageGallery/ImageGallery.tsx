@@ -240,19 +240,31 @@ export const ImageGallery = ({
 
   useGsapEffect(
     () => {
-      Observer.create({
+      const obs = Observer.create({
         target: slidesRef.current,
         type: "wheel,touch,pointer",
-        onDown: () => !isAnimating && (allowMobileSwipe || !isMobile) && prev(),
-        onUp: () => !isAnimating && (allowMobileSwipe || !isMobile) && next(),
+        onDown: () => !isAnimating && prev(),
+        onUp: () => !isAnimating && next(),
         // invert the mouse wheel delta
         wheelSpeed: -1,
         tolerance: 10,
         preventDefault: true,
       });
+
+      if (!allowMobileSwipe) {
+        if (isMobile) {
+          obs.disable();
+        } else {
+          obs.enable();
+        }
+      }
+
+      return () => {
+        obs.kill();
+      };
     },
     slidesRef,
-    [prev, next, isAnimating]
+    [prev, next, isAnimating, isMobile]
   );
 
   useEffect(() => {
