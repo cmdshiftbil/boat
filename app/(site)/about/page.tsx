@@ -2,6 +2,7 @@ import { AnimateInOut } from "@/components/Animations";
 import Heading from "@/components/Heading";
 import MotionLine from "@/components/MotionLine/MotionLine";
 import Parallax from "@/components/Parallax";
+import ParticleImage from "@/components/ParticleImage/ParticleImage";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
 import VerticalScrollSection from "@/components/VerticalScrollSection";
@@ -38,6 +39,9 @@ export default async function AboutPage() {
       // }}
       skipOutro={true}
     >
+      <ParticleImage src="/images/leadership/1.png" />
+      {/* <ParticleImage src="https://tympanus.net/Tutorials/InteractiveParticles/images/sample-01.png" /> */}
+
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
         <Text animate>
           Founded in 2010 in Dubai, United Arab Emirates. Alpha Nero has
@@ -75,7 +79,7 @@ export default async function AboutPage() {
       </section>
       <TeamScrollSection />
       <section>
-        <header className="bg-shark-900 bg-grid-surface pt-32 pb-24 px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
+        <header className="bg-shark-900 bg-grid-surface pt-32 pb-[400px] px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
           <Heading className="text-shark-50">Leadership</Heading>
         </header>
       </section>
