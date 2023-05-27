@@ -4,7 +4,10 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import Particles from "./particles/particles";
+import InteractiveControls from "./InteractiveControls";
+import { useWindowSize } from "react-use";
 
+// TODO: Eventually customize this for Particle effect for R3F
 interface MeshProps {
   src: string;
 }
@@ -31,11 +34,19 @@ interface ParticleImageProps {
   src: string;
 }
 
-// R3F
+// Vanilla JS
+// TODO: Convert to R3F
+
 const ParticleImage = ({ src }: ParticleImageProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [particles, setParticles] = useState<Particles>();
+  const { width: windowWidth } = useWindowSize();
+  const isMobile = windowWidth <= 1024;
 
   useEffect(() => {
+    // Delta generator
+    const clock = new THREE.Clock(true);
+
     // scene
     const scene = new THREE.Scene();
 
@@ -51,69 +62,69 @@ const ParticleImage = ({ src }: ParticleImageProps) => {
     // renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
-    const particles = new Particles();
-    particles.init(src);
-    scene.add(particles.container);
+    // Interactive
+    const interactive = new InteractiveControls(
+      camera,
+      renderer.domElement,
+      isMobile
+    );
 
-    const animate = (delta?: any) => {
+    const p = new Particles({ camera, interactive });
+    p.init(src);
+    scene.add(p.container);
+
+    const animate = () => {
       requestAnimationFrame(animate);
+      const delta = clock.getDelta();
       update(delta);
       draw();
     };
 
-    const update = (delta?: any) => particles.update(delta);
+    const update = (delta?: any) => p.update(delta);
     const draw = () => renderer.render(scene, camera);
-
     const resize = () => {
       if (!renderer) return;
       camera.aspect =
         (ref.current?.offsetWidth ?? 100) / (ref.current?.offsetHeight ?? 100);
       camera.updateProjectionMatrix();
 
-      // const fovHeight = 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z;
-
       renderer.setSize(
         ref.current?.offsetWidth ?? 100,
         ref.current?.offsetHeight ?? 100
       );
 
-      if (particles) particles.resize();
+      if (p) p.resize();
+      if (interactive) interactive.resize();
+      setParticles(p);
     };
 
-    resize();
+    setTimeout(() => {
+      resize();
+    });
 
     window.addEventListener("resize", resize.bind(this));
 
-    if (ref.current) {
+    // Append only once
+    if (ref.current && ref.current.innerHTML === "") {
       ref.current?.appendChild(renderer.domElement);
     }
 
     animate();
-    console.log({
-      src,
-      "renderer.domElement": renderer.domElement,
-      "particles.container": particles.container,
-      scene,
-    });
-  }, [src]);
+  }, [src, isMobile]);
 
+  // TODO: R3F Sample
   // return (
   // <Canvas>
   //   <Mesh src={src} />
   // </Canvas>
   // )
-  return (
-    <div
-      className="w-[500px] h-[500px]"
-      style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-      ref={ref}
-    />
-  );
+  return <div className="mx-auto w-[500px] h-[500px]" ref={ref} />;
 };
 
 export default ParticleImage;
 
 // Vanilla ThreeJs
+// TODO: Sample testing, delete eventually
 // const ParticleImage = ({ src }: ParticleImageProps) => {+
 //   const ref = useRef<HTMLDivElement>(null);
 //   const [myRenderer, setMyRenderer] = useState<THREE.WebGLRenderer>();

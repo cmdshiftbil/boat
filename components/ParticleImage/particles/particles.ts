@@ -1,14 +1,18 @@
 "use client";
-
+import { useEffect } from "react";
 import * as THREE from "three";
-
 import { TweenLite } from "gsap";
 import TouchTexture from "./touchTexture";
 import vertexShader from "@/components/ParticleImage/shaders/particle.vert";
 import fragmentShader from "@/components/ParticleImage/shaders/particle.frag";
+import InteractiveControls from "../InteractiveControls";
 
+interface UIManager {
+	camera: THREE.PerspectiveCamera;
+	interactive: InteractiveControls;
+}
 export default class Particles {
-	private webgl: any;
+	private uiManager: UIManager;
 	public container: any;
 	private texture: any;
 	private width: number = 0;
@@ -19,8 +23,9 @@ export default class Particles {
 	private handlerInteractiveMove?: (e: any) => void;
 	private touch?: TouchTexture;
 
-	constructor() {
+	constructor(uiManager: UIManager) {
 		this.container = new THREE.Object3D();
+		this.uiManager = uiManager;
 	}
 
 	init(src: string) {
@@ -71,8 +76,6 @@ export default class Particles {
 			for (let i = 0; i < this.numPoints; i++) {
 				if (originalColors[i * 4 + 0] > threshold) numVisible++;
 			}
-
-			// console.log('numVisible', numVisible, this.numPoints);
 		}
 
 		const uniforms = {
@@ -158,17 +161,19 @@ export default class Particles {
 	addListeners() {
 		this.handlerInteractiveMove = this.onInteractiveMove.bind(this);
 
-		// this.webgl.interactive.addListener("interactive-move", this.handlerInteractiveMove);
-		// this.webgl.interactive.objects.push(this.hitArea);
-		// this.webgl.interactive.enable();
+		this.uiManager.interactive.addListener("interactive-move", this.handlerInteractiveMove);
+		this.uiManager.interactive.objects.push(this.hitArea);
+		this.uiManager.interactive.enable();
 	}
 
 	removeListeners() {
-		// this.webgl.interactive.removeListener("interactive-move", this.handlerInteractiveMove);
+		if (this.handlerInteractiveMove) {
+			this.uiManager.interactive.removeListener("interactive-move", this.handlerInteractiveMove);
+		}
 
-		// const index = this.webgl.interactive.objects.findIndex((obj: any) => obj === this.hitArea);
-		// this.webgl.interactive.objects.splice(index, 1);
-		// this.webgl.interactive.disable();
+		const index = this.uiManager.interactive.objects.findIndex((obj: any) => obj === this.hitArea);
+		this.uiManager.interactive.objects.splice(index, 1);
+		this.uiManager.interactive.disable();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -229,13 +234,9 @@ export default class Particles {
 	resize() {
 		if (!this.object3D) return;
 
-		// const fovHeight = 2 * Math.tan((50 * Math.PI) / 180 / 2) * -5;
-		const fovHeight = 2 * Math.tan((15 * Math.PI) / 180 / 2) * 300;
-		// camera.fov
-
+		const fovHeight = 2 * Math.tan((this.uiManager.camera.fov * Math.PI) / 180 / 2) * this.uiManager.camera.position.z;
 		const scale = fovHeight / this.height;
 
-		console.log({ fovHeight, "this.height": this.height, scale })
 		this.object3D.scale.set(scale, scale, 1);
 		this.hitArea.scale.set(scale, scale, 1);
 	}

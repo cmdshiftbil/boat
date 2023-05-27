@@ -39,8 +39,8 @@ export default async function AboutPage() {
       // }}
       skipOutro={true}
     >
-      <ParticleImage src="/images/leadership/1.png" />
-      {/* <ParticleImage src="https://tympanus.net/Tutorials/InteractiveParticles/images/sample-01.png" /> */}
+      {/* TODO: Add under Leadership eventually */}
+      <ParticleImage src="/images/leadership/5.png" />
 
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
         <Text animate>
