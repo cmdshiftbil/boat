@@ -42,7 +42,7 @@ const ParticleImage = ({ src }: ParticleImageProps) => {
     // camera
     const camera = new THREE.PerspectiveCamera(
       50,
-      window.innerWidth / window.innerHeight,
+      (ref.current?.offsetWidth ?? 100) / (ref.current?.offsetHeight ?? 100),
       1,
       10000
     );

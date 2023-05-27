@@ -53,11 +53,6 @@ const nextConfig = {
         ],
       },
       {
-        // test: /\.(vert|frag)$/i,
-        // use: "raw-loader",
-        // test: /\.(glsl|frag|vert)$/,
-        // use: ["glslify-import-loader", "raw-loader", "glslify-loader"]
-
         test: /\.(glsl|frag|vert)$/,
         use: [
           require.resolve("raw-loader"),
