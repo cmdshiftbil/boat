@@ -1,8 +1,8 @@
-import { Content } from "./../blocks/Content/Config";
 import { CollectionConfig } from "payload/types";
 import slug from "../fields/slug";
 import formatSlug from "../utilities/formatSlug";
 import meta from "../fields/meta";
+import { Content } from "../blocks/Content";
 
 export const ProjectsSlug = "projects";
 export const Projects: CollectionConfig = {
