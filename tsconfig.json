@@ -17,7 +17,9 @@
     "incremental": true,
     "typeRoots": ["./types"],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      // TODO: Legacy CSS
+      "@scss/*": ["./src/css/*"]
     },
     "plugins": [
       {
@@ -27,7 +29,5 @@
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
-  "files": [
-    "node_modules/gsap/types/index.d.ts"
-  ]
+  "files": ["node_modules/gsap/types/index.d.ts"]
 }

@@ -9,6 +9,7 @@ import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
 import { Clients } from "./collections/Clients";
 import { Services } from "./collections/Services";
+import { Posts } from "./collections/Posts";
 
 const adapter = s3Adapter({
   config: {
@@ -24,7 +25,7 @@ const adapter = s3Adapter({
 });
 
 export default buildConfig({
-  collections: [Projects, Media, Users, Clients, Services],
+  collections: [Projects, Media, Users, Clients, Posts, Services],
   globals: [
     // Your globals here
   ],

@@ -9,9 +9,10 @@ import OurProcessSection from "@/sections/OurProcess.section";
 import WhatWeDoSection from "@/sections/WhatWeDo.section";
 import content from "@/content/content";
 import { AnimateInOut } from "@/components/Animations";
+import { makeMetaPageTitle } from "@/utils/seo.utils";
 
 export const metadata = {
-  title: "Alpha Nero | Home",
+  title: makeMetaPageTitle("Home"),
 };
 
 // TODO: Export all data calls to a separate directory
