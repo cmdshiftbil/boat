@@ -2,18 +2,30 @@
 import { useEffect } from "react";
 import * as THREE from "three";
 import { TweenLite } from "gsap";
-import TouchTexture from "./touchTexture";
+import TouchTexture from "./TouchTexture";
 import vertexShader from "@/components/ParticleImage/shaders/particle.vert";
 import fragmentShader from "@/components/ParticleImage/shaders/particle.frag";
 import InteractiveControls from "../InteractiveControls";
+import EventEmitter from "events";
+
+export interface GMShader {
+	geometry: THREE.BufferGeometry;
+	material: THREE.ShaderMaterial;
+}
+export interface GMBasic {
+	geometry: THREE.BufferGeometry;
+	material: THREE.MeshBasicMaterial;
+}
 
 interface UIManager {
 	camera: THREE.PerspectiveCamera;
 	interactive: InteractiveControls;
 }
-export default class Particles {
+export default class Particles extends EventEmitter {
 	private uiManager: UIManager;
 	public container: any;
+	public shaderObject?: GMShader;
+	public basicObject?: GMBasic;
 	private texture: any;
 	private width: number = 0;
 	private height: number = 0;
@@ -24,6 +36,7 @@ export default class Particles {
 	private touch?: TouchTexture;
 
 	constructor(uiManager: UIManager) {
+		super();
 		this.container = new THREE.Object3D();
 		this.uiManager = uiManager;
 	}
@@ -76,6 +89,7 @@ export default class Particles {
 			for (let i = 0; i < this.numPoints; i++) {
 				if (originalColors[i * 4 + 0] > threshold) numVisible++;
 			}
+
 		}
 
 		const uniforms = {
@@ -142,6 +156,10 @@ export default class Particles {
 
 		this.object3D = new THREE.Mesh(geometry, material);
 		this.container.add(this.object3D);
+		this.shaderObject = {
+			geometry,
+			material
+		}
 	}
 
 	initTouch() {
@@ -156,6 +174,11 @@ export default class Particles {
 		material.visible = false;
 		this.hitArea = new THREE.Mesh(geometry, material);
 		this.container.add(this.hitArea);
+		this.basicObject = {
+			geometry,
+			material
+		}
+		this.emit("ready");
 	}
 
 	addListeners() {
@@ -232,6 +255,7 @@ export default class Particles {
 	// ---------------------------------------------------------------------------------------------
 
 	resize() {
+		// console.log("particles resize: returning?", !this.object3D)
 		if (!this.object3D) return;
 
 		const fovHeight = 2 * Math.tan((this.uiManager.camera.fov * Math.PI) / 180 / 2) * this.uiManager.camera.position.z;

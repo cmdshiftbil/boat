@@ -40,7 +40,10 @@ export default async function AboutPage() {
       skipOutro={true}
     >
       {/* TODO: Add under Leadership eventually */}
-      <ParticleImage src="/images/leadership/5.png" />
+      <ParticleImage
+        src="/images/leadership/5.png"
+        className="w-[500px] h-[500px]"
+      />
 
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
         <Text animate>
