@@ -65,6 +65,7 @@ export const ParticleImageMesh = ({
       particles.on("ready", () => {
         setShaderObject(particles.shaderObject);
         setBasicObject(particles.basicObject);
+        resize();
       });
 
       // Animate frames
@@ -83,7 +84,9 @@ export const ParticleImageMesh = ({
       window.addEventListener("resize", resize.bind(this));
 
       animate();
-      resize();
+      setTimeout(() => {
+        resize();
+      }, 100);
     }
   }, [src, isMobile, camera, canvasRef]);
 
