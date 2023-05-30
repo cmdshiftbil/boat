@@ -5,12 +5,16 @@ import React, { HTMLAttributes, useRef } from "react";
 import classNames from "classnames";
 import { hasHeightClass, hasWidthClass } from "@/utils/dom.utils";
 import ParticleImageMesh from "./ParticleImageMesh";
+import { ParticleSettings } from "./types";
 
 interface ParticleImageProps extends HTMLAttributes<HTMLDivElement> {
   src: string;
+  initialSettings?: ParticleSettings;
+  settings?: ParticleSettings;
 }
 
-const ParticleImage = ({ src, className }: ParticleImageProps) => {
+const ParticleImage = (props: ParticleImageProps) => {
+  const { className, ...otherProps } = props;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   return (
     <div
@@ -24,7 +28,7 @@ const ParticleImage = ({ src, className }: ParticleImageProps) => {
       )}
     >
       <Canvas ref={canvasRef}>
-        <ParticleImageMesh src={src} canvasRef={canvasRef} />
+        <ParticleImageMesh canvasRef={canvasRef} {...otherProps} />
       </Canvas>
     </div>
   );

@@ -111,6 +111,10 @@ export default class InteractiveControls extends EventEmitter {
   }
 
   onMove(e: any) {
+    if (!this.rect) {
+      return;
+    }
+
     const t = e.touches ? e.touches[0] : e;
 
     const touch = {
@@ -121,6 +125,13 @@ export default class InteractiveControls extends EventEmitter {
     this.mouse.x = ((touch.x - this.rect.x) / this.rect.width) * 2 - 1;
     this.mouse.y = -((touch.y - this.rect.y) / this.rect.height) * 2 + 1;
     this.raycaster.setFromCamera(this.mouse, this.camera);
+
+    console.log({
+      x: touch.x,
+      y: touch.y,
+      rectX: this.rect.x,
+      rectY: this.rect.y,
+    });
 
     /*
 		// is dragging

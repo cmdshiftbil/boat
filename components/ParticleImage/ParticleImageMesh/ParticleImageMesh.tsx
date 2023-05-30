@@ -1,4 +1,5 @@
 import React, {
+  ComponentProps,
   HTMLAttributes,
   ReactElement,
   useEffect,
@@ -9,6 +10,7 @@ import Particles, { GMBasic, GMShader } from "../Particles/Particles";
 import { useWindowSize } from "react-use";
 import { useThree } from "@react-three/fiber";
 import InteractiveControls from "../InteractiveControls";
+import ParticleImage from "../ParticleImage";
 
 interface MyMeshesProps {
   meshes: ReactElement[];
@@ -28,13 +30,14 @@ const MyMeshes = ({ meshes }: MyMeshesProps) => {
   );
 };
 
-interface ParticleImageMeshProps extends HTMLAttributes<HTMLDivElement> {
-  src: string;
+interface ParticleImageMeshProps extends ComponentProps<typeof ParticleImage> {
   canvasRef: React.RefObject<HTMLCanvasElement>;
 }
 export const ParticleImageMesh = ({
   src,
   canvasRef,
+  initialSettings,
+  settings,
 }: ParticleImageMeshProps) => {
   const [shaderObject, setShaderObject] = useState<GMShader>();
   const [basicObject, setBasicObject] = useState<GMBasic>();
@@ -56,8 +59,12 @@ export const ParticleImageMesh = ({
 
       // Particles
       const particles = new Particles({
-        camera: camera as THREE.PerspectiveCamera,
-        interactive,
+        uiManager: {
+          camera: camera as THREE.PerspectiveCamera,
+          interactive,
+        },
+        initialSettings,
+        settings,
       });
       particles.init(src);
 

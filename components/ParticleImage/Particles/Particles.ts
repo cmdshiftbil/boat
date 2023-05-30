@@ -7,6 +7,7 @@ import vertexShader from "@/components/ParticleImage/shaders/particle.vert";
 import fragmentShader from "@/components/ParticleImage/shaders/particle.frag";
 import InteractiveControls from "../InteractiveControls";
 import EventEmitter from "events";
+import { ParticleSettings } from "../types";
 
 export interface GMShader {
 	geometry: THREE.BufferGeometry;
@@ -23,6 +24,17 @@ interface UIManager {
 }
 export default class Particles extends EventEmitter {
 	private uiManager: UIManager;
+
+	/**
+	 * Pass initialSettings to create a animation From these settings
+	 */
+	private initialSettings?: ParticleSettings;
+	private settings: ParticleSettings = {
+		randomize: 1.0,
+		depth: 4.0,
+		size: 1.1,
+	};
+
 	public container: any;
 	public shaderObject?: GMShader;
 	public basicObject?: GMBasic;
@@ -35,10 +47,24 @@ export default class Particles extends EventEmitter {
 	private handlerInteractiveMove?: (e: any) => void;
 	private touch?: TouchTexture;
 
-	constructor(uiManager: UIManager) {
+	constructor({
+		uiManager,
+		initialSettings,
+		settings,
+	}: {
+		uiManager: UIManager,
+		initialSettings?: ParticleSettings,
+		settings?: ParticleSettings,
+	}) {
 		super();
 		this.container = new THREE.Object3D();
 		this.uiManager = uiManager;
+		if (settings) {
+			this.settings = settings;
+		}
+		if (initialSettings) {
+			this.initialSettings = initialSettings;
+		}
 	}
 
 	init(src: string) {
@@ -94,9 +120,9 @@ export default class Particles extends EventEmitter {
 
 		const uniforms = {
 			uTime: { value: 0 },
-			uRandom: { value: 1.0 },
-			uDepth: { value: 2.0 },
-			uSize: { value: 1.0 },
+			uRandom: { value: this.settings.randomize },
+			uDepth: { value: this.settings.depth },
+			uSize: { value: this.settings.size },
 			uTextureSize: { value: new THREE.Vector2(this.width, this.height) },
 			uTexture: { value: this.texture },
 			uTouch: { value: null },
@@ -211,11 +237,11 @@ export default class Particles extends EventEmitter {
 	}
 
 	show(time = 1.0) {
-		// reset
-		TweenLite.fromTo(this.object3D.material.uniforms.uSize, time, { value: 0.5 }, { value: 1.1 });
-		TweenLite.to(this.object3D.material.uniforms.uRandom, time, { value: 1.0 });
-		TweenLite.fromTo(this.object3D.material.uniforms.uDepth, time * 1.5, { value: 50.0 }, { value: 4.0 });
-
+		if (this.initialSettings) {
+			TweenLite.fromTo(this.object3D.material.uniforms.uSize, time, { value: this.initialSettings.size }, { value: this.settings.size });
+			TweenLite.to(this.object3D.material.uniforms.uRandom, time, { value: 1 });
+			TweenLite.fromTo(this.object3D.material.uniforms.uDepth, time * 1.5, { value: this.initialSettings.depth }, { value: this.settings.depth });
+		}
 		this.addListeners();
 	}
 
@@ -255,7 +281,6 @@ export default class Particles extends EventEmitter {
 	// ---------------------------------------------------------------------------------------------
 
 	resize() {
-		// console.log("particles resize: returning?", !this.object3D)
 		if (!this.object3D) return;
 
 		const fovHeight = 2 * Math.tan((this.uiManager.camera.fov * Math.PI) / 180 / 2) * this.uiManager.camera.position.z;

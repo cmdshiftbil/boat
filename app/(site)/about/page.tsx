@@ -43,6 +43,16 @@ export default async function AboutPage() {
       <ParticleImage
         src="/images/leadership/5.png"
         className="w-[500px] h-[500px]"
+        initialSettings={{
+          randomize: 1.0,
+          depth: 50.0,
+          size: 1.0,
+        }}
+        settings={{
+          randomize: 1.0,
+          depth: 4.0,
+          size: 1.1,
+        }}
       />
 
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
