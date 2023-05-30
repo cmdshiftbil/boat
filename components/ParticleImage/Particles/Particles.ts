@@ -1,27 +1,12 @@
 "use client";
-import { useEffect } from "react";
 import * as THREE from "three";
 import { TweenLite } from "gsap";
 import TouchTexture from "./TouchTexture";
 import vertexShader from "@/components/ParticleImage/shaders/particle.vert";
 import fragmentShader from "@/components/ParticleImage/shaders/particle.frag";
-import InteractiveControls from "../InteractiveControls";
 import EventEmitter from "events";
-import { ParticleSettings } from "../types";
+import { GMBasic, GMShader, ParticleSettings, UIManager } from "../types";
 
-export interface GMShader {
-	geometry: THREE.BufferGeometry;
-	material: THREE.ShaderMaterial;
-}
-export interface GMBasic {
-	geometry: THREE.BufferGeometry;
-	material: THREE.MeshBasicMaterial;
-}
-
-interface UIManager {
-	camera: THREE.PerspectiveCamera;
-	interactive: InteractiveControls;
-}
 export default class Particles extends EventEmitter {
 	private uiManager: UIManager;
 

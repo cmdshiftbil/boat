@@ -47,7 +47,12 @@ export const ParticleImageVanillaThreeJs = ({
       isMobile
     );
 
-    const p = new Particles({ camera, interactive });
+    const p = new Particles({
+      uiManager: {
+        camera,
+        interactive,
+      },
+    });
     p.init(src);
     scene.add(p.container);
 

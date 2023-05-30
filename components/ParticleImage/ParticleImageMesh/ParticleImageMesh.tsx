@@ -6,11 +6,12 @@ import React, {
   useState,
 } from "react";
 import * as THREE from "three";
-import Particles, { GMBasic, GMShader } from "../Particles/Particles";
+import Particles from "../Particles/Particles";
 import { useWindowSize } from "react-use";
 import { useThree } from "@react-three/fiber";
 import InteractiveControls from "../InteractiveControls";
 import ParticleImage from "../ParticleImage";
+import { GMBasic, GMShader } from "../types";
 
 interface MyMeshesProps {
   meshes: ReactElement[];
