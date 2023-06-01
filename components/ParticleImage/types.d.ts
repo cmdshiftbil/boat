@@ -16,6 +16,6 @@ export interface GMBasic {
 export interface UIManager {
   camera: THREE.PerspectiveCamera;
   interactive: InteractiveControls;
-  raycaster: THREE.Raycaster;
-  mouse: THREE.Vector2;
+  raycaster?: THREE.Raycaster;
+  mouse?: THREE.Vector2;
 }
