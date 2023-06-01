@@ -1,23 +1,23 @@
-import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
+import React, { ComponentProps, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { useWindowSize } from "react-use";
 import classNames from "classnames";
 import { hasHeightClass, hasWidthClass } from "@/utils/dom.utils";
 import Particles from "../Particles/Particles";
 import InteractiveControls from "../InteractiveControls";
+import ParticleImage from "../ParticleImage";
 
 interface ParticleImageVanillaThreeJsProps
-  extends HTMLAttributes<HTMLDivElement> {
-  src: string;
-}
+  extends ComponentProps<typeof ParticleImage> {}
 
 // Vanilla Three JS
 export const ParticleImageVanillaThreeJs = ({
   src,
   className,
+  initialSettings,
+  settings,
 }: ParticleImageVanillaThreeJsProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [particles, setParticles] = useState<Particles>();
   const { width: windowWidth } = useWindowSize();
   const isMobile = windowWidth <= 1024;
 
@@ -35,7 +35,7 @@ export const ParticleImageVanillaThreeJs = ({
       1,
       10000
     );
-    camera.position.z = 300;
+    camera.position.z = 200;
 
     // renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -52,6 +52,8 @@ export const ParticleImageVanillaThreeJs = ({
         camera,
         interactive,
       },
+      initialSettings,
+      settings,
     });
     p.init(src);
     scene.add(p.container);
@@ -78,8 +80,6 @@ export const ParticleImageVanillaThreeJs = ({
 
       if (p) p.resize();
       if (interactive) interactive.resize();
-
-      setParticles(p);
     };
 
     window.addEventListener("resize", resize.bind(this));
@@ -95,14 +95,8 @@ export const ParticleImageVanillaThreeJs = ({
     // Hack to ensure the particles hover is aligned
     setTimeout(() => {
       resize();
-      setTimeout(() => {
-        resize();
-        setTimeout(() => {
-          resize();
-        }, 1);
-      }, 1);
     }, 1);
-  }, [src, isMobile]);
+  }, [src, isMobile, initialSettings, settings]);
 
   return (
     <div

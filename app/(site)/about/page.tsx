@@ -39,22 +39,6 @@ export default async function AboutPage() {
       // }}
       skipOutro={true}
     >
-      {/* TODO: Add under Leadership eventually */}
-      <ParticleImage
-        src="/images/leadership/5.png"
-        className="w-[500px] h-[500px]"
-        initialSettings={{
-          randomize: 1.0,
-          depth: 50.0,
-          size: 1.0,
-        }}
-        settings={{
-          randomize: 1.0,
-          depth: 4.0,
-          size: 1.1,
-        }}
-      />
-
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
         <Text animate>
           Founded in 2010 in Dubai, United Arab Emirates. Alpha Nero has
@@ -94,6 +78,21 @@ export default async function AboutPage() {
       <section>
         <header className="bg-shark-900 bg-grid-surface pt-32 pb-[400px] px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
           <Heading className="text-shark-50">Leadership</Heading>
+          <ParticleImage
+            src="/images/leadership/simon.png"
+            className="w-[500px] h-[500px]"
+            cameraDistance={280}
+            initialSettings={{
+              randomize: 1.0,
+              depth: 50.0,
+              size: 1.0,
+            }}
+            settings={{
+              randomize: 1.0,
+              depth: 4.0,
+              size: 1.1,
+            }}
+          />
         </header>
       </section>
     </AnimateInOut>

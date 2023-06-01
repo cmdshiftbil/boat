@@ -14,12 +14,13 @@ import ParticleImage from "../ParticleImage";
 import { GMBasic, GMShader } from "../types";
 
 interface MyMeshesProps {
+  cameraDistance?: number;
   meshes: ReactElement[];
 }
 
-const MyMeshes = ({ meshes }: MyMeshesProps) => {
+const MyMeshes = ({ meshes, cameraDistance }: MyMeshesProps) => {
   useThree(({ camera }) => {
-    camera.position.z = 140;
+    camera.position.z = cameraDistance ?? 200;
   });
 
   return (
@@ -39,12 +40,25 @@ export const ParticleImageMesh = ({
   canvasRef,
   initialSettings,
   settings,
+  cameraDistance,
 }: ParticleImageMeshProps) => {
   const [shaderObject, setShaderObject] = useState<GMShader>();
   const [basicObject, setBasicObject] = useState<GMBasic>();
   const { width: windowWidth } = useWindowSize();
   const isMobile = windowWidth <= 1024;
-  const camera = useThree((state) => state.camera);
+  const camera = useThree((state) => {
+    state.camera.near = 1;
+    state.camera.far = 10000;
+    (state.camera as THREE.PerspectiveCamera).fov = 50;
+    return state.camera;
+  });
+
+  const { raycaster, mouse } = useThree(({ raycaster, mouse }) => ({
+    raycaster,
+    mouse,
+  }));
+
+  const gl = useThree((state) => state.gl);
 
   useEffect(() => {
     if (camera) {
@@ -55,7 +69,8 @@ export const ParticleImageMesh = ({
       const interactive = new InteractiveControls(
         camera,
         canvasRef.current,
-        isMobile
+        isMobile,
+        raycaster
       );
 
       // Particles
@@ -63,6 +78,8 @@ export const ParticleImageMesh = ({
         uiManager: {
           camera: camera as THREE.PerspectiveCamera,
           interactive,
+          raycaster,
+          mouse,
         },
         initialSettings,
         settings,
@@ -85,18 +102,41 @@ export const ParticleImageMesh = ({
 
       const update = (delta?: any) => particles.update(delta);
       const resize = () => {
+        if (!canvasRef) return;
+
+        (camera as THREE.PerspectiveCamera).aspect =
+          (canvasRef.current?.offsetWidth ?? 100) /
+          (canvasRef.current?.offsetHeight ?? 100);
+        (camera as THREE.PerspectiveCamera).updateProjectionMatrix();
+
+        // gl.setSize(
+        //   canvasRef.current?.offsetWidth ?? 100,
+        //   canvasRef.current?.offsetHeight ?? 100
+        // );
+
         if (particles) particles.resize();
         if (interactive) interactive.resize();
       };
 
       window.addEventListener("resize", resize.bind(this));
+      window.addEventListener("scroll", resize.bind(this));
 
       animate();
       setTimeout(() => {
         resize();
       }, 100);
     }
-  }, [src, isMobile, camera, canvasRef]);
+  }, [
+    gl,
+    src,
+    initialSettings,
+    settings,
+    canvasRef,
+    mouse,
+    camera,
+    raycaster,
+    isMobile,
+  ]);
 
   const meshes =
     !!shaderObject && !!basicObject
@@ -129,5 +169,5 @@ export const ParticleImageMesh = ({
         ]
       : null;
 
-  return meshes && <MyMeshes meshes={meshes} />;
+  return meshes && <MyMeshes meshes={meshes} cameraDistance={cameraDistance} />;
 };

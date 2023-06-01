@@ -28,16 +28,22 @@ export default class InteractiveControls extends EventEmitter {
     return this._enabled;
   }
 
-  constructor(camera: THREE.Camera, el: any, isMobile: boolean) {
+  constructor(
+    camera: THREE.Camera,
+    el: any,
+    isMobile: boolean,
+    raycaster?: THREE.Raycaster,
+    mouse?: THREE.Vector3
+  ) {
     super();
 
     this.camera = camera;
     this.el = el || window;
 
     this.plane = new THREE.Plane();
-    this.raycaster = new THREE.Raycaster();
+    this.raycaster = raycaster ?? new THREE.Raycaster();
 
-    this.mouse = new THREE.Vector2();
+    this.mouse = mouse ?? new THREE.Vector2();
     this.offset = new THREE.Vector3();
     this.intersection = new THREE.Vector3();
 
@@ -119,19 +125,12 @@ export default class InteractiveControls extends EventEmitter {
 
     const touch = {
       x: t.clientX,
-      y: t.pageY,
+      y: t.clientY,
     };
 
     this.mouse.x = ((touch.x - this.rect.x) / this.rect.width) * 2 - 1;
     this.mouse.y = -((touch.y - this.rect.y) / this.rect.height) * 2 + 1;
     this.raycaster.setFromCamera(this.mouse, this.camera);
-
-    console.log({
-      x: touch.x,
-      y: touch.y,
-      rectX: this.rect.x,
-      rectY: this.rect.y,
-    });
 
     /*
 		// is dragging
@@ -144,6 +143,16 @@ export default class InteractiveControls extends EventEmitter {
 		*/
 
     const intersects = this.raycaster.intersectObjects(this.objects);
+
+    // console.log({
+    //   x: this.mouse.x,
+    //   y: this.mouse.y,
+    //   rectX: this.rect.x,
+    //   rectY: this.rect.y,
+    //   rectW: this.rect.width,
+    //   rectH: this.rect.height,
+    //   // "intersects.length": intersects.length,
+    // });
 
     if (intersects.length > 0) {
       const object = intersects[0].object;

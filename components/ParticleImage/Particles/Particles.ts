@@ -100,7 +100,6 @@ export default class Particles extends EventEmitter {
 			for (let i = 0; i < this.numPoints; i++) {
 				if (originalColors[i * 4 + 0] > threshold) numVisible++;
 			}
-
 		}
 
 		const uniforms = {
