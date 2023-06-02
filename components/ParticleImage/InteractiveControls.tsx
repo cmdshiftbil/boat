@@ -33,7 +33,7 @@ export default class InteractiveControls extends EventEmitter {
     el: any,
     isMobile: boolean,
     raycaster?: THREE.Raycaster,
-    mouse?: THREE.Vector3
+    mouse?: THREE.Vector2
   ) {
     super();
 

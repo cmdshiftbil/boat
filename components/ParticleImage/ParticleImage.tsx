@@ -22,7 +22,6 @@ const ParticleImage = (props: ParticleImageProps) => {
     <>
       <div
         className={classNames(
-          "mx-auto",
           {
             "w-[500px]": !hasWidthClass(className),
             "h-[500px]": !hasHeightClass(className),

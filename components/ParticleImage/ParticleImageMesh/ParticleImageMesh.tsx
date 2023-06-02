@@ -3,19 +3,19 @@ import React, {
   HTMLAttributes,
   ReactElement,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import * as THREE from "three";
 import Particles from "../Particles/Particles";
 import { useWindowSize } from "react-use";
 import { useThree } from "@react-three/fiber";
-import InteractiveControls from "../InteractiveControls";
 import ParticleImage from "../ParticleImage";
 import { GMBasic, GMShader } from "../types";
 
 interface MyMeshesProps {
-  cameraDistance?: number;
   meshes: ReactElement[];
+  cameraDistance?: number;
 }
 
 const MyMeshes = ({ meshes, cameraDistance }: MyMeshesProps) => {
@@ -44,6 +44,9 @@ export const ParticleImageMesh = ({
 }: ParticleImageMeshProps) => {
   const [shaderObject, setShaderObject] = useState<GMShader>();
   const [basicObject, setBasicObject] = useState<GMBasic>();
+  const [particles, setParticles] = useState<Particles>();
+  const [setupReady, setSetupReady] = useState(false);
+  const [eventsReady, setEventsReady] = useState(false);
   const { width: windowWidth } = useWindowSize();
   const isMobile = windowWidth <= 1024;
   const camera = useThree((state) => {
@@ -61,37 +64,33 @@ export const ParticleImageMesh = ({
   const gl = useThree((state) => state.gl);
 
   useEffect(() => {
-    if (camera) {
+    // Particles
+    const p = new Particles({
+      uiManager: {
+        el: canvasRef.current,
+        isMobile,
+        camera: camera as THREE.PerspectiveCamera,
+        raycaster,
+        mouse,
+      },
+      initialSettings,
+      settings,
+    });
+    setParticles(p);
+  }, [
+    camera,
+    canvasRef,
+    initialSettings,
+    isMobile,
+    mouse,
+    raycaster,
+    settings,
+  ]);
+
+  useEffect(() => {
+    if (camera && particles) {
       // Delta generator
       const clock = new THREE.Clock(true);
-
-      // Interactive
-      const interactive = new InteractiveControls(
-        camera,
-        canvasRef.current,
-        isMobile,
-        raycaster
-      );
-
-      // Particles
-      const particles = new Particles({
-        uiManager: {
-          camera: camera as THREE.PerspectiveCamera,
-          interactive,
-          raycaster,
-          mouse,
-        },
-        initialSettings,
-        settings,
-      });
-      particles.init(src);
-
-      // Initialize & prepare for Mesh objects
-      particles.on("ready", () => {
-        setShaderObject(particles.shaderObject);
-        setBasicObject(particles.basicObject);
-        resize();
-      });
 
       // Animate frames
       const animate = () => {
@@ -113,35 +112,43 @@ export const ParticleImageMesh = ({
         //   canvasRef.current?.offsetWidth ?? 100,
         //   canvasRef.current?.offsetHeight ?? 100
         // );
-
-        if (particles) particles.resize();
-        if (interactive) interactive.resize();
+        if (particles) particles.resize(true);
       };
 
       window.addEventListener("resize", resize.bind(this));
       window.addEventListener("scroll", resize.bind(this));
 
       animate();
-      setTimeout(() => {
+      particles.on("ready", () => {
+        setShaderObject(particles.shaderObject);
+        setBasicObject(particles.basicObject);
         resize();
-      }, 100);
-    }
-  }, [
-    gl,
-    src,
-    initialSettings,
-    settings,
-    canvasRef,
-    mouse,
-    camera,
-    raycaster,
-    isMobile,
-  ]);
+      });
+      particles.on("animation-complete", () => {
+        resize();
+      });
 
-  const meshes =
-    !!shaderObject && !!basicObject
+      setSetupReady(true);
+    }
+  }, [camera, canvasRef, particles]);
+
+  useEffect(() => {
+    // Initialize & prepare for Mesh objects
+    if (particles && setupReady) {
+      setEventsReady(true);
+    }
+  }, [particles, setupReady]);
+
+  useEffect(() => {
+    if (particles && src && eventsReady) {
+      particles.init(src);
+    }
+  }, [particles, src, eventsReady]);
+
+  const meshes = useMemo(() => {
+    return !!shaderObject && !!basicObject
       ? [
-          <mesh key={1}>
+          <mesh key={shaderObject.geometry.uuid}>
             <instancedBufferGeometry
               attributes={shaderObject.geometry.attributes}
               index={shaderObject.geometry.index}
@@ -155,7 +162,7 @@ export const ParticleImageMesh = ({
               blending={shaderObject.material.blending}
             />
           </mesh>,
-          <mesh key={2}>
+          <mesh key={basicObject.geometry.uuid}>
             <instancedBufferGeometry
               attributes={basicObject.geometry.attributes}
               index={basicObject.geometry.index}
@@ -168,6 +175,7 @@ export const ParticleImageMesh = ({
           </mesh>,
         ]
       : null;
+  }, [shaderObject, basicObject]);
 
   return meshes && <MyMeshes meshes={meshes} cameraDistance={cameraDistance} />;
 };

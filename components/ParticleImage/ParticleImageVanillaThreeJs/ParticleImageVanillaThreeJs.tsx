@@ -1,4 +1,4 @@
-import React, { ComponentProps, useEffect, useRef } from "react";
+import React, { ComponentProps, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { useWindowSize } from "react-use";
 import classNames from "classnames";
@@ -18,13 +18,16 @@ export const ParticleImageVanillaThreeJs = ({
   settings,
 }: ParticleImageVanillaThreeJsProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [scene, setScene] = useState<THREE.Scene>();
+  const [camera, setCamera] = useState<THREE.PerspectiveCamera>();
+  const [renderer, setRenderer] = useState<THREE.WebGLRenderer>();
+  const [particles, setParticles] = useState<Particles>();
+
   const { width: windowWidth } = useWindowSize();
   const isMobile = windowWidth <= 1024;
 
+  // 1. initialize
   useEffect(() => {
-    // Delta generator
-    const clock = new THREE.Clock(true);
-
     // scene
     const scene = new THREE.Scene();
 
@@ -40,63 +43,80 @@ export const ParticleImageVanillaThreeJs = ({
     // renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
-    // Interactive
-    const interactive = new InteractiveControls(
-      camera,
-      renderer.domElement,
-      isMobile
-    );
-
     const p = new Particles({
       uiManager: {
         camera,
-        interactive,
+        el: renderer.domElement,
+        isMobile,
       },
       initialSettings,
       settings,
     });
-    p.init(src);
-    scene.add(p.container);
+    setParticles(p);
+    setScene(scene);
+    setCamera(camera);
+    setRenderer(renderer);
+  }, [initialSettings, isMobile, settings]);
 
-    const animate = () => {
-      requestAnimationFrame(animate);
-      const delta = clock.getDelta();
-      update(delta);
-      draw();
-    };
+  // 2. setup
+  useEffect(() => {
+    if (scene && camera && particles && renderer) {
+      // Delta generator
+      const clock = new THREE.Clock(true);
 
-    const update = (delta?: any) => p.update(delta);
-    const draw = () => renderer.render(scene, camera);
-    const resize = () => {
-      if (!renderer) return;
-      camera.aspect =
-        (ref.current?.offsetWidth ?? 100) / (ref.current?.offsetHeight ?? 100);
-      camera.updateProjectionMatrix();
+      scene.add(particles.container);
+      // p.init(src);
+      setParticles(particles);
 
-      renderer.setSize(
-        ref.current?.offsetWidth ?? 100,
-        ref.current?.offsetHeight ?? 100
-      );
+      const animate = () => {
+        requestAnimationFrame(animate);
+        const delta = clock.getDelta();
+        update(delta);
+        draw();
+      };
 
-      if (p) p.resize();
-      if (interactive) interactive.resize();
-    };
+      const update = (delta?: any) => particles.update(delta);
+      const draw = () => renderer.render(scene, camera);
+      const resize = () => {
+        if (!renderer) return;
+        camera.aspect =
+          (ref.current?.offsetWidth ?? 100) /
+          (ref.current?.offsetHeight ?? 100);
+        camera.updateProjectionMatrix();
 
-    window.addEventListener("resize", resize.bind(this));
+        renderer.setSize(
+          ref.current?.offsetWidth ?? 100,
+          ref.current?.offsetHeight ?? 100
+        );
 
-    // Append only once
-    if (ref.current && ref.current.innerHTML === "") {
-      ref.current?.appendChild(renderer.domElement);
-    }
+        if (particles) particles.resize();
+      };
 
-    animate();
-    resize();
+      window.addEventListener("resize", resize.bind(this));
+      window.addEventListener("scroll", resize.bind(this));
 
-    // Hack to ensure the particles hover is aligned
-    setTimeout(() => {
+      // Append only once
+      if (ref.current && ref.current.innerHTML === "") {
+        console.log("appending!");
+        ref.current?.appendChild(renderer.domElement);
+      }
+
+      animate();
       resize();
-    }, 1);
-  }, [src, isMobile, initialSettings, settings]);
+
+      // Hack to ensure the particles hover is aligned
+      setTimeout(() => {
+        resize();
+      }, 1);
+    }
+  }, [scene, camera, particles, renderer]);
+
+  // 3. update image
+  useEffect(() => {
+    if (particles && src) {
+      particles.init(src);
+    }
+  }, [particles, src]);
 
   return (
     <div

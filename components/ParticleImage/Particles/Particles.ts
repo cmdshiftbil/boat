@@ -6,6 +6,8 @@ import vertexShader from "@/components/ParticleImage/shaders/particle.vert";
 import fragmentShader from "@/components/ParticleImage/shaders/particle.frag";
 import EventEmitter from "events";
 import { GMBasic, GMShader, ParticleSettings, UIManager } from "../types";
+import InteractiveControls from "../InteractiveControls";
+import { easeInQuad } from "@/utils/easing.utils";
 
 export default class Particles extends EventEmitter {
 	private uiManager: UIManager;
@@ -24,6 +26,7 @@ export default class Particles extends EventEmitter {
 	public shaderObject?: GMShader;
 	public basicObject?: GMBasic;
 	private texture: any;
+	private interactive?: InteractiveControls;
 	private width: number = 0;
 	private height: number = 0;
 	private numPoints: any;
@@ -31,6 +34,7 @@ export default class Particles extends EventEmitter {
 	private hitArea: THREE.Mesh | any;
 	private handlerInteractiveMove?: (e: any) => void;
 	private touch?: TouchTexture;
+	public isInitialized: boolean = false;
 
 	constructor({
 		uiManager,
@@ -44,6 +48,13 @@ export default class Particles extends EventEmitter {
 		super();
 		this.container = new THREE.Object3D();
 		this.uiManager = uiManager;
+		this.interactive = new InteractiveControls(
+			this.uiManager.camera,
+			this.uiManager.el,
+			!!this.uiManager.isMobile,
+			this.uiManager.raycaster,
+			this.uiManager.mouse
+		);
 		if (settings) {
 			this.settings = settings;
 		}
@@ -52,10 +63,17 @@ export default class Particles extends EventEmitter {
 		}
 	}
 
-	init(src: string) {
+	async init(src: string) {
+		if (this.isInitialized) {
+			await this.hide(true);
+		}
+		console.log("particles.init");
+
 		const loader = new THREE.TextureLoader();
+		this.isInitialized = true;
 
 		loader.load(src, (texture) => {
+			console.log({ texture })
 			this.texture = texture;
 			this.texture.minFilter = THREE.LinearFilter;
 			this.texture.magFilter = THREE.LinearFilter;
@@ -111,7 +129,6 @@ export default class Particles extends EventEmitter {
 			uTexture: { value: this.texture },
 			uTouch: { value: null },
 		};
-
 
 		const material = new THREE.RawShaderMaterial({
 			uniforms,
@@ -173,6 +190,7 @@ export default class Particles extends EventEmitter {
 	}
 
 	initTouch() {
+		// if (!this.object3D) return;
 		// create only once
 		if (!this.touch) this.touch = new TouchTexture(this);
 		this.object3D.material.uniforms.uTouch.value = this.touch.texture;
@@ -192,21 +210,25 @@ export default class Particles extends EventEmitter {
 	}
 
 	addListeners() {
-		this.handlerInteractiveMove = this.onInteractiveMove.bind(this);
+		if (this.interactive) {
+			this.handlerInteractiveMove = this.onInteractiveMove.bind(this);
 
-		this.uiManager.interactive.addListener("interactive-move", this.handlerInteractiveMove);
-		this.uiManager.interactive.objects.push(this.hitArea);
-		this.uiManager.interactive.enable();
+			this.interactive.addListener("interactive-move", this.handlerInteractiveMove);
+			this.interactive.objects.push(this.hitArea);
+			this.interactive.enable();
+		}
 	}
 
 	removeListeners() {
-		if (this.handlerInteractiveMove) {
-			this.uiManager.interactive.removeListener("interactive-move", this.handlerInteractiveMove);
-		}
+		if (this.interactive) {
+			if (this.handlerInteractiveMove) {
+				this.interactive.removeListener("interactive-move", this.handlerInteractiveMove);
+			}
 
-		const index = this.uiManager.interactive.objects.findIndex((obj: any) => obj === this.hitArea);
-		this.uiManager.interactive.objects.splice(index, 1);
-		this.uiManager.interactive.disable();
+			const index = this.interactive.objects.findIndex((obj: any) => obj === this.hitArea);
+			this.interactive.objects.splice(index, 1);
+			this.interactive.disable();
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -225,11 +247,14 @@ export default class Particles extends EventEmitter {
 			TweenLite.fromTo(this.object3D.material.uniforms.uSize, time, { value: this.initialSettings.size }, { value: this.settings.size });
 			TweenLite.to(this.object3D.material.uniforms.uRandom, time, { value: 1 });
 			TweenLite.fromTo(this.object3D.material.uniforms.uDepth, time * 1.5, { value: this.initialSettings.depth }, { value: this.settings.depth });
+			setTimeout(() => {
+				this.emit("animation-complete");
+			}, time * 1.5 * 1000)
 		}
 		this.addListeners();
 	}
 
-	hide(_destroy: any, time = 0.8) {
+	hide(_destroy: any, time = 0.4) {
 		return new Promise<void>((resolve, reject) => {
 			TweenLite.to(this.object3D.material.uniforms.uRandom, time, {
 				value: 5.0, onComplete: () => {
@@ -237,7 +262,7 @@ export default class Particles extends EventEmitter {
 					resolve();
 				}
 			});
-			TweenLite.to(this.object3D.material.uniforms.uDepth, time, { value: -20.0, ease: Quad.easeIn });
+			TweenLite.to(this.object3D.material.uniforms.uDepth, time, { value: -20.0 });
 			TweenLite.to(this.object3D.material.uniforms.uSize, time * 0.8, { value: 0.0 });
 
 			this.removeListeners();
@@ -264,7 +289,7 @@ export default class Particles extends EventEmitter {
 	// EVENT HANDLERS
 	// ---------------------------------------------------------------------------------------------
 
-	resize() {
+	resize(shouldResizeBoth?: boolean) {
 		if (!this.object3D) return;
 
 		const fovHeight = 2 * Math.tan((this.uiManager.camera.fov * Math.PI) / 180 / 2) * this.uiManager.camera.position.z;
@@ -272,6 +297,10 @@ export default class Particles extends EventEmitter {
 
 		this.object3D.scale.set(scale, scale, 1);
 		this.hitArea.scale.set(scale, scale, 1);
+
+		if (this.interactive && shouldResizeBoth) {
+			this.interactive.resize();
+		}
 	}
 
 	onInteractiveMove(e: any) {

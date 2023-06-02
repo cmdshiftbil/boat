@@ -7,6 +7,7 @@ import Section from "@/components/Section";
 import Text from "@/components/Text";
 import VerticalScrollSection from "@/components/VerticalScrollSection";
 import content from "@/content/content";
+import LeadershipSection from "@/sections/Leadership.section";
 import TeamCountersSection from "@/sections/TeamCounters.section";
 import TeamScrollSection from "@/sections/TeamScroll.section";
 
@@ -78,20 +79,29 @@ export default async function AboutPage() {
       <section>
         <header className="bg-shark-900 bg-grid-surface pt-32 pb-[400px] px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
           <Heading className="text-shark-50">Leadership</Heading>
-          <ParticleImage
-            src="/images/leadership/simon.png"
-            className="w-[500px] h-[500px]"
-            cameraDistance={280}
-            initialSettings={{
-              randomize: 1.0,
-              depth: 50.0,
-              size: 1.0,
-            }}
-            settings={{
-              randomize: 1.0,
-              depth: 4.0,
-              size: 1.1,
-            }}
+          <LeadershipSection
+            team={[
+              {
+                name: "Simon Hacker",
+                position: "Founder & Managing Partner",
+                picture: "/images/leadership/simon.png",
+              },
+              {
+                name: "Khaled Ali",
+                position: "Business Development Manager & Partner",
+                picture: "/images/leadership/1.png",
+              },
+              {
+                name: "Rajesh M.V.",
+                position: "Operation Manager & Partner",
+                picture: "/images/leadership/2.png",
+              },
+              {
+                name: "Séverine Hoss",
+                position: "Finance Manager",
+                picture: "/images/leadership/5.png",
+              },
+            ]}
           />
         </header>
       </section>
