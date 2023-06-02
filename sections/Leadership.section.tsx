@@ -44,9 +44,12 @@ const LeadershipSection = ({
 
   return (
     <div className={className}>
-      <div className="text-shark-50 cursor-pointer" onClick={handleChangeImage}>
+      <span
+        className="p-3 bg-shark-50 cursor-pointer rounded-md m-6 inline-block"
+        onClick={handleChangeImage}
+      >
         Change {index}
-      </div>
+      </span>
       <div className="flex relative">
         <ParticleImage
           // src={person.picture}

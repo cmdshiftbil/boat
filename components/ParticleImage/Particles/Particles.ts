@@ -67,17 +67,14 @@ export default class Particles extends EventEmitter {
 		if (this.isInitialized) {
 			await this.hide(true);
 		}
-		console.log("particles.init");
 
 		const loader = new THREE.TextureLoader();
 		this.isInitialized = true;
 
 		loader.load(src, (texture) => {
-			console.log({ texture })
 			this.texture = texture;
 			this.texture.minFilter = THREE.LinearFilter;
 			this.texture.magFilter = THREE.LinearFilter;
-			// this.texture.format = THREE.RGBFormat;
 			this.texture.format = THREE.RGBAFormat;
 
 			this.width = texture.image.width;
