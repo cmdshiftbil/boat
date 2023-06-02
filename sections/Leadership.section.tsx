@@ -59,7 +59,7 @@ const LeadershipSection = ({
           initialSettings={initialSettings}
           settings={settings}
         />
-        <div className="text-shark-50 absolute left-1/3 top-1/2 -translate-y-1/2 select-none">
+        <div className="text-shark-50 absolute left-1/3 top-1/2 -translate-y-1/2 select-none pointer-events-none">
           <div className="text-[123px] leading-[123px] font-bold">
             {person.name}
           </div>
