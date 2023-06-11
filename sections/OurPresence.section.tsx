@@ -1,6 +1,6 @@
 "use client";
 import CountryItem from "@/components/CountryItem";
-import DoubleImage from "@/components/DoubleImage";
+import ParticleImage from "@/components/ParticleImage/ParticleImage";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
 import TweenBodyContent from "@/components/TweenBodyContent";
@@ -8,19 +8,43 @@ import content from "@/content/content";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import { HomeData } from "@/types/pages";
 import { gsap } from "gsap";
-import { useRef } from "react";
-import { useWindowSize } from "react-use";
+import { useMemo, useRef, useState } from "react";
 
 interface OurPresenceSectionProps {
   data: HomeData["presence"];
 }
 
+// TODO: Remove when we have actual images from Payload
+const randomNumberBetween = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
   const countriesRef = useRef<HTMLUListElement>(null);
-  const { width: windowWidth } = useWindowSize();
-  const isMobile = windowWidth <= 1024;
+  const images = [
+    "/images/presence.png",
+    "/images/presence2.png",
+    "/images/presence3.png",
+    "/images/presence4.png",
+  ];
+  const [mapSrc, setMapSrc] = useState(images[0]);
   const tweenTargetRef = useRef(null);
-
+  const initialSettings = useMemo(
+    () => ({
+      randomize: 1.0,
+      depth: 80.0,
+      size: 1.0,
+    }),
+    []
+  );
+  const settings = useMemo(
+    () => ({
+      randomize: 3.0,
+      depth: 4.0,
+      size: 3,
+    }),
+    []
+  );
   useGsapEffect(() => {
     gsap.fromTo(
       tweenTargetRef.current,
@@ -61,19 +85,28 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
 
       <div className="flex flex-col lg:flex-row justify-around">
         <div className="flex flex-1 w-full relative" ref={tweenTargetRef}>
-          <DoubleImage
+          <ParticleImage
+            src={mapSrc}
             className="relative w-full lg:flex-1 px-4"
-            style={{
-              height: isMobile ? "400px" : countriesRef.current?.clientHeight,
-            }}
-            src="/images/presence.png"
+            cameraDistance={720}
+            initialSettings={initialSettings}
+            settings={settings}
           />
         </div>
 
         <div className="flex-1">
           <ul className="columns-3 md:columns-2" ref={countriesRef}>
             {content.middleEastCountries.map((country, idx) => (
-              <CountryItem key={idx} title={country} />
+              <CountryItem
+                key={idx}
+                onClick={() => {
+                  // TODO: Set actual images when we have in Payload
+                  const rn = randomNumberBetween(0, 3);
+                  const image = images[rn];
+                  setMapSrc(image);
+                }}
+                title={country}
+              />
             ))}
           </ul>
         </div>
