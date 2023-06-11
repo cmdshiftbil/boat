@@ -1,5 +1,4 @@
 import { AnimateInOut } from "@/components/Animations";
-import Heading from "@/components/Heading";
 import MotionLine from "@/components/MotionLine/MotionLine";
 import Parallax from "@/components/Parallax";
 import ParticleImage from "@/components/ParticleImage/ParticleImage";
@@ -77,8 +76,7 @@ export default async function AboutPage() {
       </section>
       <TeamScrollSection />
       <section>
-        <header className="bg-shark-900 bg-grid-surface pt-32 pb-[400px] px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
-          <Heading className="text-shark-50">Leadership</Heading>
+        <header className="bg-shark-900 bg-grid-surface pb-[400px] px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
           <LeadershipSection
             team={[
               {
@@ -89,17 +87,17 @@ export default async function AboutPage() {
               {
                 name: "Khaled Ali",
                 position: "Business Development Manager & Partner",
-                picture: "/images/leadership/1.png",
-              },
-              {
-                name: "Rajesh M.V.",
-                position: "Operation Manager & Partner",
-                picture: "/images/leadership/2.png",
+                picture: "/images/leadership/5.png",
               },
               {
                 name: "Séverine Hoss",
                 position: "Finance Manager",
-                picture: "/images/leadership/5.png",
+                picture: "/images/leadership/3.png",
+              },
+              {
+                name: "Rajesh M.V.",
+                position: "Operation Manager & Partner",
+                picture: "/images/leadership/simon.png",
               },
             ]}
           />
