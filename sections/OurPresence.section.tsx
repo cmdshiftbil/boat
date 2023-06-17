@@ -6,6 +6,7 @@ import Text from "@/components/Text";
 import TweenBodyContent from "@/components/TweenBodyContent";
 import content from "@/content/content";
 import useGsapEffect from "@/hooks/useGsapEffect";
+import useMobileDevice from "@/hooks/useMobileDevice";
 import { HomeData } from "@/types/pages";
 import { gsap } from "gsap";
 import { useMemo, useRef, useState } from "react";
@@ -28,6 +29,7 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
     "/images/presence4.png",
   ];
   const [mapSrc, setMapSrc] = useState(images[0]);
+  const isMobile = useMobileDevice();
   const tweenTargetRef = useRef(null);
   const initialSettings = useMemo(
     () => ({
@@ -72,7 +74,7 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
   return (
     <Section
       className="min-h-[calc(100vh-405px)] flex flex-col mb-[200px]"
-      title="Our Presence"
+      title="Our Operational Reach"
       headingClassName="!w-full text-center"
     >
       <TweenBodyContent
@@ -88,7 +90,7 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
           <ParticleImage
             src={mapSrc}
             className="relative w-full lg:flex-1 px-4"
-            cameraDistance={720}
+            cameraDistance={isMobile ? 1350 : 720}
             initialSettings={initialSettings}
             settings={settings}
           />
