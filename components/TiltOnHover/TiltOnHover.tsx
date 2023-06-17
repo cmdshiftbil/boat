@@ -10,6 +10,7 @@ const TiltOnHover = ({
   maxTiltX = 20,
   maxTiltY = 20,
   className,
+  onClick,
   children,
 }: TiltOnHoverProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,6 +57,7 @@ const TiltOnHover = ({
       onMouseMove={handleMouseMove}
       onMouseOut={handleMouseOut}
       className={className}
+      onClick={onClick}
     >
       {children}
     </div>
