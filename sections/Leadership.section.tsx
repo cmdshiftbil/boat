@@ -5,6 +5,7 @@ import ParticleImage from "@/components/ParticleImage/ParticleImage";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import classNames from "classnames";
 import { HTMLAttributes, useMemo, useRef, useState } from "react";
+import useMobileDevice from "@/hooks/useMobileDevice";
 
 interface TeamMember {
   name: string;
@@ -18,9 +19,11 @@ const LeadershipSection = ({
   className,
   team = [],
 }: LeadershipSectionProps) => {
-  const [isScrollingDown, setIsScrollingDown] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
+  const [isImageAvailable, setIsImageAvailable] = useState(false);
+  const isMobile = useMobileDevice();
+
   const initialSettings = useMemo(
     () => ({
       randomize: 1.0,
@@ -32,33 +35,17 @@ const LeadershipSection = ({
   const settings = useMemo(
     () => ({
       randomize: 1.0,
-      depth: 4.0,
-      size: 0.4,
+      depth: 1.0,
+      size: 0.7,
     }),
     []
   );
 
-  const handleChangeImage = () => {
-    setIndex((i) => (i === team.length - 1 ? 0 : i + 1));
-  };
   useGsapEffect((self: any) => {
-    // team.map((person, idx) => {
-    //   gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: `.person-${idx}`,
-    //       start: "bottom top",
-    //       end: "+=" + innerHeight,
-    //       onEnter: () => {
-    //         console.log("entered", idx);
-    //       },
-    //     },
-    //   });
-    // });
-
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".team-wrapper",
-        start: "top 20%",
+        start: isMobile ? "top 10%" : "top 5%",
         end: "+=" + team.length * 1500,
         pin: true,
         scrub: 1,
@@ -66,15 +53,20 @@ const LeadershipSection = ({
     });
 
     team.map((person, idx) => {
+      const isLastPerson = idx + 1 === team.length;
       tl.from(`.person-${idx}`, { y: innerHeight * 1 })
         .add(() => {
           setIndex(idx);
+          setIsImageAvailable(true);
         })
         .to(`.person-${idx}`, { y: 0 })
         .add(() => {
+          setIsImageAvailable(true);
           setIndex(idx);
-        })
-        .to(`.person-${idx}`, { y: -1000 });
+        });
+      if (!isLastPerson) {
+        tl.to(`.person-${idx}`, { y: -1000 });
+      }
     });
   }, ref);
 
@@ -89,19 +81,15 @@ const LeadershipSection = ({
         )}
       >
         <Heading className="text-shark-50">Leadership</Heading>
-        {/* 
-          <span
-            className="p-3 bg-shark-50 cursor-pointer rounded-md m-6 inline-block"
-            onClick={handleChangeImage}
-          >
-            Next
-          </span>
-        */}
-        <div className="pb-20" />
         <div className="flex relative">
           <ParticleImage
             src={team[index].picture}
-            className="w-1/2 aspect-1 h-auto relative"
+            className={classNames(
+              "w-full lg:w-1/2 transition-all aspect-1 h-screen lg:h-screen pb-60 lg:pb-40 relative",
+              {
+                "opacity-0": !isImageAvailable,
+              }
+            )}
             cameraDistance={280}
             initialSettings={initialSettings}
             settings={settings}
@@ -111,14 +99,18 @@ const LeadershipSection = ({
               <div
                 key={idx}
                 className={classNames(
-                  "text-shark-50 absolute left-1/3 top-1/2 -translate-y-1/2 select-none pointer-events-none",
+                  "text-shark-50 absolute",
+                  //mobile
+                  "flex gap-2 justify-around w-full text-center items-end top-1/2 right-0 select-none pointer-events-none",
+                  //desktop
+                  "lg:block lg:text-left lg:top-1/2 lg:left-1/3 lg:right-auto lg:-translate-y-1/2",
                   `person-${idx}`
                 )}
               >
-                <div className="text-[123px] leading-[123px] font-bold">
+                <div className="text-[40px] leading-[40px] lg:text-[123px] lg:leading-[123px] font-bold">
                   {person.name}
                 </div>
-                <div className="text-[76px] leading-[123px] font-light italic">
+                <div className="text-[35px] leading-[35px] pt-4 lg:pt-0 lg:text-[76px] lg:leading-[76px] font-light italic">
                   {person.position}
                 </div>
               </div>

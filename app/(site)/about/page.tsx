@@ -74,31 +74,31 @@ export default async function AboutPage() {
           bringing branded retail installations to life
         </Text>
       </section>
-      <TeamScrollSection />
+      {/* <TeamScrollSection /> */}
       <section>
-        <header className="bg-shark-900 bg-grid-surface pb-[400px] px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
+        <header className="bg-shark-900 bg-grid-surface px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
           <LeadershipSection
             team={[
               {
                 name: "Simon Hacker",
                 position: "Founder & Managing Partner",
-                picture: "/images/leadership/simon.png",
+                picture: "/images/leadership/simon.jpeg",
               },
               {
                 name: "Khaled Ali",
                 position: "Business Development Manager & Partner",
-                picture: "/images/leadership/5.png",
+                picture: "/images/leadership/khaled.jpeg",
               },
               {
                 name: "Séverine Hoss",
                 position: "Finance Manager",
-                picture: "/images/leadership/3.png",
+                picture: "/images/leadership/severine.jpeg",
               },
-              {
-                name: "Rajesh M.V.",
-                position: "Operation Manager & Partner",
-                picture: "/images/leadership/simon.png",
-              },
+              // {
+              //   name: "Rajesh M.V.",
+              //   position: "Operation Manager & Partner",
+              //   picture: "/images/leadership/simon.png",
+              // },
             ]}
           />
         </header>
