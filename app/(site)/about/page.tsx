@@ -74,7 +74,7 @@ export default async function AboutPage() {
           bringing branded retail installations to life
         </Text>
       </section>
-      {/* <TeamScrollSection /> */}
+      <TeamScrollSection />
       <section>
         <header className="bg-shark-900 bg-grid-surface px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
           <LeadershipSection
