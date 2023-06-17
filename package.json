@@ -36,6 +36,9 @@
     "escape-html": "^1.0.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
+    "glsl-noise": "^0.0.0",
+    "glslify": "^7.1.1",
+    "glslify-loader": "^2.0.0",
     "gsap": "npm:@gsap/business",
     "lucide-react": "^0.206.0",
     "mapbox-gl": "^2.14.1",
@@ -44,6 +47,7 @@
     "nextjs-progressbar": "^0.0.16",
     "payload": "^1.7.4",
     "postcss": "8.4.23",
+    "raw-loader": "^4.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-transition-group": "^4.4.5",
@@ -61,6 +65,7 @@
     "@types/escape-html": "^1.0.2",
     "@types/mapbox-gl": "^2.7.11",
     "@types/react-transition-group": "^4.4.5",
-    "@types/stats.js": "^0.17.0"
+    "@types/stats.js": "^0.17.0",
+    "@types/three": "^0.152.0"
   }
 }
