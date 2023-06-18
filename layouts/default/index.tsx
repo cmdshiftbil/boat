@@ -37,7 +37,7 @@ export function Layout({
         root
         options={{
           lerp: 0.1,
-          smooth: true,
+          smoothWheel: true,
         }}
       >
         <TransitionProvider>
