@@ -14,6 +14,7 @@ interface RotateInOut3DProps extends HTMLAttributes<HTMLDivElement> {
   delay?: number;
   offsetX?: number;
   offsetY?: number;
+  skipOutro?: boolean;
 }
 
 const RotateInOut3D = ({
@@ -23,6 +24,7 @@ const RotateInOut3D = ({
   offsetX,
   offsetY,
   delay,
+  skipOutro,
 }: RotateInOut3DProps) => (
   <AnimateInOut
     as="div"
@@ -59,6 +61,7 @@ const RotateInOut3D = ({
       scale: 1,
       ease: "power4.inOut",
     }}
+    skipOutro={skipOutro}
   >
     {children}
   </AnimateInOut>

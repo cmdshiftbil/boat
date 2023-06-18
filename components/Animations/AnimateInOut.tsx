@@ -62,11 +62,7 @@ const AnimateInOut = ({
     }
   }, []);
 
-  return (
-    <Tag id="test-id" ref={el}>
-      {children}
-    </Tag>
-  );
+  return <Tag ref={el}>{children}</Tag>;
 };
 
 export default memo(AnimateInOut);
