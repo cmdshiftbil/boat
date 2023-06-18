@@ -16,7 +16,7 @@ const mainNavigationLinks = [
   },
   {
     id: "fe46c086-fb06-4f9b-9d2d-12b4b87370fd",
-    title: "Portfolio",
+    title: "Projects",
     url: "/projects",
   },
   {
