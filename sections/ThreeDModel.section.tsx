@@ -42,11 +42,11 @@ const ThreeDModelSection = ({ className }: ThreeDModelSectionProps) => {
     // var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 800 );
 
     // renderer
-    const backgroundColor = 0x000000;
+    // const backgroundColor = 0x000000;
     const r = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     r.setPixelRatio(window.devicePixelRatio);
     r.setSize(window.innerWidth, window.innerHeight);
-    r.setClearColor(backgroundColor); //0x );
+    // r.setClearColor(backgroundColor);
 
     r.toneMapping = THREE.LinearToneMapping;
     r.toneMappingExposure = Math.pow(0.94, 5.0);
@@ -65,6 +65,9 @@ const ThreeDModelSection = ({ className }: ThreeDModelSectionProps) => {
     loader.load(
       // resource URL
       "3dmodels/GroundVehicle.glb",
+      // "3dmodels/Wood_Tower.glb",
+      // "3dmodels/Pawns.glb",
+      // "3dmodels/New Shop rev.glb",
       // "https://s3-us-west-2.amazonaws.com/s.cdpn.io/39255/ladybug.gltf",
 
       // called when the resource is loaded
