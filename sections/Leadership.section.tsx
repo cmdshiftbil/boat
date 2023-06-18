@@ -116,7 +116,7 @@ const LeadershipSection = ({
               className={classNames(
                 "particles-panel overflow-hidden",
                 //mobile
-                "h-full w-full absolute top-0 left-0"
+                "h-full w-full absolute top-0 left-0, z-10"
               )}
             >
               <div
