@@ -21,14 +21,14 @@ interface Client {
   showInCarousel: boolean;
 }
 
-interface HeadlineSectionData extends PageSectionBase { }
-interface HeroSectionData extends PageSectionBase { };
+interface HeadlineSectionData extends PageSectionBase {}
+interface HeroSectionData extends PageSectionBase {}
 interface PresenceSectionData extends PageSectionBase {
   imageUrl: string;
   imageAlt: string;
 }
 interface WhatWeDoSectionData extends PageSectionBase {
-  features: WhatWeDoFeature[];
+  services: WhatWeDoFeature[];
 }
 interface OurProcessSectionData extends PageSectionBase {
   contactCtaText: string;
@@ -43,7 +43,7 @@ interface OurClientsSectionData extends PageSectionBase {
 
 export interface HomeData {
   mainHeadline: HeadlineSectionData;
-  hero: HeroSectionData
+  hero: HeroSectionData;
   presence: PresenceSectionData;
   whatWeDo: WhatWeDoSectionData;
   ourProcess: OurProcessSectionData;

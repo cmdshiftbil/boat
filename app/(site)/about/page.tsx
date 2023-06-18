@@ -1,11 +1,12 @@
 import { AnimateInOut } from "@/components/Animations";
-import Heading from "@/components/Heading";
 import MotionLine from "@/components/MotionLine/MotionLine";
 import Parallax from "@/components/Parallax";
+import ParticleImage from "@/components/ParticleImage/ParticleImage";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
 import VerticalScrollSection from "@/components/VerticalScrollSection";
 import content from "@/content/content";
+import LeadershipSection from "@/sections/Leadership.section";
 import TeamCountersSection from "@/sections/TeamCounters.section";
 import TeamScrollSection from "@/sections/TeamScroll.section";
 
@@ -75,8 +76,31 @@ export default async function AboutPage() {
       </section>
       <TeamScrollSection />
       <section>
-        <header className="bg-shark-900 bg-grid-surface pt-32 pb-24 px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
-          <Heading className="text-shark-50">Leadership</Heading>
+        <header className="bg-shark-900 bg-grid-surface px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
+          <LeadershipSection
+            team={[
+              {
+                name: "Simon Hacker",
+                position: "Founder & Managing Partner",
+                picture: "/images/leadership/simon.jpeg",
+              },
+              {
+                name: "Khaled Ali",
+                position: "Business Development Manager & Partner",
+                picture: "/images/leadership/khaled.jpeg",
+              },
+              {
+                name: "Séverine Hoss",
+                position: "Finance Manager",
+                picture: "/images/leadership/severine.jpeg",
+              },
+              // {
+              //   name: "Rajesh M.V.",
+              //   position: "Operation Manager & Partner",
+              //   picture: "/images/leadership/simon.png",
+              // },
+            ]}
+          />
         </header>
       </section>
     </AnimateInOut>

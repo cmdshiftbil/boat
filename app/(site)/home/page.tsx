@@ -14,6 +14,7 @@ export const metadata = {
   title: "Alpha Nero | Home",
 };
 
+// TODO: Export all data calls to a separate directory
 const getClients = async () => {
   const payload = await getPayloadClient();
   const clients = await payload.find({
@@ -23,8 +24,21 @@ const getClients = async () => {
   return clients.docs;
 };
 
+const getServices = async () => {
+  const payload = await getPayloadClient();
+  const services = await payload.find({
+    collection: "services",
+    where: {
+      showInHomePage: { equals: true },
+    },
+    limit: 3,
+  });
+  return services.docs;
+};
+
 export default async function HomePage() {
   const clients = await getClients();
+  const services = await getServices();
 
   const homeData: HomeData = {
     mainHeadline: {
@@ -42,29 +56,7 @@ export default async function HomePage() {
     },
     whatWeDo: {
       title: "What we do",
-      features: [
-        {
-          name: "Retail build services",
-          description:
-            "Non quo aperiam repellendus quas est est. Eos aut dolore aut ut sit nesciunt. Ex tempora quia. Sit nobis consequatur dolores incidunt.",
-          href: "#",
-          icon: "stairsUpIcon",
-        },
-        {
-          name: "Production services",
-          description:
-            "Vero eum voluptatem aliquid nostrum voluptatem. Vitae esse natus. Earum nihil deserunt eos quasi cupiditate. A inventore et molestiae natus.",
-          href: "#",
-          icon: "stairsUpIcon",
-        },
-        {
-          name: "Carbon Reports",
-          description:
-            "Et quod quaerat dolorem quaerat architecto aliquam accusantium. Ex adipisci et doloremque autem quia quam. Quis eos molestiae at iure impedit.",
-          href: "#",
-          icon: "stairsUpIcon",
-        },
-      ],
+      services,
     },
     ourProcess: {
       title: "How we work",
