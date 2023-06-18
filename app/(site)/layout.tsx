@@ -12,7 +12,7 @@ const RootLayout = ({ children }: any) => {
     <>
       <Init />
       <html lang="en">
-        <body className="h-full min-h-full pt-32 overflow-x-hidden bg-shark-900">
+        <body className="h-full min-h-full pt-32 bg-shark-900">
           <Layout>{children}</Layout>
         </body>
       </html>
