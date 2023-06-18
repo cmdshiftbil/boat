@@ -1,6 +1,6 @@
 import { Bricks } from "@/lib/bricks/src";
 
-const BlogPostPage = () => {
+export default async function BlogPostPage() {
   // const { docs: post, params } = data.post;
   // const { title, layout } = post[0];
 
@@ -18,6 +18,4 @@ const BlogPostPage = () => {
       </div>
     </div>
   );
-};
-
-export default BlogPostPage;
+}

@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head />
-      <body className="h-full min-h-full pt-32 overflow-x-hidden bg-shark-900">
+      <body className="h-full min-h-full pt-32 bg-shark-900">
         {/* <Header /> */}
         <Main />
         {/* <Footer /> */}
