@@ -6,21 +6,15 @@ import * as THREE from "three";
 // import { GLTFLoader } from "@/lib/three/loaders/GLTFLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import Button from "@/components/Button";
 
 interface ThreeDModelSectionProps extends HTMLAttributes<HTMLDivElement> {
   // data: HomeData["hero"];
 }
 
 const ThreeDModelSection = ({ className }: ThreeDModelSectionProps) => {
-  // Instantiate a loader
-
-  // // Optional: Provide a DRACOLoader instance to decode compressed mesh data
-  // const dracoLoader = new DRACOLoader();
-  // dracoLoader.setDecoderPath( '/examples/jsm/libs/draco/' );
-
-  // // GroundVehicle.glb
-  // loader.setDRACOLoader( dracoLoader );
   const ref = useRef<HTMLDivElement>(null);
+  const [isInteracting, setIsInteracting] = useState(false);
   const [scene, setScene] = useState<THREE.Scene>();
   const [camera, setCamera] = useState<THREE.PerspectiveCamera>();
   const [renderer, setRenderer] = useState<THREE.WebGLRenderer>();
@@ -42,11 +36,10 @@ const ThreeDModelSection = ({ className }: ThreeDModelSectionProps) => {
     // var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 800 );
 
     // renderer
-    // const backgroundColor = 0x000000;
+    const backgroundColor = 0x000000;
     const r = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     r.setPixelRatio(window.devicePixelRatio);
     r.setSize(window.innerWidth, window.innerHeight);
-    // r.setClearColor(backgroundColor);
 
     r.toneMapping = THREE.LinearToneMapping;
     r.toneMappingExposure = Math.pow(0.94, 5.0);
@@ -174,10 +167,44 @@ const ThreeDModelSection = ({ className }: ThreeDModelSectionProps) => {
     }
   }, [scene, camera, renderer]);
 
+  useEffect(() => {
+    if (renderer) {
+      const backgroundColor = 0x000000;
+      if (isInteracting) {
+        renderer.setClearColor(backgroundColor);
+      } else {
+        renderer.setClearColor(backgroundColor, 0);
+      }
+    }
+  }, [isInteracting, renderer]);
+
   return (
-    <section className="mx-auto h-[calc(100vh-205px)] flex flex-col justify-between py-12">
+    <section className="mx-auto h-[calc(100vh-205px)] flex flex-col justify-between py-12 relative">
+      {!isInteracting && (
+        <div className="absolute left-0 top-0 right-0 bottom-0" />
+      )}
+      <div className="absolute right-4 top-16 flex gap-3">
+        {isInteracting && (
+          <div className="text-shark-50 text-center opacity-60 flex items-center text-xs md:text-lg">
+            <div className="hidden md:block">
+              Use your mouse to pan & scroll to zoom
+            </div>
+            <div className="md:hidden">Touch the model to pan & zoom</div>
+          </div>
+        )}
+        <Button
+          onClick={() => {
+            // https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR
+            setIsInteracting(!isInteracting);
+          }}
+          className="p-4"
+        >
+          {isInteracting ? "Done" : "Explore 3D model"}
+        </Button>
+      </div>
+
       <div
-        className="h-[300px] md:h-[80vh] touch-none overflow-hidden"
+        className="h-screen touch-none overflow-hidden"
         onWheel={(e) => {
           e.preventDefault();
           e.stopPropagation();
