@@ -4,7 +4,7 @@ import {
   isAdminOrSelf,
   isAdminOrSelfFieldLevel,
 } from "../access/isAdminOrSelf";
-import { triggerDeployHookAfterChange } from "../utils/hooks";
+import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utils/hooks";
 
 export const Users: CollectionConfig = {
   slug: "users",
@@ -54,6 +54,7 @@ export const Users: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [triggerDeployHookAfterChange]
+    afterChange: [triggerDeployHookAfterChange],
+    afterDelete: [triggerDeployHookAfterDelete],
   }
 };
