@@ -105,9 +105,9 @@ export default async function HomePage() {
         skipOutro={true}
       >
         <>
-          <ThreeDModelSection />
           <HeroSection data={homeData.hero} />
           <MainHeadlineSection />
+          <ThreeDModelSection />
           <OurPresenceSection data={homeData.presence} />
           <WhatWeDoSection data={homeData.whatWeDo} />
           <OurProcessSection data={homeData.ourProcess} />
