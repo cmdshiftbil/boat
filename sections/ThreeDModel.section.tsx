@@ -194,7 +194,6 @@ const ThreeDModelSection = ({ className }: ThreeDModelSectionProps) => {
         )}
         <Button
           onClick={() => {
-            // https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR
             setIsInteracting(!isInteracting);
           }}
           className="p-4"
