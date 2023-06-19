@@ -12,12 +12,12 @@ const ServiceItem = ({ icon, title, description }: any) => {
       {/* Heading */}
       <div>
         <BlueprintLabel label="Service Title" />
-        <h2 className="clamp-text-xl text-shark-50">{title}</h2>
+        <h2 className="!clamp-text-3xl text-shark-50">{title}</h2>
 
         {/* Description */}
-        <div className="pt-6">
+        <div className="pt-9">
           <BlueprintLabel label="Service Description" />
-          <Text className="clamp-text-base">{description}</Text>
+          <Text className="!clamp-text-5xl">{description}</Text>
         </div>
       </div>
     </div>

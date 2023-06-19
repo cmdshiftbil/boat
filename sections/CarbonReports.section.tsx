@@ -1,7 +1,6 @@
 "use client";
 import classNames from "classnames";
 import Heading from "@/components/Heading";
-
 import Text from "@/components/Text";
 
 const content = [
@@ -51,12 +50,15 @@ const CarbonReportsSection = () => {
                   )}
                 >
                   <Heading
-                    className="text-shark-50 clamp-text-lg flex-1"
+                    className="text-shark-50 clamp-text-2xl flex-1"
                     fontSize="clamp-text-xl"
                   >
                     {feature.name}
                   </Heading>
-                  <Text className="mt-2 text-zinc-400" fontSize="clamp-text-lg">
+                  <Text
+                    className="mt-2 text-zinc-400"
+                    fontSize="clamp-text-2xl"
+                  >
                     {feature.description}
                   </Text>
                 </div>
