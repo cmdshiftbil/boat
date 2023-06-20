@@ -117,7 +117,6 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
                 key={idx}
                 onClick={() => {
                   setActiveCountry(country);
-                  setMapSrc(getCountryImagePath(country));
                 }}
                 title={country}
                 activeTitle={activeCountry}
