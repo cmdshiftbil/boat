@@ -8,7 +8,7 @@ const content = [
     name: "Environmental Impact Monitoring in Retail for a Greener Future",
     description:
       "We’re committed to building a greener future and providing sustainable retail services and merchandising solutions. Our innovators are working daily to create new cutting-edge tools we can use to better track our impact on the environment – because knowing the data is the first step to improvement.",
-    imageSrc: "/temp/recycle-iton-particles.png",
+    imageSrc: "/images/services/recycle.png",
     imageAlt:
       "White canvas laptop sleeve with gray felt interior, silver zipper, and tan leather zipper pull.",
   },
@@ -16,7 +16,7 @@ const content = [
     name: "Carbon Footprint Reports and Sustainable Material Options",
     description:
       "Our carbon footprint reports precisely measure each project’s emissions, as per the greenhouse gas protocol (GHG protocol), suggesting more environmentally friendly material alternatives, so your high-end retail brand can take the all-too-important step towards net-zero.",
-    imageSrc: "/temp/carbon-footprint-particles.png",
+    imageSrc: "/images/services/co2.png",
     imageAlt: "Detail of zipper pull with tan leather and silver rivet.",
   },
 ];
