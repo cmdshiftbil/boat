@@ -50,7 +50,7 @@ export default async function HomePage() {
     },
     presence: {
       title:
-        "Operating in Dubai, across the Middle East and North Africa Region",
+        "Headquartered in Dubai, with operations across the UAE, KSA, Middle East, Levant and North Africa",
       imageUrl: "https://via.placeholder.com/550x550",
       imageAlt: "Temporary country image",
     },
