@@ -48,6 +48,7 @@ const PostSummary = ({
             </h3>
             {/* Mobile Image */}
             <PostImage
+              isInline
               className="md:hidden mt-10 mb-10"
               slug={slug}
               imageUrl={featuredImage}
@@ -58,6 +59,7 @@ const PostSummary = ({
 
         {/* Desktop Image */}
         <PostImage
+          isInline
           className="hidden md:block"
           slug={slug}
           imageUrl={featuredImage}
