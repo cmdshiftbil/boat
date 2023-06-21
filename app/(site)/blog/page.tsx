@@ -1,7 +1,7 @@
 import { FadeIn } from "@/components/Animations";
 import ScaleInOut from "@/components/Animations/ScaleInOut";
 import Button from "@/components/Button";
-import Post from "@/components/Post";
+import { PostSummary } from "@/components/Post";
 import ScreenSize from "@/components/ScreenSize/ScreenSize";
 import { getSamplePosts } from "@/content/blog";
 
@@ -35,7 +35,7 @@ export default async function Blog() {
           <div className="mx-auto mt-16 gap-y-20 gap-8 lg:mx-0lg:grid-cols-3">
             {posts.map((post) => {
               const { id } = post;
-              return <Post key={id} {...post} />;
+              return <PostSummary key={id} {...post} />;
             })}
             <div className="flex justify-center mt-20">
               <Button className="bg-transparent sticky invert">

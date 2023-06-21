@@ -27,22 +27,20 @@ const PostImage = ({ imageUrl, slug, className }: PostImageProps) => {
   ) : null;
 };
 
-interface PostProps extends BlogPost {
+interface PostSummaryProps extends BlogPost {
   className?: string;
 }
-const Post = ({
+const PostSummary = ({
   id,
   title,
   slug,
   date,
-  tags,
   featuredImage,
-  author,
   excerpt,
   content,
   className,
   publishedDate,
-}: PostProps) => {
+}: PostSummaryProps) => {
   return (
     <FadeIn
       key={id}
@@ -64,16 +62,6 @@ const Post = ({
             >
               <ReactTimeAgo date={publishedDate} locale="en-US" />
             </time>
-            {/* Tags */}
-            {/* {tags?.map((tag, idx) => (
-              <a
-                key={idx}
-                href="#"
-                className="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 bg-pampas-100 hover:bg-pampas-200"
-              >
-                {tag}
-              </a>
-            ))} */}
           </div>
           <div className="group relative">
             <h3 className="mt-3 text-xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -82,36 +70,21 @@ const Post = ({
             {/* Mobile Image */}
             <PostImage
               className="md:hidden mt-10 mb-10"
-              slug={`/blog/${slug}`}
+              slug={slug}
               imageUrl={featuredImage}
             />
             <p className="mt-2 text-lg">{excerpt}</p>
           </div>
-
-          {/* Author Info */}
-          {/* <div className="relative mt-6 flex items-center gap-x-4">
-            <img
-              src={author.image}
-              alt=""
-              className="h-10 w-10 rounded-full bg-gray-100"
-            />
-            <div className="text-sm leading-6">
-              <p className="font-semibold text-gray-900">
-                <a href="#">{author.name}</a>
-              </p>
-              <p className="text-gray-600">Co-Founder / CTO</p>
-            </div>
-          </div> */}
         </div>
 
         {/* Desktop Image */}
         <PostImage
           className="hidden md:block"
-          slug={`/blog/${slug}`}
+          slug={slug}
           imageUrl={featuredImage}
         />
       </article>
     </FadeIn>
   );
 };
-export default Post;
+export default PostSummary;

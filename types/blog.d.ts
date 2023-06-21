@@ -1,8 +1,3 @@
-interface Author {
-  name: string;
-  image: string;
-}
-
 interface BlogPost {
   id: string;
   title: string;
@@ -11,7 +6,5 @@ interface BlogPost {
   content: string;
   date: Date;
   publishedDate: Date;
-  author: Author;
   featuredImage: string;
-  tags?: string[];
 }

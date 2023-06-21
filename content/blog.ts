@@ -11,10 +11,6 @@ export const samplePost: BlogPost = {
     ",
   date: new Date(),
   publishedDate: new Date(),
-  author: {
-    name: "John Smith",
-    image: "",
-  },
   featuredImage: "",
 };
 
@@ -27,11 +23,6 @@ export const getSamplePost = (): BlogPost => {
   const randomTime = Math.random() * timeDiff;
   const randomDate = new Date(startDate.getTime() + randomTime);
 
-  // Author
-  const names = ["Madison Hunter", "Tom Smykowski", "Mohamed Aravi", "Gokhan Aboelez", "Nicklas kh", "Saba Millard", "Denis Khitaridze"];
-  const name = names[Math.floor(Math.random() * names.length)];
-  const authorImage = `https://source.unsplash.com/random/200x200/?face/${Math.random()}`
-
   // Image
   // const hasPostImage = Math.random() * 10 > 5;
   const hasPostImage = true;
@@ -42,11 +33,6 @@ export const getSamplePost = (): BlogPost => {
     ...samplePost,
     featuredImage,
     publishedDate: randomDate,
-    tags: ["Marketing", "Technology"],
-    author: {
-      name,
-      image: authorImage
-    }
   };
 };
 
