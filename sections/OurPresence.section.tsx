@@ -25,15 +25,15 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
   const initialSettings = useMemo(
     () => ({
       randomize: 55.0,
-      depth: 80.0,
+      depth: isMobile ? 40.0 : 40,
       size: 1.0,
     }),
-    []
+    [isMobile]
   );
   const settings = useMemo(
     () => ({
       randomize: 7.0,
-      depth: 4.0,
+      depth: 6.0,
       size: 0.4,
     }),
     []
@@ -83,7 +83,7 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
 
   return (
     <Section
-      className="min-h-[calc(100vh-405px)] flex flex-col mb-[200px]"
+      className="min-h-[calc(100vh-405px)] flex flex-col mb-[200px] p-0"
       title="Our Operational Reach"
       headingClassName="!w-full text-center"
     >
@@ -92,7 +92,9 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
         start="top bottom-=20%"
         end="center top+=20%"
       >
-        <Text className="text mb-12 text-center">{data.title}</Text>
+        <Text className="text md:mb-12 text-center px-6 sm:px-12">
+          {data.title}
+        </Text>
       </TweenBodyContent>
 
       <div className="flex flex-col lg:flex-row justify-around">
@@ -102,7 +104,7 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
           {mapSrc && (
             <ParticleImage
               src={mapSrc}
-              className="relative w-full lg:flex-1 px-4"
+              className="relative w-full lg:flex-1"
               cameraDistance={isMobile ? 250 : 180}
               initialSettings={initialSettings}
               settings={settings}
@@ -110,8 +112,8 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
           )}
         </div>
 
-        <div className="flex-1">
-          <ul className="columns-3 md:columns-2" ref={countriesRef}>
+        <div className="flex-1 px-6 sm:px-12">
+          <ul className="columns-2" ref={countriesRef}>
             {content.middleEastCountries.map((country, idx) => (
               <CountryItem
                 key={idx}
