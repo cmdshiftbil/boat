@@ -16,9 +16,9 @@ export default async function Blog() {
     <div className="bg-shark-50">
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-2xl text-center mb-16">
             <ScaleInOut skipOutro={true} ease="back.out" scaleTo={1}>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="font-bold tracking-tight text-gray-900 uppercase text-4xl md:text-5xl">
                 From the blog
               </h2>
             </ScaleInOut>
@@ -27,10 +27,8 @@ export default async function Blog() {
                 y: 200,
               }}
             >
-              <p className="mt-2 text-lg leading-8 text-gray-600">
-                Lorem ipsum dolor sit amet consect adipisicing elit. Possimus
-                magnam. Lorem ipsum dolor sit amet consect adipisicing elit.
-                Possimus magnam
+              <p className="mt-2 text-xl leading-8 text-gray-600">
+                What we are doing at Alpha Nero
               </p>
             </FadeIn>
           </div>

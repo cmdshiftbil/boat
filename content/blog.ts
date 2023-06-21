@@ -1,16 +1,13 @@
 export const samplePost: BlogPost = {
   id: "1",
-  title: "How to Get Software Teams Back on Track",
+  title: "How Quality, Precision and Eco-Friendly Practices Can Boost Your Brand",
   slug: "get-on-track",
   excerpt:
-    "It’s time to stop worrying about the future — Life has a peculiar habit of throwing curveballs our way, always keeping us on our toes...",
+    "Craftsmanship in shop-fitting involves the combination of interior design, bespoke furniture manufacturing, as well as equipment and signage procurement. The field is highly competitive, and staying relevant requires evolution and adaptation to changing consumer trends and demands...",
   content:
-    "Life has a peculiar habit of throwing curveballs our way, always keeping us on our toes. Sometimes, it feels like we’re living in an endless game of dodgeball.\
-    Noise is all around me. And by noise, I mean endless thoughts and worries about the future.\
-    As someone who has spent a fair share of time facing fears and catastrophizing scenarios, I can confidently say that it’s a colossal waste of our precious time and energy.\
-    The future will always remain uncertain — an elusive dance partner that’s just beyond our reach.\
-    Despite the unpredictability of it all, there’s a certain beauty in embracing the unknown. If we attempt to predict and control every aspect of our lives, we’ll miss out on the spontaneous, wondrous moments.\
-    Instead, let’s choose to focus our energy on living in the present, taking on challenges as they come, and giving ourselves permission to adapt and grow.\
+    "Craftsmanship in shop-fitting involves the combination of interior design, bespoke furniture manufacturing, as well as equipment and signage procurement. The field is highly competitive, and staying relevant requires evolution and adaptation to changing consumer trends and demands.\
+    <br/><br/>\
+    Taking a unique approach by integrating quality, precision, and eco-consciousness as part of the consumer shopping experience can set you apart from the competition. Embracing sustainable practices not only shows benevolence towards the environment but also instills trust and credibility in customers who seek responsibility in their favorite brands.\
     ",
   date: new Date(),
   publishedDate: new Date(),

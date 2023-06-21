@@ -15,14 +15,14 @@ interface PostImageProps
 const PostImage = ({ imageUrl, slug, className }: PostImageProps) => {
   return imageUrl ? (
     <div className={classNames("relative w-full md:w-3/5 lg:w-2/5", className)}>
-      <Link href={`/blog/${slug}`}>
+      <Link href={`/blog/${slug}`} className="relative">
         <img
           src={imageUrl}
           alt=""
-          className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+          className="aspect-[16/9] w-full bg-gray-100 border-[2px] border-black object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
         />
       </Link>
-      <div className="absolute inset-0 rounded-2xl ring-2 ring-inset ring-pampas-200 hover:ring-pampas-300"></div>
+      <div className="absolute transition-all duration-500 border-2 border-black -top-[20px] -right-[20px] w-full h-full -z-10"></div>
     </div>
   ) : null;
 };
@@ -50,20 +50,22 @@ const Post = ({
         y: 250,
       }}
     >
-      <article className="flex flex-col md:flex-row items-start justify-between gap-4 mb-10">
+      <article className="flex flex-col md:flex-row items-start justify-between gap-4 mb-16">
         <div
           className={classNames({
             "md:max-w-md lg:max-w-xl": !!featuredImage,
           })}
         >
           <div className="mt-8 flex items-center gap-x-4 text-xs">
+            {/* Time */}
             <time
               dateTime={publishedDate.toLocaleDateString()}
               className="text-gray-500"
             >
               <ReactTimeAgo date={publishedDate} locale="en-US" />
             </time>
-            {tags?.map((tag, idx) => (
+            {/* Tags */}
+            {/* {tags?.map((tag, idx) => (
               <a
                 key={idx}
                 href="#"
@@ -71,20 +73,23 @@ const Post = ({
               >
                 {tag}
               </a>
-            ))}
+            ))} */}
           </div>
           <div className="group relative">
-            <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+            <h3 className="mt-3 text-xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
               <Link href={`/blog/${slug}`}>{title}</Link>
             </h3>
+            {/* Mobile Image */}
             <PostImage
-              className="md:hidden my-4"
+              className="md:hidden mt-10 mb-10"
               slug={`/blog/${slug}`}
               imageUrl={featuredImage}
             />
-            <p className="mt-2">{excerpt}</p>
+            <p className="mt-2 text-lg">{excerpt}</p>
           </div>
-          <div className="relative mt-6 flex items-center gap-x-4">
+
+          {/* Author Info */}
+          {/* <div className="relative mt-6 flex items-center gap-x-4">
             <img
               src={author.image}
               alt=""
@@ -96,10 +101,10 @@ const Post = ({
               </p>
               <p className="text-gray-600">Co-Founder / CTO</p>
             </div>
-          </div>
+          </div> */}
         </div>
 
-        {/* Image */}
+        {/* Desktop Image */}
         <PostImage
           className="hidden md:block"
           slug={`/blog/${slug}`}
