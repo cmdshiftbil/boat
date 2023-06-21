@@ -1,6 +1,6 @@
+import Link from "next/link";
 import Post from "@/components/Post/Post";
 import { getSamplePosts } from "@/content/blog";
-import { Bricks } from "@/lib/bricks/src";
 
 export default async function BlogPostPage() {
   // const { docs: post, params } = data.post;
@@ -14,7 +14,15 @@ export default async function BlogPostPage() {
   return (
     <div className="bg-white py-32 px-6 lg:px-8">
       <div className="mx-auto max-w-5xl text-base leading-7 text-gray-700">
-        <Post {...post} />
+        <Link
+          href="/blog"
+          className="group relative uppercase bg-white transition-all hover:bg-shark-700 text-shark-900 p-4 border-2 border-shark-900 text-md hover:px-6 hover:text-white"
+        >
+          <span className="group-hover:hidden">Back</span>
+          <span className="hidden group-hover:inline-block">&lt; Blog</span>
+        </Link>
+
+        <Post {...post} className="pt-8" />
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ const PostImage = ({
   return imageUrl ? (
     <div
       className={classNames(
-        "relative w-full",
+        "relative w-full mt-8",
         {
           "md:w-3/5 lg:w-2/5": isInline,
         },

@@ -55,9 +55,9 @@ const Post = ({
             </time>
           </div>
           <div className="group relative">
-            <h3 className="mt-3 text-5xl leading-[60px] font-semibold text-gray-900 group-hover:text-gray-600">
-              <Link href={`/blog/${slug}`}>{title}</Link>
-            </h3>
+            <h1 className="mt-3 text-5xl leading-[60px] font-semibold text-gray-900 group-hover:text-gray-600">
+              {title}
+            </h1>
             {/* Mobile Image */}
             <PostImage
               className="md:hidden mt-10 mb-10"
