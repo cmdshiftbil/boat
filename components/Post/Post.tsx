@@ -6,10 +6,10 @@ import ReactTimeAgo from "react-time-ago";
 import { FadeIn } from "../Animations";
 import PostImage from "./PostImage";
 
-interface PostSummaryProps extends BlogPost {
+interface PostProps extends BlogPost {
   className?: string;
 }
-const PostSummary = ({
+const Post = ({
   id,
   title,
   slug,
@@ -19,7 +19,7 @@ const PostSummary = ({
   content,
   className,
   publishedDate,
-}: PostSummaryProps) => {
+}: PostProps) => {
   return (
     <FadeIn
       key={id}
@@ -28,6 +28,9 @@ const PostSummary = ({
       }}
     >
       <article className="flex flex-col md:flex-row items-start justify-between gap-4 mb-16">
+        {/* Desktop Image */}
+        <PostImage className="w-full" slug={slug} imageUrl={featuredImage} />
+
         <div
           className={classNames({
             "md:max-w-md lg:max-w-xl": !!featuredImage,
@@ -55,15 +58,8 @@ const PostSummary = ({
             <p className="mt-2 text-lg">{excerpt}</p>
           </div>
         </div>
-
-        {/* Desktop Image */}
-        <PostImage
-          className="hidden md:block"
-          slug={slug}
-          imageUrl={featuredImage}
-        />
       </article>
     </FadeIn>
   );
 };
-export default PostSummary;
+export default Post;
