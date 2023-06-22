@@ -105,18 +105,14 @@ const LeadershipSection = ({
         <div className="pin-wrapper  h-full">
           <div
             className={classNames(
-              "scroll-wrapper relative grid justify-center h-full overflow-hidden",
-              //mobile
-              "h-full w-full grid-cols-1",
-              //desktop
-              "md:grid-cols-1"
+              "scroll-wrapper relative flex justify-center h-full overflow-hidden",
+              "h-full w-full"
             )}
           >
             <div
               className={classNames(
                 "particles-panel overflow-hidden",
-                //mobile
-                "h-full w-full absolute top-0 left-0"
+                "h-full w-full md:w-auto absolute top-0 left-0 md:right-[20%]"
               )}
             >
               <div
@@ -137,9 +133,8 @@ const LeadershipSection = ({
             <div
               className={classNames(
                 "members-panel relative pointer-events-none",
-                //mobile
-                "h-full"
-                //desktop
+                "h-full",
+                "left-[20%]"
               )}
             >
               <div
