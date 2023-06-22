@@ -258,7 +258,7 @@ const Navigation = () => {
                       target="_blank"
                       href="https://www.facebook.com/alphanerodubai/"
                     >
-                      .Fc
+                      .Fb
                     </a>
                   </li>
                   <li>
@@ -269,11 +269,11 @@ const Navigation = () => {
                       .Ig
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a target="_blank" href="#">
                       .Tw
                     </a>
-                  </li>
+                  </li> */}
                   <li>
                     <a
                       target="_blank"
