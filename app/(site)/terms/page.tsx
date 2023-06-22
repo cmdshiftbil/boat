@@ -1,20 +1,12 @@
 import { AnimateInOut } from "@/components/Animations";
-import MotionLine from "@/components/MotionLine/MotionLine";
-import Parallax from "@/components/Parallax";
-import ParticleImage from "@/components/ParticleImage/ParticleImage";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
-import VerticalScrollSection from "@/components/VerticalScrollSection";
-import content from "@/content/content";
-import LeadershipSection from "@/sections/Leadership.section";
-import TeamCountersSection from "@/sections/TeamCounters.section";
-import TeamScrollSection from "@/sections/TeamScroll.section";
+
+const date = "22 June, 2023";
+const websiteName = "Alpha Nero";
+const websiteUrl = "https://alpha-nero.com";
 
 export default async function Terms() {
-  const date = "22 June, 2023";
-  const website = "Alpha Nero (https://alpha-nero.com)";
-  const email = "reception@alpha-nero.com";
-
   return (
     <AnimateInOut
       durationIn={0.6}
@@ -44,14 +36,14 @@ export default async function Terms() {
       skipOutro={true}
     >
       <Section className="p-4 md:p-6 lg:p-12" title="Privacy Policy">
-        <Text animate>
+        <Text>
           Last updated: {date}
           <br />
           <br />
           Please read these terms and conditions (&ldquo;Terms&rdquo;,
-          &ldquo;Terms and Conditions&rdquo;) carefully before using the [insert
-          website URL] website (the &ldquo;Site&rdquo;) operated by [insert
-          website name] (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or
+          &ldquo;Terms and Conditions&rdquo;) carefully before using the{" "}
+          {websiteUrl} website (the &ldquo;Site&rdquo;) operated by{" "}
+          {websiteName} (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or
           &ldquo;our&rdquo;).
           <br />
           <br />
@@ -90,9 +82,9 @@ export default async function Terms() {
           <br />
           <br />
           The Site and its original content, features, and functionality are
-          owned by [insert website name] and are protected by international
-          copyright, trademark, patent, trade secret, and other intellectual
-          property or proprietary rights laws.
+          owned by {websiteName} and are protected by international copyright,
+          trademark, patent, trade secret, and other intellectual property or
+          proprietary rights laws.
           <br />
           <br />
           Termination
@@ -113,17 +105,16 @@ export default async function Terms() {
           <br />
           <br />
           Our Site may contain links to third-party web sites or services that
-          are not owned or controlled by [insert website name].
+          are not owned or controlled by {websiteName}.
           <br />
           <br />
-          [insert website name] has no control over, and assumes no
-          responsibility for, the content, privacy policies, or practices of any
-          third-party web sites or services. You further acknowledge and agree
-          that [insert website name] shall not be responsible or liable,
-          directly or indirectly, for any damage or loss caused or alleged to be
-          caused by or in connection with use of or reliance on any such
-          content, goods or services available on or through any such web sites
-          or services.
+          {websiteName} has no control over, and assumes no responsibility for,
+          the content, privacy policies, or practices of any third-party web
+          sites or services. You further acknowledge and agree that{" "}
+          {websiteName} shall not be responsible or liable, directly or
+          indirectly, for any damage or loss caused or alleged to be caused by
+          or in connection with use of or reliance on any such content, goods or
+          services available on or through any such web sites or services.
           <br />
           <br />
           We strongly advise you to read the terms and conditions and privacy
@@ -133,7 +124,7 @@ export default async function Terms() {
           Limitation of Liability
           <br />
           <br />
-          In no event shall [insert website name], nor its directors, employees,
+          In no event shall {websiteName}, nor its directors, employees,
           partners, agents, suppliers, or affiliates, be liable for any
           indirect, incidental, special, consequential or punitive damages,
           including without limitation, loss of profits, data, use, goodwill, or
