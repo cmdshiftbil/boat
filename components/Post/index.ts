@@ -1,3 +1,5 @@
-import Post from "./Post";
+import PostSummary from "./PostSummary";
 
-export default Post;
+export {
+  PostSummary
+}
