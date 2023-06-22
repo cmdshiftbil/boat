@@ -5,75 +5,85 @@ import Section from "@/components/Section";
 import Text from "@/components/Text";
 import TweenBodyContent from "@/components/TweenBodyContent";
 import content from "@/content/content";
-import useGsapEffect from "@/hooks/useGsapEffect";
+// import { gsap } from "gsap";
+// import useGsapEffect from "@/hooks/useGsapEffect";
 import useMobileDevice from "@/hooks/useMobileDevice";
 import { HomeData } from "@/types/pages";
-import { gsap } from "gsap";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface OurPresenceSectionProps {
   data: HomeData["presence"];
 }
 
-// TODO: Remove when we have actual images from Payload
-const randomNumberBetween = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
 const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
   const countriesRef = useRef<HTMLUListElement>(null);
-  const images = [
-    "/images/presence.png",
-    "/images/presence2.png",
-    "/images/presence3.png",
-    "/images/presence4.png",
-  ];
-  const [mapSrc, setMapSrc] = useState(images[0]);
+  const [mapSrc, setMapSrc] = useState<string>();
+  const [activeCountry, setActiveCountry] = useState<string>();
+  // const tweenTargetRef = useRef(null);
+
   const isMobile = useMobileDevice();
-  const tweenTargetRef = useRef(null);
   const initialSettings = useMemo(
     () => ({
-      randomize: 1.0,
-      depth: 80.0,
+      randomize: 55.0,
+      depth: isMobile ? 40.0 : 40,
       size: 1.0,
     }),
-    []
+    [isMobile]
   );
   const settings = useMemo(
     () => ({
-      randomize: 3.0,
-      depth: 4.0,
-      size: 3,
+      randomize: 7.0,
+      depth: 6.0,
+      size: 0.4,
     }),
     []
   );
-  useGsapEffect(() => {
-    gsap.fromTo(
-      tweenTargetRef.current,
-      {
-        xPercent: -50,
-        opacity: 0,
-      },
-      {
-        duration: 1,
-        xPercent: 0,
-        opacity: 1,
-        scale: 1,
-        ease: "Expo.easeOut",
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: tweenTargetRef?.current,
-          start: "start 75%",
-          end: "bottom center",
-          scrub: 1,
-        },
+  const getCountryImagePath = (country: string) =>
+    `/images/presence-countries/${country
+      .toLowerCase()
+      .replace(/ /g, "_")}.png`;
+
+  // Disabled transition for country's particle effect
+  // useGsapEffect(() => {
+  //   gsap.fromTo(
+  //     tweenTargetRef.current,
+  //     {
+  //       xPercent: -50,
+  //       opacity: 0,
+  //     },
+  //     {
+  //       duration: 1,
+  //       xPercent: 0,
+  //       opacity: 1,
+  //       scale: 1,
+  //       ease: "Expo.easeOut",
+  //       stagger: 0.1,
+  //       scrollTrigger: {
+  //         trigger: tweenTargetRef?.current,
+  //         start: "start 75%",
+  //         end: "bottom center",
+  //         scrub: 1,
+  //       },
+  //     }
+  //   );
+  // }, tweenTargetRef);
+
+  useEffect(() => {
+    if (!activeCountry) {
+      const country = content.middleEastCountries.find((c) =>
+        c.includes("Emirates")
+      );
+      if (country) {
+        setActiveCountry(country);
       }
-    );
-  }, tweenTargetRef);
+    } else {
+      setMapSrc(getCountryImagePath(activeCountry));
+    }
+  }, [activeCountry, setActiveCountry]);
 
   return (
     <Section
-      className="min-h-[calc(100vh-405px)] flex flex-col mb-[200px]"
+      className="min-h-[calc(100vh-405px)] flex flex-col mb-[200px] p-0"
       title="Our Operational Reach"
       headingClassName="!w-full text-center"
     >
@@ -82,32 +92,36 @@ const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
         start="top bottom-=20%"
         end="center top+=20%"
       >
-        <Text className="text mb-12 text-center">{data.title}</Text>
+        <Text className="text md:mb-12 text-center px-6 sm:px-12">
+          {data.title}
+        </Text>
       </TweenBodyContent>
 
       <div className="flex flex-col lg:flex-row justify-around">
-        <div className="flex flex-1 w-full relative" ref={tweenTargetRef}>
-          <ParticleImage
-            src={mapSrc}
-            className="relative w-full lg:flex-1 px-4"
-            cameraDistance={isMobile ? 1350 : 720}
-            initialSettings={initialSettings}
-            settings={settings}
-          />
+        {/* Disabled transition for country's particle effect */}
+        {/* <div className="flex flex-1 w-full relative" ref={tweenTargetRef}> */}
+        <div className="flex flex-1 w-full relative">
+          {mapSrc && (
+            <ParticleImage
+              src={mapSrc}
+              className="relative w-full lg:flex-1"
+              cameraDistance={isMobile ? 250 : 180}
+              initialSettings={initialSettings}
+              settings={settings}
+            />
+          )}
         </div>
 
-        <div className="flex-1">
-          <ul className="columns-3 md:columns-2" ref={countriesRef}>
+        <div className="flex-1 px-6 sm:px-12">
+          <ul className="columns-2" ref={countriesRef}>
             {content.middleEastCountries.map((country, idx) => (
               <CountryItem
                 key={idx}
                 onClick={() => {
-                  // TODO: Set actual images when we have in Payload
-                  const rn = randomNumberBetween(0, 3);
-                  const image = images[rn];
-                  setMapSrc(image);
+                  setActiveCountry(country);
                 }}
                 title={country}
+                activeTitle={activeCountry}
               />
             ))}
           </ul>

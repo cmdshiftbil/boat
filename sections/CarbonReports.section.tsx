@@ -2,13 +2,16 @@
 import classNames from "classnames";
 import Heading from "@/components/Heading";
 import Text from "@/components/Text";
+import useMobileDevice from "@/hooks/useMobileDevice";
+import { useMemo } from "react";
+import ParticleImage from "@/components/ParticleImage/ParticleImage";
 
 const content = [
   {
     name: "Environmental Impact Monitoring in Retail for a Greener Future",
     description:
       "We’re committed to building a greener future and providing sustainable retail services and merchandising solutions. Our innovators are working daily to create new cutting-edge tools we can use to better track our impact on the environment – because knowing the data is the first step to improvement.",
-    imageSrc: "/temp/recycle-iton-particles.png",
+    imageSrc: "/images/services/recycle.png",
     imageAlt:
       "White canvas laptop sleeve with gray felt interior, silver zipper, and tan leather zipper pull.",
   },
@@ -16,18 +19,43 @@ const content = [
     name: "Carbon Footprint Reports and Sustainable Material Options",
     description:
       "Our carbon footprint reports precisely measure each project’s emissions, as per the greenhouse gas protocol (GHG protocol), suggesting more environmentally friendly material alternatives, so your high-end retail brand can take the all-too-important step towards net-zero.",
-    imageSrc: "/temp/carbon-footprint-particles.png",
+    imageSrc: "/images/services/co2.png",
     imageAlt: "Detail of zipper pull with tan leather and silver rivet.",
   },
 ];
 
 const CarbonReportsSection = () => {
+  const isMobile = useMobileDevice();
+  const initialSettings = useMemo(
+    () => ({
+      randomize: 55.0,
+      depth: 40.0,
+      size: 1.0,
+    }),
+    []
+  );
+  const settings = useMemo(
+    () => ({
+      randomize: 7.0,
+      depth: 6.0,
+      size: 0.6,
+    }),
+    []
+  );
   return (
     <section>
       <header
         id="services-header"
         className="bg-shark-900 bg-grid-surface pt-32 pb-24 px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 "
       >
+        {/* <Heading className="text-shark-50" eyebrow="Service title">
+          <>
+            <span>Creating Carbon</span>
+            <br className="md:hidden" />
+            <span className="hidden md:inline-block">&nbsp;</span>
+            <span>Reports</span>
+          </>
+        </Heading> */}
         <Heading className="text-shark-50" eyebrow="Service title">
           Creating Carbon Reports
         </Heading>
@@ -45,8 +73,8 @@ const CarbonReportsSection = () => {
                   className={classNames(
                     featureIdx % 2 === 0
                       ? "lg:col-start-1"
-                      : "lg:col-start-8 xl:col-start-9",
-                    "mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4"
+                      : "lg:col-start-8 xl:col-start-7",
+                    "mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-6"
                   )}
                 >
                   <Heading
@@ -65,16 +93,18 @@ const CarbonReportsSection = () => {
                 <div
                   className={classNames(
                     featureIdx % 2 === 0
-                      ? "lg:col-start-6 xl:col-start-5"
+                      ? "lg:col-start-6 xl:col-start-0"
                       : "lg:col-start-1",
-                    "flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8"
+                    "flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-6"
                   )}
                 >
-                  <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg bg-gray-100">
-                    <img
+                  <div className="overflow-hidden rounded-lg bg-gray-100">
+                    <ParticleImage
                       src={feature.imageSrc}
-                      alt={feature.imageAlt}
-                      className="object-contain object-center mix-blend-lighten"
+                      className="relative w-full lg:flex-1"
+                      cameraDistance={isMobile ? 250 : 180}
+                      initialSettings={initialSettings}
+                      settings={settings}
                     />
                   </div>
                 </div>

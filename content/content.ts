@@ -97,7 +97,7 @@ const content = {
     "Kuwait",
     "Lebanon",
     "Oman",
-    "Palestine",
+    // "Palestine",
     "Qatar",
     "Saudi Arabia",
     "Syria",
