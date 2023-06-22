@@ -56,9 +56,17 @@ const CarbonReportsSection = () => {
             <span>Reports</span>
           </>
         </Heading> */}
-        <Heading className="text-shark-50" eyebrow="Service title">
+        {/* Desktop Heading */}
+        <Heading
+          className="text-shark-50 opacity-0 md:opacity-100 h-1 w-1 md:w-auto md:h-auto overflow-hidden"
+          eyebrow="Service title"
+        >
           Creating Carbon Reports
         </Heading>
+        {/* Mobile heading */}
+        <div className="text-shark-50 clamp-text-8xl flex-1 md:hidden">
+          Creating Carbon Reports
+        </div>
       </header>
 
       <div className="">
@@ -77,12 +85,17 @@ const CarbonReportsSection = () => {
                     "mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-6"
                   )}
                 >
+                  {/* Desktop heading */}
                   <Heading
-                    className="text-shark-50 clamp-text-2xl flex-1"
+                    className="text-shark-50 clamp-text-2xl flex-1 hidden md:block"
                     fontSize="clamp-text-xl"
                   >
                     {feature.name}
                   </Heading>
+                  {/* Mobile heading */}
+                  <div className="text-shark-50 clamp-text-xl flex-1 md:hidden">
+                    {feature.name}
+                  </div>
                   <Text
                     className="mt-2 text-zinc-400"
                     fontSize="clamp-text-2xl"
