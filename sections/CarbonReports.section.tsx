@@ -57,10 +57,7 @@ const CarbonReportsSection = () => {
           </>
         </Heading> */}
         {/* Desktop Heading */}
-        <Heading
-          className="text-shark-50 opacity-0 md:opacity-100 h-1 w-1 md:w-auto md:h-auto overflow-hidden"
-          eyebrow="Service title"
-        >
+        <Heading className="text-shark-50 opacity-0 md:opacity-100 h-1 w-1 md:w-auto md:h-auto overflow-hidden">
           Creating Carbon Reports
         </Heading>
         {/* Mobile heading */}
