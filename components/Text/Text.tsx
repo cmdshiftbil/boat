@@ -26,7 +26,6 @@ const Text = ({
       if (!animate) return;
 
       const textElement = self.selector(".text-element")[0];
-      console.log(textElement);
 
       const text = new SplitText(textElement, { type: "words" });
 

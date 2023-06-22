@@ -1,20 +1,13 @@
 import { AnimateInOut } from "@/components/Animations";
-import MotionLine from "@/components/MotionLine/MotionLine";
-import Parallax from "@/components/Parallax";
-import ParticleImage from "@/components/ParticleImage/ParticleImage";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
-import VerticalScrollSection from "@/components/VerticalScrollSection";
-import content from "@/content/content";
-import LeadershipSection from "@/sections/Leadership.section";
-import TeamCountersSection from "@/sections/TeamCounters.section";
-import TeamScrollSection from "@/sections/TeamScroll.section";
+
+const date = "22 June, 2023";
+const websiteName = "Alpha Nero";
+const websiteUrl = "https://alpha-nero.com";
+const email = "reception@alpha-nero.com";
 
 export default async function PrivacyPage() {
-  const date = "22 June, 2023";
-  const website = "Alpha Nero (https://alpha-nero.com)";
-  const email = "reception@alpha-nero.com";
-
   return (
     <AnimateInOut
       durationIn={0.6}
@@ -44,14 +37,15 @@ export default async function PrivacyPage() {
       skipOutro={true}
     >
       <Section className="p-4 md:p-6 lg:p-12" title="Privacy Policy">
-        <Text animate>
+        <Text>
           Last updated: {date}
           <br />
           <br />
-          [website name] (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or
-          &ldquo;our&rdquo;) operates {website} (the &ldquo;Site&rdquo;). This
-          page informs you of our policies regarding the collection, use and
-          disclosure of Personal Information we receive from users of the Site.
+          {websiteName} (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or
+          &ldquo;our&rdquo;) operates {websiteUrl} (the &ldquo;Site&rdquo;).
+          This page informs you of our policies regarding the collection, use
+          and disclosure of Personal Information we receive from users of the
+          Site.
           <br />
           <br />
           We use your Personal Information only for providing and improving the
