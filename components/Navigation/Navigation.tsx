@@ -254,16 +254,33 @@ const Navigation = () => {
               <div className="header-nav-footer">
                 <ul className="flex flex-row gap-4 social-links">
                   <li>
-                    <a href="#">.Fc</a>
+                    <a
+                      target="_blank"
+                      href="https://www.facebook.com/alphanerodubai/"
+                    >
+                      .Fc
+                    </a>
                   </li>
                   <li>
-                    <a href="#">.Ig</a>
+                    <a
+                      target="_blank"
+                      href="https://www.instagram.com/alpha_nero_dubai/"
+                    >
+                      .Ig
+                    </a>
                   </li>
                   <li>
-                    <a href="#">.Tw</a>
+                    <a target="_blank" href="#">
+                      .Tw
+                    </a>
                   </li>
                   <li>
-                    <a href="#">.Li</a>
+                    <a
+                      target="_blank"
+                      href="https://www.linkedin.com/company/alpha-nero/"
+                    >
+                      .Li
+                    </a>
                   </li>
                   <li>&copy;{new Date().getFullYear()}</li>
                 </ul>

@@ -19,7 +19,7 @@ export default async function BlogPostPage() {
           className="group relative uppercase bg-white transition-all hover:bg-shark-700 text-shark-900 p-4 border-2 border-shark-900 text-md hover:px-6 hover:text-white"
         >
           <span className="group-hover:hidden">Back</span>
-          <span className="hidden group-hover:inline-block">&lt; Blog</span>
+          <span className="hidden group-hover:inline-block">Blog</span>
         </Link>
 
         <Post {...post} className="pt-8" />
