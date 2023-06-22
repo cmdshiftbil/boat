@@ -1,0 +1,12 @@
+.post-content ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 40px;
+}
+.post-content ul li {
+  padding-left: 12px;
+}
+
+.post-content h1 {
+  font-weight: 500;
+}
