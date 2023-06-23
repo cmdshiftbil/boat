@@ -38,14 +38,17 @@ export default async function PrivacyPage() {
     >
       <Section className="p-4 md:p-6 lg:p-12" title="Privacy Policy">
         <Text>
-          Last updated: {date}
+          Last updated: <strong>{date}</strong>
           <br />
           <br />
-          {websiteName} (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or
-          &ldquo;our&rdquo;) operates {websiteUrl} (the &ldquo;Site&rdquo;).
-          This page informs you of our policies regarding the collection, use
-          and disclosure of Personal Information we receive from users of the
-          Site.
+          <strong>{websiteName}</strong> (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or
+          &ldquo;our&rdquo;) operates{" "}
+          <a href={websiteUrl}>
+            <strong>{websiteUrl}</strong>
+          </a>{" "}
+          (the &ldquo;Site&rdquo;). This page informs you of our policies
+          regarding the collection, use and disclosure of Personal Information
+          we receive from users of the Site.
           <br />
           <br />
           We use your Personal Information only for providing and improving the
@@ -144,7 +147,11 @@ export default async function PrivacyPage() {
           <br />
           <br />
           If you have any questions about this Privacy Policy, please contact us
-          at {email}.
+          at{" "}
+          <a href={`mailto:${email}`}>
+            <strong>{email}</strong>
+          </a>
+          .
         </Text>
       </Section>
     </AnimateInOut>

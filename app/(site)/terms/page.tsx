@@ -37,13 +37,16 @@ export default async function Terms() {
     >
       <Section className="p-4 md:p-6 lg:p-12" title="Privacy Policy">
         <Text>
-          Last updated: {date}
+          Last updated: <strong>{date}</strong>
           <br />
           <br />
           Please read these terms and conditions (&ldquo;Terms&rdquo;,
           &ldquo;Terms and Conditions&rdquo;) carefully before using the{" "}
-          {websiteUrl} website (the &ldquo;Site&rdquo;) operated by{" "}
-          {websiteName} (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or
+          <a href={websiteUrl}>
+            <strong>{websiteUrl}</strong>
+          </a>{" "}
+          website (the &ldquo;Site&rdquo;) operated by{" "}
+          <strong>{websiteName}</strong> (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or
           &ldquo;our&rdquo;).
           <br />
           <br />
@@ -82,9 +85,9 @@ export default async function Terms() {
           <br />
           <br />
           The Site and its original content, features, and functionality are
-          owned by {websiteName} and are protected by international copyright,
-          trademark, patent, trade secret, and other intellectual property or
-          proprietary rights laws.
+          owned by <strong>{websiteName}</strong> and are protected by
+          international copyright, trademark, patent, trade secret, and other
+          intellectual property or proprietary rights laws.
           <br />
           <br />
           Termination
@@ -105,16 +108,17 @@ export default async function Terms() {
           <br />
           <br />
           Our Site may contain links to third-party web sites or services that
-          are not owned or controlled by {websiteName}.
+          are not owned or controlled by <strong>{websiteName}</strong>.
           <br />
           <br />
-          {websiteName} has no control over, and assumes no responsibility for,
-          the content, privacy policies, or practices of any third-party web
-          sites or services. You further acknowledge and agree that{" "}
-          {websiteName} shall not be responsible or liable, directly or
-          indirectly, for any damage or loss caused or alleged to be caused by
-          or in connection with use of or reliance on any such content, goods or
-          services available on or through any such web sites or services.
+          <strong>{websiteName}</strong> has no control over, and assumes no
+          responsibility for, the content, privacy policies, or practices of any
+          third-party web sites or services. You further acknowledge and agree
+          that <strong>{websiteName}</strong> shall not be responsible or
+          liable, directly or indirectly, for any damage or loss caused or
+          alleged to be caused by or in connection with use of or reliance on
+          any such content, goods or services available on or through any such
+          web sites or services.
           <br />
           <br />
           We strongly advise you to read the terms and conditions and privacy
@@ -124,9 +128,9 @@ export default async function Terms() {
           Limitation of Liability
           <br />
           <br />
-          In no event shall {websiteName}, nor its directors, employees,
-          partners, agents, suppliers, or affiliates, be liable for any
-          indirect, incidental, special, consequential or punitive damages,
+          In no event shall <strong>{websiteName}</strong>, nor its directors,
+          employees, partners, agents, suppliers, or affiliates, be liable for
+          any indirect, incidental, special, consequential or punitive damages,
           including without limitation, loss of profits, data, use, goodwill, or
           other intangible losses, resulting from (i) your access to or use of
           or inability to access or use the Site; (ii) any conduct or content of
