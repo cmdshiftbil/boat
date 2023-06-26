@@ -34,8 +34,7 @@ world class design:\
 <li>Refined color palettes in gold, silver, and pastel hues that complement the\
 brand&#39;s logo and overall style.</li>\
 <li>Elevated lighting solutions to that enhances the overall visual appeal of the store.</li>\
-<li>Custom-made furniture designed to fit the space perfectly while also providing</li>\
-comfort and convenience.</li>\
+<li>Custom-made furniture designed to fit the space perfectly while also providing comfort and convenience.</li>\
 <li>Artistic enhancements such as paintings, sculptures, mirrors, and plants that add\
 personality and charm to the store or space.</li>\
 </ul>\

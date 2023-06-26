@@ -1,4 +1,5 @@
 import { AnimateInOut } from "@/components/Animations";
+import Heading from "@/components/Heading";
 import MotionLine from "@/components/MotionLine/MotionLine";
 import Parallax from "@/components/Parallax";
 import ParticleImage from "@/components/ParticleImage/ParticleImage";
@@ -12,33 +13,7 @@ import TeamScrollSection from "@/sections/TeamScroll.section";
 
 export default async function AboutPage() {
   return (
-    <AnimateInOut
-      durationIn={0.6}
-      durationOut={1}
-      // Initial
-      set={{
-        transform: "translate(" + 0 + "px, " + 200 + "px)",
-        opacity: 0,
-        duration: 0.25,
-        ease: "power4.out",
-      }}
-      // Transition In (to)
-      to={{
-        opacity: 1,
-        x: 0,
-        y: 0,
-        ease: "power4.inOut",
-      }}
-      // TODO: Outro is not functional
-      // Transition Out (from)
-      // from={{
-      //   transform: "translate(" + 0 + "px, " + 200 + "px)",
-      //   opacity: 0,
-      //   duration: 0.25,
-      //   ease: "power4.out",
-      // }}
-      skipOutro={true}
-    >
+    <>
       <Section className="p-4 md:p-6 lg:p-12" title="A short history">
         <Text animate>
           Founded in 2010 in Dubai, United Arab Emirates. Alpha Nero has
@@ -75,34 +50,30 @@ export default async function AboutPage() {
         </Text>
       </section>
       <TeamScrollSection />
-      <section>
-        <header className="bg-shark-900 bg-grid-surface px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
-          <LeadershipSection
-            team={[
-              {
-                name: "Simon Hacker",
-                position: "Founder & Managing Partner",
-                picture: "/images/leadership/simon.jpeg",
-              },
-              {
-                name: "Khaled Ali",
-                position: "Business Development Manager & Partner",
-                picture: "/images/leadership/khaled.jpeg",
-              },
-              {
-                name: "Séverine Hoss",
-                position: "Finance Manager",
-                picture: "/images/leadership/severine.jpeg",
-              },
-              // {
-              //   name: "Rajesh M.V.",
-              //   position: "Operation Manager & Partner",
-              //   picture: "/images/leadership/simon.png",
-              // },
-            ]}
-          />
-        </header>
-      </section>
-    </AnimateInOut>
+      <LeadershipSection
+        team={[
+          {
+            name: "Simon Hacker",
+            position: "Founder & Managing Partner",
+            picture: "/images/leadership/simon.png",
+          },
+          {
+            name: "Khaled Ali",
+            position: "Business Development Manager & Partner",
+            picture: "/images/leadership/khaled.png",
+          },
+          {
+            name: "Séverine Hoss",
+            position: "Finance Manager",
+            picture: "/images/leadership/severine.png",
+          },
+          // {
+          //   name: "Rajesh M.V.",
+          //   position: "Operation Manager & Partner",
+          //   picture: "/images/leadership/simon.png",
+          // },
+        ]}
+      />
+    </>
   );
 }

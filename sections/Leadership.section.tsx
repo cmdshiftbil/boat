@@ -4,8 +4,9 @@ import Heading from "@/components/Heading";
 import ParticleImage from "@/components/ParticleImage/ParticleImage";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import classNames from "classnames";
-import { HTMLAttributes, useMemo, useRef, useState } from "react";
+import { HTMLAttributes, useEffect, useMemo, useRef, useState } from "react";
 import useMobileDevice from "@/hooks/useMobileDevice";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 interface TeamMember {
   name: string;
@@ -21,14 +22,12 @@ const LeadershipSection = ({
 }: LeadershipSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
-  const [isImageAvailable, setIsImageAvailable] = useState(false);
-  const isMobile = useMobileDevice();
 
   const initialSettings = useMemo(
     () => ({
-      randomize: 1.0,
-      depth: 50.0,
-      size: 1.0,
+      randomize: 2.0,
+      depth: 30.0,
+      size: 2.0,
     }),
     []
   );
@@ -42,83 +41,137 @@ const LeadershipSection = ({
   );
 
   useGsapEffect((self: any) => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".team-wrapper",
-        start: isMobile ? "top 10%" : "top 5%",
-        end: "+=" + team.length * 1500,
-        pin: true,
-        scrub: 1,
-      },
+    const membersPanel = self.selector(".members-panel-wrapper")[0];
+    const members = self.selector(".team-member");
+
+    const getToValue = () => -(membersPanel.scrollHeight - window.innerHeight);
+
+    console.log(getToValue());
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ref.current,
+          endTrigger: membersPanel,
+          scroller: document.body,
+          pin: true,
+          pinnedContainer: ".team-wrapper",
+          pinType: "transform",
+          start: "top top",
+          end: () => "+=" + -getToValue(),
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+          scrub: 1,
+        },
+      })
+      .to(".members-panel-wrapper", {
+        y: getToValue(),
+        ease: "none",
+      });
+
+    team.forEach((member: any, index: number) => {
+      // const marker = panel.dataset.leftPanelMarker;
+      const currentPanel = members[index];
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: `[data-right-panel-marker="${Number(index)}"]`,
+          endTrigger: ".particles-panel",
+          scroller: document.body,
+          start: "top center",
+          end: () => "+=" + members[index].offsetHeight,
+          toggleActions: "play reverse play reverse",
+          onToggle: () => {
+            console.log("toooooogle");
+            setIndex(index);
+          },
+        },
+      });
     });
 
-    team.map((person, idx) => {
-      const isLastPerson = idx + 1 === team.length;
-      tl.from(`.person-${idx}`, { y: innerHeight * 1 })
-        .add(() => {
-          setIndex(idx);
-          setIsImageAvailable(true);
-        })
-        .to(`.person-${idx}`, { y: 0 })
-        .add(() => {
-          setIsImageAvailable(true);
-          setIndex(idx);
-        });
-      if (!isLastPerson) {
-        tl.to(`.person-${idx}`, { y: -1000 });
-      }
-    });
+    return () => {
+      self.kill();
+    };
   }, ref);
 
   if (!team.length) return null;
 
   return (
-    <div ref={ref}>
-      <div
-        className={classNames(
-          "team-wrapper relative h-screen overflow-hidden",
-          className
-        )}
-      >
+    <section ref={ref}>
+      <header className="bg-shark-900 bg-grid-surface px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 ">
         <Heading className="text-shark-50">Leadership</Heading>
-        <div className="flex relative">
-          <ParticleImage
-            src={team[index].picture}
+      </header>
+      <div className="team-wrapper h-screen">
+        <div className="pin-wrapper  h-full">
+          <div
             className={classNames(
-              "w-full lg:w-1/2 transition-all aspect-1 h-screen lg:h-screen pb-60 lg:pb-40 relative",
-              {
-                "opacity-0": !isImageAvailable,
-              }
+              "scroll-wrapper relative flex justify-center h-full overflow-hidden",
+              "h-full w-full"
             )}
-            cameraDistance={280}
-            initialSettings={initialSettings}
-            settings={settings}
-          />
-          <div className="w-full">
-            {team.map((person, idx) => (
+          >
+            <div
+              className={classNames(
+                "particles-panel overflow-hidden",
+                "h-full w-full md:w-auto absolute top-0 left-0 md:right-[20%]"
+              )}
+            >
               <div
-                key={idx}
+                className="left-panel-content overflow-hidden h-full w-full"
+                data-left-panel-marker={index}
+              >
+                <ParticleImage
+                  src={team[index].picture}
+                  className={classNames(
+                    "w-full h-full transition-all relative z-0"
+                  )}
+                  cameraDistance={280}
+                  initialSettings={initialSettings}
+                  settings={settings}
+                />
+              </div>
+            </div>
+            <div
+              className={classNames(
+                "members-panel relative pointer-events-none",
+                "h-full",
+                "left-[20%]"
+              )}
+            >
+              <div
                 className={classNames(
-                  "text-shark-50 absolute",
+                  "members-panel-wrapper"
                   //mobile
-                  "flex gap-2 justify-around w-full text-center items-end top-1/2 right-0 select-none pointer-events-none",
-                  //desktop
-                  "lg:block lg:text-left lg:top-1/2 lg:left-1/3 lg:right-auto lg:-translate-y-1/2",
-                  `person-${idx}`
                 )}
               >
-                <div className="text-[40px] leading-[40px] lg:text-[123px] lg:leading-[123px] font-bold">
-                  {person.name}
-                </div>
-                <div className="text-[35px] leading-[35px] pt-4 lg:pt-0 lg:text-[76px] lg:leading-[76px] font-light italic">
-                  {person.position}
-                </div>
+                {team.map((person, idx) => (
+                  <div
+                    key={idx}
+                    className={classNames(
+                      "team-member text-shark-50 flex justify-center items-center  ",
+                      //mobile
+                      "h-screen w-full text-center p-6",
+                      //desktop
+                      "md:h-screen",
+                      `person-${idx}`
+                    )}
+                    data-right-panel-marker={idx}
+                  >
+                    <div className="relative">
+                      <div className="clamp-text-5xl font-bold">
+                        {person.name}
+                      </div>
+                      <div className="clamp-text-3xl font-light italic">
+                        {person.position}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

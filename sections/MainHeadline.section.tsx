@@ -50,7 +50,7 @@ const MainHeadlineSection = () => {
       className="p-6 sm:p-12 md:p-24 h-screen flex justify-center items-center text-center"
       ref={ref}
     >
-      <h1 className="main-headline clamp-text-9xl text-shark-50">
+      <h1 className="main-headline clamp-text-8xl text-shark-50">
         {/* We are forward-thinking retail concept development specialists. */}
         We specialize in{" "}
         <strong className="main-headline">crafting innovative </strong>retail
