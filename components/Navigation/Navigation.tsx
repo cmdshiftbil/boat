@@ -6,11 +6,10 @@ import useOnChangeRoute from "@/hooks/useOnChangeRoute";
 import BlueprintLabel from "../BlueprintLabel";
 import Logo from "../Logo";
 import HamburgerButton from "./HamburgerButton";
-import NavigationToggle from "./NavigationToggle";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import Footer from "../Footer";
 import ContactBox from "../ContactBox/ContactBox";
 import Link from "next/link";
+import classNames from "classnames";
 
 const navigationItems = [
   { id: "1", url: "/", label: "Home" },
@@ -24,14 +23,25 @@ const navigationItems = [
 const Navigation = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const isReadyRef = useRef(false);
+  const [isToggleInProcess, setIsToggleInProcess] = useState(false);
   const tl = useRef<GSAPTimeline>(
     gsap.timeline({
       paused: true,
+      onComplete: () => {
+        setIsToggleInProcess(false);
+      },
+      onReverseComplete: () => {
+        setIsToggleInProcess(false);
+      },
     })
   );
 
   useEffect(() => {
     tl.current.reversed(!isOpen);
+    if (!!isReadyRef.current) {
+      setIsToggleInProcess(true);
+    }
   }, [isOpen]);
 
   useOnChangeRoute(() => {
@@ -151,39 +161,28 @@ const Navigation = () => {
   }, ref);
 
   const onClickMenuToggle = () => {
+    isReadyRef.current = true;
     setIsOpen(!isOpen);
   };
 
   return (
-    <div ref={ref} className="relative z-50 ">
-      <div className="fixed top-0 left-0 z-10 flex justify-between w-full p-6 nav-bar sm:p-12">
-        <div className="flex items-center justify-between flex-1">
-          <div className="brand-logo">
+    <div
+      ref={ref}
+      className={classNames("relative z-50", {
+        "mix-blend-difference": !isOpen && !isToggleInProcess,
+      })}
+    >
+      <div className="fixed top-0 left-0 z-10 flex justify-between w-full nav-bar">
+        <div
+          className={classNames(
+            "flex items-center justify-between flex-1",
+            "p-6 md:p-12"
+          )}
+        >
+          <div className="brand-logo md:p-2">
             <Link href="/" aria-label="Alpha Nero Homepage button">
               <Logo className="fill-shark-50 logo" />
             </Link>
-            {/* TODO: remove debug code */}
-            {/* <Link
-              href="/about"
-              aria-label="Alpha Nero Homepage button"
-              className="text-white"
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              aria-label="Alpha Nero Homepage button"
-              className="text-white"
-            >
-              Services
-            </Link>
-            <Link
-              href="/projects"
-              aria-label="Alpha Nero Homepage button"
-              className="text-white"
-            >
-              Projects
-            </Link> */}
           </div>
           <HamburgerButton isOpen={isOpen} onClick={onClickMenuToggle} />
         </div>
