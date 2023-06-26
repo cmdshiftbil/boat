@@ -1,11 +1,16 @@
 import gsap from "gsap";
 import { HTMLAttributes, useEffect, useRef } from "react";
 import useGsapEffect from "@/hooks/useGsapEffect";
+import classNames from "classnames";
 
 interface HamburgerButtonProps extends HTMLAttributes<HTMLButtonElement> {
   isOpen: boolean;
 }
-const HamburgerButton = ({ onClick, isOpen }: HamburgerButtonProps) => {
+const HamburgerButton = ({
+  onClick,
+  isOpen,
+  className,
+}: HamburgerButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null);
   const tl = useRef<GSAPTimeline>(gsap.timeline());
 
@@ -55,7 +60,7 @@ const HamburgerButton = ({ onClick, isOpen }: HamburgerButtonProps) => {
   return (
     <button
       ref={ref}
-      className="menu-toggle"
+      className={classNames("menu-toggle", className)}
       id="menuToggle"
       onClick={onClickHanle}
     >
@@ -65,9 +70,30 @@ const HamburgerButton = ({ onClick, isOpen }: HamburgerButtonProps) => {
         height="40px"
         width="40px"
       >
-        <path d="M10,2 L2,2" className="bar-1 stroke-shark-50" />
-        <path d="M4,5 L10,5" className="bar-2 stroke-shark-50" />
-        <path d="M10,8 L6,8" className="bar-3 stroke-shark-50" />
+        <path d="M10,2 L2,2" className="bar-1 stroke-shark-50 fill-white" />
+        <path d="M4,5 L10,5" className="bar-2 stroke-shark-50 fill-white" />
+        <path d="M10,8 L6,8" className="bar-3 stroke-shark-50 fill-white" />
+        {/* <rect
+          x="2"
+          y="1"
+          width="9"
+          height="2"
+          className="fill-shark-50 stroke-shark-900"
+        />
+        <rect
+          x="4"
+          y="4"
+          width="7"
+          height="2"
+          className="fill-shark-50 stroke-shark-900"
+        />
+        <rect
+          x="6"
+          y="7"
+          width="5"
+          height="2"
+          className="fill-shark-50 stroke-shark-900"
+        /> */}
       </svg>
     </button>
   );
