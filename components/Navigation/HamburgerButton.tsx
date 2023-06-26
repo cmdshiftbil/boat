@@ -73,27 +73,6 @@ const HamburgerButton = ({
         <path d="M10,2 L2,2" className="bar-1 stroke-shark-50 fill-white" />
         <path d="M4,5 L10,5" className="bar-2 stroke-shark-50 fill-white" />
         <path d="M10,8 L6,8" className="bar-3 stroke-shark-50 fill-white" />
-        {/* <rect
-          x="2"
-          y="1"
-          width="9"
-          height="2"
-          className="fill-shark-50 stroke-shark-900"
-        />
-        <rect
-          x="4"
-          y="4"
-          width="7"
-          height="2"
-          className="fill-shark-50 stroke-shark-900"
-        />
-        <rect
-          x="6"
-          y="7"
-          width="5"
-          height="2"
-          className="fill-shark-50 stroke-shark-900"
-        /> */}
       </svg>
     </button>
   );
