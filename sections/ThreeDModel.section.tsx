@@ -63,7 +63,8 @@ const ThreeDModelSection = ({ className }: ThreeDModelSectionProps) => {
     // Load a glTF resource
     loader.load(
       // resource URL
-      "3dmodels/DGB.glb",
+      // "3dmodels/DGB.glb",
+      "3dmodels/ladybug.gltf",
       // "3dmodels/GroundVehicle.glb",
       // "3dmodels/Wood_Tower.glb",
       // "3dmodels/Pawns.glb",
@@ -230,8 +231,11 @@ const ThreeDModelSection = ({ className }: ThreeDModelSectionProps) => {
         <pointLight position={[4, 30, -20]} intensity={1} color="#ffffcc" />
         <ambientLight position={[30, -10, 30]} intensity={1} color="#20202a" />
         {/* <ThreeDModel src="3dmodels/poimandres.gltf" /> */}
-        {/* <ThreeDModel src="3dmodels/DGB.glb" /> */}
-        <ThreeDModel src="3dmodels/GroundVehicle.glb" />
+        <ThreeDModel src="3dmodels/DGB.glb" />
+        {/* <ThreeDModel src="3dmodels/GroundVehicle.glb" /> */}
+        {/* <ThreeDModel src="3dmodels/GroundVehicle.glb" /> */}
+        {/* <ThreeDModel src="3dmodels/ladybug.gltf" /> */}
+
         <OrbitControls enableZoom minZoom={300} />
         {/* <Environment background /> */}
       </Canvas>

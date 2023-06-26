@@ -35,7 +35,7 @@ export default async function Terms() {
       // }}
       skipOutro={true}
     >
-      <Section className="p-4 md:p-6 lg:p-12" title="Privacy Policy">
+      <Section className="p-4 md:p-6 lg:p-12" title="Terms">
         <Text>
           Last updated: <strong>{date}</strong>
           <br />
