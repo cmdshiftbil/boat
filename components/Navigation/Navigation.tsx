@@ -246,7 +246,7 @@ const Navigation = () => {
                 <ContactBox.Item
                   hideTitle
                   title="address"
-                  description="Warehouse C07 1-2-3, |br Riyadh Production City P.O. |br BOX 485008, |br Riyadh, United Arab Emirates"
+                  description="Al Fozan Industrial Park Block 50, |br warehouse, 555/558, |br Riyadh 14548, Saudi Arabia"
                 />
               </ContactBox>
 

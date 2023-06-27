@@ -9,6 +9,7 @@ import OurProcessSection from "@/sections/OurProcess.section";
 import WhatWeDoSection from "@/sections/WhatWeDo.section";
 import content from "@/content/content";
 import { AnimateInOut } from "@/components/Animations";
+import ThreeDModelSection from "@/sections/ThreeDModel.section";
 
 export const metadata = {
   title: "Alpha Nero | Home",
@@ -106,6 +107,7 @@ export default async function HomePage() {
         <>
           <HeroSection data={homeData.hero} />
           <MainHeadlineSection />
+          <ThreeDModelSection />
           <OurPresenceSection data={homeData.presence} />
           <WhatWeDoSection data={homeData.whatWeDo} />
           <OurProcessSection data={homeData.ourProcess} />
