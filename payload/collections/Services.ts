@@ -1,4 +1,4 @@
-import Content from "../blocks/Content/Config";
+// import Content from "../blocks/Content/Config";
 import { SubServiceBlock } from "./../blocks/SubService/SubService";
 import { CollectionConfig } from "payload/types";
 
@@ -34,7 +34,7 @@ export const Services: CollectionConfig = {
       type: "blocks",
       minRows: 1,
       maxRows: 3,
-      blocks: [SubServiceBlock, Content],
+      blocks: [SubServiceBlock],
     },
   ],
 };

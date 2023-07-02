@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import { RenderBlogArchive } from "./renderBlogArchive";
+// import { RenderBlogArchive } from "./renderBlogArchive";
 import { mergeOpenGraph } from "@/seo/mergeOpenGraph";
 import getPayloadClient from "@/payload/payloadClient";
 
@@ -27,8 +27,12 @@ export const metadata: Metadata = {
 };
 
 const BlogPage = async () => {
-  // const posts = await getBlogPosts();
-  // console.log(posts);
+  const posts = await getBlogPosts();
+  console.log({
+    posts,
+    docs: posts.docs,
+    docsJSON: JSON.stringify(posts.docs),
+  });
 
   return <div>Blog Page</div>;
   // return <RenderBlogArchive posts={[]} />;
