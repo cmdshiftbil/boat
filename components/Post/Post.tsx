@@ -42,8 +42,8 @@ const Post = ({
         />
 
         <div>
+          {/* Time */}
           <div className="mt-8 flex items-center gap-x-4 text-xs">
-            {/* Time */}
             <time
               dateTime={publishedOnDate.toLocaleDateString()}
               className="text-gray-500"
