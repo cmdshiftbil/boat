@@ -99,8 +99,12 @@ const link: LinkType = ({
   ];
 
   if (!disableLabel) {
-    linkTypes[0].admin.width = "50%";
-    linkTypes[1].admin.width = "50%";
+    if (linkTypes[0].admin) {
+      linkTypes[0].admin.width = "50%";
+    }
+    if (linkTypes[1].admin) {
+      linkTypes[1].admin.width = "50%";
+    }
 
     linkResult.fields.push({
       type: "row",
