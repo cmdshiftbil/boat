@@ -1,9 +1,9 @@
-import { Content } from "./../blocks/Content/Config";
 import { CollectionConfig } from "payload/types";
 import slug from "../fields/slug";
-import formatSlug from "../utils/formatSlug";
+import formatSlug from "../utilities/formatSlug";
 import meta from "../fields/meta";
-import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utils/hooks";
+import { Content } from "../blocks/Content";
+import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
 
 export const ProjectsSlug = "projects";
 export const Projects: CollectionConfig = {

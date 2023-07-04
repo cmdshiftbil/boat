@@ -1,14 +1,24 @@
 import Link from "next/link";
 import Post from "@/components/Post/Post";
-import { getSamplePosts } from "@/content/blog";
+import getPayloadClient from "@/payload/payloadClient";
+import { notFound } from "next/navigation";
 
-export default async function BlogPostPage() {
-  // const { docs: post, params } = data.post;
-  // const { title, layout } = post[0];
-  const post = getSamplePosts(1)[0];
+export default async function BlogPostPage(props: any) {
+  const { params } = props;
+  const payload = await getPayloadClient();
 
-  if (!post) {
-    return null;
+  const posts = await payload.find({
+    collection: "posts",
+    where: {
+      slug: {
+        equals: params.slug,
+      },
+    },
+  });
+
+  const post = posts.docs?.[0];
+  if (!post || !posts.docs?.length) {
+    return notFound();
   }
 
   return (

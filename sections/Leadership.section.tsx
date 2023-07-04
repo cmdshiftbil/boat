@@ -46,8 +46,6 @@ const LeadershipSection = ({
 
     const getToValue = () => -(membersPanel.scrollHeight - window.innerHeight);
 
-    console.log(getToValue());
-
     gsap
       .timeline({
         scrollTrigger: {
@@ -82,7 +80,6 @@ const LeadershipSection = ({
           end: () => "+=" + members[index].offsetHeight,
           toggleActions: "play reverse play reverse",
           onToggle: () => {
-            console.log("toooooogle");
             setIndex(index);
           },
         },

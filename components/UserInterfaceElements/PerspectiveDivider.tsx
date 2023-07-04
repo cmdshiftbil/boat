@@ -7,7 +7,6 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
 
   useGsapEffect((self: any) => {
     const lines = self.selector(".line");
-    console.log("Lines", lines);
 
     const tl = gsap.timeline({
       defaults: { duration: 3, ease: "none" },

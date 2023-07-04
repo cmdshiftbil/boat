@@ -1,49 +1,49 @@
-import { Block } from 'payload/types';
+import { Block } from "payload/types";
 
 export const Image: Block = {
-  slug: 'image',
+  slug: "image",
   labels: {
-    singular: 'Image',
-    plural: 'Images',
+    singular: "Image",
+    plural: "Images",
   },
   fields: [
     {
-      name: 'image',
-      label: 'Image',
-      type: 'upload',
-      relationTo: 'media',
+      name: "image",
+      label: "Image",
+      type: "upload",
+      relationTo: "media",
       required: true,
     },
     {
-      name: 'type',
-      label: 'Type',
-      type: 'radio',
-      defaultValue: 'normal',
+      name: "type",
+      label: "Type",
+      type: "radio",
+      defaultValue: "normal",
       options: [
         {
-          label: 'Normal',
-          value: 'normal',
+          label: "Normal",
+          value: "normal",
         },
         {
-          label: 'Fullscreen',
-          value: 'fullscreen',
+          label: "Fullscreen",
+          value: "fullscreen",
         },
         {
-          label: 'Wide',
-          value: 'wide',
+          label: "Wide",
+          value: "wide",
         },
       ],
       admin: {
-        layout: 'horizontal',
+        layout: "horizontal",
       },
     },
     {
-      name: 'caption',
-      label: 'Caption',
-      type: 'richText',
+      name: "caption",
+      label: "Caption",
+      type: "richText",
       admin: {
         elements: [
-          'link',
+          "link",
         ],
       },
     },

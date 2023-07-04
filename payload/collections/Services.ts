@@ -1,5 +1,4 @@
-import Content from "../blocks/Content/Config";
-import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utils/hooks";
+import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
 import { SubServiceBlock } from "./../blocks/SubService/SubService";
 import { CollectionConfig } from "payload/types";
 
@@ -35,7 +34,7 @@ export const Services: CollectionConfig = {
       type: "blocks",
       minRows: 1,
       maxRows: 3,
-      blocks: [SubServiceBlock, Content],
+      blocks: [SubServiceBlock],
     },
   ],
   hooks: {

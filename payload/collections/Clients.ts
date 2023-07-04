@@ -1,5 +1,5 @@
 import { CollectionConfig } from "payload/types";
-import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utils/hooks";
+import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
 
 export const Clients: CollectionConfig = {
   slug: "clients",

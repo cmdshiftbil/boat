@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import classNames from "classnames";
 import ReactTimeAgo from "react-time-ago";
 import { FadeIn } from "../Animations";
 import PostImage from "./PostImage";
-import DOMPurify from "dompurify";
 import "./index.css";
+import RichText from "@/components/RichText";
 interface PostProps extends BlogPost {
   className?: string;
 }
@@ -14,14 +13,12 @@ const Post = ({
   id,
   title,
   slug,
-  date,
-  featuredImage,
-  excerpt,
+  image,
   content,
   className,
-  publishedDate,
+  publishedOn,
 }: PostProps) => {
-  const cleanContent = DOMPurify.sanitize(content);
+  const publishedOnDate = new Date(publishedOn);
 
   return (
     <FadeIn
@@ -40,28 +37,34 @@ const Post = ({
         <PostImage
           className="w-full"
           slug={slug}
-          imageUrl={featuredImage}
+          imageUrl={image?.url}
           hasLink={false}
         />
 
         <div>
+          {/* Time */}
           <div className="mt-8 flex items-center gap-x-4 text-xs">
-            {/* Time */}
             <time
-              dateTime={publishedDate.toLocaleDateString()}
+              dateTime={publishedOnDate.toLocaleDateString()}
               className="text-gray-500"
             >
-              <ReactTimeAgo date={publishedDate} locale="en-US" />
+              <ReactTimeAgo date={publishedOnDate} locale="en-US" />
             </time>
           </div>
           <div className="group relative">
             <h1 className="mt-3 text-5xl leading-[60px] font-semibold text-gray-900 group-hover:text-gray-600">
               {title}
             </h1>
-            <p
-              className="mt-2 text-2xl post-content"
-              dangerouslySetInnerHTML={{ __html: cleanContent }}
-            ></p>
+
+            {content.map((contentPiece, idx) =>
+              contentPiece.blogContentFields?.richText ? (
+                <RichText
+                  key={idx}
+                  className="text-xl"
+                  content={contentPiece.blogContentFields?.richText}
+                />
+              ) : null
+            )}
           </div>
         </div>
       </article>

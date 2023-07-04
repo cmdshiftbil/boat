@@ -119,6 +119,7 @@ export const ParticleImageMesh = ({
       window.addEventListener("scroll", resize.bind(this));
 
       animate();
+      console.log("event emitter added");
       particles.on("ready", () => {
         setShaderObject(particles.shaderObject);
         setBasicObject(particles.basicObject);

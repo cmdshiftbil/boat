@@ -67,8 +67,6 @@ export async function generateMetadata({ params }: any) {
     `where[slug][equals]=${params.slug}`
   );
 
-  console.log("Meta Call", project.docs[0].meta);
-
   return {
     title: project.docs[0].meta,
     description: "This is a description",

@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import path from "path";
-import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utils/hooks";
+import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
 
 export const Media: CollectionConfig = {
   slug: "media",

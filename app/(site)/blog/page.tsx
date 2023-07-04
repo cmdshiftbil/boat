@@ -2,11 +2,34 @@ import { FadeIn } from "@/components/Animations";
 import ScaleInOut from "@/components/Animations/ScaleInOut";
 import Button from "@/components/Button";
 import { PostSummary } from "@/components/Post";
-import ScreenSize from "@/components/ScreenSize/ScreenSize";
-import { getSamplePosts } from "@/content/blog";
+import { mergeOpenGraph } from "@/seo/mergeOpenGraph";
+import getPayloadClient from "@/payload/payloadClient";
+import { Metadata } from "next";
+
+const getBlogPosts = async () => {
+  const payload = await getPayloadClient();
+  const blogPosts = await payload.find({
+    collection: "posts",
+    // where: {
+    //   publishedOn: {
+    //     // less_than_equal: true,
+    //   },
+    // },
+    limit: 300,
+    sort: "-publishedOn",
+  });
+  return blogPosts;
+};
+
+export const metadata: Metadata = {
+  openGraph: mergeOpenGraph({
+    url: "/blog",
+  }),
+};
 
 export default async function Blog() {
-  const posts = getSamplePosts(10);
+  const blogPosts = await getBlogPosts();
+  const posts = blogPosts.docs;
 
   if (!posts) {
     return null;
@@ -37,11 +60,12 @@ export default async function Blog() {
               const { id } = post;
               return <PostSummary key={id} {...post} />;
             })}
-            <div className="flex justify-center mt-20">
+
+            {/* <div className="flex justify-center mt-20">
               <Button className="bg-transparent sticky invert">
                 Load more
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

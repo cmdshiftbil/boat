@@ -13,13 +13,18 @@ const PostSummary = ({
   id,
   title,
   slug,
-  date,
-  featuredImage,
+  image,
   excerpt,
   content,
   className,
-  publishedDate,
+  publishedOn,
 }: PostSummaryProps) => {
+  const publishedOnDate = new Date(publishedOn);
+  const originalExcerpt = excerpt
+    .map((p) => p.children?.[0].text ?? "")
+    .join(" ");
+  const shortenedExcerpt = originalExcerpt.substring(0, 400);
+
   return (
     <FadeIn
       key={id}
@@ -30,16 +35,16 @@ const PostSummary = ({
       <article className="flex flex-col md:flex-row items-start justify-between gap-4 mb-16">
         <div
           className={classNames({
-            "md:max-w-md lg:max-w-xl": !!featuredImage,
+            "md:max-w-md lg:max-w-xl": !!image,
           })}
         >
           <div className="mt-8 flex items-center gap-x-4 text-xs">
             {/* Time */}
             <time
-              dateTime={publishedDate.toLocaleDateString()}
+              dateTime={publishedOnDate.toLocaleDateString()}
               className="text-gray-500"
             >
-              <ReactTimeAgo date={publishedDate} locale="en-US" />
+              <ReactTimeAgo date={publishedOnDate} locale="en-US" />
             </time>
           </div>
           <div className="group relative">
@@ -51,9 +56,12 @@ const PostSummary = ({
               isInline
               className="md:hidden mt-10 mb-10"
               slug={slug}
-              imageUrl={featuredImage}
+              imageUrl={image?.url}
             />
-            <p className="mt-2 text-lg">{excerpt}</p>
+            <p className="mt-2 text-lg">
+              {shortenedExcerpt}
+              {shortenedExcerpt.length !== originalExcerpt.length ? "..." : ""}
+            </p>
           </div>
         </div>
 
@@ -62,7 +70,7 @@ const PostSummary = ({
           isInline
           className="hidden md:block"
           slug={slug}
-          imageUrl={featuredImage}
+          imageUrl={image?.url}
         />
       </article>
     </FadeIn>
