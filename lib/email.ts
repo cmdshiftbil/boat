@@ -22,13 +22,12 @@ export const sendMail = async (
       return;
     }
 
-    sgMail.send(msg)
-      .then((response) => {
-        console.log("sendMail", "Email sent", { msg, response })
-      })
-      .catch((error) => {
-        console.error("sendMail", "Email failed to send", { error })
-      });
+    try {
+      const response = await sgMail.send(msg);
+      console.log("sendMail", "Email sent", { msg, response });
+    } catch (error) {
+      console.error("sendMail", "Email failed to send", { error });
+    }
   } else {
     console.info("Emails disabled");
   }
