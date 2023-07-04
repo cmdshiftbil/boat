@@ -60,7 +60,7 @@ const VideoButton: React.FC<{ path: string }> = ({ path }) => {
       toggleModal(modalSlug);
       setRenderModal(false);
     },
-    [editor, toggleModal]
+    [editor, modalSlug, toggleModal]
   );
 
   useEffect(() => {
