@@ -19,7 +19,7 @@
     "paths": {
       "@/*": ["./*"],
       // TODO: Legacy CSS
-      "@scss/*": ["./src/css/*"]
+      // "@scss/*": ["./src/css/*"]
     },
     "plugins": [
       {
