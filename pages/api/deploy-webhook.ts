@@ -16,7 +16,7 @@ async function getRawBody(readable: Readable): Promise<Buffer> {
   return Buffer.concat(chunks);
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // const rawBody = await getRawBody(req);
   // const bodySignature = process.env.EMAIL_VERCEL_INTEGRATION_SECRET ? sha1(rawBody, process.env.EMAIL_VERCEL_INTEGRATION_SECRET) : null;
 
@@ -38,6 +38,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     html: `<strong>The latest version of the <a href="${process.env.NEXT_PUBLIC_WEBSITE_URL}">Alpha Nero Website</a> just got deployed on ${new Date().toString()}</strong>`,
   }
 
-  sendMail(msg);
+  await sendMail(msg);
   res.status(200).end();
 }
