@@ -6,7 +6,7 @@
     "dev": "next dev",
     "dev-4000": "next dev -p 4000",
     "print-output": "echo 'sample!'",
-    "prebuild": "npm run generate:types && npm run print-output",
+    "prebuild": "npm run print-output && npm run generate:types",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
