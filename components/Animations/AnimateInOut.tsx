@@ -44,7 +44,6 @@ const AnimateInOut = ({
       delay: delay || 0,
       duration: durationIn,
       onComplete: function () {
-        console.log("Cleared props...");
         gsap.set(this.targets(), { clearProps: "all" });
       },
     });
@@ -62,11 +61,7 @@ const AnimateInOut = ({
     }
   }, []);
 
-  return (
-    <Tag id="test-id" ref={el}>
-      {children}
-    </Tag>
-  );
+  return <Tag ref={el}>{children}</Tag>;
 };
 
 export default memo(AnimateInOut);

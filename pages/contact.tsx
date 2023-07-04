@@ -8,14 +8,14 @@ import Section from "@/components/Section";
 const content = {
   getInTouch: [
     {
-      title: "Collaborate",
+      title: "Collaboration, Press & Events",
       items: [
         {
           title: "Email",
-          value: "collaborate@alpha-nero.com",
+          value: "marketing@alpha-nero.com",
           clipboard: {
-            title: "Email: collaborate@alpha-nero.com ",
-            value: "collaborate@alpha-nero.com",
+            title: "Email: marketing@alpha-nero.com ",
+            value: "marketing@alpha-nero.com",
           },
         },
         {
@@ -29,14 +29,14 @@ const content = {
       ],
     },
     {
-      title: "Press",
+      title: "Project Enquiries",
       items: [
         {
           title: "Email",
-          value: "press@alpha-nero.com",
+          value: "sales1@alpha-nero.com",
           clipboard: {
-            title: "Email: press@alpha-nero.com",
-            value: "press@alpha-nero.com",
+            title: "Email: sales1@alpha-nero.com",
+            value: "sales1@alpha-nero.com",
           },
         },
         {
@@ -50,14 +50,14 @@ const content = {
       ],
     },
     {
-      title: "Collaborate",
+      title: "Careers",
       items: [
         {
           title: "Join our team",
-          value: "careers@alpha-nero.com",
+          value: "hr2@alpha-nero.com",
           clipboard: {
-            title: "Email: careers@alpha-nero.com",
-            value: "careers@alpha-nero.com",
+            title: "Email: hr2@alpha-nero.com",
+            value: "hr2@alpha-nero.com",
           },
         },
         {
@@ -71,14 +71,14 @@ const content = {
       ],
     },
     {
-      title: "General information",
+      title: "General Info",
       items: [
         {
           title: "Email",
-          value: "info@alpha-nero.com",
+          value: "reception@alpha-nero.com",
           clipboard: {
-            title: "Email: info@alpha-nero.com",
-            value: "info@alpha-nero.com",
+            title: "Email: reception@alpha-nero.com",
+            value: "reception@alpha-nero.com",
           },
         },
         {
@@ -114,11 +114,11 @@ const content = {
         {
           title: "address",
           value:
-            "Warehouse C07 1-2-3, Dubai Production City P.O. BOX 485008, Riyadh, Saudi Arabia",
+            "Al Fozan Industrial Park Block 50, warehouse, 555/558, Riyadh 14548, Saudi Arabia",
           clipboard: {
             title: "Riyadh Address",
             value:
-              "Warehouse C07 1-2-3, Dubai Production City P.O. BOX 485008, Riyadh, Saudi Arabia",
+              "Al Fozan Industrial Park Block 50, warehouse, 555/558, Riyadh 14548, Saudi Arabia",
           },
         },
       ],
@@ -144,8 +144,8 @@ export default function Contact() {
                   Get in touch
                 </h2>
                 <p className="mt-4 leading-7 text-shark-300">
-                  Quam nunc nunc eu sed. Sed rhoncus quis ultricies ac
-                  pellentesque.
+                  Reach out to us for collaboration, press, project enquiries,
+                  or to join our team.
                 </p>
               </div>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2 lg:gap-8">
@@ -172,8 +172,7 @@ export default function Contact() {
                   Locations
                 </h2>
                 <p className="mt-4 leading-7 text-shark-300">
-                  Consequat sunt cillum cillum elit sint. Qui occaecat nisi in
-                  ipsum commodo.
+                  We&apos;re expanding our reach
                 </p>
               </div>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2 lg:gap-8">
@@ -194,11 +193,11 @@ export default function Contact() {
                   <ContactBox.Item
                     hideTitle
                     title="address"
-                    description="Warehouse C07 1-2-3, |br Dubai Production City P.O. BOX 485008, |br Riyadh, Saudi Arabia"
+                    description="Al Fozan Industrial Park Block 50, warehouse, 555/558, Riyadh 14548, Saudi Arabia"
                     clipboard={{
                       title: "Address",
                       value:
-                        "Warehouse C07 1-2-3, Dubai Production City P.O. BOX 485008, Riyadh, Saudi Arabia",
+                        "Al Fozan Industrial Park Block 50, warehouse, 555/558, Riyadh 14548, Saudi Arabia",
                     }}
                   />
                 </ContactBox>

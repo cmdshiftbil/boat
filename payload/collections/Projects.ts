@@ -3,6 +3,7 @@ import slug from "../fields/slug";
 import formatSlug from "../utilities/formatSlug";
 import meta from "../fields/meta";
 import { Content } from "../blocks/Content";
+import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
 
 export const ProjectsSlug = "projects";
 export const Projects: CollectionConfig = {
@@ -132,4 +133,8 @@ export const Projects: CollectionConfig = {
     //     },
     //   },
   ],
+  hooks: {
+    afterChange: [triggerDeployHookAfterChange],
+    afterDelete: [triggerDeployHookAfterDelete],
+  }
 };

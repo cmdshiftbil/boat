@@ -86,9 +86,7 @@ const ServicesSections = () => {
         id="services-header"
         className="bg-shark-900 bg-grid-surface pt-32 pb-24 px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 "
       >
-        <Heading className="text-shark-50" eyebrow="Service title">
-          Retail build services
-        </Heading>
+        <Heading className="text-shark-50">Retail build services</Heading>
       </header>
 
       <div

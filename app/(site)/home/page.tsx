@@ -10,6 +10,7 @@ import WhatWeDoSection from "@/sections/WhatWeDo.section";
 import content from "@/content/content";
 import { AnimateInOut } from "@/components/Animations";
 import { makeMetaPageTitle } from "@/utils/seo.utils";
+import ThreeDModelSection from "@/sections/ThreeDModel.section";
 
 export const metadata = {
   title: makeMetaPageTitle("Home"),
@@ -51,7 +52,7 @@ export default async function HomePage() {
     },
     presence: {
       title:
-        "Operating in Dubai, across the Middle East and North Africa Region",
+        "Headquartered in Dubai, with operations across the UAE, KSA, Middle East, Levant and North Africa",
       imageUrl: "https://via.placeholder.com/550x550",
       imageAlt: "Temporary country image",
     },
@@ -107,6 +108,7 @@ export default async function HomePage() {
         <>
           <HeroSection data={homeData.hero} />
           <MainHeadlineSection />
+          {/* <ThreeDModelSection /> */}
           <OurPresenceSection data={homeData.presence} />
           <WhatWeDoSection data={homeData.whatWeDo} />
           <OurProcessSection data={homeData.ourProcess} />

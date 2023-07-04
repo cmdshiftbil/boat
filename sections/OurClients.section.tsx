@@ -18,9 +18,9 @@ const OurClientsSection = ({ data }: OurClientsSectionProps) => {
       alt: client.logo.alt,
     };
   });
+
   return (
     <Section
-      // className="px-0 py-24"
       title={data.title}
       colorScheme="pampas"
       articleClassName="px-0 py-24"

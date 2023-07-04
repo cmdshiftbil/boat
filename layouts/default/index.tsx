@@ -12,6 +12,9 @@ import { useEffect, useState } from "react";
 import { TransitionProvider } from "@/components/Transition/Transition.provider";
 import { fetchContent } from "@/utils/api.utils";
 import NextNProgress from "nextjs-progressbar";
+import TimeAgo from "javascript-time-ago";
+
+import en from "javascript-time-ago/locale/en.json";
 
 // import s from "./layout.module.scss";
 
@@ -24,6 +27,7 @@ import NextNProgress from "nextjs-progressbar";
 //   () => import("components/page-transition").then((mod) => mod.PageTransition),
 //   { ssr: false }
 // );
+TimeAgo.addDefaultLocale(en);
 
 export function Layout({
   seo = { title: "", description: "", image: "", keywords: "" },
@@ -37,7 +41,7 @@ export function Layout({
         root
         options={{
           lerp: 0.1,
-          smooth: true,
+          smoothWheel: true,
         }}
       >
         <TransitionProvider>
@@ -45,7 +49,7 @@ export function Layout({
           <Header />
           {/* <Cursor /> */}
 
-          <main className="h-full min-h-full pt-32 overflow-x-hidden bg-shark-900">
+          <main className="h-full min-h-full pt-32 bg-shark-900">
             {/* <Transition>{children}</Transition> */}
             {children}
           </main>
@@ -62,8 +66,6 @@ export async function generateMetadata({ params }: any) {
     "projects",
     `where[slug][equals]=${params.slug}`
   );
-
-  console.log("Meta Call", project.docs[0].meta);
 
   return {
     title: project.docs[0].meta,

@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload/types";
+import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
 
 export const Clients: CollectionConfig = {
   slug: "clients",
@@ -33,4 +34,8 @@ export const Clients: CollectionConfig = {
       type: "checkbox",
     },
   ],
+  hooks: {
+    afterChange: [triggerDeployHookAfterChange],
+    afterDelete: [triggerDeployHookAfterDelete],
+  }
 };

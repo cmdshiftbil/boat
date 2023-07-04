@@ -35,6 +35,22 @@ const richText: RichText = (
             media: {
               fields: [
                 {
+                  name: "widthPercentage",
+                  type: "number",
+                  label: "Width (in Percentage)",
+                },
+                {
+                  name: "alignment",
+                  label: "Image Alignment",
+                  type: "select",
+                  required: false,
+                  options: [
+                    { label: "Left", value: "left" },
+                    { label: "Center", value: "center" },
+                    { label: "Right", value: "right" },
+                  ],
+                },
+                {
                   name: "enableLink",
                   type: "checkbox",
                   label: "Enable Link",
@@ -48,6 +64,20 @@ const richText: RichText = (
                     },
                   },
                 }),
+                // {
+                //   name: "alignment",
+                //   type: "checkbox",
+                //   label: "Enable Link",
+                // },
+                // link({
+                //   appearances: false,
+                //   disableLabel: true,
+                //   overrides: {
+                //     admin: {
+                //       condition: (_, data) => Boolean(data?.enableLink),
+                //     },
+                //   },
+                // }),
               ],
             },
           },

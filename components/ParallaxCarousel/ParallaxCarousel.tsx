@@ -53,7 +53,7 @@ const ParallaxCarousel = ({
     [baseVelocity, carousel]
   );
 
-  useLenis(({ scroll }: any) => {
+  useLenis(({ velocity, progress, scroll, direction }: any) => {
     if (!carousel) return;
     /**
      * direction: 0
@@ -62,17 +62,12 @@ const ParallaxCarousel = ({
      * scroll: 7576.940625000007
      * velocity: 0
      */
-    const { velocity, progress } = scroll;
 
     let accelerateBy = directionFactor.current * baseVelocity;
 
-    if (velocity < 0) {
-      directionFactor.current = -1;
-    } else if (velocity > 0) {
-      directionFactor.current = 1;
-    }
+    directionFactor.current = direction;
 
-    accelerateBy += directionFactor.current * accelerateBy * velocity;
+    accelerateBy += directionFactor.current * accelerateBy * velocity * 0.5;
 
     speedTween.pause();
 
@@ -101,7 +96,7 @@ const ParallaxCarousel = ({
             className
           )}
         />
-        <div className="flex gap-x-12 sm:gap-x-24 " ref={wrapperRef}>
+        <div className="flex gap-x-12 sm:gap-x-24 w-full" ref={wrapperRef}>
           {images.map((image: any) => (
             <img
               className="logo-item max-h-8 w-full object-contain opacity-80 will-change-transform pl-12 sm:pl-24"

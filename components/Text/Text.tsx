@@ -3,9 +3,14 @@ import useGsapEffect from "@/hooks/useGsapEffect";
 import classNames from "classnames";
 import gsap from "gsap";
 import { SplitText } from "gsap/dist/SplitText";
-import { createElement, useRef } from "react";
+import { HTMLAttributes, createElement, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 
+interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
+  as?: "p";
+  animate?: boolean;
+  fontSize?: string;
+}
 const Text = ({
   children,
   as = "p",
@@ -13,7 +18,7 @@ const Text = ({
   animate = false,
   fontSize = "clamp-text-3xl",
   ...props
-}: any) => {
+}: TextProps) => {
   const ref = useRef(null);
 
   useGsapEffect(
@@ -21,7 +26,6 @@ const Text = ({
       if (!animate) return;
 
       const textElement = self.selector(".text-element")[0];
-      console.log(textElement);
 
       const text = new SplitText(textElement, { type: "words" });
 
