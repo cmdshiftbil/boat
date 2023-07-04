@@ -1,14 +1,14 @@
 import { CollectionAfterChangeHook, CollectionAfterDeleteHook } from "payload/types";
 
-const buildAndDeploy = () => {
+const buildAndDeploy = async () => {
   console.log("buildAndDeploy", "evaluating...")
   if (process.env.NODE_ENV !== "development") {
     console.log("buildAndDeploy", "EXECUTING!")
-    fetch("https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR");
+    await fetch("https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR");
   }
 }
 
-const triggerDeployHookAfterChange: CollectionAfterChangeHook = ({
+const triggerDeployHookAfterChange: CollectionAfterChangeHook = async ({
   doc, // full document data
   req, // full express request
   previousDoc, // document data before updating the collection
@@ -18,7 +18,7 @@ const triggerDeployHookAfterChange: CollectionAfterChangeHook = ({
     doc, operation,
     "process.env.NODE_ENV": process.env.NODE_ENV
   });
-  buildAndDeploy();
+  await buildAndDeploy();
   return doc;
 }
 const triggerDeployHookAfterDelete: CollectionAfterDeleteHook = ({
