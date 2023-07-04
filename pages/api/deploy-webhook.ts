@@ -16,7 +16,7 @@ async function getRawBody(readable: Readable): Promise<Buffer> {
   return Buffer.concat(chunks);
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   // const rawBody = await getRawBody(req);
   // const bodySignature = process.env.EMAIL_VERCEL_INTEGRATION_SECRET ? sha1(rawBody, process.env.EMAIL_VERCEL_INTEGRATION_SECRET) : null;
 
