@@ -176,12 +176,8 @@ const serialize = (children: Children) =>
           );
 
         return (
-          <div className={classNames("flex", alignmentClass)}>
-            {(node.fields as any)?.enableLink ? (
-              linkWithImage
-            ) : (
-              <NodeImage key={i} />
-            )}
+          <div className={classNames("flex", alignmentClass)} key={i}>
+            {(node.fields as any)?.enableLink ? linkWithImage : <NodeImage />}
           </div>
         );
       }
