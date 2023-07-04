@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "dev-4000": "next dev -p 4000",
-    "prebuild": "npm run generate:types",
+    "print-output": "echo 'sample!'",
+    "prebuild": "npm run generate:types && npm run print-output",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
