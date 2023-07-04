@@ -12,6 +12,9 @@ const triggerDeployHookAfterChange: CollectionAfterChangeHook = ({
   previousDoc, // document data before updating the collection
   operation, // name of the operation ie. 'create', 'update'
 }) => {
+  console.log("triggerDeployHookAfterChange", {
+    doc, operation
+  });
   buildAndDeploy();
   return doc;
 }
@@ -20,6 +23,9 @@ const triggerDeployHookAfterDelete: CollectionAfterDeleteHook = ({
   id, // id of document to delete
   doc, // deleted document
 }) => {
+  console.log("triggerDeployHookAfterDelete", {
+    doc, id
+  })
   buildAndDeploy();
   return doc;
 }

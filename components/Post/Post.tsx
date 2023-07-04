@@ -60,7 +60,7 @@ const Post = ({
               contentPiece.blogContentFields?.richText ? (
                 <RichText
                   key={idx}
-                  className="text-xl"
+                  className="pt-4 text-xl"
                   content={contentPiece.blogContentFields?.richText}
                 />
               ) : null
