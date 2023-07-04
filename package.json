@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev-4000": "next dev -p 4000",
-    "print-output": "echo process.env.PAYLOAD_PUBLIC_APP_URL",
+    "print-output": "echo $process.env.PAYLOAD_PUBLIC_APP_URL $PAYLOAD_PUBLIC_APP_URL",
     "prebuild": "npm run print-output && npm run generate:types",
     "build": "next build",
     "start": "next start",
