@@ -68,16 +68,16 @@ const alphaNeroSubLinks = [
     title: "Blog",
     url: "/blog",
   },
-  {
-    id: "dbf7011e-ae27-4f76-b5c9-1765ceacbbe1",
-    title: "Press",
-    url: "/press",
-  },
-  {
-    id: "deeae65a-a400-4b1e-8a70-3122417f11d9",
-    title: "Careers",
-    url: "/careers",
-  },
+  // {
+  //   id: "dbf7011e-ae27-4f76-b5c9-1765ceacbbe1",
+  //   title: "Press",
+  //   url: "/press",
+  // },
+  // {
+  //   id: "deeae65a-a400-4b1e-8a70-3122417f11d9",
+  //   title: "Careers",
+  //   url: "/careers",
+  // },
 ];
 
 const Footer = () => {
