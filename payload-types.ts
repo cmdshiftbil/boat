@@ -12,6 +12,8 @@ export interface Config {
     users: User;
     clients: Client;
     posts: Post;
+    pages: Page;
+    services: Service;
   };
   globals: {};
 }
@@ -23,20 +25,96 @@ export interface Project {
   location: string;
   buildDate: string;
   images?: {
-    view: "Front view" | "Back view" | "Left side" | "Right side" | "Top view" | "Interior view" | "Other";
+    view: 'Front view' | 'Back view' | 'Left side' | 'Right side' | 'Top view' | 'Interior view' | 'Other';
     label?: string;
     image: string | Media;
     id?: string;
     blockName?: string;
-    blockType: "project-view";
+    blockType: 'project-view';
   }[];
   layout?: {
-    content?: {
-      [k: string]: unknown;
-    }[];
+    layout?: 'oneColumn' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns';
+    columnOne: {
+      richText: {
+        [k: string]: unknown;
+      }[];
+      enableLink?: boolean;
+      link?: {
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
+        reference:
+          | {
+              value: string | Page;
+              relationTo: 'pages';
+            }
+          | {
+              value: string | Post;
+              relationTo: 'posts';
+            }
+          | {
+              value: string | Project;
+              relationTo: 'projects';
+            };
+        url: string;
+        label: string;
+        appearance?: 'default' | 'primary' | 'secondary';
+      };
+    };
+    columnTwo?: {
+      richText: {
+        [k: string]: unknown;
+      }[];
+      enableLink?: boolean;
+      link?: {
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
+        reference:
+          | {
+              value: string | Page;
+              relationTo: 'pages';
+            }
+          | {
+              value: string | Post;
+              relationTo: 'posts';
+            }
+          | {
+              value: string | Project;
+              relationTo: 'projects';
+            };
+        url: string;
+        label: string;
+        appearance?: 'default' | 'primary' | 'secondary';
+      };
+    };
+    columnThree?: {
+      richText: {
+        [k: string]: unknown;
+      }[];
+      enableLink?: boolean;
+      link?: {
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
+        reference:
+          | {
+              value: string | Page;
+              relationTo: 'pages';
+            }
+          | {
+              value: string | Post;
+              relationTo: 'posts';
+            }
+          | {
+              value: string | Project;
+              relationTo: 'projects';
+            };
+        url: string;
+        label: string;
+        appearance?: 'default' | 'primary' | 'secondary';
+      };
+    };
     id?: string;
     blockName?: string;
-    blockType: "content";
+    blockType: 'content';
   }[];
   meta?: {
     title?: string;
@@ -59,12 +137,171 @@ export interface Media {
   width?: number;
   height?: number;
 }
+export interface Page {
+  id: string;
+  title: string;
+  hero: {
+    type: 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText: {
+      [k: string]: unknown;
+    }[];
+    links: {
+      link: {
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
+        reference:
+          | {
+              value: string | Page;
+              relationTo: 'pages';
+            }
+          | {
+              value: string | Post;
+              relationTo: 'posts';
+            }
+          | {
+              value: string | Project;
+              relationTo: 'projects';
+            };
+        url: string;
+        label: string;
+        appearance?: 'default' | 'primary' | 'secondary';
+      };
+      id?: string;
+    }[];
+    media: string | Media;
+  };
+  layout: (
+    | {
+        layout?: 'oneColumn' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns';
+        columnOne: {
+          richText: {
+            [k: string]: unknown;
+          }[];
+          enableLink?: boolean;
+          link?: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference:
+              | {
+                  value: string | Page;
+                  relationTo: 'pages';
+                }
+              | {
+                  value: string | Post;
+                  relationTo: 'posts';
+                }
+              | {
+                  value: string | Project;
+                  relationTo: 'projects';
+                };
+            url: string;
+            label: string;
+            appearance?: 'default' | 'primary' | 'secondary';
+          };
+        };
+        columnTwo?: {
+          richText: {
+            [k: string]: unknown;
+          }[];
+          enableLink?: boolean;
+          link?: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference:
+              | {
+                  value: string | Page;
+                  relationTo: 'pages';
+                }
+              | {
+                  value: string | Post;
+                  relationTo: 'posts';
+                }
+              | {
+                  value: string | Project;
+                  relationTo: 'projects';
+                };
+            url: string;
+            label: string;
+            appearance?: 'default' | 'primary' | 'secondary';
+          };
+        };
+        columnThree?: {
+          richText: {
+            [k: string]: unknown;
+          }[];
+          enableLink?: boolean;
+          link?: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference:
+              | {
+                  value: string | Page;
+                  relationTo: 'pages';
+                }
+              | {
+                  value: string | Post;
+                  relationTo: 'posts';
+                }
+              | {
+                  value: string | Project;
+                  relationTo: 'projects';
+                };
+            url: string;
+            label: string;
+            appearance?: 'default' | 'primary' | 'secondary';
+          };
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'content';
+      }
+    | {
+        mediaBlockFields: {
+          position?: 'default' | 'wide';
+          media: string | Media;
+          caption?: {
+            [k: string]: unknown;
+          }[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'mediaBlock';
+      }
+  )[];
+  slug?: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Post {
+  id: string;
+  title: string;
+  image: string | Media;
+  excerpt: {
+    [k: string]: unknown;
+  }[];
+  content: {
+    blogContentFields: {
+      richText: {
+        [k: string]: unknown;
+      }[];
+    };
+    id?: string;
+    blockName?: string;
+    blockType: 'blogContent';
+  }[];
+  slug?: string;
+  author: string | User;
+  publishedOn: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
+}
 export interface User {
   id: string;
   firstName: string;
   lastName: string;
   photo?: string | Media;
-  roles: ("admin" | "editor")[];
+  roles: ('admin' | 'editor')[];
   updatedAt: string;
   createdAt: string;
   email?: string;
@@ -83,61 +320,18 @@ export interface Client {
   updatedAt: string;
   createdAt: string;
 }
-export interface Post {
+export interface Service {
   id: string;
   title: string;
-  image: string | Media;
-  excerpt: {
-    [k: string]: unknown;
+  description: string;
+  showInHomePage?: boolean;
+  serviceContent?: {
+    title: string;
+    description: string;
+    id?: string;
+    blockName?: string;
+    blockType: 'subService';
   }[];
-  content: (
-    | {
-      bannerFields: {
-        type?: "default" | "success" | "warning" | "error";
-        addCheckmark?: boolean;
-        content: {
-          [k: string]: unknown;
-        }[];
-      };
-      id?: string;
-      blockName?: string;
-      blockType: "banner";
-    }
-    | {
-      blogContentFields: {
-        richText: {
-          [k: string]: unknown;
-        }[];
-      };
-      id?: string;
-      blockName?: string;
-      blockType: "blogContent";
-    }
-    | {
-      blogMarkdownFields: {
-        markdown: string;
-      };
-      id?: string;
-      blockName?: string;
-      blockType: "blogMarkdown";
-    }
-    | {
-      mediaBlockFields: {
-        position?: "default" | "wide";
-        media: string | Media;
-        caption?: {
-          [k: string]: unknown;
-        }[];
-      };
-      id?: string;
-      blockName?: string;
-      blockType: "mediaBlock";
-    }
-  )[];
-  slug?: string;
-  author: string | User;
-  publishedOn: string;
   updatedAt: string;
   createdAt: string;
-  _status?: "draft" | "published";
 }
