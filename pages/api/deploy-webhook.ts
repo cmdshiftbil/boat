@@ -18,7 +18,7 @@ async function getRawBody(readable: Readable): Promise<Buffer> {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const rawBody = await getRawBody(req);
-  const bodySignature = process.env.INTEGRATION_SECRET ? sha1(rawBody, process.env.INTEGRATION_SECRET) : null;
+  const bodySignature = process.env.EMAIL_VERCEL_INTEGRATION_SECRET ? sha1(rawBody, process.env.EMAIL_VERCEL_INTEGRATION_SECRET) : null;
 
   if (bodySignature !== req.headers["x-vercel-signature"]) {
     console.error("Deploy hook triggered from outside Vercel. x-vercel-signature mismatch");
