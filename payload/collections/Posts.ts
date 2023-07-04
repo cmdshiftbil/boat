@@ -57,7 +57,8 @@ export const Posts: CollectionConfig = {
     {
       name: "content",
       type: "blocks",
-      blocks: [Banner, BlogContent, BlogMarkdown, MediaBlock],
+      // blocks: [Banner, BlogContent, BlogMarkdown, MediaBlock],
+      blocks: [BlogContent],
       required: true,
     },
     slug(),

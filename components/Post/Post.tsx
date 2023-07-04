@@ -55,12 +55,15 @@ const Post = ({
             <h1 className="mt-3 text-5xl leading-[60px] font-semibold text-gray-900 group-hover:text-gray-600">
               {title}
             </h1>
-            {/* <RichText content={content} className={classes.content} /> */}
-            {content[0]?.blogContentFields?.richText && (
-              <RichText
-                className="text-xl"
-                content={content[0]?.blogContentFields?.richText}
-              />
+
+            {content.map((contentPiece, idx) =>
+              contentPiece.blogContentFields?.richText ? (
+                <RichText
+                  key={idx}
+                  className="text-xl"
+                  content={contentPiece.blogContentFields?.richText}
+                />
+              ) : null
             )}
           </div>
         </div>

@@ -23,12 +23,12 @@ export interface Project {
   location: string;
   buildDate: string;
   images?: {
-    view: 'Front view' | 'Back view' | 'Left side' | 'Right side' | 'Top view' | 'Interior view' | 'Other';
+    view: "Front view" | "Back view" | "Left side" | "Right side" | "Top view" | "Interior view" | "Other";
     label?: string;
     image: string | Media;
     id?: string;
     blockName?: string;
-    blockType: 'project-view';
+    blockType: "project-view";
   }[];
   layout?: {
     content?: {
@@ -36,7 +36,7 @@ export interface Project {
     }[];
     id?: string;
     blockName?: string;
-    blockType: 'content';
+    blockType: "content";
   }[];
   meta?: {
     title?: string;
@@ -64,7 +64,7 @@ export interface User {
   firstName: string;
   lastName: string;
   photo?: string | Media;
-  roles: ('admin' | 'editor')[];
+  roles: ("admin" | "editor")[];
   updatedAt: string;
   createdAt: string;
   email?: string;
@@ -92,52 +92,52 @@ export interface Post {
   }[];
   content: (
     | {
-        bannerFields: {
-          type?: 'default' | 'success' | 'warning' | 'error';
-          addCheckmark?: boolean;
-          content: {
-            [k: string]: unknown;
-          }[];
-        };
-        id?: string;
-        blockName?: string;
-        blockType: 'banner';
-      }
+      bannerFields: {
+        type?: "default" | "success" | "warning" | "error";
+        addCheckmark?: boolean;
+        content: {
+          [k: string]: unknown;
+        }[];
+      };
+      id?: string;
+      blockName?: string;
+      blockType: "banner";
+    }
     | {
-        blogContentFields: {
-          richText: {
-            [k: string]: unknown;
-          }[];
-        };
-        id?: string;
-        blockName?: string;
-        blockType: 'blogContent';
-      }
+      blogContentFields: {
+        richText: {
+          [k: string]: unknown;
+        }[];
+      };
+      id?: string;
+      blockName?: string;
+      blockType: "blogContent";
+    }
     | {
-        blogMarkdownFields: {
-          markdown: string;
-        };
-        id?: string;
-        blockName?: string;
-        blockType: 'blogMarkdown';
-      }
+      blogMarkdownFields: {
+        markdown: string;
+      };
+      id?: string;
+      blockName?: string;
+      blockType: "blogMarkdown";
+    }
     | {
-        mediaBlockFields: {
-          position?: 'default' | 'wide';
-          media: string | Media;
-          caption?: {
-            [k: string]: unknown;
-          }[];
-        };
-        id?: string;
-        blockName?: string;
-        blockType: 'mediaBlock';
-      }
+      mediaBlockFields: {
+        position?: "default" | "wide";
+        media: string | Media;
+        caption?: {
+          [k: string]: unknown;
+        }[];
+      };
+      id?: string;
+      blockName?: string;
+      blockType: "mediaBlock";
+    }
   )[];
   slug?: string;
   author: string | User;
   publishedOn: string;
   updatedAt: string;
   createdAt: string;
-  _status?: 'draft' | 'published';
+  _status?: "draft" | "published";
 }
