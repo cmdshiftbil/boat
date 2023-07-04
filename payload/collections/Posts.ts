@@ -10,7 +10,8 @@ import { ReusableContent } from "../blocks/ReusableContent";
 import richText from "../fields/richText";
 import slug from "../fields/slug";
 import { formatPreviewURL } from "../utilities/formatPreviewURL";
-import { regeneratePage } from "../utilities/regeneratePage";
+// import { regeneratePage } from "../utilities/regeneratePage";
+import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
 
 export const Posts: CollectionConfig = {
   slug: "posts",
@@ -29,15 +30,17 @@ export const Posts: CollectionConfig = {
     delete: isAdmin,
   },
   hooks: {
-    afterChange: [
-      ({ req: { payload }, doc }) => {
-        regeneratePage({
-          payload,
-          collection: "posts",
-          doc,
-        });
-      },
-    ],
+    afterChange: [triggerDeployHookAfterChange],
+    afterDelete: [triggerDeployHookAfterDelete],
+    // afterChange: [
+    //   ({ req: { payload }, doc }) => {
+    //     regeneratePage({
+    //       payload,
+    //       collection: "posts",
+    //       doc,
+    //     });
+    //   },
+    // ],
   },
   fields: [
     {
