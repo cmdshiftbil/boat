@@ -52,7 +52,7 @@ export default async function HomePage() {
     },
     presence: {
       title:
-        "Headquartered in Dubai, with operations across the UAE, KSA, Middle East, Levant and North Africa",
+        "Headquartered in Dubai, with operations across the UAE, KSA, Middle East, Levant and Africa",
       imageUrl: "https://via.placeholder.com/550x550",
       imageAlt: "Temporary country image",
     },
