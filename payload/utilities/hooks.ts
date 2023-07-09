@@ -9,7 +9,10 @@ export const buildAndDeploy = async (deployUrl?: string) => {
     await fetch(url);
     return "Deploy successful. Please wait a few minutes for your changes to reflect in the website";
   } else {
-    console.log("Skipping build as either not production or URL is not available...");
+    console.log("Skipping build as either not production or URL is not available...", {
+      "process.env.NODE_ENV": process.env.NODE_ENV,
+      url
+    });
     return "Skipping deployment due to development environment";
   }
 }
