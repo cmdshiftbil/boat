@@ -1,9 +1,16 @@
 import { CollectionAfterChangeHook, CollectionAfterDeleteHook } from "payload/types";
 
-const buildAndDeploy = async () => {
-  if (process.env.NODE_ENV !== "development") {
-    console.log("Deploying due to CMS changes");
-    await fetch("https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR");
+export const buildAndDeploy = async (deployUrl?: string) => {
+  // const url = deployUrl ?? "https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR";
+  const url = deployUrl ?? process.env.DEPLOY_HOOK;
+
+  if (process.env.NODE_ENV !== "development" && url) {
+    console.log("Deploying a new build...");
+    await fetch(url);
+    return "Deploy successful. Please wait a few minutes for your changes to reflect in the website";
+  } else {
+    console.log("Skipping build as either not production or URL is not available...");
+    return "Skipping deployment due to development environment";
   }
 }
 
@@ -13,7 +20,8 @@ const triggerDeployHookAfterChange: CollectionAfterChangeHook = async ({
   previousDoc, // document data before updating the collection
   operation, // name of the operation ie. 'create', 'update'
 }) => {
-  await buildAndDeploy();
+  // Disable auto deploys as they are costly
+  // await buildAndDeploy();
   return doc;
 }
 const triggerDeployHookAfterDelete: CollectionAfterDeleteHook = async ({
@@ -21,7 +29,8 @@ const triggerDeployHookAfterDelete: CollectionAfterDeleteHook = async ({
   id, // id of document to delete
   doc, // deleted document
 }) => {
-  await buildAndDeploy();
+  // Disable auto deploys as they are costly
+  // await buildAndDeploy();
   return doc;
 }
 

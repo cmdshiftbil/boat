@@ -11,6 +11,7 @@ import { Clients } from "./collections/Clients";
 import { Services } from "./collections/Services";
 import { Posts } from "./collections/Posts";
 import { Pages } from "./collections/Pages";
+import { CustomDashboard } from "./components/CustomDashboard/CustomDashboard";
 
 const adapter = s3Adapter({
   config: {
@@ -40,6 +41,7 @@ export default buildConfig({
         Icon: Icon,
         Logo: Logo,
       },
+      afterDashboard: [CustomDashboard]
     },
   },
 
