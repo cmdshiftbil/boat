@@ -47,6 +47,3 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - SENDGRID_API_KEY
 - EMAIL_DEFAULT_FROM_EMAIL
 - DEPLOY_NOTIFICATION_EMAIL_ADDRESS
-
-2. Deploy hook - Update env vars to trigger deploy hooks for different environments
-- DEPLOY_HOOK (example value: "https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR")
