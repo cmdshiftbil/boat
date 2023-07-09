@@ -24,6 +24,7 @@ const OurClientsSection = ({ data }: OurClientsSectionProps) => {
       title={data.title}
       colorScheme="pampas"
       articleClassName="px-0 py-24"
+      className="px-0"
     >
       <div className="p-12">
         <Text className="text-shark-900 max-w-5xl">{data.subtitle}</Text>

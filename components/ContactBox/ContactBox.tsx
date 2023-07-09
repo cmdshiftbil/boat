@@ -1,3 +1,5 @@
+"use client";
+
 import { Dialog, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import { ClipboardCopy } from "lucide-react";
@@ -98,24 +100,7 @@ const ContactBox = ({ title, children, className }: ContactBoxProps) => {
                   >
                     <div>Copy to clipboard</div>
                   </Dialog.Title>
-                  <div className="mt-6">
-                    <span className="isolate flex flex-col  shadow-sm border border-shark-50 overflow-hidden">
-                      {Children.map(children, (child: any) => {
-                        if (!child.props.clipboard) return;
-
-                        if (child.type === ContactBox.Item) {
-                          return (
-                            <ClipboardButton
-                              state={state}
-                              title={child.props.clipboard.title}
-                              value={child.props.clipboard.value}
-                              onClick={onClickCopy}
-                            />
-                          );
-                        }
-                      })}
-                    </span>
-                  </div>
+                  <div className="mt-6"></div>
 
                   {/* <div className="mt-4">
                     <button
