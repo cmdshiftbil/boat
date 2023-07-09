@@ -1,18 +1,14 @@
 import { CollectionAfterChangeHook, CollectionAfterDeleteHook } from "payload/types";
 
 export const buildAndDeploy = async (deployUrl?: string) => {
-  // const url = deployUrl ?? "https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR";
-  const url = deployUrl ?? process.env.DEPLOY_HOOK;
+  const url = deployUrl ?? "https://api.vercel.com/v1/integrations/deploy/prj_sgjyoynUg0amTZ7DoO4453GY9kMA/dfGqdnH1QR";
 
   if (process.env.NODE_ENV !== "development" && url) {
     console.log("Deploying a new build...");
     await fetch(url);
     return "Deploy successful. Please wait a few minutes for your changes to reflect in the website";
   } else {
-    console.log("Skipping build as either not production or URL is not available...", {
-      "process.env.NODE_ENV": process.env.NODE_ENV,
-      url
-    });
+    console.log("Skipping build as either not production or URL is not available...");
     return "Skipping deployment due to development environment";
   }
 }
