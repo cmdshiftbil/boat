@@ -107,7 +107,12 @@ export default async function HomePage() {
       >
         <>
           <HeroSection data={homeData.hero} />
-          <MainHeadlineSection />
+          <MainHeadlineSection>
+            We specialize in{" "}
+            <strong className="main-headline">crafting innovative </strong>
+            retail concepts that{" "}
+            <strong className="main-headline">stay ahead of the curve</strong>.
+          </MainHeadlineSection>
           {/* <ThreeDModelSection /> */}
           <OurPresenceSection data={homeData.presence} />
           <WhatWeDoSection data={homeData.whatWeDo} />
