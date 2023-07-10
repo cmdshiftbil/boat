@@ -35,13 +35,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log("Sending deploy success email...", {
     params: {
       "req.body": req.body,
-      "req.query": req.query,
-      "req.headers": req.headers,
+      // "req.query": req.query,
+      // "req.headers": req.headers,
     },
     stringifiedParams: JSON.stringify({
       "req.body": req.body,
-      "req.query": req.query,
-      "req.headers": req.headers,
+      // "req.query": req.query,
+      // "req.headers": req.headers,
     })
   })
 
