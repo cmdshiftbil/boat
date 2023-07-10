@@ -2,6 +2,49 @@ import ProjectHeading from "@/components/ProjectLayout/ProjectHeading";
 import getPayloadClient from "@/payload/payloadClient";
 import { notFound } from "next/navigation";
 import { ImageGallery } from "@/components/ImageGallery/ImageGallery";
+import { prepareSeoData } from "@/utils/seo.utils";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const pageSlugName = "projects";
+  // read route params
+  const slug = params.slug;
+
+  const payload = await getPayloadClient();
+  const pageResponse = await payload.find({
+    collection: "pages",
+    limit: 1,
+    where: {
+      slug: { equals: pageSlugName },
+    },
+  });
+
+  const projects = await payload.find({
+    collection: "projects",
+    where: {
+      slug: {
+        equals: params.slug,
+      },
+    },
+  });
+
+  const project = projects?.docs?.[0];
+
+  const pageData = pageResponse.docs?.[0] ?? {};
+  const seoData = prepareSeoData({
+    ...pageData,
+    title: `Project: ${project?.title}`,
+  });
+  return seoData;
+}
 
 export default async function ProjectPage(props: any) {
   const { params } = props;

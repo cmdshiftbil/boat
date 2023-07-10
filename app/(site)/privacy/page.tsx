@@ -1,6 +1,36 @@
 import { AnimateInOut } from "@/components/Animations";
 import Section from "@/components/Section";
 import Text from "@/components/Text";
+import getPayloadClient from "@/payload/payloadClient";
+import { prepareSeoData } from "@/utils/seo.utils";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const pageSlugName = "privacy";
+  // read route params
+  const id = params.id;
+
+  const payload = await getPayloadClient();
+  const pageResponse = await payload.find({
+    collection: "pages",
+    limit: 1,
+    where: {
+      slug: { equals: pageSlugName },
+    },
+  });
+
+  const pageData = pageResponse.docs?.[0] ?? {};
+  const seoData = prepareSeoData(pageData);
+  return seoData;
+}
 
 const date = "22 June, 2023";
 const websiteName = "Alpha Nero";
@@ -26,14 +56,6 @@ export default async function PrivacyPage() {
         y: 0,
         ease: "power4.inOut",
       }}
-      // TODO: Outro is not functional
-      // Transition Out (from)
-      // from={{
-      //   transform: "translate(" + 0 + "px, " + 200 + "px)",
-      //   opacity: 0,
-      //   duration: 0.25,
-      //   ease: "power4.out",
-      // }}
       skipOutro={true}
     >
       <Section className="p-4 md:p-6 lg:p-12" title="Privacy Policy">

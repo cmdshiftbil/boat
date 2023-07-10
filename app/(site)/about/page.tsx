@@ -10,6 +10,36 @@ import content from "@/content/content";
 import LeadershipSection from "@/sections/Leadership.section";
 import TeamCountersSection from "@/sections/TeamCounters.section";
 import TeamScrollSection from "@/sections/TeamScroll.section";
+import getPayloadClient from "@/payload/payloadClient";
+import { prepareSeoData } from "@/utils/seo.utils";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const pageSlugName = "about";
+  // read route params
+  const id = params.id;
+
+  const payload = await getPayloadClient();
+  const pageResponse = await payload.find({
+    collection: "pages",
+    limit: 1,
+    where: {
+      slug: { equals: pageSlugName },
+    },
+  });
+
+  const pageData = pageResponse.docs?.[0] ?? {};
+  const seoData = prepareSeoData(pageData);
+  return seoData;
+}
 
 export default async function AboutPage() {
   return (
