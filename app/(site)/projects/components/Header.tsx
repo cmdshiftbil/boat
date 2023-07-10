@@ -7,7 +7,7 @@ import Text from "../../../../components/Text";
 export const Header = () => {
   return (
     <header className="px-6 sm:px-12">
-      <Heading className="mb-6 text-shark-50 sm:mb-12">Porfolio</Heading>
+      <Heading className="mb-6 text-shark-50 sm:mb-12">Portfolio</Heading>
 
       <div className="flex flex-col gap-6 pb-5 lg:flex-row sm:items-center sm:justify-between sm:gap-12">
         <Text className="flex-1">

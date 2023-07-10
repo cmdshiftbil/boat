@@ -9,7 +9,7 @@ const distanceThreshold = { min: 0, max: 250 };
 const blurInterval = { from: 6, to: 0 };
 const scaleInterval = { from: 1.02, to: 1 };
 
-const PorfolioItem = ({ title, image, year, location, slug }: any) => {
+const PortfolioItem = ({ title, image, year, location, slug }: any) => {
   const ref = useRef<any>();
   const imageRef = useRef<any>();
 
@@ -73,4 +73,4 @@ const PorfolioItem = ({ title, image, year, location, slug }: any) => {
   );
 };
 
-export default PorfolioItem;
+export default PortfolioItem;
