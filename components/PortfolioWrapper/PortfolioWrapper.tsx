@@ -1,4 +1,4 @@
-const PorfolioWrapper = ({ children }: any) => {
+const PortfolioWrapper = ({ children }: any) => {
   return (
     <section className="grid gap-6 my-0 mx-auto pb-[30vh] grid-cols-portfolioContent p-6">
       {children}
@@ -6,4 +6,4 @@ const PorfolioWrapper = ({ children }: any) => {
   );
 };
 
-export default PorfolioWrapper;
+export default PortfolioWrapper;

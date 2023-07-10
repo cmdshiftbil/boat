@@ -1,11 +1,21 @@
 "use client";
 
+import { ReactNode, useRef } from "react";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/dist/SplitText";
-import { useRef } from "react";
+import classNames from "classnames";
 
-const MainHeadlineSection = () => {
+interface MainHeadlineSectionProps {
+  children: ReactNode;
+  className?: string;
+  textClassName?: string;
+}
+const MainHeadlineSection = ({
+  textClassName,
+  className,
+  children,
+}: MainHeadlineSectionProps) => {
   const ref = useRef(null);
 
   useGsapEffect((self: any) => {
@@ -44,18 +54,21 @@ const MainHeadlineSection = () => {
     );
   }, ref);
 
-  // TODO: Replace hard-coded text with CMS content
   return (
     <section
-      className="p-6 sm:p-12 md:p-24 h-screen flex justify-center items-center text-center"
+      className={classNames(
+        "p-6 sm:p-12 md:p-24 h-screen flex justify-center items-center text-center",
+        className
+      )}
       ref={ref}
     >
-      <h1 className="main-headline clamp-text-8xl text-shark-50">
-        {/* We are forward-thinking retail concept development specialists. */}
-        We specialize in{" "}
-        <strong className="main-headline">crafting innovative </strong>retail
-        concepts that{" "}
-        <strong className="main-headline">stay ahead of the curve</strong>.
+      <h1
+        className={classNames(
+          "main-headline clamp-text-8xl text-shark-50",
+          textClassName
+        )}
+      >
+        {children}
       </h1>
     </section>
   );

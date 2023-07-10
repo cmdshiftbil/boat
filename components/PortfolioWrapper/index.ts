@@ -1,3 +1,3 @@
-import PorfolioWrapper from "./PortfolioWrapper";
+import PortfolioWrapper from "./PortfolioWrapper";
 
-export default PorfolioWrapper;
+export default PortfolioWrapper;

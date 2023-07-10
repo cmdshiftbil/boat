@@ -5,6 +5,7 @@ import Text from "@/components/Text";
 import useMobileDevice from "@/hooks/useMobileDevice";
 import { useMemo } from "react";
 import ParticleImage from "@/components/ParticleImage/ParticleImage";
+import MainHeadlineSection from "./MainHeadline.section";
 
 const content = [
   {
@@ -83,16 +84,15 @@ const CarbonReportsSection = () => {
                   )}
                 >
                   {/* Desktop heading */}
-                  <Heading
-                    className="text-shark-50 clamp-text-2xl flex-1 opacity-0 md:opacity-100 h-1 w-1 md:w-auto md:h-auto overflow-hidden"
-                    fontSize="clamp-text-4xl"
+                  <MainHeadlineSection
+                    className={classNames(
+                      "!w-auto !h-auto",
+                      "!text-start !p-0"
+                    )}
+                    textClassName="!clamp-text-4xl"
                   >
-                    {feature.name}
-                  </Heading>
-                  {/* Mobile heading */}
-                  <div className="text-shark-50 clamp-text-xl flex-1 md:hidden">
-                    {feature.name}
-                  </div>
+                    <>{feature.name}</>
+                  </MainHeadlineSection>
                   <Text
                     className="mt-2 text-zinc-400"
                     fontSize="clamp-text-3xl"
