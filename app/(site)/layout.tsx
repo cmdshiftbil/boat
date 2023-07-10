@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 
 import Init from "@/components/Init";
 import { Layout } from "@/layouts/default";
+export const revalidate = 0;
 
 const RootLayout = ({ children }: any) => {
   return (
