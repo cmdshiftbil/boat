@@ -86,7 +86,6 @@ const CarbonReportsSection = () => {
                   {/* Desktop heading */}
                   <MainHeadlineSection
                     className={classNames(
-                      // "opacity-0 md:opacity-100 h-1 w-1 md:w-auto md:h-auto overflow-hidden",
                       "!w-auto !h-auto",
                       "!text-start !p-0"
                     )}
@@ -94,10 +93,6 @@ const CarbonReportsSection = () => {
                   >
                     <>{feature.name}</>
                   </MainHeadlineSection>
-                  {/* Mobile heading */}
-                  {/* <div className="text-shark-50 clamp-text-xl flex-1 md:hidden">
-                    {feature.name}
-                  </div> */}
                   <Text
                     className="mt-2 text-zinc-400"
                     fontSize="clamp-text-3xl"
