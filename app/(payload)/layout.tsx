@@ -1,7 +1,3 @@
-export const metadata = {
-  title: "Alpha Nero | CMS",
-};
-
 export default function RootLayout({
   children,
 }: {

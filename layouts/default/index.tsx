@@ -60,15 +60,15 @@ export function Layout({
   );
 }
 
-// TODO:: Fix meta data
-export async function generateMetadata({ params }: any) {
-  const project = await fetchContent(
-    "projects",
-    `where[slug][equals]=${params.slug}`
-  );
+// // TODO:: Fix meta data
+// export async function generateMetadata({ params }: any) {
+//   const project = await fetchContent(
+//     "projects",
+//     `where[slug][equals]=${params.slug}`
+//   );
 
-  return {
-    title: project.docs[0].meta,
-    description: "This is a description",
-  };
-}
+//   return {
+//     title: project.docs[0].meta,
+//     description: "This is a description",
+//   };
+// }

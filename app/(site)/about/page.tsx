@@ -38,6 +38,10 @@ export async function generateMetadata({
 
   const pageData = pageResponse.docs?.[0] ?? {};
   const seoData = prepareSeoData(pageData);
+  console.log("About", {
+    seoData,
+    stringifiedSeoData: JSON.stringify(seoData),
+  });
   return seoData;
 }
 

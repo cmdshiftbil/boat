@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
 
 export function getPageTitle(page?: string) {
   return page ? `${page} | Alpha Nero` : "Alpha Nero";
