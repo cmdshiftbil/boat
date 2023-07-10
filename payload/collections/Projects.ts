@@ -1,9 +1,8 @@
 import { CollectionConfig } from "payload/types";
 import slug from "../fields/slug";
-import formatSlug from "../utilities/formatSlug";
 import meta from "../fields/meta";
-import { Content } from "../blocks/Content";
 import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
+import { BlogContent } from "../blocks/BlogContent";
 
 export const ProjectsSlug = "projects";
 export const Projects: CollectionConfig = {
@@ -99,10 +98,10 @@ export const Projects: CollectionConfig = {
               ],
             },
             {
-              name: "layout",
-              label: "Projet Layout",
+              name: "content",
               type: "blocks",
-              blocks: [Content],
+              blocks: [BlogContent],
+              required: true,
             },
           ],
         },

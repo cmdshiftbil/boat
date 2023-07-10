@@ -61,7 +61,7 @@ function CustomHead({ title = "", description, image, keywords }: any) {
         <link rel="icon" href="/favicon.ico" />
         {/* END FAVICON */}
       </NextHead>
-      <NextSeo
+      {/* <NextSeo
         title={title}
         description={description}
         openGraph={{
@@ -85,7 +85,7 @@ function CustomHead({ title = "", description, image, keywords }: any) {
           handle: "@alphanero",
           cardType: "summary_large_image",
         }}
-      />
+      /> */}
     </>
   );
 }

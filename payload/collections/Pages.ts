@@ -1,17 +1,13 @@
 import { CollectionConfig } from "payload/types";
 import { publishedOnly } from "../access/publishedOnly";
-import { Content } from "../blocks/Content";
-import { MediaBlock } from "../blocks/Media";
-import { hero } from "../fields/hero";
 import slug from "../fields/slug";
 import { triggerDeployHookAfterChange } from "../utilities/hooks";
-// import { regenerateStaticPage } from "../utilities/regenerateStaticPage";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "slug", "updatedAt"],
+    defaultColumns: ["title", "description", "keywords", "updatedAt"],
     preview: (doc, { locale }) => {
       if (doc?.slug) {
         return `/${doc.slug}${locale ? `?locale=${locale}` : ""}`;
@@ -34,24 +30,20 @@ export const Pages: CollectionConfig = {
       required: true,
     },
     {
-      type: "tabs",
-      tabs: [
-        {
-          label: "Hero",
-          fields: [hero],
-        },
-        {
-          label: "Content",
-          fields: [
-            {
-              name: "layout",
-              type: "blocks",
-              required: true,
-              blocks: [Content, MediaBlock],
-            },
-          ],
-        },
-      ],
+      name: "description",
+      type: "text",
+      required: false,
+    },
+    {
+      name: "keywords",
+      type: "text",
+      required: false,
+    },
+    {
+      name: "image",
+      type: "upload",
+      relationTo: "media",
+      required: false,
     },
     slug(),
   ],
