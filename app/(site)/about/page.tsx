@@ -12,17 +12,17 @@ import TeamCountersSection from "@/sections/TeamCounters.section";
 import TeamScrollSection from "@/sections/TeamScroll.section";
 import getPayloadClient from "@/payload/payloadClient";
 import { prepareSeoData } from "@/utils/seo.utils";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const pageSlugName = "about";
   // read route params
   const id = params.id;

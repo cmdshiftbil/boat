@@ -11,17 +11,17 @@ import content from "@/content/content";
 import { AnimateInOut } from "@/components/Animations";
 import { getPageTitle, prepareSeoData } from "@/utils/seo.utils";
 import ThreeDModelSection from "@/sections/ThreeDModel.section";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const pageSlugName = "home";
   // read route params
   const id = params.id;

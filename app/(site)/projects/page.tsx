@@ -4,17 +4,17 @@ import { Header } from "@/app/(site)/projects/components/Header";
 import { Projects } from "@/app/(site)/projects/components/Projects";
 import { AnimateInOut } from "@/components/Animations";
 import { prepareSeoData } from "@/utils/seo.utils";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const pageSlugName = "projects";
   // read route params
   const id = params.id;

@@ -5,17 +5,17 @@ import Page from "@/components/Page";
 import Section from "@/components/Section";
 import getPayloadClient from "@/payload/payloadClient";
 import { prepareSeoData } from "@/utils/seo.utils";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const pageSlugName = "contact";
   // read route params
   const id = params.id;

@@ -15,7 +15,7 @@ import ServicesSections from "@/sections/Services.sections";
 import { AnimateInOut } from "@/components/Animations";
 import getPayloadClient from "@/payload/payloadClient";
 import { prepareSeoData } from "@/utils/seo.utils";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 const { title, description, services } = servicePageContent;
 
@@ -24,10 +24,10 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const pageSlugName = "services";
   // read route params
   const id = params.id;

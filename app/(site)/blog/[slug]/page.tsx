@@ -3,17 +3,17 @@ import Post from "@/components/Post/Post";
 import getPayloadClient from "@/payload/payloadClient";
 import { notFound } from "next/navigation";
 import { prepareSeoData } from "@/utils/seo.utils";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const pageSlugName = "blog";
   // read route params
   const slug = params.slug;
