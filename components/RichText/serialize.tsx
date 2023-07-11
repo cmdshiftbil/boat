@@ -23,31 +23,27 @@ type Leaf = {
 
 interface ExternalLinkProps {
   children: React.ReactNode;
-  node: Leaf;
+  newTab?: boolean;
   href: string;
   style?: CSSProperties;
 }
-const ExternalLink = ({ node, href, children, style }: ExternalLinkProps) => (
-  <a
-    href={escapeHTML(href)}
-    target={(node.fields as any)?.link?.newTab ? "_blank" : "_self"}
-    style={style}
-  >
+const ExternalLink = ({ newTab, href, children, style }: ExternalLinkProps) => (
+  <a href={escapeHTML(href)} target={newTab ? "_blank" : "_self"} style={style}>
     {children}
   </a>
 );
 
 interface InternalLinkProps {
   children: React.ReactNode;
-  node: Leaf;
+  newTab?: boolean;
   href: string;
   style?: CSSProperties;
 }
-const InternalLink = ({ node, href, children, style }: InternalLinkProps) => {
+const InternalLink = ({ newTab, href, children, style }: InternalLinkProps) => {
   return (
     <Link
       href={href?.replace("/pages", "")?.replace("/posts", "/blog")}
-      target={(node.fields as any)?.link?.newTab ? "_blank" : "_self"}
+      target={newTab ? "_blank" : "_self"}
       style={style}
     >
       {children}
@@ -158,7 +154,7 @@ const serialize = (children: Children) =>
           (node.fields as any)?.link?.type === "custom" ? (
             <ExternalLink
               href={(node.fields as any)?.link?.url}
-              node={node}
+              newTab={(node.fields as any)?.link?.newTab}
               key={i}
               style={{ width: `${width}%`, border: "1px solid" }}
             >
@@ -167,7 +163,7 @@ const serialize = (children: Children) =>
           ) : (
             <InternalLink
               href={`/${reference?.relationTo}/${reference?.value?.slug}`}
-              node={node}
+              newTab={(node.fields as any)?.link?.newTab}
               key={i}
               style={{ width: `${width}%`, border: "1px solid" }}
             >
@@ -195,10 +191,18 @@ const serialize = (children: Children) =>
       case "li":
         return <li key={i}>{serialize(node.children as Children)}</li>;
       case "link":
-        return (
-          <ExternalLink href={node.url ?? ""} node={node} key={i}>
+        const reference = node?.doc as any;
+        return node.linkType === "custom" ? (
+          <ExternalLink href={node.url ?? ""} newTab={!!node.newTab}>
             {serialize(node.children as Children)}
           </ExternalLink>
+        ) : (
+          <InternalLink
+            href={`/${reference?.relationTo}/${reference?.value?.slug}`}
+            newTab={!!node.newTab}
+          >
+            {serialize(node.children as Children)}
+          </InternalLink>
         );
 
       default:
