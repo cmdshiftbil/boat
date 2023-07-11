@@ -78,10 +78,10 @@ export default async function Services() {
         // }}
         skipOutro={true}
       >
-        <header className="px-6 sm:px-12 lg:pl-96">
+        <header className="px-6 sm:px-12 lg:pl-48 xl:pl-96">
           <Heading className="mb-6 text-shark-50 sm:mb-12">{title}</Heading>
           <div className="grid gap-12 pb-5">
-            <Text className="flex-1 max-w-7xl clamp-text-7xl">
+            <Text className="flex-1 max-w-7xl clamp-text-5xl">
               {description}
             </Text>
             <div className="">

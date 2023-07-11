@@ -23,31 +23,27 @@ type Leaf = {
 
 interface ExternalLinkProps {
   children: React.ReactNode;
-  node: Leaf;
+  newTab?: boolean;
   href: string;
   style?: CSSProperties;
 }
-const ExternalLink = ({ node, href, children, style }: ExternalLinkProps) => (
-  <a
-    href={escapeHTML(href)}
-    target={(node.fields as any)?.link?.newTab ? "_blank" : "_self"}
-    style={style}
-  >
+const ExternalLink = ({ newTab, href, children, style }: ExternalLinkProps) => (
+  <a href={escapeHTML(href)} target={newTab ? "_blank" : "_self"} style={style}>
     {children}
   </a>
 );
 
 interface InternalLinkProps {
   children: React.ReactNode;
-  node: Leaf;
+  newTab?: boolean;
   href: string;
   style?: CSSProperties;
 }
-const InternalLink = ({ node, href, children, style }: InternalLinkProps) => {
+const InternalLink = ({ newTab, href, children, style }: InternalLinkProps) => {
   return (
     <Link
-      href={href}
-      target={(node.fields as any)?.link?.newTab ? "_blank" : "_self"}
+      href={href?.replace("/pages", "")?.replace("/posts", "/blog")}
+      target={newTab ? "_blank" : "_self"}
       style={style}
     >
       {children}
@@ -149,7 +145,7 @@ const serialize = (children: Children) =>
           alignmentClass = "justify-end";
         }
 
-        const NodeImage = ({ props }: any) => (
+        const NodeImage = (props: any) => (
           <img src={node.value?.url} alt="" className="w-full" {...props} />
         );
         const reference = (node.fields as any)?.link?.reference;
@@ -158,18 +154,18 @@ const serialize = (children: Children) =>
           (node.fields as any)?.link?.type === "custom" ? (
             <ExternalLink
               href={(node.fields as any)?.link?.url}
-              node={node}
+              newTab={(node.fields as any)?.link?.newTab}
               key={i}
-              style={{ width: `${width}%` }}
+              style={{ width: `${width}%`, border: "1px solid" }}
             >
               <NodeImage />
             </ExternalLink>
           ) : (
             <InternalLink
               href={`/${reference?.relationTo}/${reference?.value?.slug}`}
-              node={node}
+              newTab={(node.fields as any)?.link?.newTab}
               key={i}
-              style={{ width: `${width}%` }}
+              style={{ width: `${width}%`, border: "1px solid" }}
             >
               <NodeImage />
             </InternalLink>
@@ -177,7 +173,11 @@ const serialize = (children: Children) =>
 
         return (
           <div className={classNames("flex", alignmentClass)} key={i}>
-            {(node.fields as any)?.enableLink ? linkWithImage : <NodeImage />}
+            {(node.fields as any)?.enableLink ? (
+              linkWithImage
+            ) : (
+              <NodeImage style={{ width: `${width}%`, border: "1px solid" }} />
+            )}
           </div>
         );
       }
@@ -188,18 +188,21 @@ const serialize = (children: Children) =>
           </ul>
         );
       case "ol":
-        return (
-          <ol className="list-decimal px-6 py-3" key={i}>
-            {serialize(node.children as Children)}
-          </ol>
-        );
       case "li":
         return <li key={i}>{serialize(node.children as Children)}</li>;
       case "link":
-        return (
-          <ExternalLink href={node.url ?? ""} node={node} key={i}>
+        const reference = node?.doc as any;
+        return node.linkType === "custom" ? (
+          <ExternalLink href={node.url ?? ""} newTab={!!node.newTab}>
             {serialize(node.children as Children)}
           </ExternalLink>
+        ) : (
+          <InternalLink
+            href={`/${reference?.relationTo}/${reference?.value?.slug}`}
+            newTab={!!node.newTab}
+          >
+            {serialize(node.children as Children)}
+          </InternalLink>
         );
 
       default:

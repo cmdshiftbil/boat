@@ -47,7 +47,7 @@ const HowItWorksSection = () => {
                 <Heading className="text-shark-50" fontSize="clamp-text-xl">
                   {item.title}
                 </Heading>
-                <Text fontSize="clamp-text-lg">{item.description}</Text>
+                <Text fontSize="clamp-text-xl pt-2">{item.description}</Text>
                 <Text className="mt-4" fontSize="clamp-text-xs">
                   {item.caption}
                 </Text>

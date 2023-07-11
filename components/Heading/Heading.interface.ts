@@ -1,4 +1,9 @@
 import { Children } from "react";
+
+interface ScrollTriggerOptions {
+  start?: string;
+  end?: string;
+}
 export interface HeadingProps {
   color?: string;
   className?: string;
@@ -7,4 +12,5 @@ export interface HeadingProps {
   children: string;
   eyebrow?: string;
   fontSize?: string;
+  scrollTriggerOptions?: ScrollTriggerOptions;
 }

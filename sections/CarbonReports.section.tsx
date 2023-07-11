@@ -94,7 +94,7 @@ const CarbonReportsSection = () => {
                     <>{feature.name}</>
                   </MainHeadlineSection>
                   <Text
-                    className="mt-2 text-zinc-400"
+                    className="mt-2 pt-9 text-zinc-400"
                     fontSize="clamp-text-3xl"
                   >
                     {feature.description}
