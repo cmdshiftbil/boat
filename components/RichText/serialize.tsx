@@ -46,7 +46,7 @@ interface InternalLinkProps {
 const InternalLink = ({ node, href, children, style }: InternalLinkProps) => {
   return (
     <Link
-      href={href}
+      href={href?.replace("/pages", "")?.replace("/posts", "/blog")}
       target={(node.fields as any)?.link?.newTab ? "_blank" : "_self"}
       style={style}
     >
@@ -149,7 +149,7 @@ const serialize = (children: Children) =>
           alignmentClass = "justify-end";
         }
 
-        const NodeImage = ({ props }: any) => (
+        const NodeImage = (props: any) => (
           <img src={node.value?.url} alt="" className="w-full" {...props} />
         );
         const reference = (node.fields as any)?.link?.reference;
@@ -160,7 +160,7 @@ const serialize = (children: Children) =>
               href={(node.fields as any)?.link?.url}
               node={node}
               key={i}
-              style={{ width: `${width}%` }}
+              style={{ width: `${width}%`, border: "1px solid" }}
             >
               <NodeImage />
             </ExternalLink>
@@ -169,7 +169,7 @@ const serialize = (children: Children) =>
               href={`/${reference?.relationTo}/${reference?.value?.slug}`}
               node={node}
               key={i}
-              style={{ width: `${width}%` }}
+              style={{ width: `${width}%`, border: "1px solid" }}
             >
               <NodeImage />
             </InternalLink>
@@ -177,7 +177,11 @@ const serialize = (children: Children) =>
 
         return (
           <div className={classNames("flex", alignmentClass)} key={i}>
-            {(node.fields as any)?.enableLink ? linkWithImage : <NodeImage />}
+            {(node.fields as any)?.enableLink ? (
+              linkWithImage
+            ) : (
+              <NodeImage style={{ width: `${width}%`, border: "1px solid" }} />
+            )}
           </div>
         );
       }
@@ -188,11 +192,6 @@ const serialize = (children: Children) =>
           </ul>
         );
       case "ol":
-        return (
-          <ol className="list-decimal px-6 py-3" key={i}>
-            {serialize(node.children as Children)}
-          </ol>
-        );
       case "li":
         return <li key={i}>{serialize(node.children as Children)}</li>;
       case "link":

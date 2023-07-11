@@ -41,7 +41,7 @@ export async function generateMetadata({
   const pageData = pageResponse.docs?.[0] ?? {};
   const seoData = prepareSeoData({
     ...pageData,
-    title: `Project: ${post?.title}`,
+    title: `Blog | ${post?.title}`,
   });
   return seoData;
 }

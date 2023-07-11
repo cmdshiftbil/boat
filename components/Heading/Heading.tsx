@@ -17,8 +17,10 @@ const Heading = ({
   animationDir = "default",
   eyebrow,
   fontSize = "clamp-text-8xl",
+  scrollTriggerOptions,
 }: HeadingProps) => {
   const titleRef = useRef(null);
+  const { start, end } = scrollTriggerOptions ?? {};
 
   const direction: any = {
     default: {
@@ -57,34 +59,38 @@ const Heading = ({
     },
   };
 
-  useGsapEffect(() => {
-    let title = new SplitText(titleRef?.current, {
-      type: "chars",
-    });
+  useGsapEffect(
+    () => {
+      let title = new SplitText(titleRef?.current, {
+        type: "chars",
+      });
 
-    gsap.timeline().fromTo(
-      title.chars,
-      {
-        ...direction[animationDir].from,
-      },
-      {
-        scrollTrigger: {
-          trigger: titleRef?.current,
-          toggleActions: "restart pause resume reverse",
-          start: "top 75%",
-          end: "bottom center",
-          scrub: 1,
+      gsap.timeline().fromTo(
+        title.chars,
+        {
+          ...direction[animationDir].from,
         },
-        ...direction[animationDir].to,
-        ease: "circ.out",
-        duration: 0.8,
-      },
+        {
+          scrollTrigger: {
+            trigger: titleRef?.current,
+            toggleActions: "restart pause resume reverse",
+            start: start ?? "top 75%",
+            end: end ?? "bottom center",
+            scrub: 1,
+          },
+          ...direction[animationDir].to,
+          ease: "circ.out",
+          duration: 0.8,
+        },
 
-      "+=0"
-    );
+        "+=0"
+      );
 
-    return () => title?.revert();
-  }, titleRef);
+      return () => title?.revert();
+    },
+    titleRef,
+    [start, end]
+  );
 
   let invertColor: any = "shark-50";
 
