@@ -50,7 +50,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M645.819 257.52H0.871094"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -59,7 +59,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 36.04H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -68,7 +68,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 12.5698H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -77,7 +77,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 17.3599H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -86,7 +86,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 22.77H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -95,7 +95,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 4.49023H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -104,7 +104,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 8.31006H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -113,7 +113,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 189.62H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -122,7 +122,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 44.3003H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -131,7 +131,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 28.9399H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -140,7 +140,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 1.04004H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -149,7 +149,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 54.02H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -158,7 +158,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 65.6299H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -167,7 +167,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 149.03H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -176,7 +176,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 79.7402H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -185,7 +185,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 97.2603H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"
@@ -194,7 +194,7 @@ function PerspectiveDivider(props: React.SVGProps<SVGSVGElement>) {
         <path
           className="line"
           d="M646.51 119.6H0.734375"
-          stroke="#fff"
+          stroke="#AA8455"
           stroke-width="1.25"
           stroke-miterlimit="10"
           stroke-linecap="round"

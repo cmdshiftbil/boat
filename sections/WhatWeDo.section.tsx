@@ -40,18 +40,17 @@ const WhatWeDoSection = ({ data }: WhatWeDoSectionProps) => {
     );
   }, ref);
 
+  console.log(data);
+
   return (
     <Section
       ref={ref}
       title={data.title}
-      colorScheme="pampas-dark"
+      colorScheme="caramel-dark"
       titlePlacement="left"
       articleClassName="p-6 sm:p-12"
     >
-      <ul
-        role="list"
-        className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8 items-stretch h-full"
-      >
+      <ul className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8 items-stretch h-full">
         {data.services.map((service: any) => {
           return (
             <li

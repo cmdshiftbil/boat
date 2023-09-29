@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* https://gradient.page/tools/shadcn-ui-theme-generator */
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* Prevents overflow on the x-axis */
+    overflow-x: hidden;
+  }
+
+  :root {
+    /* Name: custom color palette
+       Author: Ilias Ism
+       URL: https://gradient.page */
+
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+    --gradient: #aa8455;
+
+    --background: 35 21.45% 4%;
+    --foreground: 35 3.3000000000000003% 97.5%;
+
+    --muted: 35 17.490000000000002% 15%;
+    --muted-foreground: 35 3.3000000000000003% 55%;
+
+    --popover: 35 58.4% 6.5%;
+    --popover-foreground: 35 3.3000000000000003% 97.5%;
+
+    --card: 35 58.4% 6.5%;
+    --card-foreground: 35 3.3000000000000003% 97.5%;
+
+    --border: 35 17.490000000000002% 15%;
+    --input: 35 17.490000000000002% 15%;
+
+    --primary: 35 33% 50%;
+    --primary-foreground: 35 3.3000000000000003% 5%;
+
+    --secondary: 35 17.490000000000002% 15%;
+    --secondary-foreground: 35 3.3000000000000003% 97.5%;
+
+    --accent: 35 17.490000000000002% 15%;
+    --accent-foreground: 35 3.3000000000000003% 97.5%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 35 3.3000000000000003% 97.5%;
+
+    --ring: 35 33% 50%;
+  }
+
+  ::selection {
+    @apply bg-primary;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Lenis Recommended CSS */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

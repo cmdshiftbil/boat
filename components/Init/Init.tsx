@@ -29,36 +29,36 @@ if (typeof window !== "undefined") {
   // ScrollTrigger.defaults({ markers: process.env.NODE_ENV === "development" });
 
   // merge rafs
-  gsap.ticker.lagSmoothing(0);
-  gsap.ticker.remove(gsap.updateRoot);
-  raf.add((time) => {
-    gsap.updateRoot(time / 1000);
-  }, 0);
+  // gsap.ticker.lagSmoothing(0);
+  // gsap.ticker.remove(gsap.updateRoot);
+  // raf.add((time) => {
+  //   gsap.updateRoot(time / 1000);
+  // }, 0);
 
   //reset scroll position
-  window.scrollTo(0, 0);
-  window.history.scrollRestoration = "manual";
+  // window.scrollTo(0, 0);
+  // window.history.scrollRestoration = "manual";
 }
 
 export const Init = () => {
   const debug = useDebug();
 
-  const lenis = useLenis(ScrollTrigger.update);
-  useEffect(ScrollTrigger.refresh, [lenis]);
+  // const lenis = useLenis(ScrollTrigger.update);
+  // useEffect(ScrollTrigger.refresh, [lenis]);
 
-  const navIsOpened = useStore(({ navIsOpened }: any) => navIsOpened);
+  // const navIsOpened = useStore(({ navIsOpened }: any) => navIsOpened);
 
-  useEffect(() => {
-    if (navIsOpened) {
-      lenis?.stop();
-    } else {
-      lenis?.start();
-    }
-  }, [lenis, navIsOpened]);
+  // useEffect(() => {
+  //   if (navIsOpened) {
+  //     lenis?.stop();
+  //   } else {
+  //     lenis?.start();
+  //   }
+  // }, [lenis, navIsOpened]);
 
   return (
     <>
-      {debug && <Stats />}
+      {/* {debug && <Stats />} */}
       <GoogleTagManager id="" />
       <RealViewport />
     </>

@@ -1,20 +1,17 @@
 "use client";
+import localFont from "next/font/local";
 import CustomHead from "@/components/CustomHead/CustomHead";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
-import Transition from "@/components/Transition/Transition";
-import { useFrame } from "@studio-freight/hamo";
-import { Lenis, useLenis } from "@studio-freight/react-lenis";
-// import { Scrollbar } from "components/scrollbar";
-import { useStore } from "@/lib/store";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { TransitionProvider } from "@/components/Transition/Transition.provider";
-import { fetchContent } from "@/utils/api.utils";
-import NextNProgress from "nextjs-progressbar";
+import { Lenis, ReactLenis } from "@studio-freight/react-lenis";
+import { motion, useScroll, useTransform } from "framer-motion";
 import TimeAgo from "javascript-time-ago";
-
+import NextNProgress from "nextjs-progressbar";
+import { useEffect, useRef } from "react";
+import Header from "@/components/Header";
+import { cn } from "@/lib/utils";
 import en from "javascript-time-ago/locale/en.json";
+import gsap from "gsap";
+import { Fraunces } from "next/font/google";
 
 // import s from "./layout.module.scss";
 
@@ -29,33 +26,93 @@ import en from "javascript-time-ago/locale/en.json";
 // );
 TimeAgo.addDefaultLocale(en);
 
+// const scriptFont = localFont({
+//   src: "../fonts/telma/Telma-Variable.woff2",
+//   variable: "--font-script",
+//   display: "swap",
+//   preload: true,
+// });
+
+const scriptFont = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-script",
+  display: "swap",
+});
+
 export function Layout({
   seo = { title: "", description: "", image: "", keywords: "" },
   children,
 }: any) {
+  const container = useRef(null);
+  const lenisRef = useRef<any>();
+
+  useEffect(() => {
+    function update(time: any) {
+      lenisRef.current?.raf(time * 1000);
+    }
+
+    gsap.ticker.add(update);
+
+    return () => {
+      gsap.ticker.remove(update);
+    };
+  });
+
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
+  });
+  // const height = useTransform(scrollYProgress, [0, 0.9], [50, 0]);
+
+  const height = useTransform(scrollYProgress, [0, 0.9], [800, 0]);
+  const radius = useTransform(scrollYProgress, [0, 0.9], [1000, 0]);
+
   return (
     <>
       <CustomHead {...seo} />
-      <NextNProgress color="#96786c" />
-      <Lenis
+      {/* <NextNProgress color="#96786c" /> */}
+
+      <Header />
+      {/* <Cursor /> */}
+      <ReactLenis
+        ref={lenisRef}
         root
+        autoRaf={false}
         options={{
           lerp: 0.1,
           smoothWheel: true,
+          syncTouch: true,
         }}
       >
-        <TransitionProvider>
-          {/* <PageTransition /> */}
-          <Header />
-          {/* <Cursor /> */}
+        <main
+          ref={container}
+          className={cn(
+            scriptFont.variable,
+            // "h-full min-h-full bg-graphite-950",
+            // bottom animation style
+            "bg-graphite-950",
+            "z-10 relative flex flex-col",
+            "pt-24"
+          )}
+        >
+          {children}
+        </main>
+        {/* <motion.div
+        style={{
+          height,
+          background: "#0a0203",
+          position: "relative",
+          borderBottomRightRadius: radius,
+          borderBottomLeftRadius: radius,
+          boxShadow: "0 0 10px rgba(0,0,0,0.5)",
+        }}
+        className="bg-graphite-500 relative mt-[100px] z-10"
+      /> */}
 
-          <main className="h-full min-h-full pt-32 bg-shark-900">
-            {/* <Transition>{children}</Transition> */}
-            {children}
-          </main>
-          <Footer />
-        </TransitionProvider>
-      </Lenis>
+        <Footer />
+      </ReactLenis>
     </>
   );
 }

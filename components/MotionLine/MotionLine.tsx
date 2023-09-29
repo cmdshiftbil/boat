@@ -10,7 +10,8 @@ import useGsapEffect from "@/hooks/useGsapEffect";
 
 const MotionLine = ({
   className,
-  color = "bg-shark-50",
+  color = "bg-stone-50",
+  height = "1px",
   direction = "horizontal",
 }: any) => {
   const stroke = useColor(color);
@@ -37,7 +38,8 @@ const MotionLine = ({
   return (
     <div
       ref={lineRef}
-      className={twMerge(className, "w-0 h-[1px] bg-shark-800")}
+      className={twMerge(className, "w-0 bg-stone-800")}
+      style={{ height }}
     />
   );
 };

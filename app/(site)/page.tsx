@@ -12,6 +12,9 @@ import { AnimateInOut } from "@/components/Animations";
 import { getPageTitle, prepareSeoData } from "@/utils/seo.utils";
 import ThreeDModelSection from "@/sections/ThreeDModel.section";
 import { Metadata } from "next";
+import { MainHeadline } from "@/sections/Headline.section";
+import ProjectsPreview from "@/sections/ProjectsPreview.section";
+import HompageServices from "@/sections/HompageServices.section";
 
 type Props = {
   params: { id: string };
@@ -101,49 +104,16 @@ export default async function HomePage() {
   };
 
   return (
-    <Page>
-      <AnimateInOut
-        durationIn={0.6}
-        durationOut={0.2}
-        // Initial
-        set={{
-          transform: "translate(" + 0 + "px, " + 200 + "px)",
-          opacity: 0,
-          duration: 0.25,
-          ease: "power4.out",
-        }}
-        // Transition In (to)
-        to={{
-          opacity: 1,
-          x: 0,
-          y: 0,
-          ease: "power4.inOut",
-        }}
-        // TODO: Outro is buggy
-        // Transition Out (from)
-        // from={{
-        //   transform: "translate(" + 0 + "px, " + 200 + "px)",
-        //   opacity: 0,
-        //   duration: 0.25,
-        //   ease: "power4.out",
-        // }}
-        skipOutro={true}
-      >
-        <>
-          <HeroSection data={homeData.hero} />
-          <MainHeadlineSection>
-            We specialize in{" "}
-            <strong className="main-headline">crafting innovative </strong>
-            retail concepts that{" "}
-            <strong className="main-headline">stay ahead of the curve</strong>.
-          </MainHeadlineSection>
-          {/* <ThreeDModelSection /> */}
-          <OurPresenceSection data={homeData.presence} />
-          <WhatWeDoSection data={homeData.whatWeDo} />
-          <OurProcessSection data={homeData.ourProcess} />
-          <OurClientsSection data={homeData.ourClients} />
-        </>
-      </AnimateInOut>
-    </Page>
+    <>
+      {/* <HeroSection data={homeData.hero} /> */}
+      <MainHeadline />
+      <HompageServices services={services} />
+      {/* <WhatWeDoSection data={homeData.whatWeDo} /> */}
+      <ProjectsPreview />
+      {/* <ThreeDModelSection /> */}
+      <OurProcessSection data={homeData.ourProcess} />
+      <OurPresenceSection />
+      <OurClientsSection data={homeData.ourClients} />
+    </>
   );
 }

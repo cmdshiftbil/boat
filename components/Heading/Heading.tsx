@@ -7,7 +7,7 @@ import { HeadingProps } from "./Heading.interface";
 import SplitText from "gsap/dist/SplitText";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import BlueprintLabel from "../BlueprintLabel";
-import classNames from "classnames";
+import { cn } from "@/utils/tailwind.utils";
 
 const Heading = ({
   children,
@@ -16,7 +16,7 @@ const Heading = ({
   headingClassName,
   animationDir = "default",
   eyebrow,
-  fontSize = "clamp-text-8xl",
+  fontSize = "clamp-text-6xl",
   scrollTriggerOptions,
 }: HeadingProps) => {
   const titleRef = useRef(null);
@@ -92,21 +92,16 @@ const Heading = ({
     [start, end]
   );
 
-  let invertColor: any = "shark-50";
+  let invertColor: any = "stone-50";
 
   if (color) {
-    invertColor = "shark-900";
+    invertColor = "stone-900";
   } else {
-    color = "shark-50";
+    color = "stone-50";
     invertColor = color;
   }
 
-  // const invertColor = color !== "shark-50" ? "shark-900" : color;
-
-  // Random width between 250 and 1900
-  const randomWidth = () => {
-    return Math.floor(Math.random() * (1900 - 250 + 1) + 250).toString();
-  };
+  // const invertColor = color !== "stone-50" ? "stone-900" : color;
 
   return (
     <div className={twMerge("w-min", className)}>
@@ -115,7 +110,7 @@ const Heading = ({
         ref={titleRef}
         aria-label={children}
         role="heading"
-        className={classNames(
+        className={cn(
           {
             [fontSize]: fontSize,
             [twMerge("font-bold w-max z-10", color)]: true,

@@ -1,133 +1,55 @@
 "use client";
-import CountryItem from "@/components/CountryItem";
-import ParticleImage from "@/components/ParticleImage/ParticleImage";
+import CountriesList from "@/components/CountriesList";
+import Globe from "@/components/Globe";
+import LinearGradient from "@/components/LinearGradient";
 import Section from "@/components/Section";
-import Text from "@/components/Text";
-import TweenBodyContent from "@/components/TweenBodyContent";
 import content from "@/content/content";
-// import { gsap } from "gsap";
-// import useGsapEffect from "@/hooks/useGsapEffect";
-import useMobileDevice from "@/hooks/useMobileDevice";
-import { HomeData } from "@/types/pages";
-import { useEffect, useMemo, useRef, useState } from "react";
 
-interface OurPresenceSectionProps {
-  data: HomeData["presence"];
-}
+import { cn } from "@/utils/tailwind.utils";
+import { useMemo, useState } from "react";
 
-const OurPresenceSection = ({ data }: OurPresenceSectionProps) => {
-  const countriesRef = useRef<HTMLUListElement>(null);
-  const [mapSrc, setMapSrc] = useState<string>();
-  const [activeCountry, setActiveCountry] = useState<string>();
-  // const tweenTargetRef = useRef(null);
+const OurPresenceSection = () => {
+  const [currentLocation, setCurrentLocation] = useState();
 
-  const isMobile = useMobileDevice();
-  const initialSettings = useMemo(
-    () => ({
-      randomize: 55.0,
-      depth: isMobile ? 40.0 : 40,
-      size: 1.0,
-    }),
-    [isMobile]
-  );
-  const settings = useMemo(
-    () => ({
-      randomize: 7.0,
-      depth: 6.0,
-      size: 0.4,
-    }),
-    []
-  );
-  const getCountryImagePath = (country: string) =>
-    `/images/presence-countries/${country
-      .toLowerCase()
-      .replace(/ /g, "_")}.png`;
+  const markers = useMemo(() => {
+    return content.operationalCountries.map(({ lat, long }) => {
+      return {
+        location: [lat, long],
+        size: 0.04,
+      };
+    });
+  }, []);
 
-  // Disabled transition for country's particle effect
-  // useGsapEffect(() => {
-  //   gsap.fromTo(
-  //     tweenTargetRef.current,
-  //     {
-  //       xPercent: -50,
-  //       opacity: 0,
-  //     },
-  //     {
-  //       duration: 1,
-  //       xPercent: 0,
-  //       opacity: 1,
-  //       scale: 1,
-  //       ease: "Expo.easeOut",
-  //       stagger: 0.1,
-  //       scrollTrigger: {
-  //         trigger: tweenTargetRef?.current,
-  //         start: "start 75%",
-  //         end: "bottom center",
-  //         scrub: 1,
-  //       },
-  //     }
-  //   );
-  // }, tweenTargetRef);
-
-  useEffect(() => {
-    if (!activeCountry) {
-      const country = content.middleEastCountries.find((c) =>
-        c.includes("Emirates")
-      );
-      if (country) {
-        setActiveCountry(country);
-      }
-    } else {
-      setMapSrc(getCountryImagePath(activeCountry));
-    }
-  }, [activeCountry, setActiveCountry]);
+  const navigateToCountry = (country: any) => {
+    setCurrentLocation(country);
+  };
 
   return (
-    <Section
-      className="min-h-[calc(100vh-405px)] flex flex-col mb-[200px] p-0"
-      title="Our Operational Reach"
-      headingClassName="!w-full text-center"
+    <section
+      // className="p-0 h-[calc(100vh-172px)] justify-end overflow-hidden relative"
+      className=" flex h-screen flex-col justify-end relative overflow-hidden pb-32"
     >
-      <TweenBodyContent
-        effect="fade-in-words"
-        start="top bottom-=20%"
-        end="center top+=20%"
-      >
-        <Text className="text md:mb-12 text-center px-6 sm:px-12">
-          {data.title}
-        </Text>
-      </TweenBodyContent>
-
-      <div className="flex flex-col lg:flex-row justify-around">
-        {/* Disabled transition for country's particle effect */}
-        {/* <div className="flex flex-1 w-full relative" ref={tweenTargetRef}> */}
-        <div className="flex flex-1 w-full relative">
-          {mapSrc && (
-            <ParticleImage
-              src={mapSrc}
-              className="relative w-full lg:flex-1"
-              cameraDistance={isMobile ? 250 : 180}
-              initialSettings={initialSettings}
-              settings={settings}
-            />
-          )}
-        </div>
-
-        <div className="flex-1 px-6 sm:px-12">
-          <ul className="columns-2" ref={countriesRef}>
-            {content.middleEastCountries.map((country, idx) => (
-              <CountryItem
-                key={idx}
-                onClick={() => {
-                  setActiveCountry(country);
-                }}
-                title={country}
-                activeTitle={activeCountry}
-              />
-            ))}
-          </ul>
-        </div>
+      <div className="retlative">
+        <LinearGradient
+          direction="bottom"
+          from="#0a0203"
+          to="transparent"
+          className={cn("h-1/3", "md:h-screen z-10")}
+        />
+        <Globe
+          className="absolute h-[100vw] top-0 md:-top-96 aspect-[1] z-0"
+          markers={markers}
+          currentLocation={currentLocation}
+        />
       </div>
-    </Section>
+      <div className="z-50">
+        <CountriesList
+          countries={content.operationalCountries}
+          onSelectCountry={navigateToCountry}
+        />
+      </div>
+      <LinearGradient className={cn("h-1/3", "md:h-screen")} />
+    </section>
   );
 };
 
