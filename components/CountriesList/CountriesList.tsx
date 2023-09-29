@@ -37,7 +37,7 @@ export default function CountriesList({ countries, onSelectCountry }: any) {
             <MagicCard
               key={country.lat}
               onMouseEnter={selectCountry(country)}
-              onMouseClick={selectCountry(country)}
+              onClick={selectCountry(country)}
               onEnterViewport={selectCountry(country)}
               className={cn(
                 "snap-center",

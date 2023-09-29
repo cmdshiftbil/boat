@@ -10,7 +10,7 @@ const RootLayout = ({ children }: any) => {
   return (
     <>
       <Init />
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className="h-full min-h-full bg-graphite-950">
           <Layout>{children}</Layout>
 

@@ -46,9 +46,9 @@ export default function LeadershipGrid() {
           position: "Operation Manager & Partner",
           picture: "/images/leadership/simon.png",
         },
-      ].map((member) => {
+      ].map((member, index) => {
         return (
-          <FadeIn>
+          <FadeIn key={index}>
             <SchemaCard className="relative" maxWidth={false}>
               <FadeIn className="flex-1 relative ">
                 {/* <div className="bg-caramel-500 h-full w-full absolute top-0 left-0 mix-blend-multiply" /> */}

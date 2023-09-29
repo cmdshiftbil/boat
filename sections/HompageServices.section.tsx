@@ -13,16 +13,14 @@ export default function HompageServices({ services }: any) {
     <FadeInStagger>
       <Container>
         <FadeIn>
-          <Title>
-            <h2 className="text-6xl font-bold text-shark-300">
-              What we do best
-            </h2>
+          <Title className="text-6xl font-bold text-shark-300">
+            What we do best
           </Title>
         </FadeIn>
         <div className="flex flex-col md:flex-row py-12 gap-6 w-full">
           {services[0].serviceContent.map((service: any, index: number) => {
             return (
-              <FadeIn className="flex-1">
+              <FadeIn className="flex-1" key={index}>
                 <ServiceCard
                   className="flex-1"
                   title={service.title}
