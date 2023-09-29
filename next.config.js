@@ -12,13 +12,14 @@ const nextConfig = {
       "localhost",
       process.env.NEXT_PUBLIC_APP_URL,
       `${process.env.NEXT_PUBLIC_S3_ENDPOINT}`.replace("https://", ""),
+      "picsum.photos",
     ],
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg"),
-    )
+      rule.test?.test?.(".svg")
+    );
 
     config.module.rules.push(
       // Reapply the existing rule, but only for svg imports ending in ?url
@@ -54,24 +55,22 @@ const nextConfig = {
       },
       {
         test: /\.(glsl|frag|vert)$/,
-        use: [
-          require.resolve("raw-loader"),
-          require.resolve("glslify-loader"),
-        ]
+        use: [require.resolve("raw-loader"), require.resolve("glslify-loader")],
       }
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
-    fileLoaderRule.exclude = /\.svg$/i
+    fileLoaderRule.exclude = /\.svg$/i;
 
-    return config
+    return config;
   },
 };
 
 const payloadConfig = {
   configPath: path.resolve(__dirname, "./payload/payload.config.ts"),
 
-  // Point to your exported, initialized Payload instance (optional, default shown below`)
+  // Point to your exported, initialized
+  // Payload instance (optional, default shown below`)
   payloadPath: path.resolve(process.cwd(), "./payload.ts"),
 };
 

@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { useRef } from "react";
 import LeftPanelContent from "./LeftPanelContent";
 import RightPanelContent from "./RightPanelContent";
+import { cn } from "@/lib/utils";
+import { Icon } from "../GridCard/Icon";
 
 const DualColumnScroller = ({ content }: any) => {
   const ref = useRef<HTMLElement>(null);
@@ -74,27 +76,33 @@ const DualColumnScroller = ({ content }: any) => {
 
   return (
     <section ref={ref}>
-      <div className="wrapper h-screen">
+      <div className="wrapper h-[85vh] md:h-[95vh]">
         <div className="pin-wrapper px-6 py-24 sm:px-12 sm:py-32 h-full">
-          <div className="scroll-wrapper relative grid grid-cols-1 md:grid-cols-2 justify-center border border-shark-50 h-full overflow-hidden">
-            <div className="left-panel relative h-full border-r border-shark-50 md:flex justify-center items-center flex-col bg-grid-perspective bg-no-repeat bg-cover hidden ">
-              {content.map((item: any, index: number) => {
-                return (
-                  <LeftPanelContent index={item.id} key={item.id}>
-                    {item.leftPanel}
-                  </LeftPanelContent>
-                );
-              })}
-            </div>
+          <div className="relative justify-center border border-shark-50 h-full">
+            <Icon className="absolute h-6 w-6 -top-3 -left-3 text-white stroke-caramel-300" />
+            <Icon className="absolute h-6 w-6 -bottom-3 -left-3 text-white stroke-caramel-300" />
+            <Icon className="absolute h-6 w-6 -top-3 -right-3 text-white stroke-caramel-300" />
+            <Icon className="absolute h-6 w-6 -bottom-3 -right-3 text-white stroke-caramel-300" />
+            <div className="scroll-wrapper overflow-hidden grid grid-cols-1 md:grid-cols-2 h-full">
+              <div className="left-panel relative h-full border-r border-shark-50 md:flex justify-center items-center flex-col bg-grid-perspective bg-no-repeat bg-cover hidden ">
+                {content.map((item: any, index: number) => {
+                  return (
+                    <LeftPanelContent index={item.id} key={item.id}>
+                      {item.leftPanel}
+                    </LeftPanelContent>
+                  );
+                })}
+              </div>
 
-            <div className="right-panel relative  flex flex-col justify-center items-center">
-              {content.map((item: any, index: number) => {
-                return (
-                  <RightPanelContent index={item.id} key={item.id}>
-                    {item.rightPanel}
-                  </RightPanelContent>
-                );
-              })}
+              <div className="right-panel relative  flex flex-col justify-center items-center">
+                {content.map((item: any, index: number) => {
+                  return (
+                    <RightPanelContent index={item.id} key={item.id}>
+                      {item.rightPanel}
+                    </RightPanelContent>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

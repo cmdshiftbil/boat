@@ -1,5 +1,6 @@
 "use client";
 import useGsapEffect from "@/hooks/useGsapEffect";
+import { cn } from "@/lib/utils";
 import classNames from "classnames";
 import gsap from "gsap";
 import { SplitText } from "gsap/dist/SplitText";
@@ -16,7 +17,7 @@ const Text = ({
   as = "p",
   className,
   animate = false,
-  fontSize = "clamp-text-3xl",
+  // fontSize = "clamp-text-3xl",
   ...props
 }: TextProps) => {
   const ref = useRef(null);
@@ -41,7 +42,7 @@ const Text = ({
           stagger: 0.05,
           scrollTrigger: {
             trigger: ref.current,
-            start: "top bottom-=20%",
+            start: "top bottom-=40%",
             end: "center top+=20%",
             scrub: true,
           },
@@ -57,14 +58,11 @@ const Text = ({
       {createElement(
         as,
         {
-          className: classNames({
-            "text-element": true,
-            [fontSize]: fontSize,
-            [twMerge(
-              "text-shark-50 font-[200] subpixel-antialiased",
-              className
-            )]: true,
-          }),
+          className: cn(
+            className,
+            "text-caramel-100 font-[200] subpixel-antialiased",
+            "text-element"
+          ),
           ...props,
         },
         children

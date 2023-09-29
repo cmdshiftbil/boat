@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { twMerge } from "tailwind-merge";
 import Heading from "../Heading";
 import MotionLine from "../MotionLine/MotionLine";
+import { cn } from "@/utils/tailwind.utils";
 
 interface SectionHeaderProps {
   title: string;
@@ -26,9 +27,9 @@ const SectionHeader = ({
 }: SectionHeaderProps) => {
   return (
     <header
-      className={twMerge(className, "flex flex-col", "font-bold  text-6xl")}
+      className={cn(className, "flex flex-col", "font-bold  clamp-text-6xl")}
     >
-      <div className="flex flex-row items-center justify-between">
+      <div className=" relative flex flex-row items-center justify-between">
         <Heading
           className={classNames("mb-9", headingClassName)}
           headingClassName={headingClassName}
@@ -38,9 +39,12 @@ const SectionHeader = ({
           {title}
         </Heading>
         {/* {suffix && suffix} */}
+        {/* {underline && (
+          <MotionLine height="10px" className="mb-9 absolute bg-caramel-500" />
+        )} */}
       </div>
 
-      {underline && <MotionLine className="mb-9" />}
+      {/* {underline && <MotionLine height="10px" className="mb-9" />} */}
     </header>
   );
 };

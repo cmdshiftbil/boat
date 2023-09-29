@@ -1,8 +1,9 @@
+import { cn } from "@/lib/utils";
 import * as React from "react";
 import { twMerge } from "tailwind-merge";
 
 function Logo(props: React.SVGProps<SVGSVGElement>) {
-  const { className = "fill-shark-50", ...rest } = props;
+  const { className = "fill-caramel-100", ...rest } = props;
   return (
     <svg
       width="124"
@@ -10,7 +11,7 @@ function Logo(props: React.SVGProps<SVGSVGElement>) {
       viewBox="0 0 124 60"
       fill="none"
       {...rest}
-      className={twMerge("overflow-hidden", className)}
+      className={cn("overflow-hidden", className)}
     >
       <path
         className="logo-icon"

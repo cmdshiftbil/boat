@@ -181,7 +181,7 @@ const Navigation = () => {
         >
           <div className="brand-logo md:p-2">
             <Link href="/" aria-label="Alpha Nero Homepage button">
-              <Logo className="fill-shark-50 logo" />
+              <Logo className="fill-primary logo" />
             </Link>
           </div>
           <HamburgerButton isOpen={isOpen} onClick={onClickMenuToggle} />
@@ -191,9 +191,9 @@ const Navigation = () => {
       <section className="fixed top-0 left-0 hidden w-full h-screen p-6 nav-full-page sm:p-12">
         <div className="flex items-center h-full">
           <div className="absolute top-0 left-0 w-full h-full">
-            <span className="block w-full page-stroke h-2/6 bg-shark-50" />
-            <span className="block w-full page-stroke h-2/6 bg-shark-50" />
-            <span className="block w-full page-stroke h-2/6 bg-shark-50" />
+            <span className="block w-full page-stroke h-2/6 bg-caramel-100" />
+            <span className="block w-full page-stroke h-2/6 bg-caramel-100" />
+            <span className="block w-full page-stroke h-2/6 bg-caramel-100" />
           </div>
 
           <div className=" relative z-10 flex flex-col items-center justify-between w-full max-w-3xl gap-6 mx-auto sm:flex-row ">
@@ -202,7 +202,7 @@ const Navigation = () => {
                 {navigationItems.map((item) => (
                   <NavigationItem
                     onClick={() => setIsOpen(false)}
-                    className="overflow-hidden transition-transform duration-300 ease-in-out nav-item hover:translate-x-5 text-shark-900"
+                    className="overflow-hidden transition-transform duration-300 ease-in-out nav-item hover:translate-x-5 text-primary-foreground"
                     key={item.id}
                     i={item.id}
                     path={item.url}
@@ -211,80 +211,6 @@ const Navigation = () => {
                 ))}
               </ul>
             </nav>
-
-            <div className="hidden sm:flex flex-col gap-6 opacity-0 nav-address">
-              <address className="flex flex-col gap-12 not-italic text-shark-900">
-                <div className="flex flex-col">
-                  <BlueprintLabel
-                    label="Get in touch"
-                    className="text-shark-900"
-                  />
-
-                  <a
-                    className="mb-4 font-bold underline underline-offset-8"
-                    href="tel:+97144270592"
-                  >
-                    +971 44270 592
-                  </a>
-                  <a
-                    className="font-bold underline underline-offset-8"
-                    href="mailto:contact@alpha-nero.com"
-                  >
-                    contact@alpha-nero.com
-                  </a>
-                </div>
-              </address>
-              <ContactBox title="Dubai" className="invert">
-                <ContactBox.Item
-                  hideTitle
-                  title="address"
-                  description="Warehouse C07 1-2-3, |br Dubai Production City P.O. |br BOX 485008, |br Dubai, United Arab Emirates"
-                />
-              </ContactBox>
-
-              <ContactBox title="Riyadh" className="invert">
-                <ContactBox.Item
-                  hideTitle
-                  title="address"
-                  description="Al Fozan Industrial Park Block 50, |br warehouse, 555/558, |br Riyadh 14548, Saudi Arabia"
-                />
-              </ContactBox>
-
-              <div className="header-nav-footer">
-                <ul className="flex flex-row gap-4 social-links">
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://www.facebook.com/alphanerodubai/"
-                    >
-                      .Fb
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://www.instagram.com/alpha_nero_dubai/"
-                    >
-                      .Ig
-                    </a>
-                  </li>
-                  {/* <li>
-                    <a target="_blank" href="#">
-                      .Tw
-                    </a>
-                  </li> */}
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://www.linkedin.com/company/alpha-nero/"
-                    >
-                      .Li
-                    </a>
-                  </li>
-                  <li>&copy;{new Date().getFullYear()}</li>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
       </section>

@@ -16,6 +16,7 @@ import { AnimateInOut } from "@/components/Animations";
 import getPayloadClient from "@/payload/payloadClient";
 import { prepareSeoData } from "@/utils/seo.utils";
 import { Metadata } from "next";
+import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 
 const { title, description, services } = servicePageContent;
 
@@ -47,11 +48,12 @@ export async function generateMetadata({
 }
 
 export default async function Services() {
-  const iconColor = useColor("fill-pampas-300");
+  // const iconColor = useColor("fill-pampas-300");
 
   return (
     <Page>
-      <AnimateInOut
+      <FadeInStagger>
+        {/* <AnimateInOut
         durationIn={0.6}
         durationOut={0.2}
         // Initial
@@ -77,7 +79,7 @@ export default async function Services() {
         //   ease: "power4.out",
         // }}
         skipOutro={true}
-      >
+      > */}
         <header className="px-6 sm:px-12 lg:pl-48 xl:pl-96">
           <Heading className="mb-6 text-shark-50 sm:mb-12">{title}</Heading>
           <div className="grid gap-12 pb-5">
@@ -92,7 +94,8 @@ export default async function Services() {
         <ServicesSections />
         <CarbonReportsSection />
         <HowItWorksSection />
-      </AnimateInOut>
+        {/* </AnimateInOut> */}
+      </FadeInStagger>
     </Page>
   );
 }

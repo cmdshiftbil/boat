@@ -8,6 +8,7 @@ import Heading from "../Heading";
 import { SectionProps } from "./Section.interface";
 import SectionHeader from "../SectionHeader";
 import { hasPaddingClass } from "@/utils/dom.utils";
+import { cn } from "@/utils/tailwind.utils";
 
 const Section = forwardRef(
   (
@@ -23,20 +24,20 @@ const Section = forwardRef(
     }: SectionProps,
     ref: any
   ) => {
-    const [headerRef, { width, height }] = useMeasure();
+    // const [headerRef, { width, height }] = useMeasure();
 
     const colorSchemes = {
       transparent: {
         header: "text-shark-50",
         article: "bg-transparent",
       },
-      pampas: {
-        header: "text-pampas-200",
-        article: "bg-pampas-200",
+      caramel: {
+        header: "text-caramel-200",
+        article: "bg-caramel-200",
       },
-      "pampas-dark": {
-        header: "text-pampas-600",
-        article: "bg-pampas-600",
+      "caramel-dark": {
+        header: "text-caramel-600",
+        article: "bg-caramel-600",
       },
       shark: {
         header: "text-shark-500",
@@ -74,9 +75,9 @@ const Section = forwardRef(
               underline: false,
               suffix: false,
             })}
-            className={classNames({
+            className={cn("z-40", {
               flex: true,
-              [colorSchemes[colorScheme].header]: true,
+              [colorSchemes[colorScheme]?.header]: true,
               [variantClasses[titlePlacement].header]: true,
               "px-6 sm:px-12": !hasPaddingClass(className),
             })}
@@ -87,7 +88,7 @@ const Section = forwardRef(
           className={twMerge(
             classNames({
               "z-30": true,
-              [colorSchemes[colorScheme].article]: true,
+              [colorSchemes[colorScheme]?.article]: true,
               [variantClasses[titlePlacement].article]: true,
               "px-6 sm:px-12": !hasPaddingClass(className),
             }),

@@ -1,3 +1,3 @@
-import ContactPageContent from "./ContactPageContent";
+import { ContactDepartments } from "./ContactPageContent";
 
-export default ContactPageContent;
+export default ContactDepartments;

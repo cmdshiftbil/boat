@@ -3,6 +3,8 @@ import { Children, useRef } from "react";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import classNames from "classnames";
 import ScrollIcon from "../ScrollIcon";
+import { cn } from "@/lib/utils";
+import { FadeIn, FadeInStagger } from "../FadeIn";
 
 interface HorizontalSliderProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -46,31 +48,36 @@ const HorizontalSlider = ({
   }, wrapperRef);
 
   return (
-    <section
-      ref={wrapperRef}
-      className={classNames("overflow-hidden", className)}
-      {...props}
-    >
-      <div ref={pinWrapperRef} className="pin-wrap relative flex z-10 h-screen">
-        {showScrollIcon && (
-          <div className="flex md:hidden justify-center items-center w-full absolute bottom-2">
-            <ScrollIcon />
-          </div>
-        )}
+    <FadeInStagger>
+      <section
+        ref={wrapperRef}
+        className={cn("overflow-hidden", className)}
+        {...props}
+      >
         <div
-          ref={animationWrapperRef}
-          className="animation-wrap relative flex h-screen items-center"
+          ref={pinWrapperRef}
+          className="pin-wrap relative flex z-10 h-screen"
         >
-          {Children.map(children, (child, index) => {
-            return (
-              <div className="relative flex flex-auto h-[350px] md:h-auto">
-                {child}
-              </div>
-            );
-          })}
+          {showScrollIcon && (
+            <div className="flex md:hidden justify-center items-center w-full absolute bottom-2">
+              <ScrollIcon />
+            </div>
+          )}
+          <div
+            ref={animationWrapperRef}
+            className="animation-wrap relative flex h-screen"
+          >
+            {Children.map(children, (child, index) => {
+              return (
+                <div className="relative flex flex-auto md:h-auto items-center">
+                  <FadeIn>{child}</FadeIn>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </FadeInStagger>
   );
 };
 

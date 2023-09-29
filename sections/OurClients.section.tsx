@@ -22,7 +22,7 @@ const OurClientsSection = ({ data }: OurClientsSectionProps) => {
   return (
     <Section
       title={data.title}
-      colorScheme="pampas"
+      colorScheme="caramel"
       articleClassName="px-0 py-24"
       className="px-0"
     >
