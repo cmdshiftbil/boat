@@ -27,6 +27,7 @@
     "@react-three/postprocessing": "^2.15.1",
     "@sendgrid/helpers": "^7.7.0",
     "@sendgrid/mail": "^7.7.0",
+    "@sentry/nextjs": "^7.72.0",
     "@studio-freight/hamo": "^0.6.19",
     "@studio-freight/lenis": "^1.0.25",
     "@studio-freight/react-lenis": "^0.0.36",
