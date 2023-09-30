@@ -12,7 +12,7 @@
     margin: 0;
     padding: 0;
     /* Prevents overflow on the x-axis */
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
   }
 
   :root {

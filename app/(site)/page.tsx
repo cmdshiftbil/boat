@@ -106,14 +106,14 @@ export default async function HomePage() {
   return (
     <>
       {/* <HeroSection data={homeData.hero} /> */}
-      <MainHeadline />
+      {/* <MainHeadline /> */}
       <HompageServices services={services} />
       {/* <WhatWeDoSection data={homeData.whatWeDo} /> */}
       <ProjectsPreview />
       {/* <ThreeDModelSection /> */}
       <OurProcessSection data={homeData.ourProcess} />
       <OurPresenceSection />
-      <OurClientsSection data={homeData.ourClients} />
+      {/* <OurClientsSection data={homeData.ourClients} /> */}
     </>
   );
 }

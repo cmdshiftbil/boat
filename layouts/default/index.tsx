@@ -48,17 +48,17 @@ export function Layout({
   const container = useRef(null);
   const lenisRef = useRef<any>();
 
-  useEffect(() => {
-    function update(time: any) {
-      lenisRef.current?.raf(time * 1000);
-    }
+  // useEffect(() => {
+  //   function update(time: any) {
+  //     lenisRef.current?.raf(time * 1000);
+  //   }
 
-    gsap.ticker.add(update);
+  //   gsap.ticker.add(update);
 
-    return () => {
-      gsap.ticker.remove(update);
-    };
-  });
+  //   return () => {
+  //     gsap.ticker.remove(update);
+  //   };
+  // });
 
   const { scrollYProgress } = useScroll({
     target: container,
@@ -77,9 +77,9 @@ export function Layout({
       <Header />
       {/* <Cursor /> */}
       <ReactLenis
-        ref={lenisRef}
+        // ref={lenisRef}
         root
-        autoRaf={false}
+        // autoRaf={false}
         options={{
           lerp: 0.1,
           smoothWheel: true,
@@ -90,11 +90,9 @@ export function Layout({
           ref={container}
           className={cn(
             scriptFont.variable,
-            // "h-full min-h-full bg-graphite-950",
-            // bottom animation style
             "bg-graphite-950",
-            "z-10 relative flex flex-col",
-            "pt-24"
+            "relative flex flex-col",
+            "z-[1] pt-24"
           )}
         >
           {children}
