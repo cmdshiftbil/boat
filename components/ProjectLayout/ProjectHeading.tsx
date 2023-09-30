@@ -32,7 +32,7 @@ export default function ProjectHeading({ title, date, location }: any) {
           </Text>
         </div>
       </div>
-      <MotionLine className="my-6" />
+      {/* <MotionLine className="my-6" /> */}
     </header>
   );
 }

@@ -5,6 +5,7 @@ import { Projects } from "@/app/(site)/projects/components/Projects";
 import { AnimateInOut } from "@/components/Animations";
 import { prepareSeoData } from "@/utils/seo.utils";
 import { Metadata } from "next";
+import { Container } from "@/components/Container";
 
 type Props = {
   params: { id: string };
@@ -51,37 +52,13 @@ export default async function ProjectsPage() {
   const { projects } = await getProjects();
 
   return (
-    <Page>
-      <AnimateInOut
-        durationIn={0.6}
-        durationOut={0.2}
-        // Initial
-        set={{
-          transform: "translate(" + 0 + "px, " + 200 + "px)",
-          opacity: 0,
-          duration: 0.25,
-          ease: "power4.out",
-        }}
-        // Transition In (to)
-        to={{
-          opacity: 1,
-          x: 0,
-          y: 0,
-          ease: "power4.inOut",
-        }}
-        // TODO: Outro is buggy
-        // Transition Out (from)
-        // from={{
-        //   transform: "translate(" + 0 + "px, " + 200 + "px)",
-        //   opacity: 0,
-        //   duration: 0.25,
-        //   ease: "power4.out",
-        // }}
-        skipOutro={true}
-      >
-        <Header />
+    <>
+      <Header />
+      <div className="sm:container">
+        {/* <Container> */}
         <Projects projects={projects} />
-      </AnimateInOut>
-    </Page>
+        {/* </Container> */}
+      </div>
+    </>
   );
 }
