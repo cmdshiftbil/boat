@@ -68,44 +68,35 @@ const nextConfig = {
   },
 };
 
+// Potential fix integrated here
+if (nextConfig.experimental) {
+  const index = nextConfig.experimental.outputFileTracingIgnores?.indexOf(
+    "node_modules/sharp/**/*"
+  );
+  if (index !== -1) {
+    nextConfig.experimental.outputFileTracingIgnores.splice(index, 1);
+  }
+}
+
 const payloadConfig = {
   configPath: path.resolve(__dirname, "./payload/payload.config.ts"),
-
-  // Point to your exported, initialized
-  // Payload instance (optional, default shown below`)
   payloadPath: path.resolve(process.cwd(), "./payload.ts"),
 };
 
-const config = withSentryConfig(
+const sentryConfig = withSentryConfig(
   nextConfig,
   {
-    // For all available options, see:
-    // https://github.com/getsentry/sentry-webpack-plugin#options
-
-    // Suppresses source map uploading logs during build
     silent: true,
     org: "barryandjamie",
     project: "alphe-nero",
   },
   {
-    // For all available options, see:
-    // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-
-    // Upload a larger set of source maps for prettier stack traces (increases build time)
     widenClientFileUpload: true,
-
-    // Transpiles SDK to be compatible with IE11 (increases bundle size)
     transpileClientSDK: true,
-
-    // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
     tunnelRoute: "/monitoring",
-
-    // Hides source maps from generated client bundles
     hideSourceMaps: true,
-
-    // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,
   }
 );
 
-module.exports = withPayload(config, payloadConfig);
+module.exports = withPayload(sentryConfig, payloadConfig);
