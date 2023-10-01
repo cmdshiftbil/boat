@@ -68,16 +68,6 @@ const nextConfig = {
   },
 };
 
-// Potential fix integrated here
-if (nextConfig.experimental) {
-  const index = nextConfig.experimental.outputFileTracingIgnores?.indexOf(
-    "node_modules/sharp/**/*"
-  );
-  if (index !== -1) {
-    nextConfig.experimental.outputFileTracingIgnores.splice(index, 1);
-  }
-}
-
 const payloadConfig = {
   configPath: path.resolve(__dirname, "./payload/payload.config.ts"),
   payloadPath: path.resolve(process.cwd(), "./payload.ts"),
@@ -99,4 +89,16 @@ const sentryConfig = withSentryConfig(
   }
 );
 
-module.exports = withPayload(sentryConfig, payloadConfig);
+async function outputConfig(config) {
+  const index = config?.experimental?.outputFileTracingIgnores.indexOf(
+    "node_modules/sharp/**/*"
+  );
+
+  if (index !== -1) {
+    config?.experimental?.outputFileTracingIgnores.splice(index, 1);
+  }
+
+  return config;
+}
+
+module.exports = outputConfig(withPayload(sentryConfig, payloadConfig));
