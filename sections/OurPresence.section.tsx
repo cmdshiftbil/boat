@@ -36,11 +36,11 @@ const OurPresenceSection = () => {
           to="transparent"
           className={cn("h-1/3", "md:h-screen z-10")}
         />
-        <Globe
+        {/* <Globe
           className="absolute h-[100vw] top-0 md:-top-96 aspect-[1] z-0"
           markers={markers}
           currentLocation={currentLocation}
-        />
+        /> */}
       </div>
       <div className="z-50">
         <CountriesList

@@ -58,7 +58,7 @@ export const Init = () => {
 
   return (
     <>
-      {/* {debug && <Stats />} */}
+      {debug && <Stats />}
       <GoogleTagManager id="" />
       <RealViewport />
     </>
