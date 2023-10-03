@@ -30,9 +30,6 @@ export default function SchemaCard({
   isLast,
 }: SchemaCardProps) {
   const renderPlanSymbols = () => {
-    console.log("isFirst", isFirst);
-    console.log("isLast", isLast);
-
     if (grid && isFirst) {
       return (
         <>
@@ -66,7 +63,7 @@ export default function SchemaCard({
   return (
     <div
       className={cn(
-        "border border-caramel-900/50 flex flex-col items-start  mx-auto p-4 relative h-[30rem] justify-end w-full",
+        "border border-caramel-900/50 flex flex-col items-start  mx-auto p-4 relative h-full justify-end w-full",
         containerClassName,
         maxWidth && "max-w-sm"
       )}

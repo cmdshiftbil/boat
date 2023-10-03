@@ -2,7 +2,9 @@
 import CountriesList from "@/components/CountriesList";
 import Globe from "@/components/Globe";
 import LinearGradient from "@/components/LinearGradient";
+import SchemaCard from "@/components/SchemaCard/SchemaCard";
 import Section from "@/components/Section";
+import Title from "@/components/Title";
 import content from "@/content/content";
 
 import { cn } from "@/utils/tailwind.utils";
@@ -25,30 +27,25 @@ const OurPresenceSection = () => {
   };
 
   return (
-    <section
-      // className="p-0 h-[calc(100vh-172px)] justify-end overflow-hidden relative"
-      className=" flex h-screen flex-col justify-end relative overflow-hidden pb-32"
-    >
-      <div className="retlative">
-        <LinearGradient
-          direction="bottom"
-          from="#0a0203"
-          to="transparent"
-          className={cn("h-1/3", "md:h-screen z-10")}
-        />
-        {/* <Globe
-          className="absolute h-[100vw] top-0 md:-top-96 aspect-[1] z-0"
-          markers={markers}
-          currentLocation={currentLocation}
-        /> */}
+    <section className="h-full py-24 flex justify-center flex-col p-4 sm:p-6 md:p-12">
+      <div className="py-6 sm:py-8">
+        <Title as="h2">Our Presence</Title>
+        <p className="text-caramel-500/50">
+          We have a strong presence in the following countries, and we are
+          continuously expanding our reach.
+        </p>
       </div>
-      <div className="z-50">
-        <CountriesList
-          countries={content.operationalCountries}
-          onSelectCountry={navigateToCountry}
-        />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full">
+        <div className="w-full">
+          <SchemaCard maxWidth={false} className="h-full">
+            <Globe />
+          </SchemaCard>
+        </div>
+        <div className="w-full">
+          <CountriesList countries={content.operationalCountries} />
+        </div>
       </div>
-      <LinearGradient className={cn("h-1/3", "md:h-screen")} />
     </section>
   );
 };

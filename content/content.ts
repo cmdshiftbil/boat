@@ -113,71 +113,85 @@ const content = {
 
   operationalCountries: [
     {
+      id: "eca99d96-0ae2-4dd8-acbe-eb4a1805ecde",
       name: "Bahrain",
       lat: 26.0667,
       long: 50.5577,
     },
     {
+      id: "ad60a1fe-ad68-4ad0-ba91-dec46692784c",
       name: "Cyprus",
       lat: 35.1264,
       long: 33.4299,
     },
     {
+      id: "590bba8c-90eb-40e5-84d0-35e752f01f92",
       name: "Egypt",
       lat: 26.8206,
       long: 30.8025,
     },
     {
+      id: "4b2e9522-9d98-489f-bcfa-116ff82d44fd",
       name: "Iraq",
       lat: 33.3152,
       long: 44.3661,
     },
     {
+      id: "9f0f630e-aff9-4a47-a64a-e82db798936a",
       name: "Israel",
       lat: 31.0461,
       long: 34.8516,
     },
     {
+      id: "de642c66-0939-4fd1-adc2-0970a5a9c579",
       name: "Jordan",
       lat: 30.5852,
       long: 36.2384,
     },
     {
+      id: "038c6767-1fa4-4b43-8256-6e614a986c84",
       name: "Kuwait",
       lat: 29.3759,
       long: 47.9774,
     },
     {
+      id: "7f19070b-e8f0-49ff-af5d-ac03e91d0149",
       name: "Lebanon",
       lat: 33.8547,
       long: 35.8623,
     },
     {
+      id: "60dba1ec-5b08-4a53-bd29-3cbe5d3e8b27",
       name: "Oman",
       lat: 21.5126,
       long: 55.9233,
     },
     {
+      id: "09f73b4d-f2c1-4b23-9a46-4945bef5a69a",
       name: "Qatar",
       lat: 25.3548,
       long: 51.1839,
     },
     {
+      id: "d88a5121-4981-4e9f-8baf-472fc171b9a7",
       name: "Saudi Arabia",
       lat: 23.8859,
       long: 45.0792,
     },
     {
+      id: "de89fe56-4a64-4e16-a285-f54dcd913222",
       name: "Turkey",
       lat: 38.9637,
       long: 35.2433,
     },
     {
+      id: "09449895-669f-421d-8f82-d29a4f465672",
       name: "United Arab Emirates",
       lat: 23.4241,
       long: 53.8478,
     },
     {
+      id: "ed8c5e79-eaea-4d79-888a-ef421c7d294c",
       name: "Yemen",
       lat: 15.5527,
       long: 48.5164,
