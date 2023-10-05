@@ -62,7 +62,7 @@ export default async function Blog() {
   }
 
   return (
-    <FadeInStagger className="container py-12 spac">
+    <FadeInStagger className="py-12">
       <PageIntro
         eyebrow="Blog"
         title="The latest articles and news"
