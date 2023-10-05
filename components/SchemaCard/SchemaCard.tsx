@@ -1,12 +1,17 @@
+"use client";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { PlusIcon } from "./PlusIcon";
+import { CustomDomComponent, motion } from "framer-motion";
 
 type SchemaCardProps = {
   containerClassName?: string;
   className?: string;
   children?: React.ReactNode;
   maxWidth?: boolean;
+  padding?: boolean;
+  isMotion?: boolean;
+  style?: any;
 } & (
   | {
       grid?: true;
@@ -25,10 +30,15 @@ export default function SchemaCard({
   children,
   containerClassName,
   maxWidth = true,
+  padding = true,
+  isMotion = false,
   grid,
   isFirst,
   isLast,
+  ...props
 }: SchemaCardProps) {
+  const Div = isMotion ? motion.div : "div";
+
   const renderPlanSymbols = () => {
     if (grid && isFirst) {
       return (
@@ -61,22 +71,28 @@ export default function SchemaCard({
   };
 
   return (
-    <div
+    <Div
       className={cn(
-        "border border-caramel-900/50 flex flex-col items-start  mx-auto p-4 relative h-full justify-end w-full",
+        "border border-caramel-900/50 flex flex-col items-start  mx-auto relative h-full justify-end w-full",
         containerClassName,
-        maxWidth && "max-w-sm"
+        maxWidth && "max-w-sm",
+        padding && "p-4"
       )}
+      {...props}
     >
       {renderPlanSymbols()}
 
       {/* <GridCard title={`${position + 1}`} /> */}
 
       <div
-        className={cn("pb-6 pt-4 flex flex-col gap-6 w-full h-full", className)}
+        className={cn(
+          "flex flex-col gap-6 w-full h-full",
+          padding && "pb-6 pt-4",
+          className
+        )}
       >
         {children}
       </div>
-    </div>
+    </Div>
   );
 }

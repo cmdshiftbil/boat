@@ -7,6 +7,8 @@ import ReactTimeAgo from "react-time-ago";
 import PostImage from "./PostImage";
 import { FadeIn } from "../FadeIn";
 import Title from "../Title";
+import { Button } from "../ui/button";
+import Image from "next/image";
 
 interface PostSummaryProps extends BlogPost {
   className?: string;
@@ -28,10 +30,9 @@ const PostSummary = ({
   const shortenedExcerpt = originalExcerpt.substring(0, 400);
 
   return (
-    <article className="flex flex-col md:flex-row items-start justify-between gap-4 mb-16">
-      <div className="flex items-center gap-x-4 text-xs">
+    <article className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="flex flex-col gap-4 p-6">
         <FadeIn>
-          {/* Time */}
           <time
             dateTime={publishedOnDate.toLocaleDateString()}
             className="text-gray-500"
@@ -39,36 +40,31 @@ const PostSummary = ({
             <ReactTimeAgo date={publishedOnDate} locale="en-US" />
           </time>
         </FadeIn>
-      </div>
-      <div className="group relative">
+
         <FadeIn>
           <Title as="h3">
             <Link href={`/blog/${slug}`}>{title}</Link>
           </Title>
         </FadeIn>
-        {/* Mobile Image */}
-        {/* <FadeIn>
-            <PostImage
-              isInline
-              className="md:hidden mt-10 mb-10"
-              slug={slug}
-              imageUrl={image?.url}
-            />
-          </FadeIn> */}
+
         <FadeIn>
           <p className="mt-2 text-lg">
             {shortenedExcerpt}
             {shortenedExcerpt.length !== originalExcerpt.length ? "..." : ""}
           </p>
         </FadeIn>
+        <FadeIn>
+          <Button variant="outline">Read More</Button>
+        </FadeIn>
       </div>
 
-      {/* Desktop Image */}
-      <PostImage
-        isInline
-        className="order-1"
-        slug={slug}
-        imageUrl={image?.url}
+      <Image
+        src={image?.url ?? ""}
+        alt=""
+        className="order-first md:order-last h-full w-full"
+        // className="aspect-[16/9] w-full bg-gray-100 border-[2px] border-black object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+        width={1000}
+        height={1000}
       />
     </article>
   );

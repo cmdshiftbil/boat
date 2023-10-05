@@ -1,10 +1,12 @@
 import { FadeIn } from "@/components/Animations";
 import ScaleInOut from "@/components/Animations/ScaleInOut";
 import { FadeInStagger } from "@/components/FadeIn";
+import { PageIntro } from "@/components/PageIntro";
 // import Button from "@/components/Button";
 import { PostSummary } from "@/components/Post";
 import SchemaCard from "@/components/SchemaCard/SchemaCard";
 import Title from "@/components/Title";
+import { Button } from "@/components/ui/button";
 import getPayloadClient from "@/payload/payloadClient";
 import { prepareSeoData } from "@/utils/seo.utils";
 import { Metadata } from "next";
@@ -60,36 +62,36 @@ export default async function Blog() {
   }
 
   return (
-    <FadeInStagger>
-      <div className="container">
-        <div className="flex-1">
-          <FadeIn>
-            <Title as="h1">Blog</Title>
-          </FadeIn>
-          <FadeIn>
-            <p className="text-primary/50 mt-6 text-xl">
-              What we are doing at Alpha Nero
-            </p>
-          </FadeIn>
-        </div>
+    <FadeInStagger className="container py-12 spac">
+      <PageIntro
+        eyebrow="Blog"
+        title="The latest articles and news"
+        className="mb-12 mx-0"
+      >
+        <p>
+          Stay up-to-date with the latest industry news as our marketing teams
+          finds new ways to improve our services and products.
+        </p>
+      </PageIntro>
 
-        <div className="flex-1">
+      <div className="container">
+        <div className="flex-1 flex flex-col gap-10">
           {posts.map((post) => {
             const { id } = post;
             return (
               <FadeIn key={id}>
-                <SchemaCard maxWidth={false}>
+                <SchemaCard maxWidth={false} padding={false}>
                   <PostSummary {...post} />
                 </SchemaCard>
               </FadeIn>
             );
           })}
 
-          {/* <div className="flex justify-center mt-20">
-              <Button className="bg-transparent sticky invert">
-                Load more
-              </Button>
-            </div> */}
+          <div className="flex justify-center mt-20">
+            <Button variant="ghost" className="sticky">
+              Load more
+            </Button>
+          </div>
         </div>
       </div>
     </FadeInStagger>
