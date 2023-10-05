@@ -1,15 +1,26 @@
 "use client";
+import useRouteChange from "@/hooks/useRouteChange";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion, useCycle } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useState } from "react";
 import Logo from "../Logo";
 import { background, headerMotionVariants } from "./anim";
 import Navgigation from "./nav";
 import MenuTrigger from "./nav/MenuTrigger";
-import { usePathname } from "next/navigation";
 
 export default function Header() {
-  const [isActive, toggleActive] = useCycle(false, true);
+  const [isActive, setIsActive] = useState(false);
+
+  useRouteChange(() => {
+    return () => {
+      setIsActive(false);
+    };
+  });
+
+  const toggleActive = () => {
+    setIsActive((prevActive) => !prevActive);
+  };
 
   return (
     <motion.header

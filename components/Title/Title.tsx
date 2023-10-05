@@ -2,11 +2,11 @@ import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
 import React from "react";
 
-const titleVariants = cva("text-caramel-500 font-medium", {
+const titleVariants = cva("text-caramel-300 font-medium", {
   variants: {
     as: {
       h1: "text-7xl sm:text-9xl",
-      h2: "text-3xl sm:text-5xl",
+      h2: "text-3xl sm:text-7xl",
       h3: "text-4xl sm:text-3xl",
       h4: "text-2xl sm:text-4xl",
       h5: "text-lg sm:text-xl",

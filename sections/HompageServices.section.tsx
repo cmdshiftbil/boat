@@ -13,7 +13,7 @@ export default function HompageServices({ services }: any) {
     <FadeInStagger>
       <Container>
         <FadeIn>
-          <Title className="text-6xl font-bold text-shark-300">
+          <Title className="text-6xl font-bold text-caramel-300" as="h2">
             What we do best
           </Title>
         </FadeIn>

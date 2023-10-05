@@ -105,7 +105,7 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* <HeroSection data={homeData.hero} /> */}
+      <HeroSection data={homeData.hero} />
       <MainHeadline />
       <HompageServices services={services} />
       {/* <WhatWeDoSection data={homeData.whatWeDo} /> */}

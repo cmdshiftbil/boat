@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
+import useRouteChange from "@/hooks/useRouteChange";
 
 const path01Variants = {
   open: { d: "M3.06061 2.99999L21.0606 21" },
@@ -16,16 +16,28 @@ export default function MenuTrigger({ isOpen, onToggle }: any) {
   const path01Controls = useAnimation();
   const path02Controls = useAnimation();
 
+  const animateOpen = async () => {
+    await path02Controls.start(path02Variants.moving);
+    path01Controls.start(path01Variants.open);
+    path02Controls.start(path02Variants.open);
+  };
+
+  const animateClose = async () => {
+    path01Controls.start(path01Variants.closed);
+    await path02Controls.start(path02Variants.moving);
+    path02Controls.start(path02Variants.closed);
+  };
+
+  useRouteChange(() => {
+    return async () => await animateClose();
+  });
+
   const onClick = async () => {
     onToggle();
     if (!isOpen) {
-      await path02Controls.start(path02Variants.moving);
-      path01Controls.start(path01Variants.open);
-      path02Controls.start(path02Variants.open);
+      await animateOpen();
     } else {
-      path01Controls.start(path01Variants.closed);
-      await path02Controls.start(path02Variants.moving);
-      path02Controls.start(path02Variants.closed);
+      await animateClose();
     }
   };
 
