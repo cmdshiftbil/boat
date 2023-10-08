@@ -14,12 +14,21 @@ export default function LoadingScreen() {
           duration: 1.5,
           ease: [0.33, 1, 0.68, 1],
           times: [0, 0.5, 1],
-          repeat: Infinity,
-          repeatType: "loop",
         },
       }}
     >
-      <Logo />
+      <motion.div
+        animate={{
+          opacity: [0, 1],
+          transition: {
+            duration: 1,
+            ease: [0.33, 1, 0.68, 1],
+            times: [0, 1],
+          },
+        }}
+      >
+        <Logo />
+      </motion.div>
     </motion.div>
   );
 }

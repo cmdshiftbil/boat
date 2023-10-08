@@ -3,9 +3,10 @@ import { Icon } from "../GridCard/Icon";
 import GridCard from "../GridCard";
 import Title from "../Title";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { motion } from "framer-motion";
 import SchemaCard from "../SchemaCard/SchemaCard";
+import Link from "next/link";
 
 interface ServiceCardProps {
   title: string;
@@ -31,9 +32,12 @@ export default function ServiceCard({
 
         {title}
       </Title>
-      <Button variant="outline" className="text-caramel-100" size="lg">
+      <Link
+        href="/services"
+        className={buttonVariants({ variant: "outline", size: "lg" })}
+      >
         Learn More
-      </Button>
+      </Link>
     </SchemaCard>
   );
 }

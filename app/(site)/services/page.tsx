@@ -14,7 +14,7 @@ import { prepareSeoData } from "@/utils/seo.utils";
 import { Metadata } from "next";
 import Link from "next/link";
 
-const { title, description, services } = servicePageContent;
+const { title, description, iconMaps } = servicePageContent;
 
 type Props = {
   params: { id: string };
@@ -46,15 +46,13 @@ export async function generateMetadata({
 export default async function Services() {
   const services = await getServices();
 
-  const iconMaps = [SpiralIcon, StairsUpIcon, ConeIcon, CubeSide];
-
   return (
     <FadeInStagger>
-      <header className="container space-y-4">
+      <header className="container space-y-4 mb-12">
         <Title>{title}</Title>
         <p className="text-3xl text-caramel-100 font-normal">{description}</p>
       </header>
-      <div className="py-12 p-2">
+      <div className="py-12 p-2 sm:p-4 md:p-6">
         <SchemaCard maxWidth={false} padding={false}>
           <div className="grid auto-rows-max grid-cols-1 sm:grid-cols-2 divide-x divide-y divide-dashed overflow-hidden">
             {services.map((service, index) => {

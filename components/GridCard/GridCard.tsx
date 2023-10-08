@@ -29,10 +29,10 @@ export const GridCard = ({ title }: GridCardProps) => {
   }
 
   return (
-    <a className="p-0.5 bg-transparent aspect-square  flex items-center justify-center w-full h-full relative">
+    <a className="p-0.5 bg-transparent aspect-square flex items-center justify-center w-full h-full relative">
       <div
         onMouseMove={onMouseMove}
-        className="group  w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full"
+        className="group w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full"
       >
         <CardPattern
           mouseX={mouseX}

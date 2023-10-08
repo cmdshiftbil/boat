@@ -62,7 +62,7 @@ export default async function Blog() {
   }
 
   return (
-    <FadeInStagger className="py-12">
+    <FadeInStagger className="py-12 container">
       <PageIntro
         eyebrow="Blog"
         title="The latest articles and news"
@@ -74,7 +74,7 @@ export default async function Blog() {
         </p>
       </PageIntro>
 
-      <div className="container">
+      <div>
         <div className="flex-1 flex flex-col gap-10">
           {posts.map((post) => {
             const { id } = post;
