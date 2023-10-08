@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { motion, useAnimation } from "framer-motion";
 import useRouteChange from "@/hooks/useRouteChange";
+import { useEffect } from "react";
 
 const path01Variants = {
   open: { d: "M3.06061 2.99999L21.0606 21" },
@@ -15,6 +17,18 @@ const path02Variants = {
 export default function MenuTrigger({ isOpen, onToggle }: any) {
   const path01Controls = useAnimation();
   const path02Controls = useAnimation();
+
+  useEffect(() => {
+    if (isOpen) {
+      path01Controls.start(path01Variants.open);
+      path02Controls.start(path02Variants.open);
+    }
+
+    if (!isOpen) {
+      path01Controls.start(path01Variants.closed);
+      path02Controls.start(path02Variants.closed);
+    }
+  }, [isOpen]);
 
   const animateOpen = async () => {
     await path02Controls.start(path02Variants.moving);

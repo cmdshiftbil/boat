@@ -169,6 +169,7 @@ import { twMerge } from "tailwind-merge";
 import SchemaCard from "@/components/SchemaCard/SchemaCard";
 import Title from "@/components/Title";
 import Logo from "@/components/Logo";
+import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 // import { users } from "./users";
 
 // export const HeroScrollPreview = () => {
@@ -217,16 +218,18 @@ const HeroSection = ({}) => {
       className="h-[120vh] flex items-center justify-center relative"
       ref={containerRef}
     >
-      <div
-        className="py-40 w-full relative"
-        style={{
-          perspective: "1000px",
-        }}
-      >
-        <Header translate={translate} />
+      <FadeIn>
+        <div
+          className="py-40 w-full relative"
+          style={{
+            perspective: "1000px",
+          }}
+        >
+          <Header translate={translate} />
 
-        <Card rotate={rotate} translate={translate} scale={scale} />
-      </div>
+          <Card rotate={rotate} translate={translate} scale={scale} />
+        </div>
+      </FadeIn>
     </div>
   );
 };
@@ -239,10 +242,16 @@ export const Header = ({ translate }: any) => {
       }}
       className="mx-auto text-center"
     >
-      <Title as="h1">Retail fit out contractor</Title>
-      <Title as="h2" className="text-3xl font-thin">
-        retail experts for luxury lifestyle brands
-      </Title>
+      <FadeInStagger>
+        <FadeIn>
+          <Title as="h1">Retail fit out contractor</Title>
+        </FadeIn>
+        <FadeIn>
+          <Title as="h2" className="text-3xl font-thin">
+            retail experts for luxury lifestyle brands
+          </Title>
+        </FadeIn>
+      </FadeInStagger>
     </motion.div>
   );
 };

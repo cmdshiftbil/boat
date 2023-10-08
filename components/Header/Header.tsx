@@ -28,7 +28,7 @@ export default function Header() {
       animate={isActive ? "enter" : "exit"}
       variants={headerMotionVariants}
       className={cn(
-        "fixed w-full box-border py-4 px-5 top-0 z-50",
+        "fixed w-full box-border py-4 px-5 top-0 z-20",
         //Desktop
         "md:p-12"
       )}
@@ -51,8 +51,9 @@ export default function Header() {
         initial="initial"
         animate={isActive ? "open" : "closed"}
         className={cn(
-          "bg-graphite-950 absolute top-full left-0 w-full h-full opacity-70"
+          "bg-graphite-950 absolute top-full left-0 w-full h-full opacity-70 cursor-pointer"
         )}
+        onClick={toggleActive}
       />
       <AnimatePresence mode="wait">
         {isActive && <Navgigation />}

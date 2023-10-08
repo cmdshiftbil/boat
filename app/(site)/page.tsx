@@ -15,6 +15,7 @@ import { Metadata } from "next";
 import { MainHeadline } from "@/sections/Headline.section";
 import ProjectsPreview from "@/sections/ProjectsPreview.section";
 import HompageServices from "@/sections/HompageServices.section";
+import { getServices } from "@/lib/fetchers";
 
 type Props = {
   params: { id: string };
@@ -51,18 +52,6 @@ const getClients = async () => {
     limit: 20,
   });
   return clients.docs;
-};
-
-const getServices = async () => {
-  const payload = await getPayloadClient();
-  const services = await payload.find({
-    collection: "services",
-    where: {
-      showInHomePage: { equals: true },
-    },
-    limit: 3,
-  });
-  return services.docs;
 };
 
 export default async function HomePage() {

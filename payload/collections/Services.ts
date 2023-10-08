@@ -1,4 +1,7 @@
-import { triggerDeployHookAfterChange, triggerDeployHookAfterDelete } from "../utilities/hooks";
+import {
+  triggerDeployHookAfterChange,
+  triggerDeployHookAfterDelete,
+} from "../utilities/hooks";
 import { SubServiceBlock } from "./../blocks/SubService/SubService";
 import { CollectionConfig } from "payload/types";
 
@@ -7,10 +10,25 @@ export const Services: CollectionConfig = {
   admin: {
     useAsTitle: "title",
   },
+  defaultSort: "order",
   access: {
     read: (): boolean => true,
   },
   fields: [
+    {
+      name: "order",
+      label: "Order",
+      type: "number",
+      unique: true,
+      required: true,
+    },
+    {
+      name: "icon",
+      label: "Icon",
+      type: "upload",
+      relationTo: "media",
+      required: false,
+    },
     {
       name: "title",
       label: "Service Title",
@@ -28,17 +46,17 @@ export const Services: CollectionConfig = {
       label: "Show in home page",
       type: "checkbox",
     },
-    {
-      name: "serviceContent",
-      label: "Service Content",
-      type: "blocks",
-      minRows: 1,
-      maxRows: 3,
-      blocks: [SubServiceBlock],
-    },
+    // {
+    //   name: "serviceContent",
+    //   label: "Service Content",
+    //   type: "blocks",
+    //   minRows: 1,
+    //   maxRows: 3,
+    //   blocks: [SubServiceBlock],
+    // },
   ],
   hooks: {
     afterChange: [triggerDeployHookAfterChange],
     afterDelete: [triggerDeployHookAfterDelete],
-  }
+  },
 };

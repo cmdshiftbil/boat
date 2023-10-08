@@ -5,7 +5,7 @@ import { generateRandomString } from "./generateRandomString";
 import { CardPattern } from "./CardPattern";
 
 interface GridCardProps {
-  title: string;
+  title: string | React.ReactNode;
 }
 
 export const GridCard = ({ title }: GridCardProps) => {
@@ -43,8 +43,11 @@ export const GridCard = ({ title }: GridCardProps) => {
           <div className="relative h-44 w-44  rounded-full flex items-center justify-center text-white font-bold text-4xl">
             <div className="absolute w-full h-full bg-graphite-950/[0.8] blur-sm rounded-full" />
             <p className="z-20">
-              <span className="font-bold text-caramel-500">/</span>
-              <span className="text-caramel-200">{title}</span>
+              {typeof title === "string" ? (
+                <span className="text-caramel-200">{title}</span>
+              ) : (
+                title
+              )}
             </p>
           </div>
         </div>

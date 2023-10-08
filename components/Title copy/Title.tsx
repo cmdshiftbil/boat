@@ -49,7 +49,7 @@ export default function Title({
     }),
   };
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     threshold: 0.75,
     triggerOnce: true,
   });

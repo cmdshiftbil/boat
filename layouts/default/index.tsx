@@ -3,15 +3,22 @@ import localFont from "next/font/local";
 import CustomHead from "@/components/CustomHead/CustomHead";
 import Footer from "@/components/Footer/Footer";
 import { Lenis, ReactLenis } from "@studio-freight/react-lenis";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useIsPresent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import TimeAgo from "javascript-time-ago";
 import NextNProgress from "nextjs-progressbar";
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import { cn } from "@/lib/utils";
 import en from "javascript-time-ago/locale/en.json";
 import gsap from "gsap";
 import { Fraunces } from "next/font/google";
+import LoadingScreen from "@/app/(site)/loading";
 
 // import s from "./layout.module.scss";
 
@@ -72,10 +79,7 @@ export function Layout({
   return (
     <>
       <CustomHead {...seo} />
-      {/* <NextNProgress color="#96786c" /> */}
-
-      <Header />
-      {/* <Cursor /> */}
+      <NextNProgress color="#aa8455" />
       <ReactLenis
         // ref={lenisRef}
         root
@@ -86,6 +90,8 @@ export function Layout({
           syncTouch: true,
         }}
       >
+        <Header />
+        {/* <Cursor /> */}
         <main
           ref={container}
           className={cn(

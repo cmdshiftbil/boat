@@ -3,7 +3,7 @@ import { Boxes, CalendarCheck2, Factory, Wrench } from "lucide-react";
 const servicePageContent = {
   title: "Services",
   description:
-    "We build immersive in-shop and pop-up store customer experiences for high-end retail brands.",
+    "We assemble stories in brick and mortar, from world – class boutique builds to immersive shop-in-shops and sustainable pop-ups.",
   services: [
     {
       title: "Retail build services",

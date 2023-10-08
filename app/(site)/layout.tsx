@@ -2,7 +2,6 @@ import "@/styles/global.css";
 
 import Init from "@/components/Init";
 import { Layout } from "@/layouts/default";
-import WebGLTunnel from "@/components/WebGLTunnel";
 import { AnimatePresence } from "framer-motion";
 export const revalidate = 0;
 
