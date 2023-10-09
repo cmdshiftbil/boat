@@ -4,9 +4,19 @@ import { cn } from "@/lib/utils";
 
 const draw = {
   initial: { pathLength: 0, opacity: 0 },
-  hidden: { pathLength: 0, opacity: 0 },
+  hidden: (i: number) => {
+    const delay = 0.2;
+    return {
+      pathLength: 0,
+      opacity: 0,
+      transition: {
+        pathLength: { delay, type: "spring", duration: 0.5, bounce: 0 },
+        opacity: { delay, duration: 0.01 },
+      },
+    };
+  },
   visible: (i: number) => {
-    const delay = 0.7;
+    const delay = 0;
     return {
       pathLength: 1,
       opacity: 1,
@@ -18,22 +28,19 @@ const draw = {
   },
 };
 
-function ActiveElement(
-  props: React.SVGProps<SVGSVGElement> & {
-    isActive: boolean;
-  }
-) {
+function ActiveElement(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <div className="h-full relative">
+    <motion.div className="h-full relative" layoutId="active-element">
       <motion.svg
-        // width={71}
-        // height={72}
+        width={71}
+        height={72}
         fill="none"
         initial="initial"
-        animate="visible"
+        animate={"visible"}
+        whileInView={"visible"}
         exit="hidden"
         viewBox="0 0 71 72"
-        layoutId="active-element"
+        // layoutId="active-element"
         className={cn("aspect-square h-full", props.className)}
       >
         <motion.path
@@ -43,7 +50,7 @@ function ActiveElement(
           strokeWidth={11}
         />
       </motion.svg>
-    </div>
+    </motion.div>
   );
 }
 

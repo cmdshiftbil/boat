@@ -1,13 +1,27 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { blur, translate } from "../../anim";
 import { cn } from "@/lib/utils";
 import ActiveElement from "../../ActiveElement";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
-export default function Body({ links, selectedLink, setSelectedLink }: any) {
+export default function Body({ links }: any) {
   const pathname = usePathname();
   const isCurrentPathname = (href: string) => href === pathname;
+  const currentActiveIndex = links.findIndex((link: any) =>
+    isCurrentPathname(link.href)
+  );
+
+  const activeObject = {
+    isActive: false,
+    index: 0,
+  };
+
+  const [selectedLink, setSelectedLink] = useState(activeObject);
+  let [hoveredIndex, setHoveredIndex] = useState<number | null>(
+    currentActiveIndex
+  );
 
   const getChars = (word: any) => {
     let chars: any[] = [];
@@ -39,7 +53,6 @@ export default function Body({ links, selectedLink, setSelectedLink }: any) {
         )}
       >
         {links.map((link: any, index: number) => {
-          const activeElement = isCurrentPathname(link.href);
           const { title, href } = link;
           return (
             <motion.li
@@ -52,14 +65,22 @@ export default function Body({ links, selectedLink, setSelectedLink }: any) {
               )}
               key={`l_${index}`}
               onMouseOver={() => {
-                setSelectedLink({ isActive: true, index });
+                setHoveredIndex(index);
+                setSelectedLink({
+                  isActive: true,
+                  index,
+                });
               }}
               onMouseLeave={() => {
-                setSelectedLink({ isActive: false, index });
+                setHoveredIndex(currentActiveIndex);
+                setSelectedLink({
+                  isActive: false,
+                  index,
+                });
               }}
               variants={blur}
               animate={
-                selectedLink.isActive && selectedLink.index != index
+                selectedLink.isActive && selectedLink.index !== index
                   ? "open"
                   : "closed"
               }
@@ -70,12 +91,11 @@ export default function Body({ links, selectedLink, setSelectedLink }: any) {
               >
                 {getChars(title)}
               </Link>
-              {activeElement && (
-                <ActiveElement
-                  isActive={activeElement || selectedLink.isActive}
-                  className="absolute top-3 right-3"
-                />
-              )}
+              <AnimatePresence mode="wait">
+                {hoveredIndex === index && (
+                  <ActiveElement className="absolute top-3 right-3" />
+                )}
+              </AnimatePresence>
             </motion.li>
           );
         })}

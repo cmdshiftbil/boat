@@ -40,11 +40,6 @@ export default function Navgigation() {
           />
           <Footer />
         </div>
-        <NavImage
-          src={links[selectedLink.index].src}
-          isActive={selectedLink.isActive}
-          // alt="alpha nero"
-        />
       </div>
     </motion.div>
   );
