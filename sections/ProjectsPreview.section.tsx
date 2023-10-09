@@ -6,6 +6,9 @@ import styles from "./page.module.scss";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Lenis } from "@studio-freight/react-lenis";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import Title from "@/components/Title";
 
 const images = [
   "1.jpg",
@@ -58,7 +61,7 @@ export default function ProjectsPreview() {
   }, []);
 
   return (
-    <>
+    <section>
       {/* <div className={styles.spacer}></div> */}
       <div ref={gallery} className={styles.gallery}>
         <Column images={[images[0], images[1], images[2]]} y={y} />
@@ -67,7 +70,38 @@ export default function ProjectsPreview() {
         <Column images={[images[9], images[10], images[11]]} y={y4} />
       </div>
       {/* <div className={styles.spacer}></div> */}
-    </>
+      <div className="relative isolate overflow-hidden bg-gray-900">
+        <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <Title
+              as="h2"
+              className="text-3xl font-bold tracking-tight sm:text-4xl"
+            >
+              Read more about our projects use-cases.
+            </Title>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-8">
+              We have worked with some of the most prestigious brands in the
+              world. We are proud of our work and the relationships we have
+              built with our clients.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/projects"
+                className={buttonVariants({ variant: "link", size: "lg" })}
+              >
+                View all projects
+              </Link>
+              <Link
+                href="/contanct"
+                className={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                Let&apos;s Talk <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
