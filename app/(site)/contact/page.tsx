@@ -6,6 +6,7 @@ import getPayloadClient from "@/payload/payloadClient";
 import { prepareSeoData } from "@/utils/seo.utils";
 import { Metadata } from "next";
 import ContactHeader from "./_components/ContactHeader";
+import { PageIntro } from "@/components/PageIntro";
 
 type Props = {
   params: { id: string };

@@ -1,11 +1,12 @@
 import Page from "@/components/Page";
 import getPayloadClient from "@/payload/payloadClient";
-import { Header } from "@/app/(site)/projects/components/Header";
 import { Projects } from "@/app/(site)/projects/components/Projects";
 import { AnimateInOut } from "@/components/Animations";
 import { prepareSeoData } from "@/utils/seo.utils";
 import { Metadata } from "next";
 import { Container } from "@/components/Container";
+import { PageIntro } from "@/components/PageIntro";
+import BouncyLine from "@/components/BouncyLine";
 
 type Props = {
   params: { id: string };
@@ -53,7 +54,15 @@ export default async function ProjectsPage() {
 
   return (
     <>
-      <Header />
+      <PageIntro
+        title="Projects"
+        description="As a leading retail fit out agency, we design and build retail
+        showcase outlets for the world’s iconic luxury retail brands from the
+        ground up to engineer incredible shopping experiences."
+      >
+        <BouncyLine />
+      </PageIntro>
+
       <div className="sm:container">
         {/* <Container> */}
         <Projects projects={projects} />

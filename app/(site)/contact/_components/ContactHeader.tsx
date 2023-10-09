@@ -1,3 +1,4 @@
+import { PageIntro } from "@/components/PageIntro";
 import { cn } from "@/utils/tailwind.utils";
 import React from "react";
 
@@ -22,13 +23,18 @@ export default function ContactHeader() {
           "md:text-9xl"
         )}
       >
-        <span>Let&apos;s Discuss</span>
-        <span>Your Project</span>
+        <PageIntro
+          title="Let's Discuss Your Project"
+          description="Get in touch with us"
+        />
       </div>
 
       <div className={cn("flex flex-col px-2 justify-center")}>
         <span>Reach out to</span>
-        <a href="/#" className="text-caramel-500 text-lg hover:underline">
+        <a
+          href="mailto:reception@alpha-nero.com"
+          className="text-caramel-500 text-lg hover:underline"
+        >
           reception@alpha-nero.com
         </a>
       </div>

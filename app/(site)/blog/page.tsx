@@ -64,15 +64,10 @@ export default async function Blog() {
   return (
     <FadeInStagger className="py-12 container">
       <PageIntro
-        eyebrow="Blog"
-        title="The latest articles and news"
-        className="mb-12 mx-0"
-      >
-        <p>
-          Stay up-to-date with the latest industry news as our marketing teams
-          finds new ways to improve our services and products.
-        </p>
-      </PageIntro>
+        title="Blog"
+        subTitle="Elevate Your Retail Space: Expert Insights and Inspiration"
+        description="Discover the Latest Trends, Tips, and Success Stories in Retail Shopfitting"
+      />
 
       <div>
         <div className="flex-1 flex flex-col gap-10">

@@ -1,5 +1,6 @@
 import DrawIcon from "@/components/DrawIcon";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
+import { PageIntro } from "@/components/PageIntro";
 import SchemaCard from "@/components/SchemaCard/SchemaCard";
 import Title from "@/components/Title";
 import ConeIcon from "@/components/UserInterfaceElements/ConeIcon";
@@ -48,10 +49,8 @@ export default async function Services() {
 
   return (
     <FadeInStagger>
-      <header className="container space-y-4 mb-12">
-        <Title>{title}</Title>
-        <p className="text-3xl text-caramel-100 font-normal">{description}</p>
-      </header>
+      <PageIntro title={title} description={description} />
+
       <div className="py-12 p-2 sm:p-4 md:p-6">
         <SchemaCard maxWidth={false} padding={false}>
           <div className="grid auto-rows-max grid-cols-1 sm:grid-cols-2 divide-x divide-y divide-dashed overflow-hidden">
