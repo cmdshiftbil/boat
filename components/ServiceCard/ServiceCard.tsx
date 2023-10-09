@@ -24,20 +24,22 @@ export default function ServiceCard({
   return (
     <SchemaCard maxWidth={false}>
       <GridCard title={icon} />
-      <Title as="h3" className="flex flex-row gap-3">
-        <span>
-          {position + 1}
-          <span className="font-bold text-caramel-500">/</span>
-        </span>
+      <div className="min-h-[125px] flex flex-col justify-between">
+        <Title as="h3" className="flex flex-row gap-3">
+          <span>
+            {position + 1}
+            <span className="font-bold text-caramel-500">/</span>
+          </span>
 
-        {title}
-      </Title>
-      <Link
-        href="/services"
-        className={buttonVariants({ variant: "outline", size: "lg" })}
-      >
-        Learn More
-      </Link>
+          {title}
+        </Title>
+        <Link
+          href="/services"
+          className={buttonVariants({ variant: "outline", size: "lg" })}
+        >
+          Learn More
+        </Link>
+      </div>
     </SchemaCard>
   );
 }

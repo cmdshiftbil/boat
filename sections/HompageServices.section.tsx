@@ -18,8 +18,8 @@ export default function HompageServices({ services }: any) {
     <FadeInStagger>
       <Container>
         <FadeIn>
-          <Title className="text-6xl font-bold text-caramel-300" as="h2">
-            What we do best
+          <Title className="text-5xl font-bold text-caramel-300" as="h2">
+            Crafting the future of Luxury Retail
           </Title>
         </FadeIn>
         {/* <div className="flex flex-col md:flex-row py-12 gap-6 w-full"> */}
