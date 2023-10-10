@@ -8,6 +8,7 @@ import Logo from "../Logo";
 import { background, headerMotionVariants } from "./anim";
 import Navgigation from "./nav";
 import MenuTrigger from "./nav/MenuTrigger";
+import { LogoAnimated } from "../Logo/Logo";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
@@ -38,7 +39,7 @@ export default function Header() {
       >
         <div className="flex-1 h-full mix-blend-difference">
           <Link href="/">
-            <Logo />
+            <LogoAnimated />
           </Link>
         </div>
 
