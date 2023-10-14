@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import Title from "@/components/Title";
+import Text from "@/components/Text";
 
 const images = [
   "1.jpg",
@@ -72,18 +73,18 @@ export default function ProjectsPreview() {
       {/* <div className={styles.spacer}></div> */}
       <div className="relative isolate overflow-hidden bg-gray-900">
         <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <Title
-              as="h2"
-              className="text-3xl font-bold tracking-tight sm:text-4xl"
-            >
-              Read more about our projects use-cases.
+          <div className="mx-auto max-w-4xl text-center space-y-12">
+            <Title as="h2" className="font-bold tracking-tight">
+              We are known by the company we keep.
             </Title>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8">
-              We have worked with some of the most prestigious brands in the
-              world. We are proud of our work and the relationships we have
-              built with our clients.
-            </p>
+            <Text className=" mx-auto mt-6 text-xl md:text-2xl" animate>
+              Trusted by over 50 brands, our project porfolio is a curated
+              collection of our finest projects, showcasing the fusion of
+              creativity, craftsmanship, and functionality. Step inside and
+              explore a world where imagination meets precision, where every
+              detail is meticulously crafted to enhance the essence of retail
+              spaces.
+            </Text>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/projects"

@@ -48,7 +48,7 @@ export function FadeInStagger({
         initial="hidden"
         whileInView="visible"
         viewport={viewport}
-        transition={{ staggerChildren: faster ? 0.12 : 0.2 }}
+        transition={{ staggerChildren: faster ? 0.12 : 0.25 }}
         {...props}
       />
     </FadeInStaggerContext.Provider>

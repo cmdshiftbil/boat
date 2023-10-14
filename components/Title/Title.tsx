@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import React from "react";
 
-const titleVariants = cva("text-caramel-300 font-medium", {
+const titleVariants = cva("text-caramel-500 font-medium", {
   variants: {
     as: {
       h1: "text-7xl sm:text-9xl",
-      h2: "text-3xl sm:text-7xl",
+      h2: "text-5xl sm:text-7xl",
       h3: "text-4xl sm:text-3xl",
       h4: "text-2xl sm:text-4xl",
       h5: "text-lg sm:text-xl",

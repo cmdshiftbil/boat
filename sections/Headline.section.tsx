@@ -149,9 +149,9 @@ import Text from "@/components/Text";
 
 export function MainHeadline() {
   return (
-    <Container as="section" className="h-screen flex items-center">
+    <Container as="section" className="flex items-center py-24 md:py-48">
       <FadeIn>
-        <Text animate className="text-5xl text-caramel-100">
+        <Text animate className="text-5xl">
           Retail fit out contractor retail experts for luxury lifestyle brands
           We specialize in crafting innovative retail concepts that stay ahead
           of the curve.

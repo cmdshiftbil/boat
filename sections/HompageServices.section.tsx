@@ -16,7 +16,7 @@ export default function HompageServices({ services }: any) {
 
   return (
     <FadeInStagger>
-      <Container>
+      <Container className="py-24 md:py-48">
         <FadeIn>
           <Title className="text-5xl font-bold text-caramel-300" as="h2">
             Crafting the future of Luxury Retail

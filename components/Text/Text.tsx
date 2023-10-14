@@ -1,11 +1,10 @@
 "use client";
 import useGsapEffect from "@/hooks/useGsapEffect";
 import { cn } from "@/lib/utils";
-import classNames from "classnames";
+import { twColors } from "@/utils/color.utils";
 import gsap from "gsap";
 import { SplitText } from "gsap/dist/SplitText";
 import { HTMLAttributes, createElement, useRef } from "react";
-import { twMerge } from "tailwind-merge";
 
 interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
   as?: "p";
@@ -35,6 +34,7 @@ const Text = ({
         {
           "will-change": "opacity",
           opacity: 0.1,
+          color: twColors?.caramel?.[300],
         },
         {
           ease: "none",

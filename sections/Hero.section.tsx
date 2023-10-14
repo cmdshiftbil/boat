@@ -1,4 +1,5 @@
 "use client";
+import ReactPlayer from "react-player";
 
 // // import { FadeIn } from "@/components/Animations";
 // // import ScrollIcon from "@/components/ScrollIcon";
@@ -160,10 +161,14 @@
 
 // export default HeroSection;
 
-"use client";
 import type { NextPage } from "next";
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import {
+  useScroll,
+  useTransform,
+  motion,
+  AnimatePresence,
+} from "framer-motion";
 
 import { twMerge } from "tailwind-merge";
 import SchemaCard from "@/components/SchemaCard/SchemaCard";
@@ -198,11 +203,11 @@ const HeroSection = ({}) => {
   }, []);
 
   const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
+    return isMobile ? [0.9, 0.97] : [1.05, 1];
   };
 
   const translateDimensions = () => {
-    return isMobile ? [0.7, 200] : [0, -200];
+    return isMobile ? [0.7, 200] : [-50, -200];
   };
 
   const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
@@ -244,16 +249,23 @@ export const Header = ({ translate }: any) => {
     >
       <FadeInStagger>
         <FadeIn>
-          <Title as="h1">Retail fit out contractor</Title>
+          <Title as="h1" className="text-6xl">
+            Retail Fit Out Contractor
+          </Title>
         </FadeIn>
         <FadeIn>
           <Title as="h2" className="text-3xl font-thin">
-            retail experts for luxury lifestyle brands
+            Retail Experts For Luxury Lifestyle Brands.
           </Title>
         </FadeIn>
       </FadeInStagger>
     </motion.div>
   );
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
 };
 
 export const Card = ({
@@ -265,6 +277,11 @@ export const Card = ({
   scale: any;
   translate: any;
 }) => {
+  const [ready, setReady] = React.useState(false);
+  const readyToPlay = () => {
+    setReady(true);
+  };
+
   return (
     <motion.div
       style={{
@@ -273,81 +290,48 @@ export const Card = ({
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full bg-graphite-950 shadow-2xl"
+      // h-[30rem] md:h-[40rem]
+      className="max-w-5xl -mt-12 mx-auto  w-full bg-graphite-950 shadow-2xl aspect-video"
     >
       <SchemaCard maxWidth={false} padding={false}>
-        <div className="flex flex-col gap-4 h-full w-full overflow-hidden p-4">
-          <div className="flex flex-row h-full gap-4">
-            <div className="w-3/4 flex items-center justify-center border border-caramel-900">
-              Content
-            </div>
-            <div className="w-1/4 border border-caramel-900 flex flex-col p-4">
-              <div className="flex-1">
-                <span className="text-xs text-caramel-400 ">Key Plan:</span>
-                <p>abc</p>
-              </div>
-              <div className="flex-1">
-                <span className="text-xs text-caramel-400 ">
-                  General Notes:
-                </span>
-                <p>abc</p>
-              </div>
-              <div className="flex-1">
-                <span className="text-xs text-caramel-400 ">Revision:</span>
-                <p>abc</p>
-              </div>
-            </div>
-          </div>
+        <div className="flex flex-col gap-4 h-full w-full overflow-hidden">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              variants={fadeIn}
+              initial="visible"
+              animate={ready ? "hidden" : "visible"}
+              className="bg-graphite-950 h-full w-full absolute top-0 left-0 z-10 flex items-center justify-center"
+            >
+              Loading ...
+            </motion.div>
 
-          <div className="h-full flex-1">
-            <div className="flex flex-row gap-4">
-              <div className="w-3/4 flex items-center border border-caramel-900 p-4">
-                <div className="px-6">
-                  <Logo />
-                </div>
-                <div className="flex flex-col text-caramel-400 px-6">
-                  <span className="text-xs">Client:</span>
-                  <span className="text-caramel-100 text-2xl">Adidas</span>
-                </div>
-                <div className="flex flex-col text-caramel-400  px-6">
-                  <span className=" text-xs">Project Name:</span>
-                  <span className="text-caramel-100 text-2xl">
-                    Aubade @ The Dubai Mall_Dubai
-                  </span>
-                </div>
-              </div>
-              <div className="w-1/4 border border-caramel-900 flex flex-row items-center justify-center p-2">
-                <div className="flex-1 flex justify-between flex-col">
-                  <div>
-                    <span className="text-xs text-caramel-400 ">Drawn: </span>
-                    RAK
-                  </div>
-                  <div>
-                    <span className="text-xs text-caramel-400 ">Date: </span>
-                    16.01.2023
-                  </div>
-                  <div>
-                    <span className="text-xs text-caramel-400 ">Scale: </span>
-                    As Shown
-                  </div>
-                </div>
-                <div className="flex flex-col">
-                  <div>
-                    <span className="text-xs text-caramel-400 block">
-                      Checked:
-                    </span>
-                    Client
-                  </div>
-                  <div>
-                    <span className="text-xs text-caramel-400 block">
-                      Sheet Number:
-                    </span>
-                    <span className="font-bold">A0005</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <motion.div
+              variants={fadeIn}
+              initial="visible"
+              animate={!ready ? "hidden" : "visible"}
+              className="h-full w-full"
+            >
+              <ReactPlayer
+                url="https://www.youtube.com/watch?v=wQn56hJ7DWk"
+                width={"100%"}
+                height={"100%"}
+                playing
+                loop
+                muted
+                controls={false}
+                style={{ pointerEvents: "none" }}
+                stopOnUnmount
+                onReady={readyToPlay}
+                config={{
+                  youtube: {
+                    playerVars: {
+                      showinfo: 0,
+                    },
+                  },
+                }}
+              />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </SchemaCard>
     </motion.div>

@@ -27,10 +27,10 @@ const OurPresenceSection = () => {
   };
 
   return (
-    <section className="h-full py-24 flex justify-center flex-col p-4 sm:p-6 md:p-12">
-      <div className="py-6 sm:py-8">
+    <section className="h-full py-24 md:py-48 flex justify-center flex-col p-4 sm:p-6 md:p-12">
+      <div className="py-6 sm:py-8 space-y-4">
         <Title as="h2">Our Presence</Title>
-        <p className="text-caramel-500/50">
+        <p className="text-caramel-300 text-xl">
           We have a strong presence in the following countries, and we are
           continuously expanding our reach.
         </p>

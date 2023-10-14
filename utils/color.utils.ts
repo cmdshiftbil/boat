@@ -1,3 +1,5 @@
+import tailwindConfig from "@/tailwind.config";
+
 // Prune a tailwindcss color class to remove the bg- or text- prefix
 export const pruneTailwindColor = (tailwindColor: string) => {
   if (!tailwindColor) {
@@ -65,3 +67,5 @@ export function hexToNormalizedRGB(hex: string): [number, number, number] {
   // Normalize each value and return as tuple
   return [r / 255, g / 255, b / 255];
 }
+
+export const twColors: any | undefined = tailwindConfig?.theme?.colors;
