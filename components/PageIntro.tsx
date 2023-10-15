@@ -15,7 +15,7 @@ export function PageIntro({
   children?: React.ReactNode;
 }) {
   return (
-    <FadeInStagger className={"container space-y-4 mb-12"}>
+    <FadeInStagger className={"space-y-4 mb-12"}>
       <FadeIn>
         <Title>{title}</Title>
       </FadeIn>
@@ -24,9 +24,11 @@ export function PageIntro({
           <Title as="h3">{subTitle}</Title>
         </FadeIn>
       )}
-      <FadeIn>
-        <p className="text-3xl text-caramel-100 font-normal">{description}</p>
-      </FadeIn>
+      {description && (
+        <FadeIn>
+          <p className="text-3xl text-caramel-100 font-normal">{description}</p>
+        </FadeIn>
+      )}
       {children}
     </FadeInStagger>
   );

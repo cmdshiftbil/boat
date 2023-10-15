@@ -6,42 +6,49 @@ const content = {
   teamCounters: [
     {
       number: 10,
+      suffix: "+",
       label: "Designer",
       image: "/assets/shapes/designer-ill.svg",
       id: "69e3f6e1-66e5-4ff3-8a08-574f2c93b689",
     },
     {
       number: 5,
+      suffix: "+",
       label: "Project Manager",
       image: "/assets/shapes/pm-ill.svg",
       id: "263fc16c-de7f-487d-b7bf-58c3f1540bc4",
     },
     {
       number: 100,
+      suffix: "+",
       label: "Carpenters",
       image: "/assets/shapes/carpenters-ill.svg",
       id: "0405353f-954c-4a46-aaac-9d5288f29860",
     },
     {
       number: 10,
+      suffix: "+",
       label: "Electricians",
       image: "/assets/shapes/electricians-ill.svg",
       id: "9176ebc7-e4b9-445d-acce-06c962eba91d",
     },
     {
       number: 15,
+      suffix: "+",
       label: "Painters",
       image: "/assets/shapes/painters-ill.svg",
       id: "3b0014bf-bdfc-4962-81a0-02cb21ced86a",
     },
     {
       number: 12,
+      suffix: "+",
       label: "Metal Operators",
       image: "/assets/shapes/metal-op-ill.svg",
       id: "755ac551-44fc-46c7-a7cc-469defe5a129",
     },
     {
-      number: 40,
+      number: 100000,
+      suffix: "+",
       label: "Feet2 Production Facility",
       image: "/assets/shapes/surface-ill.svg",
       numberSuffix: "K",
@@ -49,7 +56,8 @@ const content = {
     },
     {
       numberPrefix: "+",
-      number: 160,
+      number: 250,
+      suffix: "+",
       label: "Employees",
       image: "/assets/shapes/employees-ill.svg",
       id: "ce9f4f2f-022a-47df-a5b8-8d6871f60f3d",
@@ -57,6 +65,7 @@ const content = {
     {
       numberPrefix: "+",
       number: 35,
+      suffix: "+",
       label: "Countries reached",
       image: "/assets/shapes/countries-ill.svg",
       id: "7ca7d48f-85b2-4cb1-9290-fe6947692e6b",

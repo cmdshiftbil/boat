@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
 
@@ -9,13 +10,14 @@ import { useInView, useMotionValue, useSpring } from "framer-motion";
 export default function Counter({
   value,
   direction = "up",
-  fontWeight = 300,
   className,
+  suffix = "",
 }: {
   value: number;
   direction?: "up" | "down";
   fontWeight?: number;
   className?: string;
+  suffix?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(direction === "down" ? value : 0);
@@ -35,13 +37,12 @@ export default function Counter({
     () =>
       springValue.on("change", (latest) => {
         if (ref.current) {
-          ref.current.textContent = Intl.NumberFormat("en-US").format(
-            latest.toFixed(0)
-          );
+          ref.current.textContent =
+            Intl.NumberFormat("en-US").format(latest.toFixed(0)) + suffix;
         }
       }),
     [springValue]
   );
 
-  return <span ref={ref} className={className} style={{ fontWeight }} />;
+  return <span ref={ref} className={className} />;
 }
