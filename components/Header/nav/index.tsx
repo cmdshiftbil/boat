@@ -13,8 +13,9 @@ const links = [
   { id: "2", href: "/about", title: "About", src: "" },
   { id: "3", href: "/projects", title: "Projects", src: "" },
   { id: "4", href: "/services", title: "Services", src: "" },
-  { id: "5", href: "/contact", title: "Contact", src: "" },
-  { id: "6", href: "/blog", title: "Blog", src: "" },
+  { id: "5", href: "/sustainability", title: "Sustainability", src: "" },
+  { id: "6", href: "/contact", title: "Contact", src: "" },
+  { id: "7", href: "/blog", title: "Blog", src: "" },
 ];
 
 export default function Navgigation() {

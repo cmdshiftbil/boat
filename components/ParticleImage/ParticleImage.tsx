@@ -29,11 +29,10 @@ const ParticleImage = (props: ParticleImageProps) => {
           className
         )}
       >
-        <Canvas ref={canvasRef}>
+        <Canvas ref={canvasRef} className="overflow-visible">
           <ParticleImageMesh canvasRef={canvasRef} {...otherProps} />
         </Canvas>
       </div>
-      {/* <ParticleImageVanillaThreeJs {...otherProps} /> */}
     </>
   );
 };

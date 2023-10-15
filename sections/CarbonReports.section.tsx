@@ -6,6 +6,8 @@ import useMobileDevice from "@/hooks/useMobileDevice";
 import { useMemo } from "react";
 import ParticleImage from "@/components/ParticleImage/ParticleImage";
 import MainHeadlineSection from "./MainHeadline.section";
+import Title from "@/components/Title";
+import { cn } from "@/lib/utils";
 
 const content = [
   {
@@ -44,86 +46,37 @@ const CarbonReportsSection = () => {
     []
   );
   return (
-    <section>
-      <header
-        id="services-header"
-        className="bg-shark-900 bg-grid-surface pt-32 pb-24 px-6 md:px-12 bg-cover border-b-2 border-shark-50/30 "
-      >
-        {/* <Heading className="text-shark-50" eyebrow="Service title">
-          <>
-            <span>Creating Carbon</span>
-            <br className="md:hidden" />
-            <span className="hidden md:inline-block">&nbsp;</span>
-            <span>Reports</span>
-          </>
-        </Heading> */}
-        {/* Desktop Heading */}
-        <Heading className="text-shark-50 opacity-0 md:opacity-100 h-1 w-1 md:w-auto md:h-auto overflow-hidden">
-          Creating Carbon Reports
-        </Heading>
-        {/* Mobile heading */}
-        <div className="text-shark-50 clamp-text-8xl flex-1 md:hidden">
-          Creating Carbon Reports
-        </div>
-      </header>
-
-      <div className="">
-        <div className="mx-auto  py-24 px-4 sm:px-6 sm:py-32  lg:px-8">
-          <div className="mt-16 space-y-16">
-            {content.map((feature, featureIdx) => (
-              <div
-                key={feature.name}
-                className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8"
-              >
-                <div
-                  className={classNames(
-                    featureIdx % 2 === 0
-                      ? "lg:col-start-1"
-                      : "lg:col-start-8 xl:col-start-7",
-                    "mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-6"
-                  )}
-                >
-                  {/* Desktop heading */}
-                  <MainHeadlineSection
-                    className={classNames(
-                      "!w-auto !h-auto",
-                      "!text-start !p-0"
-                    )}
-                    textClassName="!clamp-text-4xl"
-                  >
-                    <>{feature.name}</>
-                  </MainHeadlineSection>
-                  <Text
-                    className="mt-2 pt-9 text-zinc-400"
-                    fontSize="clamp-text-3xl"
-                  >
-                    {feature.description}
-                  </Text>
-                </div>
-                <div
-                  className={classNames(
-                    featureIdx % 2 === 0
-                      ? "lg:col-start-6 xl:col-start-0"
-                      : "lg:col-start-1",
-                    "flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-6"
-                  )}
-                >
-                  <div className="overflow-hidden rounded-lg bg-gray-100">
-                    <ParticleImage
-                      src={feature.imageSrc}
-                      className="relative w-full lg:flex-1"
-                      cameraDistance={isMobile ? 250 : 180}
-                      initialSettings={initialSettings}
-                      settings={settings}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
+    <article>
+      {content.map((feature, featureIdx) => (
+        <div
+          key={feature.name}
+          className={cn("grid grid-cols-1 sm:grid-cols-2 items-center py-6")}
+        >
+          <header className={classNames()}>
+            <Title as="h3" className="text-5xl">
+              {feature.name}
+            </Title>
+            <p className="mt-2 pt-9 text-caramel-100 text-2xl">
+              {feature.description}
+            </p>
+          </header>
+          <div
+            className={cn(
+              "order-first",
+              featureIdx % 2 === 0 ? "sm:order-last" : "sm:order-first"
+            )}
+          >
+            <ParticleImage
+              src={feature.imageSrc}
+              className="relative w-full lg:flex-1"
+              cameraDistance={isMobile ? 250 : 180}
+              initialSettings={initialSettings}
+              settings={settings}
+            />
           </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </article>
   );
 };
 
