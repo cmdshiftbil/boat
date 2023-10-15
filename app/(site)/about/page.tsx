@@ -1,18 +1,13 @@
 import BouncyLine from "@/components/BouncyLine";
-import { Container } from "@/components/Container";
 import Counter from "@/components/Counter";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 import HoverGrid from "@/components/HoverGrid";
 import LeadershipGrid from "@/components/LeadershipGrid/LeadershipGrid";
 import { PageIntro } from "@/components/PageIntro";
-import ParticleImage from "@/components/ParticleImage/ParticleImage";
-import SchemaCard from "@/components/SchemaCard/SchemaCard";
 import Text from "@/components/Text";
 import Title from "@/components/Title";
 import content from "@/content/content";
 import getPayloadClient from "@/payload/payloadClient";
-import LeadershipSection from "@/sections/Leadership.section";
-import TeamScrollSection from "@/sections/TeamScroll.section";
 import { prepareSeoData } from "@/utils/seo.utils";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -110,7 +105,6 @@ export default async function AboutPage() {
       <section className="relative">
         <PageIntro title="A Few Numbers" description="" />
 
-        {/* <div className="absolute h-full w-full top-0 left-0 bg-grid-perspective bg-repeat-x" /> */}
         <HoverGrid>
           {content.teamCounters.map((stat) => {
             return (

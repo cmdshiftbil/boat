@@ -21,7 +21,7 @@ const titleVariants = cva("text-caramel-500 font-medium", {
   },
 });
 
-interface TitleProps
+export interface TitleProps
   extends React.HTMLAttributes<HTMLElement>,
     VariantProps<typeof titleVariants> {
   children: React.ReactNode;

@@ -2,22 +2,25 @@ import { Container } from "@/components/Container";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 import { cn } from "@/lib/utils";
 import Title from "./Title";
+import { TitleProps } from "./Title/Title";
 
 export function PageIntro({
   title,
   subTitle,
   description,
   children,
+  as,
 }: {
   title: string;
   subTitle?: string;
-  description: React.ReactNode;
+  as?: TitleProps["as"];
+  description?: React.ReactNode;
   children?: React.ReactNode;
 }) {
   return (
     <FadeInStagger className={"space-y-4 mb-12"}>
       <FadeIn>
-        <Title>{title}</Title>
+        <Title as={as}>{title}</Title>
       </FadeIn>
       {subTitle && (
         <FadeIn>

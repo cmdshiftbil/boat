@@ -1,12 +1,9 @@
-import Page from "@/components/Page";
-
 import { ContactDepartments } from "@/components/ContactPageContent/ContactPageContent";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
+import { PageIntro } from "@/components/PageIntro";
 import getPayloadClient from "@/payload/payloadClient";
 import { prepareSeoData } from "@/utils/seo.utils";
 import { Metadata } from "next";
-import ContactHeader from "./_components/ContactHeader";
-import { PageIntro } from "@/components/PageIntro";
 
 type Props = {
   params: { id: string };
@@ -15,8 +12,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pageSlugName = "contact";
-
-  // const id = params.id;
 
   const payload = await getPayloadClient();
   const pageResponse = await payload.find({
@@ -34,16 +29,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ContactPage() {
   return (
-    <>
-      <FadeInStagger>
-        <FadeIn>
-          <ContactHeader />
-        </FadeIn>
+    <FadeInStagger className="py-24 md:py-48 container space-y-24 md:space-y-48">
+      <FadeIn>
+        <PageIntro
+          title="Let's Discuss Your Project"
+          description="Get in touch with us"
+        />
+      </FadeIn>
 
-        <FadeIn>
-          <ContactDepartments />
-        </FadeIn>
-      </FadeInStagger>
-    </>
+      <ContactDepartments />
+    </FadeInStagger>
   );
 }

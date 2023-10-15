@@ -6,12 +6,10 @@ export default function ContactHeader() {
   return (
     <div
       className={cn(
-        "px-2 gap-4 py-10",
+        "gap-4",
         "flex flex-col justify-between",
-        // Tablet style
-        "sm:px-8",
         // Desktop style
-        "md:flex-row  md:px-12"
+        "md:flex-row"
       )}
     >
       <div
@@ -29,7 +27,7 @@ export default function ContactHeader() {
         />
       </div>
 
-      <div className={cn("flex flex-col px-2 justify-center")}>
+      <div className={cn("flex flex-col justify-center")}>
         <span>Reach out to</span>
         <a
           href="mailto:reception@alpha-nero.com"

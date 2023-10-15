@@ -5,7 +5,7 @@ import { FadeIn, FadeInStagger } from "./FadeIn";
 import { cn } from "@/lib/utils";
 import SchemaCard from "./SchemaCard/SchemaCard";
 
-const HoverGrid = ({ children, className }: any) => {
+const HoverGrid = ({ children, className, id = "hoverBackground" }: any) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
 
   return (
@@ -30,7 +30,7 @@ const HoverGrid = ({ children, className }: any) => {
                 {hoveredIndex === idx && (
                   <motion.span
                     className="absolute inset-0 block h-full w-full"
-                    layoutId="hoverBackground" // required for the background to follow
+                    layoutId={id} // required for the background to follow
                     initial={{ opacity: 0 }}
                     animate={{
                       opacity: 1,
