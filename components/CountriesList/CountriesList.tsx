@@ -3,7 +3,7 @@ import { cn } from "@/utils/tailwind.utils";
 import { Fragment } from "react";
 import LinearGradient from "../LinearGradient";
 import { MagicCard, MagicContainer } from "../MagicCard/MagicCard";
-import Marquee from "../Marquee/Marque";
+import Marquee from "../Marquee/Marquee";
 import SchemaCard from "../SchemaCard/SchemaCard";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";

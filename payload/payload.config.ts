@@ -41,9 +41,11 @@ export default buildConfig({
         Icon: Icon,
         Logo: Logo,
       },
-      afterDashboard: [CustomDashboard]
+      afterDashboard: [CustomDashboard],
     },
   },
+  // cors: ["localhost:3000", "alpha-nero-media.s3.ap-south-1.amazonaws.com"],
+  cors: "*",
 
   plugins: [
     cloudStorage({

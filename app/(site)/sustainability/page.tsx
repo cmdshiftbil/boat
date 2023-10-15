@@ -1,7 +1,6 @@
 import Counter from "@/components/Counter";
 import { FadeInStagger } from "@/components/FadeIn";
 import HoverGrid from "@/components/HoverGrid";
-import Marquee from "@/components/Marquee/Marque";
 import { PageIntro } from "@/components/PageIntro";
 import SchemaCard from "@/components/SchemaCard/SchemaCard";
 import Title from "@/components/Title";
@@ -9,6 +8,9 @@ import CarbonReportsSection from "@/sections/CarbonReports.section";
 import React from "react";
 import ReactPlayer from "react-player";
 import VideoSection from "./_components/video.section";
+import { InteractiveMarquee } from "@/components/Marquee";
+import Image from "next/image";
+import LinearGradient from "@/components/LinearGradient";
 
 const carbonStats = [
   {
@@ -78,20 +80,22 @@ const solarStats = [
 
 export default function SustainabilityPage() {
   return (
-    <FadeInStagger className="container space-y-12">
-      <PageIntro
-        title="Sustainability"
-        description="Sustainability refers to the ability to maintain ecological balance and meet the needs of the present without compromising the ability of future generations to meet their own needs."
-      />
+    <FadeInStagger className="space-y-12">
+      <div className="container">
+        <PageIntro
+          title="Sustainability"
+          description="Sustainability refers to the ability to maintain ecological balance and meet the needs of the present without compromising the ability of future generations to meet their own needs."
+        />
+      </div>
 
-      <section>
+      <section className="container">
         <Title as="h3" className="mb-6">
           The Process
         </Title>
         <VideoSection />
       </section>
 
-      <section>
+      <section className="container">
         <Title as="h3">Solar Energy Statistics</Title>
         <HoverGrid id="solarLayout">
           {solarStats.map((stat) => {
@@ -122,14 +126,79 @@ export default function SustainabilityPage() {
         </HoverGrid>
       </section>
 
-      <section>
+      <section className="container">
         <Title as="h3">Creating Carbon Reports</Title>
         <CarbonReportsSection />
       </section>
 
-      <section>Marquee Logo</section>
+      <section className="relative container">
+        <Title as="h3" className="mb-6">
+          Partners
+        </Title>
+        <div className="relative">
+          {/* <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-graphite-950 via-transparent to-graphite-950 z-10 pointer-events-none" /> */}
+          {/* <div className="absolute w-full h-full top-0 left-0 z-10 pointer-events-none [linear-gradient(90deg, rgba(47, 47, 47, 1) 0%, rgba(47, 47, 47, 0) 50%, rgba(47, 47, 47, 1) 100%)]" /> */}
 
-      <section>
+          <InteractiveMarquee>
+            <div className="bg-caramel-900 flex-1 w-[300px]">
+              <Image
+                src="https://picsum.photos/300/100"
+                width={300}
+                height={100}
+                alt="ss"
+                draggable={false}
+              />
+            </div>
+            <div className="bg-caramel-900 flex-1 w-[300px]">
+              <Image
+                src="https://picsum.photos/300/100"
+                width={300}
+                height={100}
+                alt="ss"
+                draggable={false}
+              />
+            </div>
+            <div className="bg-caramel-900 flex-1 w-[300px]">
+              <Image
+                src="https://picsum.photos/300/100"
+                width={300}
+                height={100}
+                alt="ss"
+                draggable={false}
+              />
+            </div>
+            <div className="bg-caramel-900 flex-1 w-[300px]">
+              <Image
+                src="https://picsum.photos/300/100"
+                width={300}
+                height={100}
+                alt="ss"
+                draggable={false}
+              />
+            </div>
+            <div className="bg-caramel-900 flex-1 w-[300px]">
+              <Image
+                src="https://picsum.photos/300/100"
+                width={300}
+                height={100}
+                alt="ss"
+                draggable={false}
+              />
+            </div>
+            <div className="bg-caramel-900 flex-1 w-[300px]">
+              <Image
+                src="https://picsum.photos/300/100"
+                width={300}
+                height={100}
+                alt="ss"
+                draggable={false}
+              />
+            </div>
+          </InteractiveMarquee>
+        </div>
+      </section>
+
+      <section className="container">
         <Title as="h3">Recycled</Title>
         <HoverGrid>
           {carbonStats.map((stat) => {

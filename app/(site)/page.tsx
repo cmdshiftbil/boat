@@ -16,6 +16,8 @@ import { MainHeadline } from "@/sections/Headline.section";
 import ProjectsPreview from "@/sections/ProjectsPreview.section";
 import HompageServices from "@/sections/HompageServices.section";
 import { getServices } from "@/lib/fetchers";
+import { InteractiveMarquee } from "@/components/Marquee";
+import Title from "@/components/Title";
 
 type Props = {
   params: { id: string };
@@ -102,7 +104,7 @@ export default async function HomePage() {
       {/* <ThreeDModelSection /> */}
       {/* <OurProcessSection data={homeData.ourProcess} /> */}
       <OurPresenceSection />
-      {/* <OurClientsSection data={homeData.ourClients} /> */}
+      <OurClientsSection data={homeData.ourClients} />
     </>
   );
 }
