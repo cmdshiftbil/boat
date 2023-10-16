@@ -48,7 +48,7 @@ export default async function Services() {
   const services = await getServices();
 
   return (
-    <FadeInStagger>
+    <FadeInStagger className="container">
       <PageIntro title={title} description={description} />
 
       <div className="py-12 p-2 sm:p-4 md:p-6">
