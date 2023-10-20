@@ -24,7 +24,7 @@ export function PageIntro({
       </FadeIn>
       {subTitle && (
         <FadeIn>
-          <Title as="h3">{subTitle}</Title>
+          <Title as="h2">{subTitle}</Title>
         </FadeIn>
       )}
       {description && (

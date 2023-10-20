@@ -14,6 +14,9 @@ export default function LoadingScreen() {
             duration: 1,
             ease: [0.33, 1, 0.68, 1],
             times: [0, 1],
+            // Infinity
+            repeatDelay: 0.5,
+            repeat: Infinity,
           },
         }}
       >

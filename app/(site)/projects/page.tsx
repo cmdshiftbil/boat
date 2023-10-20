@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { PageIntro } from "@/components/PageIntro";
 import BouncyLine from "@/components/BouncyLine";
+import { FadeInStagger } from "@/components/FadeIn";
 
 type Props = {
   params: { id: string };
@@ -53,7 +54,7 @@ export default async function ProjectsPage() {
   const { projects } = await getProjects();
 
   return (
-    <>
+    <FadeInStagger className="container">
       <PageIntro
         title="Projects"
         description="As a leading retail fit out agency, we design and build retail
@@ -68,6 +69,6 @@ export default async function ProjectsPage() {
         <Projects projects={projects} />
         {/* </Container> */}
       </div>
-    </>
+    </FadeInStagger>
   );
 }

@@ -29,7 +29,7 @@ export default function Header() {
       animate={isActive ? "enter" : "exit"}
       variants={headerMotionVariants}
       className={cn(
-        "fixed w-full box-border py-4 px-5 top-0 z-20",
+        "sticky w-full box-border py-4 px-5 top-0 z-20",
         //Desktop
         "md:p-12"
       )}

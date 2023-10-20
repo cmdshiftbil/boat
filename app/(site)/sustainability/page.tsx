@@ -11,6 +11,7 @@ import VideoSection from "./_components/video.section";
 import { InteractiveMarquee } from "@/components/Marquee";
 import Image from "next/image";
 import LinearGradient from "@/components/LinearGradient";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const carbonStats = [
   {
@@ -66,15 +67,21 @@ const solarStats = [
   },
   {
     id: "2",
-    label: "Energy Generated",
-    value: 500,
-    suffix: "kWh",
+    label: "Solar System Size",
+    value: 600,
+    suffix: "kWp",
   },
   {
     id: "3",
-    label: "CO2 Emissions Avoided",
-    value: 250,
-    suffix: "tons",
+    label: "Annual Generation",
+    value: 996000,
+    suffix: "KWp",
+  },
+  {
+    id: "4",
+    label: "Project Lifetime",
+    value: 25,
+    suffix: "Years",
   },
 ];
 
@@ -84,20 +91,30 @@ export default function SustainabilityPage() {
       <div className="container">
         <PageIntro
           title="Sustainability"
-          description="Sustainability refers to the ability to maintain ecological balance and meet the needs of the present without compromising the ability of future generations to meet their own needs."
+          subTitle="Crafting a Sustainable Future"
+          description="At Alpha Nero, we challenge the perception that manufacturing and sustainability are
+          incompatible. We have been actively working behind the scenes to seamlessly integrate
+          sustainability into our processes via our revolutionary carbon footprint calculating software,
+          innovative partnerships with Champions of Sustainability in the Industry, while obtaining
+          certifications from industry standards such as LEED and EcoVadis."
         />
       </div>
 
       <section className="container">
         <Title as="h3" className="mb-6">
-          The Process
+          Embracing cutting-edge technology, we have incorporated solar panels
+          into our facility, harnessing the power of the sun to fuel our
+          operations.
         </Title>
         <VideoSection />
       </section>
 
       <section className="container">
-        <Title as="h3">Solar Energy Statistics</Title>
-        <HoverGrid id="solarLayout">
+        <Title as="h3">Solar Panel Statistics</Title>
+        <HoverGrid
+          id="solarLayout"
+          className="grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-2"
+        >
           {solarStats.map((stat) => {
             return (
               <div
@@ -127,14 +144,23 @@ export default function SustainabilityPage() {
       </section>
 
       <section className="container">
-        <Title as="h3">Creating Carbon Reports</Title>
+        <Title as="h3">
+          What if we could offer you a way to quantify &amp; locate where your
+          carbon emissions are coming from?
+        </Title>
         <CarbonReportsSection />
       </section>
 
       <section className="relative container">
         <Title as="h3" className="mb-6">
-          Partners
+          Our Allies in Green Manufacturing
         </Title>
+        <p className="text-3xl text-caramel-100 font-normal">
+          We have collaborates with industry trailblazers in sustainability to
+          promote sustainable solutions, amplify our mission to make a
+          difference in sustainable manufacturing and establish standardized
+          emissions KPIs for accountability.
+        </p>
         <div className="relative">
           {/* <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-graphite-950 via-transparent to-graphite-950 z-10 pointer-events-none" /> */}
           {/* <div className="absolute w-full h-full top-0 left-0 z-10 pointer-events-none [linear-gradient(90deg, rgba(47, 47, 47, 1) 0%, rgba(47, 47, 47, 0) 50%, rgba(47, 47, 47, 1) 100%)]" /> */}
@@ -199,34 +225,73 @@ export default function SustainabilityPage() {
       </section>
 
       <section className="container">
-        <Title as="h3">Recycled</Title>
-        <HoverGrid>
-          {carbonStats.map((stat) => {
-            return (
-              <div
-                className="flex flex-row p-6 justify-between items-center gap-2"
-                key={stat.id}
-              >
-                <div className="flex flex-col">
-                  <Counter
-                    value={stat.value}
-                    suffix={` ${stat.suffix}`}
-                    className="text-4xl text-caramel-500 font-bold"
-                  />
-                  <span className="text-xl tracking-wide text-caramel-100">
-                    {stat.label}
-                  </span>
-                </div>
-                {/* <Image
+        <Tabs defaultValue="recycled-2022">
+          <div className="flex justify-between items-center">
+            <Title as="h3">Recycled</Title>
+            <TabsList>
+              <TabsTrigger value="recycled-2022">2022</TabsTrigger>
+              <TabsTrigger value="recycled-2023">2023</TabsTrigger>
+            </TabsList>
+          </div>
+          <TabsContent value="recycled-2022" className="w-full">
+            <HoverGrid id="recycled-2022-layout">
+              {carbonStats.map((stat) => {
+                return (
+                  <div
+                    className="flex flex-row p-6 justify-between items-center gap-2"
+                    key={stat.id}
+                  >
+                    <div className="flex flex-col">
+                      <Counter
+                        value={stat.value}
+                        suffix={` ${stat.suffix}`}
+                        className="text-4xl text-caramel-500 font-bold"
+                      />
+                      <span className="text-xl tracking-wide text-caramel-100">
+                        {stat.label}
+                      </span>
+                    </div>
+                    {/* <Image
                   src={stat.image}
                   width={48}
                   height={48}
                   alt={stat.label}
                 /> */}
-              </div>
-            );
-          })}
-        </HoverGrid>
+                  </div>
+                );
+              })}
+            </HoverGrid>
+          </TabsContent>
+          <TabsContent value="recycled-2023">
+            <HoverGrid id="recycled-2023-layout">
+              {carbonStats.map((stat) => {
+                return (
+                  <div
+                    className="flex flex-row p-6 justify-between items-center gap-2"
+                    key={stat.id}
+                  >
+                    <div className="flex flex-col">
+                      <Counter
+                        value={stat.value}
+                        suffix={` ${stat.suffix}`}
+                        className="text-4xl text-caramel-500 font-bold"
+                      />
+                      <span className="text-xl tracking-wide text-caramel-100">
+                        {stat.label}
+                      </span>
+                    </div>
+                    {/* <Image
+                  src={stat.image}
+                  width={48}
+                  height={48}
+                  alt={stat.label}
+                /> */}
+                  </div>
+                );
+              })}
+            </HoverGrid>
+          </TabsContent>
+        </Tabs>
       </section>
     </FadeInStagger>
   );
