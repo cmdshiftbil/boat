@@ -33,16 +33,18 @@ export default function Counter({
     }
   }, [motionValue, isInView]);
 
-  useEffect(
-    () =>
-      springValue.on("change", (latest) => {
-        if (ref.current) {
-          ref.current.textContent =
-            Intl.NumberFormat("en-US").format(latest.toFixed(0)) + suffix;
-        }
-      }),
-    [springValue]
-  );
+  useEffect(() => {
+    if (value === 0 && ref.current) {
+      ref.current.textContent = "0" + suffix;
+    }
+
+    return springValue.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent =
+          Intl.NumberFormat("en-US").format(latest.toFixed(0)) + suffix;
+      }
+    });
+  }, [springValue]);
 
   return <span ref={ref} className={className} />;
 }

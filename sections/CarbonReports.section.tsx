@@ -42,6 +42,7 @@ const CarbonReportsSection = () => {
       randomize: 7.0,
       depth: 6.0,
       size: 0.6,
+      color: "#68FFA2",
     }),
     []
   );

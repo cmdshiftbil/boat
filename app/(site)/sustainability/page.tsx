@@ -13,51 +13,95 @@ import Image from "next/image";
 import LinearGradient from "@/components/LinearGradient";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const carbonStats = [
-  {
-    id: "632567d9-258e-4eed-8750-436dd2fb14c0",
-    icon: "",
-    value: 14.4,
-    suffix: "Tons",
-    label: "CO2 Emissions Reduced",
-  },
+const carbonStats2022 = [
   {
     id: "174c85a5-c123-4d91-baf6-3b9e77297093",
     icon: "",
-    value: 8.6,
+    value: 8,
     suffix: "Tons",
-    label: "Stainless Steel Recycled",
+    label: "Mild Steel",
   },
   {
     id: "9764fccf-877c-43de-8fe7-321b30ce96f2",
     icon: "",
-    value: 20,
+    value: 42,
     suffix: "Tons",
-    label: "Plastic Waste Recycled",
+    label: "Stainless Steel",
   },
   {
     id: "5aa197a9-f4ee-47fa-bde5-eb03985988ed",
     icon: "",
-    value: 5,
+    value: -4,
     suffix: "Tons",
-    label: "Paper Waste Recycled",
+    label: "Aluminum",
   },
   {
     id: "5661cc17-3d5f-4734-a7e8-7b67b916e80a",
     icon: "",
-    value: 50,
+    value: 8,
     suffix: "Tons",
-    label: "Water Saved",
+    label: "Acrylic",
   },
   {
-    id: "431b5200-da9b-4d42-acba-1fa849c8c4ef",
+    id: "12345678-1234-5678-1234-567812345678",
+    icon: "",
+    value: 0,
+    suffix: "Tons",
+    label: "MDF",
+  },
+  {
+    id: "9204d04a-3338-4300-be8b-c865c81528ec",
     icon: "",
     value: 100,
     suffix: "Trees",
-    label: "Trees Planted",
+    label: "Tree Seedlings Planted",
   },
 ];
 
+const carbonStats2023 = [
+  {
+    id: "40f87d15-672d-4255-8915-8dad96d48672",
+    icon: "",
+    value: 7,
+    suffix: "Tons",
+    label: "Mild Steel",
+  },
+  {
+    id: "2d92256a-a966-49cd-9acb-0d2c34a5ba1c",
+    icon: "",
+    value: 36,
+    suffix: "Tons",
+    label: "Stainless Steel",
+  },
+  {
+    id: "24a5635a-4cfe-4ac3-88f2-d1b3077527de",
+    icon: "",
+    value: -2,
+    suffix: "Tons",
+    label: "Aluminum",
+  },
+  {
+    id: "91491580-4705-4d1b-950a-a6cf0d255fc7",
+    icon: "",
+    value: 7,
+    suffix: "Tons",
+    label: "Acrylic",
+  },
+  {
+    id: "394bd6d3-3977-4609-9a2f-8c55431e708f",
+    icon: "",
+    value: 21.6,
+    suffix: "Tons",
+    label: "MDF",
+  },
+  {
+    id: "78b5d5c0-4745-40d6-952d-5fdb93a37645",
+    icon: "",
+    value: 100,
+    suffix: "Trees",
+    label: "Tree Seedlings Planted",
+  },
+];
 const solarStats = [
   {
     id: "1",
@@ -235,7 +279,7 @@ export default function SustainabilityPage() {
           </div>
           <TabsContent value="recycled-2022" className="w-full">
             <HoverGrid id="recycled-2022-layout">
-              {carbonStats.map((stat) => {
+              {carbonStats2022.map((stat) => {
                 return (
                   <div
                     className="flex flex-row p-6 justify-between items-center gap-2"
@@ -251,12 +295,6 @@ export default function SustainabilityPage() {
                         {stat.label}
                       </span>
                     </div>
-                    {/* <Image
-                  src={stat.image}
-                  width={48}
-                  height={48}
-                  alt={stat.label}
-                /> */}
                   </div>
                 );
               })}
@@ -264,7 +302,7 @@ export default function SustainabilityPage() {
           </TabsContent>
           <TabsContent value="recycled-2023">
             <HoverGrid id="recycled-2023-layout">
-              {carbonStats.map((stat) => {
+              {carbonStats2023.map((stat) => {
                 return (
                   <div
                     className="flex flex-row p-6 justify-between items-center gap-2"
@@ -280,12 +318,6 @@ export default function SustainabilityPage() {
                         {stat.label}
                       </span>
                     </div>
-                    {/* <Image
-                  src={stat.image}
-                  width={48}
-                  height={48}
-                  alt={stat.label}
-                /> */}
                   </div>
                 );
               })}

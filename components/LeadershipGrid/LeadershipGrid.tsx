@@ -20,6 +20,7 @@ export default function LeadershipGrid() {
       randomize: 1.0,
       depth: 1.0,
       size: 0.7,
+      color: "#ebe5d6",
     }),
     []
   );

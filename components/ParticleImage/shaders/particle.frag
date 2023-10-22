@@ -3,6 +3,7 @@
 precision highp float;
 
 uniform sampler2D uTexture;
+uniform vec3 uColor;  // Declare the color uniform
 
 varying vec2 vPUv;
 varying vec2 vUv;
@@ -15,9 +16,8 @@ void main() {
 	// pixel color
 	vec4 colA = texture2D(uTexture, puv);
 
-	// greyscale
-	float grey = colA.r * 0.21 + colA.g * 0.71 + colA.b * 0.07;
-	vec4 colB = vec4(grey, grey, grey, 1.0);
+	// Use the passed color instead of grayscale
+	vec4 colB = vec4(uColor, 1.0);  // Use uColor
 
 	// circle
 	float border = 0.3;

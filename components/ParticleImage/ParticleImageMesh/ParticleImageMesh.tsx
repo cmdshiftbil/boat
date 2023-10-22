@@ -44,6 +44,9 @@ export const ParticleImageMesh = ({
 }: ParticleImageMeshProps) => {
   const [shaderObject, setShaderObject] = useState<GMShader>();
   const [basicObject, setBasicObject] = useState<GMBasic>();
+  const [shaderColor, setShaderColor] = useState(
+    new THREE.Color(settings?.color ?? "#fff")
+  ); // Initial color set to red
   const [particles, setParticles] = useState<Particles>();
   const [setupReady, setSetupReady] = useState(false);
   const [eventsReady, setEventsReady] = useState(false);
@@ -155,7 +158,11 @@ export const ParticleImageMesh = ({
               index={shaderObject.geometry.index}
             />
             <rawShaderMaterial
-              uniforms={shaderObject.material.uniforms}
+              // uniforms={shaderObject.material.uniforms}
+              uniforms={{
+                ...shaderObject.material.uniforms,
+                uColor: { value: shaderColor },
+              }}
               vertexShader={shaderObject.material.vertexShader}
               fragmentShader={shaderObject.material.fragmentShader}
               depthTest={shaderObject.material.depthTest}

@@ -2,6 +2,7 @@ export interface ParticleSettings {
   randomize: number;
   depth: number;
   size: number;
+  color?: string;
 }
 
 export interface GMShader {
