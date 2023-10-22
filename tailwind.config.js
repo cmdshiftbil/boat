@@ -126,6 +126,9 @@ const fontFamily = require("tailwindcss/defaultTheme").fontFamily;
         },
       },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [
+      require("tailwindcss-animate"),
+      require("@tailwindcss/typography"),
+    ],
   }
 );

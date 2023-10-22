@@ -54,7 +54,7 @@ const CarbonReportsSection = () => {
           className={cn("grid grid-cols-1 sm:grid-cols-2 items-center py-6")}
         >
           <header className={classNames()}>
-            <Title as="h3" className="text-5xl">
+            <Title as="h3" className="text-5xl text-[#68FFA2]">
               {feature.name}
             </Title>
             <p className="mt-2 pt-9 text-caramel-100 text-2xl">

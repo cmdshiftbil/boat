@@ -13,7 +13,13 @@ const links = [
   { id: "2", href: "/about", title: "About", src: "" },
   { id: "3", href: "/projects", title: "Projects", src: "" },
   { id: "4", href: "/services", title: "Services", src: "" },
-  { id: "5", href: "/sustainability", title: "Sustainability", src: "" },
+  {
+    id: "5",
+    href: "/sustainability",
+    title: "Sustainability",
+    src: "",
+    color: "#68FFA2",
+  },
   { id: "6", href: "/contact", title: "Contact", src: "" },
   { id: "7", href: "/blog", title: "Blog", src: "" },
 ];

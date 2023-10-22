@@ -38,7 +38,6 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/line-clamp": "^0.4.4",
-    "@tailwindcss/typography": "^0.5.10",
     "@typeform/embed-react": "^3.0.0",
     "@types/node": "20.8.0",
     "@types/react": "18.2.24",
@@ -92,6 +91,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/dompurify": "^3.0.3",
     "@types/escape-html": "^1.0.2",
     "@types/mapbox-gl": "^2.7.15",

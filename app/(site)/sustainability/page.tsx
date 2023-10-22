@@ -131,7 +131,7 @@ const solarStats = [
 
 export default function SustainabilityPage() {
   return (
-    <FadeInStagger className="space-y-12">
+    <FadeInStagger className="space-y-32 relative">
       <div className="container">
         <PageIntro
           title="Sustainability"
@@ -195,7 +195,7 @@ export default function SustainabilityPage() {
         <CarbonReportsSection />
       </section>
 
-      <section className="relative container">
+      <section className="relative container space-y-6">
         <Title as="h3" className="mb-6">
           Our Allies in Green Manufacturing
         </Title>
@@ -270,7 +270,7 @@ export default function SustainabilityPage() {
 
       <section className="container">
         <Tabs defaultValue="recycled-2022">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center sticky top-0">
             <Title as="h3">Recycled</Title>
             <TabsList>
               <TabsTrigger value="recycled-2022">2022</TabsTrigger>

@@ -93,7 +93,10 @@ export default function Body({ links }: any) {
               </Link>
               <AnimatePresence mode="wait">
                 {hoveredIndex === index && (
-                  <ActiveElement className="absolute top-3 right-3" />
+                  <ActiveElement
+                    className="absolute top-3 right-3"
+                    pathColor={link.color}
+                  />
                 )}
               </AnimatePresence>
             </motion.li>

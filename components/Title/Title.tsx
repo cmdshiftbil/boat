@@ -8,9 +8,9 @@ import React from "react";
 const titleVariants = cva("text-caramel-500 font-medium", {
   variants: {
     as: {
-      h1: "text-7xl sm:text-9xl",
-      h2: "text-5xl sm:text-7xl",
-      h3: "text-4xl sm:text-3xl",
+      h1: "text-6xl sm:text-9xl",
+      h2: "text-4xl sm:text-7xl",
+      h3: "text-3xl sm:text-3xl",
       h4: "text-2xl sm:text-4xl",
       h5: "text-lg sm:text-xl",
       h6: "text-base sm:text-lg",
@@ -58,14 +58,14 @@ export default function Title({
     return (
       <As className={cn(titleVariants({ as }), className)}>
         <div className="overflow-hidden" ref={ref}>
-          <motion.p
+          <motion.span
             // custom={index}
             variants={animation}
             initial="initial"
             animate={inView ? "enter" : ""}
           >
             {children}
-          </motion.p>
+          </motion.span>
         </div>
       </As>
     );

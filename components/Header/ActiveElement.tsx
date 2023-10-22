@@ -28,12 +28,15 @@ const draw = {
   },
 };
 
-function ActiveElement(props: React.SVGProps<SVGSVGElement>) {
+function ActiveElement(
+  props: React.SVGProps<SVGSVGElement> & { pathColor: string }
+) {
   return (
     <motion.div className="h-full relative" layoutId="active-element">
       <motion.svg
-        width={71}
-        height={72}
+        width="100%"
+        height="100%"
+        // height={72}
         fill="none"
         initial="initial"
         animate={"visible"}
@@ -41,12 +44,13 @@ function ActiveElement(props: React.SVGProps<SVGSVGElement>) {
         exit="hidden"
         viewBox="0 0 71 72"
         // layoutId="active-element"
-        className={cn("aspect-square h-full", props.className)}
+        className={cn("h-full w-full", props.className)}
       >
         <motion.path
           variants={draw}
-          d="M67 67.5L4 4.5"
-          stroke="#aa8455"
+          // d="M67 67.5L4 4.5"
+          d="M0 36H3734.5"
+          stroke={props.pathColor ?? "#aa8455"}
           strokeWidth={11}
         />
       </motion.svg>
@@ -55,3 +59,15 @@ function ActiveElement(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default ActiveElement;
+
+{
+  /* <svg
+  width="3735"
+  height="72"
+  viewBox="0 0 3735 72"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path d="M0 36H3734.5" stroke="#3BB18E" stroke-width="71" />
+</svg>; */
+}
