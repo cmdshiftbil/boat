@@ -12,6 +12,9 @@ import { InteractiveMarquee } from "@/components/Marquee";
 import Image from "next/image";
 import LinearGradient from "@/components/LinearGradient";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import NomoreBottlesLogo from "./_components/NomoreBottlesLogo";
+import EhfaazLogo from "./_components/EhfaazLogo";
+import AzraqLogo from "./_components/AzraqLogo";
 
 const carbonStats2022 = [
   {
@@ -195,74 +198,49 @@ export default function SustainabilityPage() {
         <CarbonReportsSection />
       </section>
 
-      <section className="relative container space-y-6">
-        <Title as="h3" className="mb-6">
-          Our Allies in Green Manufacturing
-        </Title>
-        <p className="text-3xl text-caramel-100 font-normal">
-          We have collaborates with industry trailblazers in sustainability to
-          promote sustainable solutions, amplify our mission to make a
-          difference in sustainable manufacturing and establish standardized
-          emissions KPIs for accountability.
-        </p>
+      <section className="relative space-y-6">
+        <div className="container">
+          <Title as="h3" className="mb-6">
+            Our Allies in Green Manufacturing
+          </Title>
+          <p className="text-3xl text-caramel-100 font-normal">
+            We have collaborates with industry trailblazers in sustainability to
+            promote sustainable solutions, amplify our mission to make a
+            difference in sustainable manufacturing and establish standardized
+            emissions KPIs for accountability.
+          </p>
+        </div>
         <div className="relative">
           {/* <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-graphite-950 via-transparent to-graphite-950 z-10 pointer-events-none" /> */}
           {/* <div className="absolute w-full h-full top-0 left-0 z-10 pointer-events-none [linear-gradient(90deg, rgba(47, 47, 47, 1) 0%, rgba(47, 47, 47, 0) 50%, rgba(47, 47, 47, 1) 100%)]" /> */}
 
           <InteractiveMarquee>
-            <div className="bg-caramel-900 flex-1 w-[300px]">
-              <Image
-                src="https://picsum.photos/300/100"
-                width={300}
-                height={100}
-                alt="ss"
-                draggable={false}
-              />
+            <div className="px-6 flex items-center justify-center">
+              <NomoreBottlesLogo className="w-[100px]" />
             </div>
-            <div className="bg-caramel-900 flex-1 w-[300px]">
-              <Image
-                src="https://picsum.photos/300/100"
-                width={300}
-                height={100}
-                alt="ss"
-                draggable={false}
-              />
+            <div className="px-6 flex items-center justify-center">
+              <EhfaazLogo className="w-[100px]" />
             </div>
-            <div className="bg-caramel-900 flex-1 w-[300px]">
-              <Image
-                src="https://picsum.photos/300/100"
-                width={300}
-                height={100}
-                alt="ss"
-                draggable={false}
-              />
+            <div className="px-6 flex items-center justify-center">
+              <AzraqLogo className="w-[100px]" />
             </div>
-            <div className="bg-caramel-900 flex-1 w-[300px]">
-              <Image
-                src="https://picsum.photos/300/100"
-                width={300}
-                height={100}
-                alt="ss"
-                draggable={false}
-              />
+            <div className="px-6 flex items-center justify-center">
+              <NomoreBottlesLogo className="w-[100px]" />
             </div>
-            <div className="bg-caramel-900 flex-1 w-[300px]">
-              <Image
-                src="https://picsum.photos/300/100"
-                width={300}
-                height={100}
-                alt="ss"
-                draggable={false}
-              />
+            <div className="px-6 flex items-center justify-center">
+              <EhfaazLogo className="w-[100px]" />
             </div>
-            <div className="bg-caramel-900 flex-1 w-[300px]">
-              <Image
-                src="https://picsum.photos/300/100"
-                width={300}
-                height={100}
-                alt="ss"
-                draggable={false}
-              />
+            <div className="px-6 flex items-center justify-center">
+              <AzraqLogo className="w-[100px]" />
+            </div>
+            <div className="px-6 flex items-center justify-center">
+              <NomoreBottlesLogo className="w-[100px]" />
+            </div>
+            <div className="px-6 flex items-center justify-center">
+              <EhfaazLogo className="w-[100px]" />
+            </div>
+            <div className="px-6 flex items-center justify-center">
+              <AzraqLogo className="w-[100px]" />
             </div>
           </InteractiveMarquee>
         </div>

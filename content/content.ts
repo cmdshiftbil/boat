@@ -162,10 +162,10 @@ const content = {
       long: 36.2384,
     },
     {
-      id: "4b2e9522-9d98-489f-bcfa-116ff82d44fd",
-      name: "Iraq",
-      lat: 33.3152,
-      long: 44.3661,
+      id: "d8c61b54-8bb0-4583-b3fd-2fc6f3aaa29d",
+      name: "India",
+      lat: 20.5937,
+      long: 78.9629,
     },
     {
       id: "590bba8c-90eb-40e5-84d0-35e752f01f92",
@@ -174,10 +174,10 @@ const content = {
       long: 30.8025,
     },
     {
-      id: "ad60a1fe-ad68-4ad0-ba91-dec46692784c",
-      name: "Cyprus",
-      lat: 35.1264,
-      long: 33.4299,
+      id: "ab0fd1e4-3a30-4635-9fa5-fa2382587f66",
+      name: "South Africa",
+      lat: -30.5595,
+      long: 22.9375,
     },
     {
       id: "9f0f630e-aff9-4a47-a64a-e82db798936a",
