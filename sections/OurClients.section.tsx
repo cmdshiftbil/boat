@@ -29,14 +29,14 @@ const OurClientsSection = ({ data }: OurClientsSectionProps) => {
   });
 
   return (
-    <section className="py-48 bg-caramel-700 px-4 md:px-6">
-      <PageIntro as="h2" title={data.title} description={data.subtitle} />
+    <section className="py-48">
+      <div className="px-4 md:px-6">
+        <PageIntro as="h2" title={data.title} description={data.subtitle} />
+      </div>
 
       <InteractiveMarquee>
         {logos.map((logo) => {
           console.log(logo.src);
-
-          const mask = `url(${logo.src})`;
 
           return (
             <div
@@ -44,41 +44,18 @@ const OurClientsSection = ({ data }: OurClientsSectionProps) => {
               draggable={false}
               className="flex items-center justify-center h-[100px] w-[450px] p-6"
             >
-              {/* <SvgInline url={logo.src} className="fill-caramel-950" /> */}
-              <SVG src={logo.src} width={128} height="auto" title="React" />
-              {/* <div
-                // height={200}
-                // width={350}
-                // src={logo.src}
-                // alt={logo.alt}
-                className="h-full w-full bg-caramel-900 object-contain"
-                draggable={false}
-                style={{
-                  WebkitMaskImage: mask,
-                  WebkitMaskSize: "cover",
-                  WebkitMaskRepeat: "no-repeat",
-                  WebkitMaskPosition: "center",
-                  height: 200,
-                  width: 300,
-                }}
-              /> */}
+              <SVG
+                src={logo.src}
+                width="100%"
+                height="auto"
+                title="React"
+                className="fill-caramel-500"
+                preProcessor={(code) => code.replace(/fill=".*?"/g, "")}
+              />
             </div>
           );
         })}
       </InteractiveMarquee>
-
-      {/* <ParallaxCarousel
-        baseVelocity={0.5}
-        shadeColor="pampas-100"
-        className="pb-12"
-        images={logos}
-      />
-
-      <ParallaxCarousel
-        baseVelocity={-0.5}
-        shadeColor="pampas-100"
-        images={logos}
-      /> */}
 
       <div className="flex justify-center pt-24 px-12">
         <Link
