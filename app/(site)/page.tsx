@@ -18,6 +18,7 @@ import HompageServices from "@/sections/HompageServices.section";
 import { getServices } from "@/lib/fetchers";
 import { InteractiveMarquee } from "@/components/Marquee";
 import Title from "@/components/Title";
+import CallToActionSection from "@/sections/CallToAction.section";
 
 type Props = {
   params: { id: string };
@@ -99,10 +100,8 @@ export default async function HomePage() {
       <HeroSection />
       <MainHeadline />
       <HompageServices services={services} />
-      {/* <WhatWeDoSection data={homeData.whatWeDo} /> */}
       <ProjectsPreview />
-      {/* <ThreeDModelSection /> */}
-      {/* <OurProcessSection data={homeData.ourProcess} /> */}
+      <CallToActionSection />
       <OurPresenceSection />
       <OurClientsSection data={homeData.ourClients} />
     </>

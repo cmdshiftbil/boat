@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import SvgInline from "@/components/SvgInline";
+import { cn } from "@/lib/utils";
 
 interface OurClientsSectionProps {
   data: HomeData["ourClients"];
@@ -28,8 +29,8 @@ const OurClientsSection = ({ data }: OurClientsSectionProps) => {
   });
 
   return (
-    <section className="py-48 ">
-      <PageIntro title={data.title} description={data.subtitle} />
+    <section className="py-48 bg-caramel-700 px-4 md:px-6">
+      <PageIntro as="h2" title={data.title} description={data.subtitle} />
 
       <InteractiveMarquee>
         {logos.map((logo) => {
@@ -82,7 +83,7 @@ const OurClientsSection = ({ data }: OurClientsSectionProps) => {
       <div className="flex justify-center pt-24 px-12">
         <Link
           href={data.ctaUrl}
-          className={buttonVariants({ variant: "outline" })}
+          className={cn(buttonVariants({ variant: "outline" }))}
         >
           {data.ctaText}
         </Link>
