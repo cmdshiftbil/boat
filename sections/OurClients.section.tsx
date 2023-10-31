@@ -34,28 +34,30 @@ const OurClientsSection = ({ data }: OurClientsSectionProps) => {
         <PageIntro as="h2" title={data.title} description={data.subtitle} />
       </div>
 
-      <InteractiveMarquee>
-        {logos.map((logo) => {
-          console.log(logo.src);
+      <div className="py-24">
+        <InteractiveMarquee>
+          {logos.map((logo) => {
+            console.log(logo.src);
 
-          return (
-            <div
-              key={logo.id}
-              draggable={false}
-              className="flex items-center justify-center h-[100px] w-[450px] p-6"
-            >
-              <SVG
-                src={logo.src}
-                width="100%"
-                height="auto"
-                title="React"
-                className="fill-caramel-500"
-                preProcessor={(code) => code.replace(/fill=".*?"/g, "")}
-              />
-            </div>
-          );
-        })}
-      </InteractiveMarquee>
+            return (
+              <div
+                key={logo.id}
+                draggable={false}
+                className="flex items-center justify-center h-[100px] w-[450px] p-6"
+              >
+                <SVG
+                  src={logo.src}
+                  width="100%"
+                  height="auto"
+                  title="React"
+                  className="fill-caramel-500"
+                  preProcessor={(code) => code.replace(/fill=".*?"/g, "")}
+                />
+              </div>
+            );
+          })}
+        </InteractiveMarquee>
+      </div>
 
       <div className="flex justify-center pt-24 px-12">
         <Link

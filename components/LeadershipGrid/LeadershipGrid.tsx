@@ -25,7 +25,7 @@ export default function LeadershipGrid() {
     []
   );
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-6">
       {[
         {
           name: "Simon Hacker",
@@ -42,11 +42,11 @@ export default function LeadershipGrid() {
           position: "Finance Manager",
           picture: "/images/leadership/severine.png",
         },
-        {
-          name: "Rajesh M.V.",
-          position: "Operation Manager & Partner",
-          picture: "/images/leadership/simon.png",
-        },
+        // {
+        //   name: "Rajesh M.V.",
+        //   position: "Operation Manager & Partner",
+        //   picture: "/images/leadership/simon.png",
+        // },
       ].map((member, index) => {
         return (
           <FadeIn key={index}>

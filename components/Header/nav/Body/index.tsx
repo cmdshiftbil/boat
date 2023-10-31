@@ -91,7 +91,7 @@ export default function Body({ links }: any) {
               >
                 {getChars(title)}
               </Link>
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 {hoveredIndex === index && (
                   <ActiveElement
                     className="absolute top-3 right-3"

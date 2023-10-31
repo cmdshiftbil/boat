@@ -34,9 +34,10 @@ function ActiveElement(
   return (
     <motion.div className="h-full relative" layoutId="active-element">
       <motion.svg
-        width="100%"
-        height="100%"
-        // height={72}
+        // width="100%"
+        // height="100%"
+        width={71}
+        height={72}
         fill="none"
         initial="initial"
         animate={"visible"}
@@ -44,7 +45,7 @@ function ActiveElement(
         exit="hidden"
         viewBox="0 0 71 72"
         // layoutId="active-element"
-        className={cn("h-full w-full", props.className)}
+        className={cn(props.className)}
       >
         <motion.path
           variants={draw}
